@@ -1,9 +1,11 @@
-import styles from './App.module.scss';
+import './App.scss';
+
+import Header from './components/header/Header';
 
 const App = (): JSX.Element => {
   return (
-    <div className={styles.App}>
-      Tonight Website
+    <div className="App">
+      <Header />
     </div>
   )
 }

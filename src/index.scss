@@ -1,0 +1,22 @@
+@import './variables/variables.scss';
+
+html {
+  font-size: 62.5%;
+  font-family: 'Open Sans', 'sans-serif';
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  font-size: 1.6rem;
+  color: $color-white;
+  background-color: $color-background;
+}
+
+@media only screen and (max-width: 480px) {
+  html {
+    font-size: 58.6%;
+  }
+}
