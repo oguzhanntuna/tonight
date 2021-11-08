@@ -1,9 +1,13 @@
 @import '../../variables/variables.scss';
 
 .header {
-    padding: 3rem;
+    position: fixed;
+    width: calc(100% - 6rem);
     display: flex;
+    padding: 3rem;
     align-items: center;
+    background: linear-gradient(to bottom, $color-black, transparent);
+    z-index: 1;
 
     .logo {
         margin-right: 3rem;
@@ -11,28 +15,62 @@
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: -.2rem;
+        cursor: pointer;
     }
 
     .seperator {
         width: .2rem;
         height: 6rem;
-        background-color: $color-primary;
+        background-color: $color-primary--dark;
         margin-right: 3rem;
     }
 
-    .tabContainer {
+    .navigationContainer {
         flex: 1;
+        margin: 0;
+        padding: 0;
         display: flex;
         align-items: center;
+        list-style: none;
 
-        &-tab:last-child {
-            margin-left: auto;
+        &-tab {
+            cursor: pointer;
+        }
+    }
+
+    .userActionContainer {
+        display: flex;
+
+        &-login {
+            border-radius: .5rem;
+            border: 1px solid $color-white;
+            background-color: transparent;
+            padding: 1rem;
+            margin-right: 1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        &-signup {
+            border-radius: .5rem;
+            border: none;
+            background-color: $color-primary--dark;
+            padding: 1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        &-login, &-signup {
+            color: $color-white;
+            cursor: pointer;
+            outline: none;
         }
     }
 }
 
 @media only screen and (max-width: 480px) {
     .header {
+        width: calc(100% - 3rem);
         padding: 1.5rem;
 
         .logo {
