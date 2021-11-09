@@ -11,19 +11,15 @@ const ImageSlider = (): JSX.Element => {
     const [imageSliderRef, imageSliderHover] = useHover();
 
     const goToNextImage = useCallback((): void => {
-        setCurrentImageIndex(
-            prevImageIndex => currentImageIndex === lastImageIndex
-                ? 0 
-                : prevImageIndex + 1
-        );
+        const nextImageIndex = currentImageIndex + 1
+
+        setCurrentImageIndex(currentImageIndex === lastImageIndex ? 0 : nextImageIndex);
     }, [currentImageIndex, lastImageIndex]);
 
     const goToPreviousImage = (): void => {
-        setCurrentImageIndex(
-            prevImageIndex => currentImageIndex === 0 
-                ? lastImageIndex
-                : prevImageIndex - 1
-        );
+        const previousImageIndex = currentImageIndex - 1;
+        
+        setCurrentImageIndex(currentImageIndex === 0 ? lastImageIndex : previousImageIndex);
     }
 
     useEffect(() => {

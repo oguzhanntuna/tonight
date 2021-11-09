@@ -1,0 +1,94 @@
+@import '../../../variables/variables.scss';
+
+.thisWeekModule {
+    margin: 0 1rem;
+
+    &-header {
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+    }
+
+    &-title {
+        margin-right: auto;
+    }
+
+    .daysOfTheWeekFilters {
+        display: flex;
+        align-items: center;
+
+        &-days {
+            &:not(:last-child) {
+                margin-right: 2rem;
+            }
+        }
+    } 
+
+    .eventsThisWeek {
+        padding-bottom: 1.5rem;
+        display: flex;
+        overflow-x: scroll;
+
+        &-event {
+            &:not(:last-child) {
+                margin-right: 2rem;
+            }
+        }
+
+        &-imageContainer {
+            width: 30rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: flex;
+        }
+
+        &-image {
+            height: 100%;
+            width: 100%;
+            border-radius: 1rem;
+        }
+
+        &-title {
+            width: 60%;
+            position: absolute;
+            padding: .5rem;
+            background-color: $color-background;
+            bottom: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+        &-info {
+            margin: 0 auto .2rem 0;
+        }
+
+        &-date {
+            margin-bottom: .2rem;
+        }
+
+        &-location {
+            font-size: 1.4rem;
+        }
+
+        &-buyNowButton {
+            width: 100%;
+            padding: 1.5rem 1rem;
+            border: none;
+            border-radius: .75rem;
+            background-color: black;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .thisWeekModule {
+        .eventsThisWeek-imageContainer {
+            width: 18rem;
+        }
+    }   
+}
