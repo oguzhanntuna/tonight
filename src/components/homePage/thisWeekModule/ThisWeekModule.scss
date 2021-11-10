@@ -1,86 +1,171 @@
 @import '../../../variables/variables.scss';
 
 .thisWeekModule {
-    margin: 0 1rem;
+    width: 97%;
+    margin: 0 auto;
 
     &-header {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
+        padding: 0 2rem;
         display: flex;
         align-items: center;
     }
 
     &-title {
         margin-right: auto;
+        font-size: 4.5rem;
+    }
+
+    &-moreButton {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    &-text {
+        margin-right: .6rem;
+    }
+
+    &-moreIcom {
+        width: 1.8rem;
+        height: 1.8rem;
+
+        img {
+
+            width: 100%;
+            height: 100%;
+        }
     }
 
     .daysOfTheWeekFilters {
         display: flex;
         align-items: center;
+        font-size: 1.4rem;
 
         &-days {
+            cursor: pointer;
+            transition: all .2s;
+
             &:not(:last-child) {
                 margin-right: 2rem;
+            }
+
+            &.active {
+                color: #7C0000;
+                border-bottom: 1px solid #7C0000;
+                padding-bottom: .5rem;
             }
         }
     } 
 
     .eventsThisWeek {
-        padding-bottom: 1.5rem;
+        height: 42rem;
+        padding: 1rem 1rem 2rem 1rem;
         display: flex;
         overflow-x: scroll;
 
-        &-event {
+        &-eventContainer {
+            border-radius: 1rem;
+            
+
             &:not(:last-child) {
-                margin-right: 2rem;
+                margin-right: 3rem;
+            }
+
+            &:hover > .eventsThisWeek-event{
+                margin-bottom: .5rem;
+                // opacity: 0;
             }
         }
 
-        &-imageContainer {
-            width: 30rem;
-            margin-bottom: 3rem;
+        &-event {
             position: relative;
+            width: 24rem;
+            min-width: 24rem;
+            height: 36rem;
             display: flex;
+            flex-direction: column;
+            border-radius: 1rem;
+            border-bottom: 4px dotted black;
+            cursor: pointer;
+            transition: margin .2s;
+            // transition: opacity .4s 600ms;
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 34.5rem;
+                width: 3.5rem;
+                height: 3.5rem;
+                background-color: #13151C;
+                border-top-right-radius: 50%;
+                border-bottom-right-radius: 50%;
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                right: 0;
+                top: 34.5rem;
+                width: 3.5rem;
+                height: 3.5rem;
+                background-color: #13151C;
+                border-top-right-radius: 50%;
+                border-bottom-right-radius: 50%;
+                transform: rotate(180deg);
+                z-index: 1;
+            }
+        }
+
+        &-image, &-imageOverlay {
+            width: 100%;
+            height: 100%;
         }
 
         &-image {
-            height: 100%;
-            width: 100%;
-            border-radius: 1rem;
+            background-size: cover;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+
+        &-imageOverlay {
+            position: absolute;
+            top: 0;
+            background: linear-gradient(to bottom, transparent, $color-black);
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+
+        &-content {
+            position: absolute;
+            bottom: 0;
+            padding: 0 0 3rem 2rem;
+        }
+        
+        &-location, &-date {
+            font-size: 1.4rem;
+            color: $color-grey;
         }
 
         &-title {
-            width: 60%;
-            position: absolute;
-            padding: .5rem;
-            background-color: $color-background;
-            bottom: -16px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 1rem;
-            text-align: center;
+            font-size: 2rem;
         }
 
-        &-info {
-            margin: 0 auto .2rem 0;
-        }
-
-        &-date {
-            margin-bottom: .2rem;
-        }
-
-        &-location {
-            font-size: 1.4rem;
-        }
-
-        &-buyNowButton {
+        &-purchaseButton {
             width: 100%;
-            padding: 1.5rem 1rem;
-            border: none;
-            border-radius: .75rem;
+            padding: 2rem 0;
             background-color: black;
-            color: #FFFFFF;
+            color: $color-white;
+            border: none;
+            border-bottom-right-radius: 1rem;
+            border-bottom-left-radius: 1rem;
             text-transform: uppercase;
+            font-size: 1.4rem;
+            font-family: 'Open Sans', 'sans-serif';
             font-weight: bold;
+            cursor: pointer;
         }
     }
 }

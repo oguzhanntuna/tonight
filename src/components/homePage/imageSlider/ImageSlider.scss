@@ -42,7 +42,6 @@
         background-color: $color-black;
         border-radius: 50%;
         cursor: pointer;
-        z-index: 1;
 
         &:not(:last-child) {
             margin-right: 2rem;
@@ -63,7 +62,6 @@
         background-color: $color-background;
         border-radius: 50%;
         cursor: pointer;
-        z-index: 1;
     }
 
     &-previousButton {
