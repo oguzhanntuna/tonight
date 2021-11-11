@@ -1,7 +1,7 @@
 import './HomePage.scss';
 
 import ImageSlider from '../../components/homePage/imageSlider/ImageSlider';
-import ThisWeekModule from '../../components/homePage/thisWeekModule/ThisWeekModule';
+import ThisWeekModule from '../../components/homePage/thisWeek/Module';
 
 const HomePage = (): JSX.Element => {
 

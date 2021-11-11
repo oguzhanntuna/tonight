@@ -80,10 +80,10 @@ const ImageSlider = (): JSX.Element => {
             { renderSliderItems() }
             { renderPagination() }
             <div className="imageSlider-previousButton" onClick={() => goToPreviousImage()}>
-                <img src={sliderButton} alt="previousButton" />
+                <img src={sliderButton} alt="previous button icon" />
             </div>
             <div className="imageSlider-nextButton" onClick={() => goToNextImage()}>
-                <img src={sliderButton} alt="nextButton" />
+                <img src={sliderButton} alt="next button icon" />
             </div>
         </div>
     );

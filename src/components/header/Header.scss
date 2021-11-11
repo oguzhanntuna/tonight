@@ -10,7 +10,11 @@
     z-index: 1;
 
     .logo {
+        display: flex;
+        align-items: center;
         margin-right: 3rem;
+        padding-right: 3rem;
+        border-right: 4px dotted white;
         font-size: 2.5rem;
         font-weight: bold;
         text-transform: uppercase;
@@ -18,12 +22,12 @@
         cursor: pointer;
     }
 
-    .seperator {
-        width: .2rem;
-        height: 6rem;
-        background-color: $color-primary--dark;
-        margin-right: 3rem;
-    }
+    // .seperator {
+    //     width: .2rem;
+    //     height: 6rem;
+    //     background-color: $color-primary--dark;
+    //     margin-right: 3rem;
+    // }
 
     .navigationContainer {
         flex: 1;

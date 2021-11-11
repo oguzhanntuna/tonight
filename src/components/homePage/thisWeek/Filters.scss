@@ -1,0 +1,22 @@
+@import '../../../variables/variables.scss';
+
+.daysOfTheWeekFilters {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+
+    &-days {
+        cursor: pointer;
+        transition: all .2s;
+    
+        &:not(:last-child) {
+            margin-right: 2rem;
+        }
+    
+        &.active {
+            color: $color-primary--dark;
+            border-bottom: 1px solid $color-primary--dark;
+            padding-bottom: .5rem;
+        }
+    }
+} 
