@@ -1,0 +1,56 @@
+@import '../../../variables/variables.scss';
+
+.eventPriceRow {
+    display: flex;
+    flex-direction: column;
+    
+    &:not(:last-child) {
+        margin-bottom: 4rem;
+    }
+
+    &-ticketInfoContainer {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    &-ticketInfo {
+        display: flex;
+        flex-direction: column;
+        margin-right: auto;
+    }
+    
+    &-ticketPrice, &-ticketCount {
+        font-size: 1.4rem;
+        color: $color-grey;
+    }
+    
+    &-buttonContainer {
+        display: flex;
+    }
+    
+    &-removeButton, &-addButton {
+        flex: 1;
+        height: 2rem;
+        width: 2rem;
+        padding: .5rem;
+        border: 1px solid $color-white;
+        border-radius: 2rem;
+        cursor: pointer;
+        transform: opacity .2s;
+    
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    
+        &:first-child {
+            margin-right: 2rem;
+        }
+    
+        &.disable {
+            opacity: .5;
+        }
+    }
+}
+

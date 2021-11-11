@@ -1,7 +1,7 @@
 import './Header.scss';
 
 import ThisWeekModuleFilters from './Filters';
-import moreIcon from '../../../assets/icons/arrow-forward-outline.svg';
+import moreIcon from '../../../assets/icons/more.svg';
 
 const ThisWeekModuleHeader = (): JSX.Element => {
 
@@ -20,7 +20,7 @@ const ThisWeekModuleHeader = (): JSX.Element => {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default ThisWeekModuleHeader;

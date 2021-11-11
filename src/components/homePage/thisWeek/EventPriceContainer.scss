@@ -1,0 +1,39 @@
+@import '../../../variables/variables.scss';
+
+.eventPriceContainer {
+    width: 20rem;
+    min-width: 20rem;
+    height: 31.5rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    background-color: $color-black;
+    border-bottom: 5px dotted $color-background;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+
+    &-header {
+        margin-bottom: 4rem;
+        display: flex;
+        align-items: center;
+    }
+
+    &-eventTitle {
+        font-size: 2rem;
+        margin-right: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &-returnBackIcon {
+        width: 2rem;
+        height: 2rem;
+        cursor: pointer;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

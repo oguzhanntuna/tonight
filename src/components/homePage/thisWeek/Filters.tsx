@@ -19,7 +19,7 @@ const ThisWeekModuleFilters = (): JSX.Element => {
                 ))
             }
         </div>
-    )
+    );
 }
 
 export default ThisWeekModuleFilters;
