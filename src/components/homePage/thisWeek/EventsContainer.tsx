@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { IThisWeekModuleEvent } from './Module';
 import './EventsContainer.scss';
+import { IThisWeekModuleEvent } from '../../../pages/homePage/HomePage';
 
 import ThisWeekModuleEvent from './Event';
 import ThisWeekModuleEventPriceContainer from './EventPriceContainer';
@@ -10,46 +10,59 @@ interface IThisWeekModuleEventsContainerProps {
 }
 
 const ThisWeekModuleEventsContainer = (props: IThisWeekModuleEventsContainerProps): JSX.Element => {
-    const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
+    const [selectedEventIdArray, setSelectedEventIdArray] = useState<Array<number | null>>([]);
     const { data } = props;
 
     const addToCart = (): void => {
         console.log('added to cart');
     }
 
+    const addEventToEventsArray = (eventId: number) => {
+        setSelectedEventIdArray([...selectedEventIdArray, eventId]);
+    }
+
+    const removeEventFromEventsArray = (eventId: number) => {
+        const newSelectedEventIdArray = selectedEventIdArray.filter(selectedEvent => selectedEvent !== eventId);
+        setSelectedEventIdArray([...newSelectedEventIdArray]);
+    }
+
+    const isEventSelected = (eventId: number) => selectedEventIdArray.indexOf(eventId) !== -1 ? true : false;
+
+    console.log(selectedEventIdArray);
+
     return (
         <div className="eventsContainer">
             {
                 data.map(eventData => (
                     <div 
-                        className={`eventsContainer-eventContainer ${selectedEventId === eventData.id ? 'active' : ''}`} 
+                        className={`eventsContainer-eventContainer ${isEventSelected(eventData.id) ? 'active' : ''}`} 
                         key={eventData.id} 
                     >
                         { 
-                            selectedEventId === eventData.id 
+                            isEventSelected(eventData.id)
                                 ? <>
                                     <ThisWeekModuleEventPriceContainer 
                                         data={eventData}
-                                        onReturnBackButtonClicked={() => setSelectedEventId(null)}
-                                        selectedEventId={selectedEventId}
+                                        onReturnBackButtonClicked={() => removeEventFromEventsArray(eventData.id)}
+                                        selectedEventIdArray={selectedEventIdArray}
                                     /> 
                                 </>
                                 : <>
                                     <ThisWeekModuleEvent 
                                         data={eventData} 
-                                        onEventClicked={() => setSelectedEventId(eventData.id)}
+                                        onEventClicked={() => addEventToEventsArray(eventData.id)}
                                     /> 
                                 </>
                         }
                         <button 
                             className="eventsContainer-purchaseButton"
                             onClick={() => {
-                                selectedEventId !== eventData.id 
-                                    ? setSelectedEventId(eventData.id)
+                                isEventSelected(eventData.id)
+                                    ? addEventToEventsArray(eventData.id)
                                     : addToCart()
                             }}
                         >
-                            { selectedEventId !== eventData.id ? 'Buy Now' : 'Add To Card'}
+                            { isEventSelected(eventData.id) ? 'Buy Now' : 'Add To Card'}
                         </button>
                     </div>
                 ))

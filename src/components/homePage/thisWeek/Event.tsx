@@ -1,5 +1,5 @@
-import { IThisWeekModuleEvent } from './Module';
 import './Event.scss';
+import { IThisWeekModuleEvent } from '../../../pages/homePage/HomePage';
 
 import detailIcon from '../../../assets/icons/document-text-outline.svg';
 import favIcon from '../../../assets/icons/heart-outline.svg';

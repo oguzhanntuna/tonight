@@ -1,17 +1,18 @@
-import { IThisWeekModuleEvent } from './Module';
+
 import './EventPriceContainer.scss';
+import { IThisWeekModuleEvent } from '../../../pages/homePage/HomePage';
 
 import ThisWeekModuleEventPriceRow from './EventPriceRow';
 import returnBackIcon from '../../../assets/icons/return-back.svg';
 
 interface IThisWeekModuleEventPriceContainerProps {
     data: IThisWeekModuleEvent;
-    selectedEventId: number | null;
+    selectedEventIdArray: Array<number | null>;
     onReturnBackButtonClicked(): void
 }
 
 const ThisWeekModuleEventPriceContainer = (props: IThisWeekModuleEventPriceContainerProps): JSX.Element => {
-    const { data, selectedEventId, onReturnBackButtonClicked } = props;
+    const { data, selectedEventIdArray, onReturnBackButtonClicked } = props;
 
     return (
         <div className="eventPriceContainer">
@@ -25,12 +26,12 @@ const ThisWeekModuleEventPriceContainer = (props: IThisWeekModuleEventPriceConta
                 <ThisWeekModuleEventPriceRow 
                     ticketType="2. Dönem" 
                     ticketPrice={data.price} 
-                    selectedEventId={selectedEventId}
+                    selectedEventIdArray={selectedEventIdArray}
                 />
                 <ThisWeekModuleEventPriceRow 
                     ticketType="Backstage" 
                     ticketPrice={data.price} 
-                    selectedEventId={selectedEventId}
+                    selectedEventIdArray={selectedEventIdArray}
                 />
             </div>
         </div> 

@@ -7,21 +7,21 @@ import removeIcon from '../../../assets/icons/remove.svg';
 interface IThisWeekModuleEventPriceRow {
     ticketType: string;
     ticketPrice: string;
-    selectedEventId: number | null;
+    selectedEventIdArray: Array<number | null>;
 }
 
 const ThisWeekModuleEventPriceRow = (props: IThisWeekModuleEventPriceRow): JSX.Element => {
     const [ticketCount, setTicketCount] = useState<number>(0);
-    const { ticketType, ticketPrice, selectedEventId } = props;
+    const { ticketType, ticketPrice, selectedEventIdArray } = props;
 
     const increaseTicketCount = (): void => setTicketCount(ticketCount + 1);
     const decreaseTicketCount = (): void  => { if (ticketCount > 0) setTicketCount(ticketCount - 1) };
     const resetTicketCount = (): void => setTicketCount(0);
 
-    useEffect(() => {
-        resetTicketCount();
+    // useEffect(() => {
+    //     resetTicketCount();
 
-    }, [selectedEventId]);
+    // }, [selectedEventIdArray]);
 
     return (
         <div className="eventPriceRow">

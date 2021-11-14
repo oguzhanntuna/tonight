@@ -1,4 +1,8 @@
 .thisWeekModule {
     width: 97%;
     margin: 0 auto;
+
+    &:not(:last-child) {
+        margin-bottom: 4rem;
+    }
 }
