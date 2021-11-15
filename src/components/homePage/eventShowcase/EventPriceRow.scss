@@ -3,10 +3,7 @@
 .eventPriceRow {
     display: flex;
     flex-direction: column;
-    
-    &:not(:last-child) {
-        margin-bottom: 4rem;
-    }
+    margin-bottom: 3rem;
 
     &-ticketInfoContainer {
         display: flex;

@@ -34,7 +34,11 @@
         font-family: 'Open Sans', 'sans-serif';
         font-weight: bold;
         cursor: pointer;
-        transition: margin .4s;
+        transition: all .4s;
+
+        &.addToCart {
+            background-color: #0A0B0F;
+        }
     
         &::after {
             content: "";

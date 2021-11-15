@@ -34,6 +34,7 @@ const EventShowcaseEventPriceContainer = (props: IEventShowcaseEventPriceContain
                     selectedEventIdArray={selectedEventIdArray}
                 />
             </div>
+            <div className="eventPriceContainer-totalPrice">Total: 0$</div>
         </div> 
     );
 }

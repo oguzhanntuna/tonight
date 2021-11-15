@@ -28,8 +28,6 @@ const EventShowcaseEventsContainer = (props: IEventShowcaseEventsContainerProps)
 
     const isEventSelected = (eventId: number) => selectedEventIdArray.indexOf(eventId) !== -1 ? true : false;
 
-    console.log(selectedEventIdArray);
-
     return (
         <div className="eventsContainer">
             {
@@ -55,14 +53,14 @@ const EventShowcaseEventsContainer = (props: IEventShowcaseEventsContainerProps)
                                 </>
                         }
                         <button 
-                            className="eventsContainer-purchaseButton"
+                            className={`eventsContainer-purchaseButton ${isEventSelected(eventData.id) ? 'addToCart' : ''}`}
                             onClick={() => {
                                 isEventSelected(eventData.id)
-                                    ? addEventToEventsArray(eventData.id)
-                                    : addToCart()
+                                    ? addToCart()
+                                    : addEventToEventsArray(eventData.id)
                             }}
                         >
-                            { isEventSelected(eventData.id) ? 'Add To Card' : 'Buy Now'}
+                            { isEventSelected(eventData.id) ? 'Add To Cart' : 'Buy Now'}
                         </button>
                     </div>
                 ))
