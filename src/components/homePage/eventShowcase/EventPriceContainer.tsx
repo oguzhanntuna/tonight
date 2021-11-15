@@ -1,17 +1,17 @@
 
 import './EventPriceContainer.scss';
-import { IThisWeekModuleEvent } from '../../../pages/homePage/HomePage';
+import { IEventShowcaseEvent } from '../../../models/interfaces/eventShowcase/event';
 
-import ThisWeekModuleEventPriceRow from './EventPriceRow';
+import EventShowcaseEventPriceRow from './EventPriceRow';
 import returnBackIcon from '../../../assets/icons/return-back.svg';
 
-interface IThisWeekModuleEventPriceContainerProps {
-    data: IThisWeekModuleEvent;
+interface IEventShowcaseEventPriceContainerProps {
+    data: IEventShowcaseEvent;
     selectedEventIdArray: Array<number | null>;
     onReturnBackButtonClicked(): void
 }
 
-const ThisWeekModuleEventPriceContainer = (props: IThisWeekModuleEventPriceContainerProps): JSX.Element => {
+const EventShowcaseEventPriceContainer = (props: IEventShowcaseEventPriceContainerProps): JSX.Element => {
     const { data, selectedEventIdArray, onReturnBackButtonClicked } = props;
 
     return (
@@ -23,12 +23,12 @@ const ThisWeekModuleEventPriceContainer = (props: IThisWeekModuleEventPriceConta
                 </div>
             </div>
             <div className="eventPriceContainer-content">
-                <ThisWeekModuleEventPriceRow 
+                <EventShowcaseEventPriceRow 
                     ticketType="2. Dönem" 
                     ticketPrice={data.price} 
                     selectedEventIdArray={selectedEventIdArray}
                 />
-                <ThisWeekModuleEventPriceRow 
+                <EventShowcaseEventPriceRow 
                     ticketType="Backstage" 
                     ticketPrice={data.price} 
                     selectedEventIdArray={selectedEventIdArray}
@@ -38,4 +38,4 @@ const ThisWeekModuleEventPriceContainer = (props: IThisWeekModuleEventPriceConta
     );
 }
 
-export default ThisWeekModuleEventPriceContainer;
+export default EventShowcaseEventPriceContainer;

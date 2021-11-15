@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import './EventsContainer.scss';
-import { IThisWeekModuleEvent } from '../../../pages/homePage/HomePage';
 
-import ThisWeekModuleEvent from './Event';
-import ThisWeekModuleEventPriceContainer from './EventPriceContainer';
+import { IEventShowcaseEvent } from '../../../models/interfaces/eventShowcase/event';
+import EventShowcaseEvent from './Event';
+import EventShowcaseEventPriceContainer from './EventPriceContainer';
 
-interface IThisWeekModuleEventsContainerProps {
-    data: Array<IThisWeekModuleEvent>;
+interface IEventShowcaseEventsContainerProps {
+    data: Array<IEventShowcaseEvent>;
 }
 
-const ThisWeekModuleEventsContainer = (props: IThisWeekModuleEventsContainerProps): JSX.Element => {
+const EventShowcaseEventsContainer = (props: IEventShowcaseEventsContainerProps): JSX.Element => {
     const [selectedEventIdArray, setSelectedEventIdArray] = useState<Array<number | null>>([]);
     const { data } = props;
 
@@ -41,14 +41,14 @@ const ThisWeekModuleEventsContainer = (props: IThisWeekModuleEventsContainerProp
                         { 
                             isEventSelected(eventData.id)
                                 ? <>
-                                    <ThisWeekModuleEventPriceContainer 
+                                    <EventShowcaseEventPriceContainer 
                                         data={eventData}
                                         onReturnBackButtonClicked={() => removeEventFromEventsArray(eventData.id)}
                                         selectedEventIdArray={selectedEventIdArray}
                                     /> 
                                 </>
                                 : <>
-                                    <ThisWeekModuleEvent 
+                                    <EventShowcaseEvent 
                                         data={eventData} 
                                         onEventClicked={() => addEventToEventsArray(eventData.id)}
                                     /> 
@@ -62,7 +62,7 @@ const ThisWeekModuleEventsContainer = (props: IThisWeekModuleEventsContainerProp
                                     : addToCart()
                             }}
                         >
-                            { isEventSelected(eventData.id) ? 'Buy Now' : 'Add To Card'}
+                            { isEventSelected(eventData.id) ? 'Add To Card' : 'Buy Now'}
                         </button>
                     </div>
                 ))
@@ -71,4 +71,4 @@ const ThisWeekModuleEventsContainer = (props: IThisWeekModuleEventsContainerProp
     );
 }
 
-export default ThisWeekModuleEventsContainer;
+export default EventShowcaseEventsContainer;

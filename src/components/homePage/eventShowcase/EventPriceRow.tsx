@@ -1,27 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './EventPriceRow.scss';
 
 import addIcon from '../../../assets/icons/add.svg';
 import removeIcon from '../../../assets/icons/remove.svg';
 
-interface IThisWeekModuleEventPriceRow {
+interface IEventShowcaseEventPriceRow {
     ticketType: string;
     ticketPrice: string;
     selectedEventIdArray: Array<number | null>;
 }
 
-const ThisWeekModuleEventPriceRow = (props: IThisWeekModuleEventPriceRow): JSX.Element => {
+const EventShowcaseEventPriceRow = (props: IEventShowcaseEventPriceRow): JSX.Element => {
     const [ticketCount, setTicketCount] = useState<number>(0);
-    const { ticketType, ticketPrice, selectedEventIdArray } = props;
+    const { ticketType, ticketPrice } = props;
 
     const increaseTicketCount = (): void => setTicketCount(ticketCount + 1);
     const decreaseTicketCount = (): void  => { if (ticketCount > 0) setTicketCount(ticketCount - 1) };
-    const resetTicketCount = (): void => setTicketCount(0);
-
-    // useEffect(() => {
-    //     resetTicketCount();
-
-    // }, [selectedEventIdArray]);
 
     return (
         <div className="eventPriceRow">
@@ -50,4 +44,4 @@ const ThisWeekModuleEventPriceRow = (props: IThisWeekModuleEventPriceRow): JSX.E
     );
 }
 
-export default ThisWeekModuleEventPriceRow;
+export default EventShowcaseEventPriceRow;

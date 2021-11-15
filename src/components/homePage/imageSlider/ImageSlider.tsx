@@ -3,7 +3,7 @@ import useHover from '../../../customHooks/useHover';
 import './ImageSlider.scss';
 
 import sliderButton from '../../../assets/icons/arrow-forward-outline.svg';
-import imageSliderData from '../../../data/imageSliderData';
+import { imageSliderData } from '../../../data/imageSliderData';
 
 const ImageSlider = (): JSX.Element => {
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);

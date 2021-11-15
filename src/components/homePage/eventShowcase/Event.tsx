@@ -1,15 +1,15 @@
 import './Event.scss';
-import { IThisWeekModuleEvent } from '../../../pages/homePage/HomePage';
+import { IEventShowcaseEvent } from '../../../models/interfaces/eventShowcase/event';
 
 import detailIcon from '../../../assets/icons/document-text-outline.svg';
 import favIcon from '../../../assets/icons/heart-outline.svg';
 
-interface IThisWeekModuleEventProps {
-    data: IThisWeekModuleEvent;
+interface IEventShowcaseEventProps {
+    data: IEventShowcaseEvent;
     onEventClicked(): void
 }
 
-const ThisWeekModuleEvent = (props: IThisWeekModuleEventProps): JSX.Element => {
+const EventShowcaseEvent = (props: IEventShowcaseEventProps): JSX.Element => {
     const { data, onEventClicked } = props;
 
     const goToEventDetail = (): void => {
@@ -39,4 +39,4 @@ const ThisWeekModuleEvent = (props: IThisWeekModuleEventProps): JSX.Element => {
     );
 }
 
-export default ThisWeekModuleEvent;
+export default EventShowcaseEvent;

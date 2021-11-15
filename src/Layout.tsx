@@ -1,7 +1,7 @@
 import './Layout.scss'
 
 import Header from './components/header/Header';
-import HomePage from './pages/homePage/HomePage';
+import HomePage from './pages/home';
 import heroImage from './assets/heroImage.jpg';
 
 const Layout = (): JSX.Element => {
