@@ -1,10 +1,8 @@
-
 import './EventPriceContainer.scss';
 import { IEventShowcaseEvent } from '../../../models/interfaces/eventShowcase/event';
 
 import EventShowcaseEventPriceRow from './EventPriceRow';
 import returnBackIcon from '../../../assets/icons/return-back.svg';
-
 interface IEventShowcaseEventPriceContainerProps {
     data: IEventShowcaseEvent;
     selectedEventIdArray: Array<number | null>;

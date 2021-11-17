@@ -53,7 +53,7 @@ const ImageSlider = (): JSX.Element => {
             return (
                 <div className="imageSlider-itemsContainer">
                     {
-                        imageSliderData.map((image, index) => {
+                        imageSliderData.map((imageData, index) => {
     
                             return (
                                 <div 
@@ -62,7 +62,7 @@ const ImageSlider = (): JSX.Element => {
                                 >
                                     { 
                                         currentImageIndex === index && 
-                                        <img src={image.imageUrl} alt={`imageSliderItem-${index}`} /> 
+                                        <img src={imageData.imageUrl} alt={`imageSliderItem-${index}`} /> 
                                     }
                                 </div>
                             )

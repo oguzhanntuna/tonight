@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import './EventPriceRow.scss';
 
 import addIcon from '../../../assets/icons/add.svg';
@@ -13,6 +14,13 @@ interface IEventShowcaseEventPriceRow {
 const EventShowcaseEventPriceRow = (props: IEventShowcaseEventPriceRow): JSX.Element => {
     const [ticketCount, setTicketCount] = useState<number>(0);
     const { ticketType, ticketPrice } = props;
+
+    const initialState = useSelector<any>((state) => state.events.counter);
+    const dispatch = useDispatch();
+
+    console.log(initialState);
+    useEffect(() => {
+    }, [initialState]);
 
     const increaseTicketCount = (): void => setTicketCount(ticketCount + 1);
     const decreaseTicketCount = (): void  => { if (ticketCount > 0) setTicketCount(ticketCount - 1) };
@@ -35,7 +43,8 @@ const EventShowcaseEventPriceRow = (props: IEventShowcaseEventPriceRow): JSX.Ele
                 </div>
                 <div 
                     className="eventPriceRow-addButton" 
-                    onClick={() => increaseTicketCount()}
+                    // onClick={() => increaseTicketCount()}
+                    onClick={() => dispatch({ type: 'increase' })}
                 >
                     <img src={addIcon} alt="add icon" />
                 </div>
