@@ -11,24 +11,25 @@ interface IEventShowcaseEventPriceContainerProps {
 
 const EventShowcaseEventPriceContainer = (props: IEventShowcaseEventPriceContainerProps): JSX.Element => {
     const { data, selectedEventIdArray, onReturnBackButtonClicked } = props;
+    const { id, title, normalTicket, vipTicket } = data;
 
     return (
         <div className="eventPriceContainer">
             <div className="eventPriceContainer-header">
-                <div className="eventPriceContainer-eventTitle">{data.title}</div>
+                <div className="eventPriceContainer-eventTitle">{title}</div>
                 <div className="eventPriceContainer-returnBackIcon" onClick={() => onReturnBackButtonClicked()}>
                     <img src={returnBackIcon} alt="return back icon" />
                 </div>
             </div>
             <div className="eventPriceContainer-content">
                 <EventShowcaseEventPriceRow 
-                    ticketType="2. Dönem" 
-                    ticketPrice={data.price} 
+                    data={normalTicket} 
+                    eventId={id}
                     selectedEventIdArray={selectedEventIdArray}
                 />
                 <EventShowcaseEventPriceRow 
-                    ticketType="Backstage" 
-                    ticketPrice={data.price} 
+                    data={vipTicket} 
+                    eventId={id}
                     selectedEventIdArray={selectedEventIdArray}
                 />
             </div>
