@@ -9,21 +9,28 @@ interface IEventsState {
     availableEvents: Array<IEventShowcaseEvent>
   }
   
-  interface IApplicationState {
-    events: IEventsState
-  }
+interface ICartState {
+  cartItems: Array<IEventShowcaseEvent | undefined>;
+}
+
+interface IApplicationState {
+  events: IEventsState;
+  cart: ICartState;
+}
 
 const HomePage = (): JSX.Element => {
     const availableEvents = useSelector((state: IApplicationState) => state.events.availableEvents);
+    const cartItems = useSelector((state: IApplicationState) => state.cart.cartItems);
 
     console.log(availableEvents);
+    console.log(cartItems);
     
     return (
         <div className="homePage">
             <ImageSlider />
-            <EventShowcaseModule title="This Week" data={availableEvents} displayFilters={true} />
-            <EventShowcaseModule title="Recently Added" data={availableEvents} displayFilters={false} />
-            <EventShowcaseModule title="Most Popular" data={availableEvents} displayFilters={false} />
+            <EventShowcaseModule title="This Week" eventData={availableEvents} displayFilters={true} />
+            <EventShowcaseModule title="Recently Added" eventData={availableEvents} displayFilters={false} />
+            <EventShowcaseModule title="Most Popular" eventData={availableEvents} displayFilters={false} />
         </div>
     );
 }

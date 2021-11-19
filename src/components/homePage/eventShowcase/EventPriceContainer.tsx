@@ -4,14 +4,14 @@ import { IEventShowcaseEvent } from '../../../models/interfaces/eventShowcase/ev
 import EventShowcaseEventPriceRow from './EventPriceRow';
 import returnBackIcon from '../../../assets/icons/return-back.svg';
 interface IEventShowcaseEventPriceContainerProps {
-    data: IEventShowcaseEvent;
+    eventData: IEventShowcaseEvent;
     selectedEventIdArray: Array<number | null>;
     onReturnBackButtonClicked(): void
 }
 
 const EventShowcaseEventPriceContainer = (props: IEventShowcaseEventPriceContainerProps): JSX.Element => {
-    const { data, selectedEventIdArray, onReturnBackButtonClicked } = props;
-    const { id, title, normalTicket, vipTicket } = data;
+    const { eventData, selectedEventIdArray, onReturnBackButtonClicked } = props;
+    const { id, title, normalTicket, vipTicket, totalPrice } = eventData;
 
     return (
         <div className="eventPriceContainer">
@@ -23,17 +23,17 @@ const EventShowcaseEventPriceContainer = (props: IEventShowcaseEventPriceContain
             </div>
             <div className="eventPriceContainer-content">
                 <EventShowcaseEventPriceRow 
-                    data={normalTicket} 
+                    ticketData={normalTicket} 
                     eventId={id}
                     selectedEventIdArray={selectedEventIdArray}
                 />
                 <EventShowcaseEventPriceRow 
-                    data={vipTicket} 
+                    ticketData={vipTicket} 
                     eventId={id}
                     selectedEventIdArray={selectedEventIdArray}
                 />
             </div>
-            <div className="eventPriceContainer-totalPrice">Total: 0$</div>
+            <div className="eventPriceContainer-totalPrice">{`Total: ${totalPrice}$`}</div>
         </div> 
     );
 }

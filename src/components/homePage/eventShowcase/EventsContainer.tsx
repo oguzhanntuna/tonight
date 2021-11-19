@@ -1,17 +1,21 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './EventsContainer.scss';
 
+import * as cartActions from '../../../store/actions/cart';
 import { IEventShowcaseEvent } from '../../../models/interfaces/eventShowcase/event';
 import EventShowcaseEvent from './Event';
 import EventShowcaseEventPriceContainer from './EventPriceContainer';
 
 interface IEventShowcaseEventsContainerProps {
-    data: Array<IEventShowcaseEvent>;
+    eventData: Array<IEventShowcaseEvent>;
 }
 
 const EventShowcaseEventsContainer = (props: IEventShowcaseEventsContainerProps): JSX.Element => {
     const [selectedEventIdArray, setSelectedEventIdArray] = useState<Array<number | null>>([]);
-    const { data } = props;
+    const { eventData } = props;
+
+    const dispatch = useDispatch();
 
     const addToCart = (): void => {
         console.log('added to cart');
@@ -31,36 +35,36 @@ const EventShowcaseEventsContainer = (props: IEventShowcaseEventsContainerProps)
     return (
         <div className="eventsContainer">
             {
-                data.map(eventData => (
+                eventData.map(event => (
                     <div 
-                        className={`eventsContainer-eventContainer ${isEventSelected(eventData.id) ? 'active' : ''}`} 
-                        key={eventData.id} 
+                        className={`eventsContainer-eventContainer ${isEventSelected(event.id) ? 'active' : ''}`} 
+                        key={event.id} 
                     >
                         { 
-                            isEventSelected(eventData.id)
+                            isEventSelected(event.id)
                                 ? <>
                                     <EventShowcaseEventPriceContainer 
-                                        data={eventData}
-                                        onReturnBackButtonClicked={() => removeEventFromEventsArray(eventData.id)}
+                                        eventData={event}
+                                        onReturnBackButtonClicked={() => removeEventFromEventsArray(event.id)}
                                         selectedEventIdArray={selectedEventIdArray}
                                     /> 
                                 </>
                                 : <>
                                     <EventShowcaseEvent 
-                                        data={eventData} 
-                                        onEventClicked={() => addEventToEventsArray(eventData.id)}
+                                        eventData={event} 
+                                        onEventClicked={() => addEventToEventsArray(event.id)}
                                     /> 
                                 </>
                         }
                         <button 
-                            className={`eventsContainer-purchaseButton ${isEventSelected(eventData.id) ? 'addToCart' : ''}`}
+                            className={`eventsContainer-purchaseButton ${isEventSelected(event.id) ? 'addToCart' : ''}`}
                             onClick={() => {
-                                isEventSelected(eventData.id)
-                                    ? addToCart()
-                                    : addEventToEventsArray(eventData.id)
+                                isEventSelected(event.id)
+                                    ? dispatch(cartActions.addToCart(event))
+                                    : addEventToEventsArray(event.id)
                             }}
                         >
-                            { isEventSelected(eventData.id) ? 'Add To Cart' : 'Buy Now'}
+                            { isEventSelected(event.id) ? 'Add To Cart' : 'Buy Now'}
                         </button>
                     </div>
                 ))

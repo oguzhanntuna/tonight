@@ -1,29 +1,24 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { IEventShowCaseTicket } from '../../../models/interfaces/eventShowcase/event';
 import './EventPriceRow.scss';
 
+import * as eventActions from '../../../store/actions/events';
 import addIcon from '../../../assets/icons/add.svg';
 import removeIcon from '../../../assets/icons/remove.svg';
 
 interface IEventShowcaseEventPriceRow {
     eventId: number;
-    data: IEventShowCaseTicket;
+    ticketData: IEventShowCaseTicket;
     selectedEventIdArray: Array<number | null>;
 }
 
 const EventShowcaseEventPriceRow = (props: IEventShowcaseEventPriceRow): JSX.Element => {
-    const { eventId, data } = props;
-    const { type, title, price, count } = data;
+    const { eventId, ticketData } = props;
+    const { type, title, price, count } = ticketData;
     const [ticketCount, setTicketCount] = useState<number>(count);
-    // const initialState = useSelector<any>((state) => state.events.availableEvents);
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     console.log(initialState);
-    // }, [initialState]);
-
-    const increaseTicketCount = (): void => setTicketCount(ticketCount + 1);
     const decreaseTicketCount = (): void  => { if (ticketCount > 0) setTicketCount(ticketCount - 1) };
 
     return (
@@ -44,8 +39,11 @@ const EventShowcaseEventPriceRow = (props: IEventShowcaseEventPriceRow): JSX.Ele
                 </div>
                 <div 
                     className="eventPriceRow-addButton" 
-                    // onClick={() => increaseTicketCount()}
-                    onClick={() => dispatch({ type: 'increase', eventId: eventId, ticketType: type, ticketCount: count})}
+                    onClick={() => {
+                        type === 'normal' 
+                            ? dispatch(eventActions.addNormalTicket(eventId)) 
+                            : dispatch(eventActions.addVipTicket(eventId))
+                    }}
                 >
                     <img src={addIcon} alt="add icon" />
                 </div>

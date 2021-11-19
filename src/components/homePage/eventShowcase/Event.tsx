@@ -5,12 +5,12 @@ import detailIcon from '../../../assets/icons/document-text-outline.svg';
 import favIcon from '../../../assets/icons/heart-outline.svg';
 
 interface IEventShowcaseEventProps {
-    data: IEventShowcaseEvent;
+    eventData: IEventShowcaseEvent;
     onEventClicked(): void
 }
 
 const EventShowcaseEvent = (props: IEventShowcaseEventProps): JSX.Element => {
-    const { data, onEventClicked } = props;
+    const { eventData, onEventClicked } = props;
 
     const goToEventDetail = (): void => {
         console.log('went to event detail');
@@ -22,7 +22,7 @@ const EventShowcaseEvent = (props: IEventShowcaseEventProps): JSX.Element => {
 
     return (
         <div className="event">
-            <div className="event-image" style={{ backgroundImage: `url("${data.image}")` }} />
+            <div className="event-image" style={{ backgroundImage: `url("${eventData.image}")` }} />
             <div className="event-imageOverlay" onClick={() => onEventClicked()} />
             <div className="event-goToDetailIcon" onClick={() => goToEventDetail()}>
                 <img src={detailIcon} alt="detail icon" />
@@ -31,9 +31,9 @@ const EventShowcaseEvent = (props: IEventShowcaseEventProps): JSX.Element => {
                 <img src={favIcon} alt="favorite icon" />
             </div>
             <div className="event-content">
-                <div className="event-location">{data.location}</div>
-                <div className="event-date">{data.date}</div>
-                <div className="event-title">{data.title}</div>
+                <div className="event-location">{eventData.location}</div>
+                <div className="event-date">{eventData.date}</div>
+                <div className="event-title">{eventData.title}</div>
             </div>
         </div>
     );

@@ -13,6 +13,7 @@ export interface IEventShowcaseEvent {
     date: string;
     normalTicket: IEventShowCaseTicket;
     vipTicket: IEventShowCaseTicket;
+    totalPrice: number
 }
 
 export class EventShowcaseEvent{
@@ -23,7 +24,8 @@ export class EventShowcaseEvent{
         public location: string, 
         public date: string, 
         public normalTicket: IEventShowCaseTicket,
-        public vipTicket: IEventShowCaseTicket
+        public vipTicket: IEventShowCaseTicket,
+        public totalPrice: number
     ) {
         this.id = id;
         this.title = title;
@@ -32,5 +34,6 @@ export class EventShowcaseEvent{
         this.date = date;
         this.normalTicket = normalTicket;
         this.vipTicket = vipTicket;
+        this.totalPrice = totalPrice;
     }
 }

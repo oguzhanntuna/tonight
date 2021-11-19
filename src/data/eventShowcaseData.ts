@@ -20,7 +20,8 @@ export const EVENT_SHOWCASE_DATA_ARRAY: Array<IEventShowcaseEvent> = [
             title: 'Backstage',
             price: 60,
             count: 0
-        }
+        },
+        0
     ),
     new EventShowcaseEvent(
         2, 
@@ -39,7 +40,8 @@ export const EVENT_SHOWCASE_DATA_ARRAY: Array<IEventShowcaseEvent> = [
             title: 'Backstage',
             price: 60,
             count: 0
-        }
+        },
+        0
     ),
     new EventShowcaseEvent(
         3, 
@@ -58,7 +60,8 @@ export const EVENT_SHOWCASE_DATA_ARRAY: Array<IEventShowcaseEvent> = [
             title: 'Backstage',
             price: 60,
             count: 0
-        }
+        },
+        0
     ),
     new EventShowcaseEvent(
         4, 
@@ -77,7 +80,8 @@ export const EVENT_SHOWCASE_DATA_ARRAY: Array<IEventShowcaseEvent> = [
             title: 'Backstage',
             price: 60,
             count: 0
-        }
+        },
+        0
     ),
     new EventShowcaseEvent(
         5, 
@@ -96,6 +100,7 @@ export const EVENT_SHOWCASE_DATA_ARRAY: Array<IEventShowcaseEvent> = [
             title: 'Backstage',
             price: 60,
             count: 0
-        }
+        },
+        0
     )
 ];

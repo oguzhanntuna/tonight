@@ -7,16 +7,16 @@ import EventShowcaseEventsContainer from './EventsContainer';
 interface IEventShowcaseModuleProps {
     title: string;
     displayFilters: boolean;
-    data: Array<IEventShowcaseEvent>
+    eventData: Array<IEventShowcaseEvent>
 }
 
 const EventShowcaseModule = (props: IEventShowcaseModuleProps): JSX.Element => {
-    const { title, data, displayFilters } = props;
+    const { title, eventData, displayFilters } = props;
 
     return (
         <div className="eventShowcaseModule" >
             <EventShowcaseHeader title={title} displayFilters={displayFilters}/>
-            <EventShowcaseEventsContainer data={data} />            
+            <EventShowcaseEventsContainer eventData={eventData} />            
         </div>   
     );
 }

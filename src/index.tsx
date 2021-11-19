@@ -7,18 +7,25 @@ import { IEventShowcaseEvent } from './models/interfaces/eventShowcase/event';
 import './index.scss';
 import Layout from './Layout';
 import reportWebVitals from './reportWebVitals';
-import eventsReducer from './store/reducers/events';
+import { eventsReducer } from './store/reducers/events';
+import { cartReducer } from './store/reducers/cart';
 
 interface IEventsState {
-  availableEvents: Array<IEventShowcaseEvent>
+  availableEvents: Array<IEventShowcaseEvent>;
+}
+
+interface ICartState {
+  cartItems: Array<IEventShowcaseEvent | undefined>;
 }
 
 interface IApplicationState {
-  events: IEventsState
+  events: IEventsState;
+  cart: ICartState;
 }
 
 const rootReducer = combineReducers<IApplicationState>({
-  events: eventsReducer
+  events: eventsReducer,
+  cart: cartReducer
 })
 
 const store = createStore(rootReducer);
