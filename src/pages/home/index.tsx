@@ -7,7 +7,7 @@ import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event
 
 interface IEventsState {
     availableEvents: Array<IEventShowcaseEvent>
-  }
+}
   
 interface ICartState {
   cartItems: Array<IEventShowcaseEvent | undefined>;

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { IEventShowCaseTicket } from '../../../models/interfaces/eventShowcase/event';
 import './EventPriceRow.scss';
@@ -16,10 +15,8 @@ interface IEventShowcaseEventPriceRow {
 const EventShowcaseEventPriceRow = (props: IEventShowcaseEventPriceRow): JSX.Element => {
     const { eventId, ticketData } = props;
     const { type, title, price, count } = ticketData;
-    const [ticketCount, setTicketCount] = useState<number>(count);
+    
     const dispatch = useDispatch();
-
-    const decreaseTicketCount = (): void  => { if (ticketCount > 0) setTicketCount(ticketCount - 1) };
 
     return (
         <div className="eventPriceRow">
@@ -31,14 +28,19 @@ const EventShowcaseEventPriceRow = (props: IEventShowcaseEventPriceRow): JSX.Ele
                 <div className="eventPriceRow-ticketCount">{count}</div>
             </div>
             <div className="eventPriceRow-buttonContainer">
-                <div 
+                <button 
                     className={`eventPriceRow-removeButton ${count === 0 ? 'disable' : ''}`} 
-                    onClick={() => decreaseTicketCount()}
+                    disabled={count === 0}
+                    onClick={() => {
+                        type === 'normal' 
+                            ? dispatch(eventActions.removeNormalTicket(eventId)) 
+                            : dispatch(eventActions.removeVipTicket(eventId))
+                    }}
                 >
                     <img src={removeIcon} alt="remove icon" />
-                </div>
-                <div 
-                    className="eventPriceRow-addButton" 
+                </button>
+                <button 
+                    className="eventPriceRow-addButton"
                     onClick={() => {
                         type === 'normal' 
                             ? dispatch(eventActions.addNormalTicket(eventId)) 
@@ -46,7 +48,7 @@ const EventShowcaseEventPriceRow = (props: IEventShowcaseEventPriceRow): JSX.Ele
                     }}
                 >
                     <img src={addIcon} alt="add icon" />
-                </div>
+                </button>
             </div>
         </div>
     );

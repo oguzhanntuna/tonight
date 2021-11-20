@@ -17,10 +17,6 @@ const EventShowcaseEventsContainer = (props: IEventShowcaseEventsContainerProps)
 
     const dispatch = useDispatch();
 
-    const addToCart = (): void => {
-        console.log('added to cart');
-    }
-
     const addEventToEventsArray = (eventId: number) => {
         setSelectedEventIdArray([...selectedEventIdArray, eventId]);
     }
@@ -57,12 +53,17 @@ const EventShowcaseEventsContainer = (props: IEventShowcaseEventsContainerProps)
                                 </>
                         }
                         <button 
-                            className={`eventsContainer-purchaseButton ${isEventSelected(event.id) ? 'addToCart' : ''}`}
+                            className={`
+                                eventsContainer-purchaseButton 
+                                ${isEventSelected(event.id) ? 'addToCart' : ''}
+                                ${event.totalPrice > 0 ? 'active' : ''}
+                            `}
                             onClick={() => {
                                 isEventSelected(event.id)
                                     ? dispatch(cartActions.addToCart(event))
                                     : addEventToEventsArray(event.id)
                             }}
+                            disabled={isEventSelected(event.id) && event.totalPrice === 0}
                         >
                             { isEventSelected(event.id) ? 'Add To Cart' : 'Buy Now'}
                         </button>
