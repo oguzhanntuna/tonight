@@ -3,6 +3,7 @@ import './Event.scss';
 
 import { IApplicationState } from '../../../models/interfaces/store/states/application';
 import { IEventShowcaseEvent } from '../../../models/interfaces/eventShowcase/event';
+import * as eventActions from '../../../store/actions/events';
 import * as favoritesActions from '../../../store/actions/favorites';
 
 import detailIcon from '../../../assets/icons/document-text-outline.svg';
@@ -11,11 +12,12 @@ import favIconFull from '../../../assets/icons/heart-full.svg';
 
 interface IEventShowcaseEventProps {
     eventData: IEventShowcaseEvent;
-    onEventClicked(): void
 }
 
 const EventShowcaseEvent = (props: IEventShowcaseEventProps): JSX.Element => {
-    const { eventData, onEventClicked } = props;
+    const { eventData } = props;
+    const { setEventActive } = eventActions;
+    const { toggleFavorites } = favoritesActions;
 
     const favoriteEvents = useSelector((state: IApplicationState) => state.favorites.favoriteEvents);
     const dispatch = useDispatch();
@@ -29,11 +31,11 @@ const EventShowcaseEvent = (props: IEventShowcaseEventProps): JSX.Element => {
     return (
         <div className="event">
             <div className="event-image" style={{ backgroundImage: `url("${eventData.image}")` }} />
-            <div className="event-imageOverlay" onClick={() => onEventClicked()} />
+            <div className="event-imageOverlay" onClick={() => dispatch(setEventActive(eventData.id))} />
             <div className="event-goToDetailIcon" onClick={() => goToEventDetail()}>
                 <img src={detailIcon} alt="detail icon" />
             </div>
-            <div className="event-addToFavoriteIcon" onClick={() => dispatch(favoritesActions.toggleFavorites(eventData))}>
+            <div className="event-addToFavoriteIcon" onClick={() => dispatch(toggleFavorites(eventData))}>
                 { 
                     isEventAlreadyInFavorites 
                         ? <img src={favIconFull} alt="full favorite icon" /> 

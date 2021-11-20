@@ -7,7 +7,7 @@ const initialState: ICartState = {
     cartItems: []
 }
 
-export const cartReducer = (state = initialState, action: ICartAction) => {
+export const cartReducer = (state = initialState, action: ICartAction): ICartState => {
     switch(action.type) {
         case ADD_TO_CART:
             const addedTicket = action.addedEvent;

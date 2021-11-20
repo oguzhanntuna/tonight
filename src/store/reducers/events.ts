@@ -3,13 +3,21 @@ import { IEventsState } from '../../models/interfaces/store/states/events';
 import { EventShowcaseEvent } from '../../models/eventShowcase/event';
 
 import { EVENT_SHOWCASE_DATA_ARRAY } from '../../data/eventShowcaseData';
-import { ADD_NORMAL_TICKET, ADD_VIP_TICKET, REMOVE_NORMAL_TICKET, REMOVE_VIP_TICKET } from '../actions/events';
+import { 
+    ADD_NORMAL_TICKET, 
+    ADD_VIP_TICKET, 
+    REMOVE_NORMAL_TICKET, 
+    REMOVE_VIP_TICKET,  
+    SET_EVENT_ACTIVE,
+    SET_EVENT_INACTIVE
+} from '../actions/events';
 
 const initialState: IEventsState = {
-    availableEvents: EVENT_SHOWCASE_DATA_ARRAY
+    availableEvents: EVENT_SHOWCASE_DATA_ARRAY,
+    activeEventIds: []
 }
 
-export const eventsReducer = (state = initialState, action: IEventsAction) => {
+export const eventsReducer = (state = initialState, action: IEventsAction): IEventsState => {
     switch(action.type) {
         case ADD_NORMAL_TICKET:
             const addedNormalTicketEvent = state.availableEvents.find(event => event.id === action.eventId);
@@ -146,6 +154,20 @@ export const eventsReducer = (state = initialState, action: IEventsAction) => {
 
             // Selected event could not found!
             break;
+
+        case SET_EVENT_ACTIVE:
+
+            return {
+                ...state,
+                activeEventIds: [ ...state.activeEventIds, action.eventId ]
+            }
+
+        case SET_EVENT_INACTIVE:
+
+            return {
+                ...state,
+                activeEventIds: [ ...state.activeEventIds.filter(activeEvent => activeEvent !== action.eventId) ]
+            }
     }
 
     return state;

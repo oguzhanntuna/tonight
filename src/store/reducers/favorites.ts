@@ -7,7 +7,7 @@ const initialState: IFavoritesState = {
     favoriteEvents: []
 }
 
-export const favoritesReducer = (state = initialState, action: IFavoritesAction) => {
+export const favoritesReducer = (state = initialState, action: IFavoritesAction): IFavoritesState => {
     switch(action.type) {
         case TOGGLE_FAVORITES:
             const addedEvent = action.addedEvent;

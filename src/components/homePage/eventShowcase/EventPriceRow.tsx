@@ -9,12 +9,12 @@ import removeIcon from '../../../assets/icons/remove.svg';
 interface IEventShowcaseEventPriceRow {
     eventId: number;
     ticketData: IEventShowCaseTicket;
-    selectedEventIdArray: Array<number | null>;
 }
 
 const EventShowcaseEventPriceRow = (props: IEventShowcaseEventPriceRow): JSX.Element => {
     const { eventId, ticketData } = props;
     const { type, title, price, count } = ticketData;
+    const { addNormalTicket, addVipTicket, removeNormalTicket, removeVipTicket } = eventActions;
     
     const dispatch = useDispatch();
 
@@ -33,8 +33,8 @@ const EventShowcaseEventPriceRow = (props: IEventShowcaseEventPriceRow): JSX.Ele
                     disabled={count === 0}
                     onClick={() => {
                         type === 'normal' 
-                            ? dispatch(eventActions.removeNormalTicket(eventId)) 
-                            : dispatch(eventActions.removeVipTicket(eventId))
+                            ? dispatch(removeNormalTicket(eventId)) 
+                            : dispatch(removeVipTicket(eventId))
                     }}
                 >
                     <img src={removeIcon} alt="remove icon" />
@@ -43,8 +43,8 @@ const EventShowcaseEventPriceRow = (props: IEventShowcaseEventPriceRow): JSX.Ele
                     className="eventPriceRow-addButton"
                     onClick={() => {
                         type === 'normal' 
-                            ? dispatch(eventActions.addNormalTicket(eventId)) 
-                            : dispatch(eventActions.addVipTicket(eventId))
+                            ? dispatch(addNormalTicket(eventId)) 
+                            : dispatch(addVipTicket(eventId))
                     }}
                 >
                     <img src={addIcon} alt="add icon" />
