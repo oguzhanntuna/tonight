@@ -1,4 +1,5 @@
-import { IEventShowcaseEvent, EventShowcaseEvent } from '../models/interfaces/eventShowcase/event';
+import { IEventShowcaseEvent } from '../models/interfaces/eventShowcase/event';
+import { EventShowcaseEvent } from '../models/eventShowcase/event';
 
 import image from '../assets/Screen Shot 2021-11-09 at 4.19.30 PM.png';
 

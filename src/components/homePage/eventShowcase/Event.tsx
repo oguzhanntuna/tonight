@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './Event.scss';
-import { IEventShowcaseEvent } from '../../../models/interfaces/eventShowcase/event';
 
+import { IApplicationState } from '../../../models/interfaces/store/states/application';
+import { IEventShowcaseEvent } from '../../../models/interfaces/eventShowcase/event';
 import * as favoritesActions from '../../../store/actions/favorites';
+
 import detailIcon from '../../../assets/icons/document-text-outline.svg';
 import favIconEmpty from '../../../assets/icons/heart-outline.svg';
 import favIconFull from '../../../assets/icons/heart-full.svg';
@@ -15,7 +17,7 @@ interface IEventShowcaseEventProps {
 const EventShowcaseEvent = (props: IEventShowcaseEventProps): JSX.Element => {
     const { eventData, onEventClicked } = props;
 
-    const favoriteEvents = useSelector((state: any) => state.favorites.favoriteEvents);
+    const favoriteEvents = useSelector((state: IApplicationState) => state.favorites.favoriteEvents);
     const dispatch = useDispatch();
 
     const isEventAlreadyInFavorites = favoriteEvents.some((event: any) => event?.id === eventData.id);

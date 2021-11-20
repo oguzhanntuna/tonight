@@ -1,31 +1,14 @@
 import { useSelector } from 'react-redux';
 import './index.scss';
 
+import { IApplicationState } from '../../models/interfaces/store/states/application';
+
 import ImageSlider from '../../components/homePage/imageSlider/ImageSlider';
 import EventShowcaseModule from '../../components/homePage/eventShowcase/Module';
-import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event';
-
-interface IEventsState {
-    availableEvents: Array<IEventShowcaseEvent>
-}
-  
-interface ICartState {
-  cartItems: Array<IEventShowcaseEvent | undefined>;
-}
-
-interface IFavoritesState {
-  favoriteItems: Array<IEventShowcaseEvent | undefined>;
-}
-
-interface IApplicationState {
-  events: IEventsState;
-  cart: ICartState;
-  favorites: IFavoritesState;
-}
 
 const HomePage = (): JSX.Element => {
     const availableEvents = useSelector((state: IApplicationState) => state.events.availableEvents);
-    const favoriteItems = useSelector((state: IApplicationState) => state.favorites.favoriteItems);
+    const favoriteItems = useSelector((state: IApplicationState) => state.favorites.favoriteEvents);
     
     console.log(favoriteItems);
 

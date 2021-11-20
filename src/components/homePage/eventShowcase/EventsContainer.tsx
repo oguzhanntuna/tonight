@@ -12,21 +12,20 @@ interface IEventShowcaseEventsContainerProps {
 }
 
 const EventShowcaseEventsContainer = (props: IEventShowcaseEventsContainerProps): JSX.Element => {
-    const [selectedEventIdArray, setSelectedEventIdArray] = useState<Array<number | null>>([]);
     const { eventData } = props;
-
+    
+    const [activeEventsArray, setActiveEventsArray] = useState<Array<number | null>>([]);
     const dispatch = useDispatch();
 
-    const addEventToEventsArray = (eventId: number) => {
-        setSelectedEventIdArray([...selectedEventIdArray, eventId]);
+    const setEventActive = (eventId: number) => setActiveEventsArray([...activeEventsArray, eventId]);
+    
+    const setEventInactive = (eventId: number) => {
+        const newActiveEventsArray = activeEventsArray.filter(activeEvent => activeEvent !== eventId);
+        
+        setActiveEventsArray([...newActiveEventsArray]);
     }
-
-    const removeEventFromEventsArray = (eventId: number) => {
-        const newSelectedEventIdArray = selectedEventIdArray.filter(selectedEvent => selectedEvent !== eventId);
-        setSelectedEventIdArray([...newSelectedEventIdArray]);
-    }
-
-    const isEventSelected = (eventId: number) => selectedEventIdArray.indexOf(eventId) !== -1 ? true : false;
+    
+    const isEventSelected = (eventId: number) => activeEventsArray.indexOf(eventId) !== -1 ? true : false;
 
     return (
         <div className="eventsContainer">
@@ -41,14 +40,14 @@ const EventShowcaseEventsContainer = (props: IEventShowcaseEventsContainerProps)
                                 ? <>
                                     <EventShowcaseEventPriceContainer 
                                         eventData={event}
-                                        onReturnBackButtonClicked={() => removeEventFromEventsArray(event.id)}
-                                        selectedEventIdArray={selectedEventIdArray}
+                                        onReturnBackButtonClicked={() => setEventInactive(event.id)}
+                                        selectedEventIdArray={activeEventsArray}
                                     /> 
                                 </>
                                 : <>
                                     <EventShowcaseEvent 
                                         eventData={event} 
-                                        onEventClicked={() => addEventToEventsArray(event.id)}
+                                        onEventClicked={() => setEventActive(event.id)}
                                     /> 
                                 </>
                         }
@@ -61,7 +60,7 @@ const EventShowcaseEventsContainer = (props: IEventShowcaseEventsContainerProps)
                             onClick={() => {
                                 isEventSelected(event.id)
                                     ? dispatch(cartActions.addToCart(event))
-                                    : addEventToEventsArray(event.id)
+                                    : setEventActive(event.id)
                             }}
                             disabled={isEventSelected(event.id) && event.totalPrice === 0}
                         >

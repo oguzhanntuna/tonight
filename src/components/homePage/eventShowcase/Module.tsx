@@ -1,4 +1,5 @@
 import './Module.scss';
+
 import { IEventShowcaseEvent } from '../../../models/interfaces/eventShowcase/event';
 
 import EventShowcaseHeader from './Header';

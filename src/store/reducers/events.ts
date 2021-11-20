@@ -1,12 +1,15 @@
+import { IEventsAction } from './../../models/interfaces/store/actions/events';
+import { IEventsState } from '../../models/interfaces/store/states/events';
+import { EventShowcaseEvent } from '../../models/eventShowcase/event';
+
 import { EVENT_SHOWCASE_DATA_ARRAY } from '../../data/eventShowcaseData';
 import { ADD_NORMAL_TICKET, ADD_VIP_TICKET, REMOVE_NORMAL_TICKET, REMOVE_VIP_TICKET } from '../actions/events';
-import { EventShowcaseEvent, IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event';
 
-const initialState = {
+const initialState: IEventsState = {
     availableEvents: EVENT_SHOWCASE_DATA_ARRAY
 }
 
-export const eventsReducer = (state = initialState, action: any) => {
+export const eventsReducer = (state = initialState, action: IEventsAction) => {
     switch(action.type) {
         case ADD_NORMAL_TICKET:
             const addedNormalTicketEvent = state.availableEvents.find(event => event.id === action.eventId);

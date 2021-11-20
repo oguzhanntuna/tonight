@@ -1,18 +1,16 @@
-import { TOGGLE_FAVORITES } from '../actions/favorites';
-import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/event";
+import { IFavoritesAction } from './../../models/interfaces/store/actions/favorites';
+import { IFavoritesState } from '../../models/interfaces/store/states/favorites';
 
-interface IFavoritesState {
-    favoriteEvents: Array<IEventShowcaseEvent | undefined>;
-}
+import { TOGGLE_FAVORITES } from '../actions/favorites';
 
 const initialState: IFavoritesState = {
     favoriteEvents: []
 }
 
-export const favoritesReducer = (state = initialState, action: any) => {
+export const favoritesReducer = (state = initialState, action: IFavoritesAction) => {
     switch(action.type) {
         case TOGGLE_FAVORITES:
-            const addedEvent: IEventShowcaseEvent = action.addedEvent;
+            const addedEvent = action.addedEvent;
 
             if (state.favoriteEvents.length > 0) {
                 const isEventAlreadyInFavorites = state.favoriteEvents.some(event => event?.id === addedEvent.id);
