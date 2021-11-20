@@ -13,18 +13,22 @@ interface ICartState {
   cartItems: Array<IEventShowcaseEvent | undefined>;
 }
 
+interface IFavoritesState {
+  favoriteItems: Array<IEventShowcaseEvent | undefined>;
+}
+
 interface IApplicationState {
   events: IEventsState;
   cart: ICartState;
+  favorites: IFavoritesState;
 }
 
 const HomePage = (): JSX.Element => {
     const availableEvents = useSelector((state: IApplicationState) => state.events.availableEvents);
-    const cartItems = useSelector((state: IApplicationState) => state.cart.cartItems);
-
-    console.log(availableEvents);
-    console.log(cartItems);
+    const favoriteItems = useSelector((state: IApplicationState) => state.favorites.favoriteItems);
     
+    console.log(favoriteItems);
+
     return (
         <div className="homePage">
             <ImageSlider />

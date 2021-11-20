@@ -3,7 +3,7 @@ import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/event
 
 interface ICartState {
     cartItems: Array<IEventShowcaseEvent | undefined>;
-  }
+}
 
 const initialState: ICartState = {
     cartItems: []

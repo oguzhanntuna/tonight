@@ -9,6 +9,7 @@ import Layout from './Layout';
 import reportWebVitals from './reportWebVitals';
 import { eventsReducer } from './store/reducers/events';
 import { cartReducer } from './store/reducers/cart';
+import { favoritesReducer } from './store/reducers/favorites';
 
 interface IEventsState {
   availableEvents: Array<IEventShowcaseEvent>;
@@ -18,14 +19,20 @@ interface ICartState {
   cartItems: Array<IEventShowcaseEvent | undefined>;
 }
 
+interface IFavoritesState {
+  favoriteEvents: Array<IEventShowcaseEvent | undefined>;
+}
+
 interface IApplicationState {
   events: IEventsState;
   cart: ICartState;
+  favorites: IFavoritesState;
 }
 
 const rootReducer = combineReducers<IApplicationState>({
   events: eventsReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  favorites: favoritesReducer
 })
 
 const store = createStore(rootReducer);

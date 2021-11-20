@@ -1,8 +1,11 @@
+import { useDispatch, useSelector } from 'react-redux';
 import './Event.scss';
 import { IEventShowcaseEvent } from '../../../models/interfaces/eventShowcase/event';
 
+import * as favoritesActions from '../../../store/actions/favorites';
 import detailIcon from '../../../assets/icons/document-text-outline.svg';
-import favIcon from '../../../assets/icons/heart-outline.svg';
+import favIconEmpty from '../../../assets/icons/heart-outline.svg';
+import favIconFull from '../../../assets/icons/heart-full.svg';
 
 interface IEventShowcaseEventProps {
     eventData: IEventShowcaseEvent;
@@ -12,12 +15,13 @@ interface IEventShowcaseEventProps {
 const EventShowcaseEvent = (props: IEventShowcaseEventProps): JSX.Element => {
     const { eventData, onEventClicked } = props;
 
+    const favoriteEvents = useSelector((state: any) => state.favorites.favoriteEvents);
+    const dispatch = useDispatch();
+
+    const isEventAlreadyInFavorites = favoriteEvents.some((event: any) => event?.id === eventData.id);
+
     const goToEventDetail = (): void => {
         console.log('went to event detail');
-    }
-
-    const addToFavorites = (): void => {
-        console.log('added to favorites');
     }
 
     return (
@@ -27,8 +31,12 @@ const EventShowcaseEvent = (props: IEventShowcaseEventProps): JSX.Element => {
             <div className="event-goToDetailIcon" onClick={() => goToEventDetail()}>
                 <img src={detailIcon} alt="detail icon" />
             </div>
-            <div className="event-addToFavoriteIcon" onClick={() => addToFavorites()}>
-                <img src={favIcon} alt="favorite icon" />
+            <div className="event-addToFavoriteIcon" onClick={() => dispatch(favoritesActions.toggleFavorites(eventData))}>
+                { 
+                    isEventAlreadyInFavorites 
+                        ? <img src={favIconFull} alt="full favorite icon" /> 
+                        : <img src={favIconEmpty} alt="empty favorite icon" /> 
+                }
             </div>
             <div className="event-content">
                 <div className="event-location">{eventData.location}</div>
