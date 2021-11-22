@@ -47,6 +47,7 @@
     
         &.disable {
             opacity: .5;
+            cursor: not-allowed;
         }
     }
 }

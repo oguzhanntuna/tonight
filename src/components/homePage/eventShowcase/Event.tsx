@@ -42,7 +42,7 @@ const EventShowcaseEvent = (props: IEventShowcaseEventProps): JSX.Element => {
                         : <img src={favIconEmpty} alt="empty favorite icon" /> 
                 }
             </div>
-            <div className="event-content">
+            <div className="event-content" onClick={() => dispatch(setEventActive(eventData.id))}>
                 <div className="event-location">{eventData.location}</div>
                 <div className="event-date">{eventData.date}</div>
                 <div className="event-title">{eventData.title}</div>

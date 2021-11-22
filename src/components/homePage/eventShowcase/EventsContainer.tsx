@@ -15,13 +15,18 @@ interface IEventShowcaseEventsContainerProps {
 
 const EventShowcaseEventsContainer = (props: IEventShowcaseEventsContainerProps): JSX.Element => {
     const { eventData } = props;
-    const { setEventActive } = eventActions;
+    const { setEventActive, resetTicketsCount } = eventActions;
     const { addToCart } = cartActions;
     
     const activeEventIdsArray = useSelector((state: IApplicationState) => state.events.activeEventIds);
     const dispatch = useDispatch();
     
     const isEventSelected = (eventId: number) => activeEventIdsArray.indexOf(eventId) !== -1 ? true : false;
+
+    const addEventToCart = (event: IEventShowcaseEvent) => {
+        dispatch(addToCart(event));
+        dispatch(resetTicketsCount(event.id));
+    }
 
     return (
         <div className="eventsContainer">
@@ -44,7 +49,7 @@ const EventShowcaseEventsContainer = (props: IEventShowcaseEventsContainerProps)
                             `}
                             onClick={() => {
                                 isEventSelected(event.id)
-                                    ? dispatch(addToCart(event))
+                                    ? addEventToCart(event)
                                     : dispatch(setEventActive(event.id))
                             }}
                             disabled={isEventSelected(event.id) && event.totalPrice === 0}

@@ -9,7 +9,7 @@ export class EventShowcaseEvent{
         public date: string, 
         public normalTicket: IEventShowCaseTicket,
         public vipTicket: IEventShowCaseTicket,
-        public totalPrice: number
+        public _totalPrice: number
     ) {
         this.id = id;
         this.title = title;
@@ -18,6 +18,11 @@ export class EventShowcaseEvent{
         this.date = date;
         this.normalTicket = normalTicket;
         this.vipTicket = vipTicket;
-        this.totalPrice = totalPrice;
+        this.totalPrice = _totalPrice;
     }
+
+    public get totalPrice(): number { return this._totalPrice }
+    
+    public set totalPrice(value: number) { this._totalPrice = value; }
+    
 }
