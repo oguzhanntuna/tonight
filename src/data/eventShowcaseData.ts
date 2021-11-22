@@ -10,6 +10,7 @@ export const EVENT_SHOWCASE_DATA_ARRAY: Array<IEventShowcaseEvent> = [
         image, 
         'Klein Phönix', 
         '10 Nov 2021 Wed 18:00 - 00:00',
+        'enrico-sangiuliano-1',
         {
             type: 'normal',
             title: '1. Dönem',
@@ -30,6 +31,7 @@ export const EVENT_SHOWCASE_DATA_ARRAY: Array<IEventShowcaseEvent> = [
         image, 
         'Klein Phönix', 
         '10 Nov 2021 Wed 18:00 - 00:00',
+        'enrico-sangiuliano-2',
         {
             type: 'normal',
             title: '1. Dönem',
@@ -50,6 +52,7 @@ export const EVENT_SHOWCASE_DATA_ARRAY: Array<IEventShowcaseEvent> = [
         image, 
         'Klein Phönix', 
         '10 Nov 2021 Wed 18:00 - 00:00',
+        'enrico-sangiuliano-3',
         {
             type: 'normal',
             title: '1. Dönem',
@@ -70,6 +73,7 @@ export const EVENT_SHOWCASE_DATA_ARRAY: Array<IEventShowcaseEvent> = [
         image, 
         'Klein Phönix', 
         '10 Nov 2021 Wed 18:00 - 00:00',
+        'enrico-sangiuliano-4',
         {
             type: 'normal',
             title: '1. Dönem',
@@ -90,6 +94,7 @@ export const EVENT_SHOWCASE_DATA_ARRAY: Array<IEventShowcaseEvent> = [
         image, 
         'Klein Phönix', 
         '10 Nov 2021 Wed 18:00 - 00:00',
+        'enrico-sangiuliano-5',
         {
             type: 'normal',
             title: '1. Dönem',

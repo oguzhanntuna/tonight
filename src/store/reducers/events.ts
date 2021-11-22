@@ -32,6 +32,7 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
                     addedNormalTicketEvent.image,
                     addedNormalTicketEvent.location,
                     addedNormalTicketEvent.date,
+                    addedNormalTicketEvent.url,
                     {
                         type: addedNormalTicketEvent.normalTicket.type,
                         title: addedNormalTicketEvent.normalTicket.title,
@@ -66,6 +67,7 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
                     addedVipTicketEvent.image,
                     addedVipTicketEvent.location,
                     addedVipTicketEvent.date,
+                    addedVipTicketEvent.url,
                     addedVipTicketEvent.normalTicket,
                     {
                         type: addedVipTicketEvent.vipTicket.type,
@@ -100,6 +102,7 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
                     removedNormalTicketEvent.image,
                     removedNormalTicketEvent.location,
                     removedNormalTicketEvent.date,
+                    removedNormalTicketEvent.url,
                     {
                         type: removedNormalTicketEvent.normalTicket.type,
                         title: removedNormalTicketEvent.normalTicket.title,
@@ -134,6 +137,7 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
                     removedVipTicketEvent.image,
                     removedVipTicketEvent.location,
                     removedVipTicketEvent.date,
+                    removedVipTicketEvent.url,
                     removedVipTicketEvent.normalTicket,
                     {
                         type: removedVipTicketEvent.vipTicket.type,

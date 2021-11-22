@@ -11,6 +11,7 @@ export interface IEventShowcaseEvent {
     image: string;
     location: string;
     date: string;
+    url: string;
     normalTicket: IEventShowCaseTicket;
     vipTicket: IEventShowCaseTicket;
     totalPrice: number

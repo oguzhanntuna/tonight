@@ -7,6 +7,7 @@ export class EventShowcaseEvent{
         public image: string, 
         public location: string, 
         public date: string, 
+        public url: string,
         public normalTicket: IEventShowCaseTicket,
         public vipTicket: IEventShowCaseTicket,
         public _totalPrice: number
@@ -16,6 +17,7 @@ export class EventShowcaseEvent{
         this.image = image;
         this.location = location;
         this.date = date;
+        this.url = url;
         this.normalTicket = normalTicket;
         this.vipTicket = vipTicket;
         this.totalPrice = _totalPrice;

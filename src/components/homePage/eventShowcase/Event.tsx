@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import './Event.scss';
 
 import { IApplicationState } from '../../../models/interfaces/store/states/application';
@@ -18,14 +19,18 @@ const EventShowcaseEvent = (props: IEventShowcaseEventProps): JSX.Element => {
     const { eventData } = props;
     const { setEventActive } = eventActions;
     const { toggleFavorites } = favoritesActions;
-
+    
     const favoriteEvents = useSelector((state: IApplicationState) => state.favorites.favoriteEvents);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const isEventAlreadyInFavorites = favoriteEvents.some((event: any) => event?.id === eventData.id);
 
     const goToEventDetail = (): void => {
+        const { url } = eventData;
+
         console.log('went to event detail');
+        navigate(`/events/${url}`);
     }
 
     return (
