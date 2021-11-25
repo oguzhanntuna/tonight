@@ -4,11 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
-import { IApplicationState } from './models/interfaces/store/states/application';
 import './index.scss';
-
-import Layout from './Layout';
 import reportWebVitals from './reportWebVitals';
+import Layout from './Layout';
+import { IApplicationState } from './models/interfaces/store/states/application';
 import { eventsReducer } from './store/reducers/events';
 import { cartReducer } from './store/reducers/cart';
 import { favoritesReducer } from './store/reducers/favorites';

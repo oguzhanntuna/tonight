@@ -1,10 +1,9 @@
-import { Routes, Route } from 'react-router-dom';
 import './Layout.scss'
 
-import Header from './components/header/Header';
-import HomePage from './pages/home';
-import EventDetailPage from './pages/eventDetail';
 import heroImage from './assets/heroImage.jpg';
+import Header from './components/header/Header';
+import Page from './pages';
+import Footer from './components/footer/Footer';
 
 const Layout = (): JSX.Element => {
 
@@ -13,12 +12,8 @@ const Layout = (): JSX.Element => {
       <div className="layout-heroImage" style={{ backgroundImage: `url("${heroImage}")` }}/>
       <div className="layout-heroImageOverlay"/>
       <Header />
-      <div className="page">
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/events/:eventName" element={<EventDetailPage />} />
-      </Routes>
-      </div>
+      <Page />
+      <Footer />
     </div>
   )
 }

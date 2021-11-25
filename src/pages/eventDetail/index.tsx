@@ -3,10 +3,10 @@ import './index.scss';
 const EventDetailPage = (): JSX.Element => {
 
     return (
-        <div>
+        <div className="eventDetailPage">
             Event Detail Page
         </div>
     );
 }
 
-export default EventDetailPage
+export default EventDetailPage;
