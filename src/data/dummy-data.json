@@ -1,0 +1,472 @@
+{
+    "events": {
+        "this-week": {
+            "bob-moses": {
+                "id": 1,
+                "title": "Bob Moses Club Set",
+                "imageUrl": "",
+                "location": "Klein Phönix",
+                "date": "",
+                "redirectUrl": "bob-moses",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "satori": {
+                "id": 2,
+                "title": "Satori",
+                "imageUrl": "",
+                "location": "Volkswagen Arena",
+                "date": "",
+                "redirectUrl": "satori",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "raw": {
+                "id": 3,
+                "title": "RAW",
+                "imageUrl": "",
+                "location": "Volkswagen Arena",
+                "date": "",
+                "redirectUrl": "raw",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "lehar": {
+                "id": 4,
+                "title": "Lehar",
+                "imageUrl": "",
+                "location": "Klein Phönix",
+                "date": "",
+                "redirectUrl": "lehar",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "the-blaze": {
+                "id": 5,
+                "title": "The Blaze DJ Set",
+                "imageUrl": "",
+                "location": "Volkswagen Arena",
+                "date": "",
+                "redirectUrl": "the-blaze",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "nastia": {
+                "id": 6,
+                "title": "Nastia",
+                "imageUrl": "",
+                "location": "Suma Han",
+                "date": "",
+                "redirectUrl": "nastia",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "enrico-sangiuliano": {
+                "id": 7,
+                "title": "Enrico Sangiuliano",
+                "imageUrl": "",
+                "location": "Klein Phönix",
+                "date": "10 Nov 2021 Wed 18:00 - 00:00",
+                "redirectUrl": "enrico-sangiuliano",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "enrico-sangiuliano": {
+                "id": 8,
+                "title": "Enrico Sangiuliano",
+                "imageUrl": "",
+                "location": "Klein Phönix",
+                "date": "10 Nov 2021 Wed 18:00 - 00:00",
+                "redirectUrl": "enrico-sangiuliano",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "enrico-sangiuliano": {
+                "id": 9,
+                "title": "Enrico Sangiuliano",
+                "imageUrl": "",
+                "location": "Klein Phönix",
+                "date": "10 Nov 2021 Wed 18:00 - 00:00",
+                "redirectUrl": "enrico-sangiuliano",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "enrico-sangiuliano": {
+                "id": 10,
+                "title": "Enrico Sangiuliano",
+                "imageUrl": "",
+                "location": "Klein Phönix",
+                "date": "10 Nov 2021 Wed 18:00 - 00:00",
+                "redirectUrl": "enrico-sangiuliano",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "enrico-sangiuliano": {
+                "id": 11,
+                "title": "Enrico Sangiuliano",
+                "imageUrl": "",
+                "location": "Klein Phönix",
+                "date": "10 Nov 2021 Wed 18:00 - 00:00",
+                "redirectUrl": "enrico-sangiuliano",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            }
+        },
+        "recently-added": {
+            "stavroz": {
+                "id": 1,
+                "title": "Stavroz Live",
+                "imageUrl": "",
+                "location": "Küçükçiftlik Park",
+                "date": "",
+                "redirectUrl": "stavroz",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "black-coffee": {
+                "id": 2,
+                "title": "Black Coffee",
+                "imageUrl": "",
+                "location": "Küçükçiftlik Park",
+                "date": "",
+                "redirectUrl": "black-coffee",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "charlotte-de-witte": {
+                "id": 3,
+                "title": "Charlotte de Witte",
+                "imageUrl": "",
+                "location": "Volkswagen Arena",
+                "date": "",
+                "redirectUrl": "charlotte-de-witte",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "joseph-capriati": {
+                "id": 4,
+                "title": "Joseph Capriati",
+                "imageUrl": "",
+                "location": "Volkswagen Arena",
+                "date": "",
+                "redirectUrl": "joseph-capriati",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "andme-b2b-adam-port": {
+                "id": 5,
+                "title": "&ME B2B Adam Port",
+                "imageUrl": "",
+                "location": "Klein Phönix",
+                "date": "",
+                "redirectUrl": "andme-b2b-adam-port",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            }
+        },
+        "buy-now": {
+            "enrico-sangiuliano": {
+                "id": 1,
+                "title": "Enrico Sangiuliano",
+                "imageUrl": "",
+                "location": "Klein Phönix",
+                "date": "10 Nov 2021 Wed 18:00 - 00:00",
+                "redirectUrl": "enrico-sangiuliano",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "christian-loffler": {
+                "id": 2,
+                "title": "Christian Löffler",
+                "imageUrl": "",
+                "location": "Klein Phönix",
+                "date": "",
+                "redirectUrl": "christian-loffler",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "ben-klock": {
+                "id": 3,
+                "title": "Ben Klock",
+                "imageUrl": "",
+                "location": "Volkswagen Arena",
+                "date": "",
+                "redirectUrl": "ben-klock",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "paula-temple-b2b-snts": {
+                "id": 4,
+                "title": "Paula Temple B2B SNTS",
+                "imageUrl": "",
+                "location": "Volkswagen Arena",
+                "date": "",
+                "redirectUrl": "paula-temple-b2b-snts",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "exhale-by-amelie-lens": {
+                "id": 5,
+                "title": "Exhale By Amelie Lens",
+                "imageUrl": "",
+                "location": "Volkswagen Arena",
+                "date": "",
+                "redirectUrl": "exhale-by-amelie-lens",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            },
+            "ten-walls": {
+                "id": 6,
+                "title": "Ten Walls Live",
+                "imageUrl": "",
+                "location": "Kastel",
+                "date": "",
+                "redirectUrl": "ten-walls",
+                "normalTicket":{
+                    "type": "normal",
+                    "title": "Early Bird",
+                    "price": 20,
+                    "count": 0
+                },
+                "vipTicket":{
+                    "type": "vip",
+                    "title": "Backstage",
+                    "price": 60,
+                    "count": 0
+                },
+                "totalPrice": 0
+            }
+        }
+    }
+}

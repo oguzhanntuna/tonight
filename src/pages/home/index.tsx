@@ -17,6 +17,7 @@ const HomePage = (): JSX.Element => {
             <ImageSlider />
             <EventShowcaseModule title="This Week" eventData={availableEvents} displayFilters={true} />
             <EventShowcaseModule title="Recently Added" eventData={availableEvents} displayFilters={false} />
+            <EventShowcaseModule title="Buy Now" eventData={availableEvents} displayFilters={false} />
             <EventShowcaseModule title="Most Popular" eventData={availableEvents} displayFilters={false} />
         </div>
     );
