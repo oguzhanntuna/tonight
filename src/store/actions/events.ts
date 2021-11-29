@@ -1,5 +1,8 @@
+import axios from "axios";
+import { EventShowcaseEvent } from "../../models/eventShowcase/event";
 import { IEventsAction } from "../../models/interfaces/store/actions/events";
 
+export const SET_EVENTS = 'SET_EVENTS';
 export const ADD_NORMAL_TICKET = 'ADD_NORMAL_TICKET';
 export const ADD_VIP_TICKET = 'ADD_VIP_TICKET';
 export const REMOVE_NORMAL_TICKET = 'REMOVE_NORMAL_TICKET';
@@ -7,6 +10,49 @@ export const REMOVE_VIP_TICKET = 'REMOVE_VIP_TICKET';
 export const SET_EVENT_ACTIVE = 'SET_EVENT_ACTIVE';
 export const SET_EVENT_INACTIVE = 'SET_EVENT_INACTIVE';
 export const RESET_TICKETS_COUNT = 'RESET_TICKETS_COUNT';
+
+export const fetchEvents = () => {
+    return async (dispatch: any): Promise<void> => {
+        axios.get(`https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/events/.json`)
+            .then(response => {
+                const events = response.data;
+                const buyNowEvents: Array<EventShowcaseEvent> = [];
+                const recentlyAddedEvents: Array<EventShowcaseEvent> = [];
+                const thisWeekEvents: Array<EventShowcaseEvent> = [];
+
+                for (const moduleTypes in events) {
+                    switch (moduleTypes) {
+                        case 'buy-now':
+                            for (const event in events[moduleTypes]) {
+                                buyNowEvents.push(events[moduleTypes][event]);
+                            }
+                            break;
+                        
+                        case 'recently-added':
+                            for (const event in events[moduleTypes]) {
+                                recentlyAddedEvents.push(events[moduleTypes][event])
+                            }
+                            break;
+
+                        case 'this-week':
+                            for (const event in events[moduleTypes]) {
+                                thisWeekEvents.push(events[moduleTypes][event]);
+                            }
+                            break;
+                    }
+                }
+
+                dispatch({
+                    type: SET_EVENTS,
+                    allEvents: buyNowEvents.concat(recentlyAddedEvents, thisWeekEvents),
+                    buyNowEvents: buyNowEvents,
+                    recentlyAddedEvents: recentlyAddedEvents,
+                    thisWeekEvents: thisWeekEvents
+                });
+            })
+            .catch(error => console.log(error));
+    }
+}
 
 export const addNormalTicket = (eventId: number): IEventsAction => {
     

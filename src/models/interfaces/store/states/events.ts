@@ -1,6 +1,9 @@
 import { IEventShowcaseEvent } from "../../eventShowcase/event";
 
 export interface IEventsState {
-    availableEvents: Array<IEventShowcaseEvent>
-    activeEventIds: Array<number | undefined>
+    allEvents: Array<IEventShowcaseEvent>;
+    buyNowEvents: Array<IEventShowcaseEvent>
+    recentlyAddedEvents: Array<IEventShowcaseEvent>
+    thisWeekEvents: Array<IEventShowcaseEvent>
+    activeEventIds: Array<number | undefined>;
 }

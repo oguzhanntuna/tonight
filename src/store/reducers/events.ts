@@ -2,8 +2,8 @@ import { IEventsAction } from './../../models/interfaces/store/actions/events';
 import { IEventsState } from '../../models/interfaces/store/states/events';
 import { EventShowcaseEvent } from '../../models/eventShowcase/event';
 
-import { EVENT_SHOWCASE_DATA_ARRAY } from '../../data/eventShowcaseData';
 import { 
+    SET_EVENTS,
     ADD_NORMAL_TICKET, 
     ADD_VIP_TICKET, 
     REMOVE_NORMAL_TICKET, 
@@ -14,17 +14,40 @@ import {
 } from '../actions/events';
 
 const initialState: IEventsState = {
-    availableEvents: EVENT_SHOWCASE_DATA_ARRAY,
+    allEvents: [],
+    buyNowEvents: [],
+    recentlyAddedEvents: [],
+    thisWeekEvents: [],
     activeEventIds: []
 }
 
 export const eventsReducer = (state = initialState, action: IEventsAction): IEventsState => {
     switch(action.type) {
+        case SET_EVENTS: 
+            const { allEvents, buyNowEvents, recentlyAddedEvents, thisWeekEvents } = action;
+
+            if (
+                typeof(allEvents) !== 'undefined' && 
+                typeof(buyNowEvents) !== 'undefined' && 
+                typeof(recentlyAddedEvents) !== 'undefined' && 
+                typeof(thisWeekEvents) !== 'undefined'
+            ) {
+
+                return {
+                    ...state,
+                    allEvents,
+                    buyNowEvents,
+                    recentlyAddedEvents,
+                    thisWeekEvents
+                }
+            }
+            break;
+
         case ADD_NORMAL_TICKET:
-            const addedNormalTicketEvent = state.availableEvents.find(event => event.id === action.eventId);
+            const addedNormalTicketEvent = state.allEvents.find(event => event.id === action.eventId);
             
             if (addedNormalTicketEvent instanceof EventShowcaseEvent) {
-                const selectedEventIndexInAvailableEvents = state.availableEvents.indexOf(addedNormalTicketEvent);
+                const selectedEventIndexInAllEvents = state.allEvents.indexOf(addedNormalTicketEvent);
 
                 const newSelectedEvent = new EventShowcaseEvent(
                     addedNormalTicketEvent.id,
@@ -43,12 +66,12 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
                     addedNormalTicketEvent.totalPrice + addedNormalTicketEvent.normalTicket.price
                 );
 
-                const newAvailableEvents = state.availableEvents;
-                newAvailableEvents.splice(selectedEventIndexInAvailableEvents, 1, newSelectedEvent);
+                const newAllEvents = state.allEvents;
+                newAllEvents.splice(selectedEventIndexInAllEvents, 1, newSelectedEvent);
                 
                 return {
                     ...state,
-                    availableEvents: [ ...newAvailableEvents ]
+                    allEvents: [ ...newAllEvents ]
                 }
             }
 
@@ -56,10 +79,10 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
             break;
 
         case ADD_VIP_TICKET:
-            const addedVipTicketEvent = state.availableEvents.find(event => event.id === action.eventId);
+            const addedVipTicketEvent = state.allEvents.find(event => event.id === action.eventId);
             
             if (addedVipTicketEvent instanceof EventShowcaseEvent) {
-                const selectedEventIndexInAvailableEvents = state.availableEvents.indexOf(addedVipTicketEvent);
+                const selectedEventIndexInAllEvents = state.allEvents.indexOf(addedVipTicketEvent);
 
                 const newSelectedEvent = new EventShowcaseEvent(
                     addedVipTicketEvent.id,
@@ -78,12 +101,12 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
                     addedVipTicketEvent.totalPrice + addedVipTicketEvent.vipTicket.price
                 );
 
-                const newAvailableEvents = state.availableEvents;
-                newAvailableEvents.splice(selectedEventIndexInAvailableEvents, 1, newSelectedEvent);
+                const newAllEvents = state.allEvents;
+                newAllEvents.splice(selectedEventIndexInAllEvents, 1, newSelectedEvent);
                 
                 return {
                     ...state,
-                    availableEvents: [ ...newAvailableEvents ]
+                    allEvents: [ ...newAllEvents ]
                 }
             }
 
@@ -91,10 +114,10 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
             break;
 
         case REMOVE_NORMAL_TICKET:
-            const removedNormalTicketEvent = state.availableEvents.find(event => event.id === action.eventId);
+            const removedNormalTicketEvent = state.allEvents.find(event => event.id === action.eventId);
             
             if (removedNormalTicketEvent instanceof EventShowcaseEvent) {
-                const selectedEventIndexInAvailableEvents = state.availableEvents.indexOf(removedNormalTicketEvent);
+                const selectedEventIndexInAllEvents = state.allEvents.indexOf(removedNormalTicketEvent);
 
                 const newSelectedEvent = new EventShowcaseEvent(
                     removedNormalTicketEvent.id,
@@ -113,12 +136,12 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
                     removedNormalTicketEvent.totalPrice - removedNormalTicketEvent.normalTicket.price
                 );
 
-                const newAvailableEvents = state.availableEvents;
-                newAvailableEvents.splice(selectedEventIndexInAvailableEvents, 1, newSelectedEvent);
+                const newAllEvents = state.allEvents;
+                newAllEvents.splice(selectedEventIndexInAllEvents, 1, newSelectedEvent);
                 
                 return {
                     ...state,
-                    availableEvents: [ ...newAvailableEvents ]
+                    allEvents: [ ...newAllEvents ]
                 }
             }
 
@@ -126,10 +149,10 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
             break;
         
         case REMOVE_VIP_TICKET:
-            const removedVipTicketEvent = state.availableEvents.find(event => event.id === action.eventId);
+            const removedVipTicketEvent = state.allEvents.find(event => event.id === action.eventId);
             
             if (removedVipTicketEvent instanceof EventShowcaseEvent) {
-                const selectedEventIndexInAvailableEvents = state.availableEvents.indexOf(removedVipTicketEvent);
+                const selectedEventIndexInAllEvents = state.allEvents.indexOf(removedVipTicketEvent);
 
                 const newSelectedEvent = new EventShowcaseEvent(
                     removedVipTicketEvent.id,
@@ -148,12 +171,12 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
                     removedVipTicketEvent.totalPrice - removedVipTicketEvent.vipTicket.price
                 );
 
-                const newAvailableEvents = state.availableEvents;
-                newAvailableEvents.splice(selectedEventIndexInAvailableEvents, 1, newSelectedEvent);
+                const newAllEvents = state.allEvents;
+                newAllEvents.splice(selectedEventIndexInAllEvents, 1, newSelectedEvent);
                 
                 return {
                     ...state,
-                    availableEvents: [ ...newAvailableEvents ]
+                    allEvents: [ ...newAllEvents ]
                 }
             }
 
@@ -175,21 +198,21 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
             }
 
         case RESET_TICKETS_COUNT:
-            const eventAddedToCart = state.availableEvents.find(event => event.id === action.eventId);
+            const eventAddedToCart = state.allEvents.find(event => event.id === action.eventId);
 
             if (eventAddedToCart instanceof EventShowcaseEvent) {
-                const selectedEventIndexInAvailableEvents = state.availableEvents.indexOf(eventAddedToCart);
+                const selectedEventIndexInAllEvents = state.allEvents.indexOf(eventAddedToCart);
 
                 eventAddedToCart.totalPrice = 0;
                 eventAddedToCart.normalTicket.count = 0;
                 eventAddedToCart.vipTicket.count = 0;
 
-                const newAvailableEvents = state.availableEvents;
-                newAvailableEvents.splice(selectedEventIndexInAvailableEvents, 1, eventAddedToCart);
+                const newAllEvents = state.allEvents;
+                newAllEvents.splice(selectedEventIndexInAllEvents, 1, eventAddedToCart);
 
                 return {
                     ...state,
-                    availableEvents: [ ...newAvailableEvents ]
+                    allEvents: [ ...newAllEvents ]
                 }
             }
 
