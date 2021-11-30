@@ -1,0 +1,12 @@
+@import '../../variables/variables.scss';
+
+.footer {
+    height: 14.4rem;
+
+    &-seperator {
+        width: 95%;
+        height: 2px;
+        margin: 4rem 0;
+        background-color: $color-primary--dark;
+    }
+}

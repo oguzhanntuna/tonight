@@ -4,7 +4,10 @@ const Footer = (): JSX.Element => {
 
     return (
         <div className="footer">
-            Footer
+            <div className="footer-seperator"></div>
+            <div className="footer-content">
+                <span>Developed by © Oguzhan Tuna. All Rights Reserved.</span>
+            </div>
         </div>
     );
 }
