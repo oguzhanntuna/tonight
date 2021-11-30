@@ -4,7 +4,7 @@ export class EventShowcaseEvent{
     constructor(
         public id: number, 
         public title: string, 
-        public image: string, 
+        public imageUrl: string, 
         public location: string, 
         public date: string, 
         public url: string,
@@ -15,7 +15,7 @@ export class EventShowcaseEvent{
     ) {
         this.id = id;
         this.title = title;
-        this.image = image;
+        this.imageUrl = imageUrl;
         this.location = location;
         this.date = date;
         this.url = url;

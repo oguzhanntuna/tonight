@@ -8,7 +8,7 @@ export interface IEventShowCaseTicket {
 export interface IEventShowcaseEvent {
     id: number;
     title: string;
-    image: string;
+    imageUrl: string;
     location: string;
     date: string;
     url: string;

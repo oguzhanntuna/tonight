@@ -35,7 +35,7 @@ const EventShowcaseEvent = (props: IEventShowcaseEventProps): JSX.Element => {
 
     return (
         <div className="event">
-            <div className="event-image" style={{ backgroundImage: `url("${eventData.image}")` }} />
+            <div className="event-image" style={{ backgroundImage: `url("${eventData.imageUrl}")` }} />
             <div className="event-imageOverlay" onClick={() => dispatch(setEventActive(eventData.id))} />
             <div className="event-goToDetailIcon" onClick={() => goToEventDetail()}>
                 <img src={detailIcon} alt="detail icon" />

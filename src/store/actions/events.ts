@@ -19,7 +19,7 @@ export const fetchEvents = () => {
                 const buyNowEvents: Array<EventShowcaseEvent> = [];
                 const recentlyAddedEvents: Array<EventShowcaseEvent> = [];
                 const thisWeekEvents: Array<EventShowcaseEvent> = [];
-
+                console.log(events);
                 for (const moduleTypes in events) {
                     switch (moduleTypes) {
                         case 'buy-now':
@@ -28,7 +28,7 @@ export const fetchEvents = () => {
                                 buyNowEvents.push(new EventShowcaseEvent(
                                     events[moduleTypes][event].id,
                                     events[moduleTypes][event].title,
-                                    events[moduleTypes][event].image,
+                                    events[moduleTypes][event].imageUrl,
                                     events[moduleTypes][event].location,
                                     events[moduleTypes][event].date,
                                     events[moduleTypes][event].redirectUrl,
@@ -46,7 +46,7 @@ export const fetchEvents = () => {
                                 recentlyAddedEvents.push(new EventShowcaseEvent(
                                     events[moduleTypes][event].id,
                                     events[moduleTypes][event].title,
-                                    events[moduleTypes][event].image,
+                                    events[moduleTypes][event].imageUrl,
                                     events[moduleTypes][event].location,
                                     events[moduleTypes][event].date,
                                     events[moduleTypes][event].redirectUrl,
@@ -64,7 +64,7 @@ export const fetchEvents = () => {
                                 thisWeekEvents.push(new EventShowcaseEvent(
                                     events[moduleTypes][event].id,
                                     events[moduleTypes][event].title,
-                                    events[moduleTypes][event].image,
+                                    events[moduleTypes][event].imageUrl,
                                     events[moduleTypes][event].location,
                                     events[moduleTypes][event].date,
                                     events[moduleTypes][event].redirectUrl,

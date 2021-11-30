@@ -4,7 +4,7 @@
             "bob-moses": {
                 "id": 1,
                 "title": "Bob Moses Club Set",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/bob-moses.png",
                 "location": "Klein Phönix",
                 "date": "",
                 "redirectUrl": "bob-moses",
@@ -25,7 +25,7 @@
             "satori": {
                 "id": 2,
                 "title": "Satori",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/satori.png",
                 "location": "Volkswagen Arena",
                 "date": "",
                 "redirectUrl": "satori",
@@ -46,7 +46,7 @@
             "raw": {
                 "id": 3,
                 "title": "RAW",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/raw.jpeg",
                 "location": "Volkswagen Arena",
                 "date": "",
                 "redirectUrl": "raw",
@@ -67,7 +67,7 @@
             "lehar": {
                 "id": 4,
                 "title": "Lehar",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/lehar.jpeg",
                 "location": "Klein Phönix",
                 "date": "",
                 "redirectUrl": "lehar",
@@ -88,7 +88,7 @@
             "the-blaze": {
                 "id": 5,
                 "title": "The Blaze DJ Set",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/the-blaze.jpeg",
                 "location": "Volkswagen Arena",
                 "date": "",
                 "redirectUrl": "the-blaze",
@@ -109,7 +109,7 @@
             "nastia": {
                 "id": 6,
                 "title": "Nastia",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/nastia.png",
                 "location": "Suma Han",
                 "date": "",
                 "redirectUrl": "nastia",
@@ -237,7 +237,7 @@
             "stavroz": {
                 "id": 1,
                 "title": "Stavroz Live",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/stavroz.jpeg",
                 "location": "Küçükçiftlik Park",
                 "date": "",
                 "redirectUrl": "stavroz",
@@ -258,7 +258,7 @@
             "black-coffee": {
                 "id": 2,
                 "title": "Black Coffee",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/black-coffee.png",
                 "location": "Küçükçiftlik Park",
                 "date": "",
                 "redirectUrl": "black-coffee",
@@ -279,7 +279,7 @@
             "charlotte-de-witte": {
                 "id": 3,
                 "title": "Charlotte de Witte",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/charlotte-de-witte.png",
                 "location": "Volkswagen Arena",
                 "date": "",
                 "redirectUrl": "charlotte-de-witte",
@@ -300,7 +300,7 @@
             "joseph-capriati": {
                 "id": 4,
                 "title": "Joseph Capriati",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/joseph-capriati.jpeg",
                 "location": "Volkswagen Arena",
                 "date": "",
                 "redirectUrl": "joseph-capriati",
@@ -321,7 +321,7 @@
             "andme-b2b-adam-port": {
                 "id": 5,
                 "title": "&ME B2B Adam Port",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/%26me-b2b-adam-port.jpeg",
                 "location": "Klein Phönix",
                 "date": "",
                 "redirectUrl": "andme-b2b-adam-port",
@@ -344,7 +344,7 @@
             "enrico-sangiuliano": {
                 "id": 1,
                 "title": "Enrico Sangiuliano",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/enrico-sangiuliano.png",
                 "location": "Klein Phönix",
                 "date": "10 Nov 2021 Wed 18:00 - 00:00",
                 "redirectUrl": "enrico-sangiuliano",
@@ -365,7 +365,7 @@
             "christian-loffler": {
                 "id": 2,
                 "title": "Christian Löffler",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/christian-loffler.jpeg",
                 "location": "Klein Phönix",
                 "date": "",
                 "redirectUrl": "christian-loffler",
@@ -386,7 +386,7 @@
             "ben-klock": {
                 "id": 3,
                 "title": "Ben Klock",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/ben-klock.png",
                 "location": "Volkswagen Arena",
                 "date": "",
                 "redirectUrl": "ben-klock",
@@ -407,7 +407,7 @@
             "paula-temple-b2b-snts": {
                 "id": 4,
                 "title": "Paula Temple B2B SNTS",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/paula-temple-b2b-snts.jpeg",
                 "location": "Volkswagen Arena",
                 "date": "",
                 "redirectUrl": "paula-temple-b2b-snts",
@@ -428,7 +428,7 @@
             "exhale-by-amelie-lens": {
                 "id": 5,
                 "title": "Exhale By Amelie Lens",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/exhale-by-amelie-lens.jpeg",
                 "location": "Volkswagen Arena",
                 "date": "",
                 "redirectUrl": "exhale-by-amelie-lens",
@@ -449,7 +449,7 @@
             "ten-walls": {
                 "id": 6,
                 "title": "Ten Walls Live",
-                "imageUrl": "",
+                "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/ten-walls.jpeg",
                 "location": "Kastel",
                 "date": "",
                 "redirectUrl": "ten-walls",
