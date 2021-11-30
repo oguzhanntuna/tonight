@@ -8,6 +8,14 @@
     align-items: center;
     background: linear-gradient(to bottom, $color-black, transparent);
     z-index: 1;
+    backdrop-filter: none;
+    box-shadow: none;
+    transition: all .2s;
+
+    &.blur {
+        backdrop-filter: blur(15px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    }
 
     .logo {
         display: flex;
@@ -21,13 +29,6 @@
         letter-spacing: -.2rem;
         cursor: pointer;
     }
-
-    // .seperator {
-    //     width: .2rem;
-    //     height: 6rem;
-    //     background-color: $color-primary--dark;
-    //     margin-right: 3rem;
-    // }
 
     .navigationContainer {
         flex: 1;
