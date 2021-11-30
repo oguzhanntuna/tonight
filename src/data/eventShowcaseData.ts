@@ -23,7 +23,8 @@ export const EVENT_SHOWCASE_DATA_ARRAY: Array<IEventShowcaseEvent> = [
             price: 60,
             count: 0
         },
-        0
+        0,
+        'moduleType'
     ),
     new EventShowcaseEvent(
         2, 
@@ -44,7 +45,8 @@ export const EVENT_SHOWCASE_DATA_ARRAY: Array<IEventShowcaseEvent> = [
             price: 60,
             count: 0
         },
-        0
+        0,
+        'moduleType'
     ),
     new EventShowcaseEvent(
         3, 
@@ -65,7 +67,8 @@ export const EVENT_SHOWCASE_DATA_ARRAY: Array<IEventShowcaseEvent> = [
             price: 60,
             count: 0
         },
-        0
+        0,
+        'moduleType'
     ),
     new EventShowcaseEvent(
         4, 
@@ -86,7 +89,8 @@ export const EVENT_SHOWCASE_DATA_ARRAY: Array<IEventShowcaseEvent> = [
             price: 60,
             count: 0
         },
-        0
+        0,
+        'moduleType'
     ),
     new EventShowcaseEvent(
         5, 
@@ -107,6 +111,7 @@ export const EVENT_SHOWCASE_DATA_ARRAY: Array<IEventShowcaseEvent> = [
             price: 60,
             count: 0
         },
-        0
+        0,
+        'moduleType'
     )
 ];

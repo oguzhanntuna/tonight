@@ -10,7 +10,8 @@ export class EventShowcaseEvent{
         public url: string,
         public normalTicket: IEventShowCaseTicket,
         public vipTicket: IEventShowCaseTicket,
-        public _totalPrice: number
+        public _totalPrice: number,
+        public moduleType: string
     ) {
         this.id = id;
         this.title = title;
@@ -21,6 +22,7 @@ export class EventShowcaseEvent{
         this.normalTicket = normalTicket;
         this.vipTicket = vipTicket;
         this.totalPrice = _totalPrice;
+        this.moduleType = moduleType;
     }
 
     public get totalPrice(): number { return this._totalPrice }

@@ -47,31 +47,37 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
             const addedNormalTicketEvent = state.allEvents.find(event => event.id === action.eventId);
             
             if (addedNormalTicketEvent instanceof EventShowcaseEvent) {
-                const selectedEventIndexInAllEvents = state.allEvents.indexOf(addedNormalTicketEvent);
+                const moduleType = addedNormalTicketEvent.moduleType;
 
-                const newSelectedEvent = new EventShowcaseEvent(
-                    addedNormalTicketEvent.id,
-                    addedNormalTicketEvent.title,
-                    addedNormalTicketEvent.image,
-                    addedNormalTicketEvent.location,
-                    addedNormalTicketEvent.date,
-                    addedNormalTicketEvent.url,
-                    {
-                        type: addedNormalTicketEvent.normalTicket.type,
-                        title: addedNormalTicketEvent.normalTicket.title,
-                        price: addedNormalTicketEvent.normalTicket.price,
-                        count: addedNormalTicketEvent.normalTicket.count + 1
-                    },
-                    addedNormalTicketEvent.vipTicket,
-                    addedNormalTicketEvent.totalPrice + addedNormalTicketEvent.normalTicket.price
-                );
+                addedNormalTicketEvent.normalTicket.count = addedNormalTicketEvent.normalTicket.count + 1;
+                addedNormalTicketEvent.totalPrice = addedNormalTicketEvent.totalPrice + addedNormalTicketEvent.normalTicket.price;
 
-                const newAllEvents = state.allEvents;
-                newAllEvents.splice(selectedEventIndexInAllEvents, 1, newSelectedEvent);
-                
-                return {
+                const newCommonState = {
                     ...state,
-                    allEvents: [ ...newAllEvents ]
+                    allEvents: [ ...state.allEvents ],
+                }
+
+                switch (moduleType) {
+                    case 'buy-now': 
+
+                        return {
+                            ...newCommonState,
+                            buyNowEvents: [ ...state.buyNowEvents ]
+                        }
+                    
+                    case 'recently-added': 
+
+                        return {
+                            ...newCommonState,
+                            recentlyAddedEvents: [ ...state.recentlyAddedEvents ]
+                        }
+
+                    case 'this-week': 
+
+                        return {
+                            ...newCommonState,
+                            thisWeekEvents: [ ...state.thisWeekEvents ]
+                        }
                 }
             }
 
@@ -82,31 +88,37 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
             const addedVipTicketEvent = state.allEvents.find(event => event.id === action.eventId);
             
             if (addedVipTicketEvent instanceof EventShowcaseEvent) {
-                const selectedEventIndexInAllEvents = state.allEvents.indexOf(addedVipTicketEvent);
+                const moduleType = addedVipTicketEvent.moduleType;
 
-                const newSelectedEvent = new EventShowcaseEvent(
-                    addedVipTicketEvent.id,
-                    addedVipTicketEvent.title,
-                    addedVipTicketEvent.image,
-                    addedVipTicketEvent.location,
-                    addedVipTicketEvent.date,
-                    addedVipTicketEvent.url,
-                    addedVipTicketEvent.normalTicket,
-                    {
-                        type: addedVipTicketEvent.vipTicket.type,
-                        title: addedVipTicketEvent.vipTicket.title,
-                        price: addedVipTicketEvent.vipTicket.price,
-                        count: addedVipTicketEvent.vipTicket.count + 1
-                    },
-                    addedVipTicketEvent.totalPrice + addedVipTicketEvent.vipTicket.price
-                );
+                addedVipTicketEvent.vipTicket.count = addedVipTicketEvent.vipTicket.count + 1;
+                addedVipTicketEvent.totalPrice = addedVipTicketEvent.totalPrice + addedVipTicketEvent.vipTicket.price;
 
-                const newAllEvents = state.allEvents;
-                newAllEvents.splice(selectedEventIndexInAllEvents, 1, newSelectedEvent);
-                
-                return {
+                const newCommonState = {
                     ...state,
-                    allEvents: [ ...newAllEvents ]
+                    allEvents: [ ...state.allEvents ],
+                }
+                
+                switch (moduleType) {
+                    case 'buy-now': 
+
+                        return {
+                            ...newCommonState,
+                            buyNowEvents: [ ...state.buyNowEvents ]
+                        }
+                    
+                    case 'recently-added': 
+
+                        return {
+                            ...newCommonState,
+                            recentlyAddedEvents: [ ...state.recentlyAddedEvents ]
+                        }
+
+                    case 'this-week': 
+
+                        return {
+                            ...newCommonState,
+                            thisWeekEvents: [ ...state.thisWeekEvents ]
+                        }
                 }
             }
 
@@ -117,31 +129,37 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
             const removedNormalTicketEvent = state.allEvents.find(event => event.id === action.eventId);
             
             if (removedNormalTicketEvent instanceof EventShowcaseEvent) {
-                const selectedEventIndexInAllEvents = state.allEvents.indexOf(removedNormalTicketEvent);
+                const moduleType = removedNormalTicketEvent.moduleType;
 
-                const newSelectedEvent = new EventShowcaseEvent(
-                    removedNormalTicketEvent.id,
-                    removedNormalTicketEvent.title,
-                    removedNormalTicketEvent.image,
-                    removedNormalTicketEvent.location,
-                    removedNormalTicketEvent.date,
-                    removedNormalTicketEvent.url,
-                    {
-                        type: removedNormalTicketEvent.normalTicket.type,
-                        title: removedNormalTicketEvent.normalTicket.title,
-                        price: removedNormalTicketEvent.normalTicket.price,
-                        count: removedNormalTicketEvent.normalTicket.count - 1
-                    },
-                    removedNormalTicketEvent.vipTicket,
-                    removedNormalTicketEvent.totalPrice - removedNormalTicketEvent.normalTicket.price
-                );
-
-                const newAllEvents = state.allEvents;
-                newAllEvents.splice(selectedEventIndexInAllEvents, 1, newSelectedEvent);
+                removedNormalTicketEvent.normalTicket.count = removedNormalTicketEvent.normalTicket.count - 1;
+                removedNormalTicketEvent.totalPrice = removedNormalTicketEvent.totalPrice - removedNormalTicketEvent.normalTicket.price;
                 
-                return {
+                const newCommonState = {
                     ...state,
-                    allEvents: [ ...newAllEvents ]
+                    allEvents: [ ...state.allEvents ],
+                }
+
+                switch (moduleType) {
+                    case 'buy-now': 
+
+                        return {
+                            ...newCommonState,
+                            buyNowEvents: [ ...state.buyNowEvents ]
+                        }
+                    
+                    case 'recently-added': 
+
+                        return {
+                            ...newCommonState,
+                            recentlyAddedEvents: [ ...state.recentlyAddedEvents ]
+                        }
+
+                    case 'this-week': 
+
+                        return {
+                            ...newCommonState,
+                            thisWeekEvents: [ ...state.thisWeekEvents ]
+                        }
                 }
             }
 
@@ -152,31 +170,37 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
             const removedVipTicketEvent = state.allEvents.find(event => event.id === action.eventId);
             
             if (removedVipTicketEvent instanceof EventShowcaseEvent) {
-                const selectedEventIndexInAllEvents = state.allEvents.indexOf(removedVipTicketEvent);
+                const moduleType = removedVipTicketEvent.moduleType;
 
-                const newSelectedEvent = new EventShowcaseEvent(
-                    removedVipTicketEvent.id,
-                    removedVipTicketEvent.title,
-                    removedVipTicketEvent.image,
-                    removedVipTicketEvent.location,
-                    removedVipTicketEvent.date,
-                    removedVipTicketEvent.url,
-                    removedVipTicketEvent.normalTicket,
-                    {
-                        type: removedVipTicketEvent.vipTicket.type,
-                        title: removedVipTicketEvent.vipTicket.title,
-                        price: removedVipTicketEvent.vipTicket.price,
-                        count: removedVipTicketEvent.vipTicket.count - 1
-                    },
-                    removedVipTicketEvent.totalPrice - removedVipTicketEvent.vipTicket.price
-                );
-
-                const newAllEvents = state.allEvents;
-                newAllEvents.splice(selectedEventIndexInAllEvents, 1, newSelectedEvent);
+                removedVipTicketEvent.vipTicket.count = removedVipTicketEvent.vipTicket.count - 1;
+                removedVipTicketEvent.totalPrice = removedVipTicketEvent.totalPrice - removedVipTicketEvent.vipTicket.price;
                 
-                return {
+                const newCommonState = {
                     ...state,
-                    allEvents: [ ...newAllEvents ]
+                    allEvents: [ ...state.allEvents ],
+                }
+
+                switch (moduleType) {
+                    case 'buy-now': 
+
+                        return {
+                            ...newCommonState,
+                            buyNowEvents: [ ...state.buyNowEvents ]
+                        }
+                    
+                    case 'recently-added': 
+
+                        return {
+                            ...newCommonState,
+                            recentlyAddedEvents: [ ...state.recentlyAddedEvents ]
+                        }
+
+                    case 'this-week': 
+
+                        return {
+                            ...newCommonState,
+                            thisWeekEvents: [ ...state.thisWeekEvents ]
+                        }
                 }
             }
 
@@ -201,18 +225,38 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
             const eventAddedToCart = state.allEvents.find(event => event.id === action.eventId);
 
             if (eventAddedToCart instanceof EventShowcaseEvent) {
-                const selectedEventIndexInAllEvents = state.allEvents.indexOf(eventAddedToCart);
+                const moduleType = eventAddedToCart.moduleType;
 
                 eventAddedToCart.totalPrice = 0;
                 eventAddedToCart.normalTicket.count = 0;
                 eventAddedToCart.vipTicket.count = 0;
 
-                const newAllEvents = state.allEvents;
-                newAllEvents.splice(selectedEventIndexInAllEvents, 1, eventAddedToCart);
-
-                return {
+                const newCommonState = {
                     ...state,
-                    allEvents: [ ...newAllEvents ]
+                    allEvents: [ ...state.allEvents ],
+                }
+
+                switch (moduleType) {
+                    case 'buy-now': 
+
+                        return {
+                            ...newCommonState,
+                            buyNowEvents: [ ...state.buyNowEvents ]
+                        }
+                    
+                    case 'recently-added': 
+
+                        return {
+                            ...newCommonState,
+                            recentlyAddedEvents: [ ...state.recentlyAddedEvents ]
+                        }
+
+                    case 'this-week': 
+
+                        return {
+                            ...newCommonState,
+                            thisWeekEvents: [ ...state.thisWeekEvents ]
+                        }
                 }
             }
 

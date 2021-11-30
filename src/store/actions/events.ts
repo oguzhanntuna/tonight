@@ -24,19 +24,55 @@ export const fetchEvents = () => {
                     switch (moduleTypes) {
                         case 'buy-now':
                             for (const event in events[moduleTypes]) {
-                                buyNowEvents.push(events[moduleTypes][event]);
+                                
+                                buyNowEvents.push(new EventShowcaseEvent(
+                                    events[moduleTypes][event].id,
+                                    events[moduleTypes][event].title,
+                                    events[moduleTypes][event].image,
+                                    events[moduleTypes][event].location,
+                                    events[moduleTypes][event].date,
+                                    events[moduleTypes][event].redirectUrl,
+                                    events[moduleTypes][event].normalTicket,
+                                    events[moduleTypes][event].vipTicket,
+                                    events[moduleTypes][event].totalPrice,
+                                    moduleTypes
+                                ));
                             }
                             break;
                         
                         case 'recently-added':
                             for (const event in events[moduleTypes]) {
-                                recentlyAddedEvents.push(events[moduleTypes][event])
+
+                                recentlyAddedEvents.push(new EventShowcaseEvent(
+                                    events[moduleTypes][event].id,
+                                    events[moduleTypes][event].title,
+                                    events[moduleTypes][event].image,
+                                    events[moduleTypes][event].location,
+                                    events[moduleTypes][event].date,
+                                    events[moduleTypes][event].redirectUrl,
+                                    events[moduleTypes][event].normalTicket,
+                                    events[moduleTypes][event].vipTicket,
+                                    events[moduleTypes][event].totalPrice,
+                                    moduleTypes
+                                ));
                             }
                             break;
 
                         case 'this-week':
                             for (const event in events[moduleTypes]) {
-                                thisWeekEvents.push(events[moduleTypes][event]);
+
+                                thisWeekEvents.push(new EventShowcaseEvent(
+                                    events[moduleTypes][event].id,
+                                    events[moduleTypes][event].title,
+                                    events[moduleTypes][event].image,
+                                    events[moduleTypes][event].location,
+                                    events[moduleTypes][event].date,
+                                    events[moduleTypes][event].redirectUrl,
+                                    events[moduleTypes][event].normalTicket,
+                                    events[moduleTypes][event].vipTicket,
+                                    events[moduleTypes][event].totalPrice,
+                                    moduleTypes
+                                ));
                             }
                             break;
                     }

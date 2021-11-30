@@ -14,5 +14,6 @@ export interface IEventShowcaseEvent {
     url: string;
     normalTicket: IEventShowCaseTicket;
     vipTicket: IEventShowCaseTicket;
-    totalPrice: number
+    totalPrice: number;
+    moduleType: string;
 }
