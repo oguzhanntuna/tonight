@@ -6,7 +6,7 @@ const Header = (): JSX.Element => {
     document.addEventListener('scroll', () => {
         const headerElement = document.getElementById('header');
         
-        window.pageYOffset > 0 ? headerElement?.classList.add('blur') : headerElement?.classList.remove('blur');
+        window.pageYOffset > 0 ? headerElement?.classList.add('blurred') : headerElement?.classList.remove('blurred');
     });
 
     return (

@@ -1,4 +1,4 @@
-import './index.scss';
+import './profile.scss';
 
 const ProfilePage = (): JSX.Element => {
 

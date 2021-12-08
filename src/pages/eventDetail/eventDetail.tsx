@@ -1,4 +1,4 @@
-import './index.scss';
+import './eventDetail.scss';
 
 const EventDetailPage = (): JSX.Element => {
 

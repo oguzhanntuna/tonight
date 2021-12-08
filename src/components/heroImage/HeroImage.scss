@@ -1,0 +1,30 @@
+.heroImageContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 43rem;
+
+    .heroImage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        &-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        &-imageOverlay {
+            position: absolute;
+            width: 100%;
+            height: 20rem;
+            background: linear-gradient(to bottom, transparent, rgba(19, 21, 28, 1));
+            top: 23rem;
+        }
+    }
+}

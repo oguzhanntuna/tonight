@@ -2,6 +2,9 @@
 
 .footer {
     height: 14.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     &-seperator {
         width: 95%;

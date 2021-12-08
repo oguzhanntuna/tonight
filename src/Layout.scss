@@ -1,22 +1,5 @@
 .layout {
   overflow-x: hidden;
-
-  &-heroImage {
-    position: absolute;
-    width: 100%;
-    height: 43rem;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  &-heroImageOverlay {
-    position: absolute;
-    width: 100%;
-    height: 20rem;
-    background: linear-gradient(to bottom, transparent, rgba(19, 21, 28, 1));
-    top: 23rem;
-  }
 }
 
 @media only screen and (max-width: 768px) {
