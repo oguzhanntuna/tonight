@@ -25,6 +25,24 @@ export const fetchEvents = () => {
                         case 'buy-now':
                             for (const event in events[moduleTypes]) {
                                 
+                                // if (buyNowEvents.length > 0) {
+                                //     console.log('not empty');
+                                // } else {
+
+                                //     buyNowEvents.push(new EventShowcaseEvent(
+                                //         events[moduleTypes][event].id,
+                                //         events[moduleTypes][event].title,
+                                //         events[moduleTypes][event].imageUrl,
+                                //         events[moduleTypes][event].location,
+                                //         events[moduleTypes][event].date,
+                                //         events[moduleTypes][event].redirectUrl,
+                                //         events[moduleTypes][event].normalTicket,
+                                //         events[moduleTypes][event].vipTicket,
+                                //         events[moduleTypes][event].totalPrice,
+                                //         moduleTypes
+                                //     ));
+                                // }
+
                                 buyNowEvents.push(new EventShowcaseEvent(
                                     events[moduleTypes][event].id,
                                     events[moduleTypes][event].title,
