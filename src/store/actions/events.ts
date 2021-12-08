@@ -19,7 +19,7 @@ export const fetchEvents = () => {
                 const buyNowEvents: Array<EventShowcaseEvent> = [];
                 const recentlyAddedEvents: Array<EventShowcaseEvent> = [];
                 const thisWeekEvents: Array<EventShowcaseEvent> = [];
-                console.log(events);
+
                 for (const moduleTypes in events) {
                     switch (moduleTypes) {
                         case 'buy-now':

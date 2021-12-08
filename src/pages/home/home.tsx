@@ -21,7 +21,8 @@ const HomePage = (): JSX.Element => {
 
     useEffect(() => {
         dispatch(fetchEvents());
-    }, []);
+
+    }, [dispatch, fetchEvents]);
 
     return (
         <div className="homePage">

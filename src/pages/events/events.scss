@@ -3,5 +3,17 @@
         position: relative;
         max-width: 1024px;
         margin: 12rem auto 0 auto;
+
+        .allEventsContainer {
+            &-events {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+
+                .eventTicket {
+                    margin-bottom: 4rem;
+                }
+            }
+        }
     }
 }

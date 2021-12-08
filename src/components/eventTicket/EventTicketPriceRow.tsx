@@ -1,17 +1,18 @@
+import './EventTicketPriceRow.scss';
 import { useDispatch } from 'react-redux';
-import { IEventShowCaseTicket } from '../../../models/interfaces/eventShowcase/event';
-import './EventPriceRow.scss';
 
-import * as eventActions from '../../../store/actions/events';
-import addIcon from '../../../assets/icons/add.svg';
-import removeIcon from '../../../assets/icons/remove.svg';
+import { IEventShowCaseTicket } from '../../models/interfaces/eventShowcase/event';
+import * as eventActions from '../../store/actions/events';
 
-interface IEventShowcaseEventPriceRow {
+import addIcon from '../../assets/icons/add.svg';
+import removeIcon from '../../assets/icons/remove.svg';
+
+interface IEventTicketPriceRowProps {
     eventId: number;
     ticketData: IEventShowCaseTicket;
 }
 
-const EventShowcaseEventPriceRow = (props: IEventShowcaseEventPriceRow): JSX.Element => {
+const EventTicketPriceRow = (props: IEventTicketPriceRowProps): JSX.Element => {
     const { eventId, ticketData } = props;
     const { type, title, price, count } = ticketData;
     const { addNormalTicket, addVipTicket, removeNormalTicket, removeVipTicket } = eventActions;
@@ -19,17 +20,17 @@ const EventShowcaseEventPriceRow = (props: IEventShowcaseEventPriceRow): JSX.Ele
     const dispatch = useDispatch();
 
     return (
-        <div className="eventPriceRow">
-            <div className="eventPriceRow-ticketInfoContainer">
-                <div className="eventPriceRow-ticketInfo">
-                    <div className="eventPriceRow-ticketType">{title}</div>
-                    <div className="eventPriceRow-ticketPrice">{price}$</div>
+        <div className="eventTicketPriceRow">
+            <div className="eventTicketPriceRow-ticketInfoContainer">
+                <div className="eventTicketPriceRow-ticketInfo">
+                    <div className="eventTicketPriceRow-ticketType">{title}</div>
+                    <div className="eventTicketPriceRow-ticketPrice">{price}$</div>
                 </div>
-                <div className="eventPriceRow-ticketCount">{count}</div>
+                <div className="eventTicketPriceRow-ticketCount">{count}</div>
             </div>
-            <div className="eventPriceRow-buttonContainer">
+            <div className="eventTicketPriceRow-buttonContainer">
                 <button 
-                    className={`eventPriceRow-removeButton ${count === 0 ? 'disable' : ''}`} 
+                    className={`eventTicketPriceRow-removeButton ${count === 0 ? 'disable' : ''}`} 
                     disabled={count === 0}
                     onClick={() => {
                         type === 'normal' 
@@ -40,7 +41,7 @@ const EventShowcaseEventPriceRow = (props: IEventShowcaseEventPriceRow): JSX.Ele
                     <img src={removeIcon} alt="remove icon" />
                 </button>
                 <button 
-                    className="eventPriceRow-addButton"
+                    className="eventTicketPriceRow-addButton"
                     onClick={() => {
                         type === 'normal' 
                             ? dispatch(addNormalTicket(eventId)) 
@@ -54,4 +55,4 @@ const EventShowcaseEventPriceRow = (props: IEventShowcaseEventPriceRow): JSX.Ele
     );
 }
 
-export default EventShowcaseEventPriceRow;
+export default EventTicketPriceRow;
