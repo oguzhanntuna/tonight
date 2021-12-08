@@ -18,6 +18,8 @@ const EventsPage = (): JSX.Element => {
     useEffect(() => {
         dispatch(fetchEvents());
 
+        window.scrollTo({ top: 0, left: 0 });
+        
     }, [dispatch, fetchEvents]);
 
     console.log(allEvents);
