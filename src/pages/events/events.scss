@@ -1,17 +1,24 @@
 .eventsPage {
     &-content {
         position: relative;
+        width: 95%;
         max-width: 1024px;
         margin: 12rem auto 0 auto;
 
         .allEventsContainer {
+            &-header {
+                font-size: 4.5rem;
+                margin-bottom: 1rem;
+            }
+
             &-events {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
 
                 .eventTicket {
-                    margin-bottom: 4rem;
+                    height: 42.5rem;
+                    margin: 0 .5rem 4rem .5rem;
                 }
             }
         }

@@ -10,11 +10,10 @@ import EventTicketInfoSide from './EventTicketInfoSide';
 
 interface IEventTicketProps {
     eventData: IEventShowcaseEvent;
-    key: number
 }
 
 const EventTicket = (props: IEventTicketProps): JSX.Element => {
-    const {eventData, key} = props;
+    const {eventData } = props;
     const { setEventActive, resetTicketsCount } = eventActions;
     const { addToCart } = cartActions;
 
@@ -29,10 +28,7 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
     }
 
     return (
-        <div 
-            className={`eventTicket ${isEventSelected(eventData.id) ? 'active' : ''}`} 
-            key={key} 
-        >
+        <div className={`eventTicket ${isEventSelected(eventData.id) ? 'active' : ''}`}>
             { 
                 isEventSelected(eventData.id)
                     ? <EventTicketPriceSide eventData={eventData} /> 
