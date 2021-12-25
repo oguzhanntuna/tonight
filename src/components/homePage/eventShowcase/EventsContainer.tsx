@@ -5,7 +5,7 @@ import { IEventShowcaseEvent } from '../../../models/interfaces/eventShowcase/ev
 import EventTicket from '../../eventTicket/EventTicket';
 
 interface IEventShowcaseEventsContainerProps {
-    eventData: Array<IEventShowcaseEvent>;
+    eventData: Array<IEventShowcaseEvent> | undefined;
 }
 
 const EventShowcaseEventsContainer = (props: IEventShowcaseEventsContainerProps): JSX.Element => {
@@ -13,7 +13,7 @@ const EventShowcaseEventsContainer = (props: IEventShowcaseEventsContainerProps)
 
     return (
         <div className="eventsContainer">
-            { eventData.map(event => <EventTicket key={event.id} eventData={event} />) }
+            { eventData && eventData.map(event => <EventTicket key={event.id} eventData={event} />) }
         </div>
     );
 }

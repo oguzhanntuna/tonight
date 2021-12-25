@@ -3,7 +3,9 @@ import { IEventsState } from '../../models/interfaces/store/states/events';
 import { EventShowcaseEvent } from '../../models/eventShowcase/event';
 
 import { 
-    SET_EVENTS,
+    SET_THIS_WEEK_EVENTS,
+    SET_RECENTLY_ADDED_EVENTS,
+    SET_BUY_NOW_EVENTS,
     ADD_NORMAL_TICKET, 
     ADD_VIP_TICKET, 
     REMOVE_NORMAL_TICKET, 
@@ -23,24 +25,38 @@ const initialState: IEventsState = {
 
 export const eventsReducer = (state = initialState, action: IEventsAction): IEventsState => {
     switch(action.type) {
-        case SET_EVENTS: 
-            const { allEvents, buyNowEvents, recentlyAddedEvents, thisWeekEvents } = action;
+        case SET_THIS_WEEK_EVENTS:
+            const { thisWeekEvents } = action;
 
-            if (
-                typeof(allEvents) !== 'undefined' && 
-                typeof(buyNowEvents) !== 'undefined' && 
-                typeof(recentlyAddedEvents) !== 'undefined' && 
-                typeof(thisWeekEvents) !== 'undefined'
-            ) {
-
-                return {
-                    ...state,
-                    allEvents,
-                    buyNowEvents,
-                    recentlyAddedEvents,
-                    thisWeekEvents
-                }
+            if (thisWeekEvents) return {
+                ...state,
+                thisWeekEvents,
+                allEvents: state.allEvents.concat(thisWeekEvents)
             }
+
+            break;
+        
+        case SET_RECENTLY_ADDED_EVENTS:
+            const { recentlyAddedEvents } = action;
+
+            if (recentlyAddedEvents) return {
+                ...state,
+                recentlyAddedEvents,
+                allEvents: state.allEvents.concat(recentlyAddedEvents)
+            }
+            
+            break;
+        
+        case SET_BUY_NOW_EVENTS:
+            const { buyNowEvents } = action;
+
+            if (buyNowEvents) return {
+
+                ...state,
+                buyNowEvents,
+                allEvents: state.allEvents.concat(buyNowEvents)
+            }
+
             break;
 
         case ADD_NORMAL_TICKET:

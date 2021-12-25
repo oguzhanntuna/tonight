@@ -1,5 +1,469 @@
 {
     "events": {
+        "bob-moses": {
+            "id": 1,
+            "title": "Bob Moses Club Set",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/bob-moses.png",
+            "location": "Klein Phönix",
+            "date": "",
+            "redirectUrl": "bob-moses",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "satori": {
+            "id": 2,
+            "title": "Satori",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/satori.png",
+            "location": "Volkswagen Arena",
+            "date": "",
+            "redirectUrl": "satori",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "raw": {
+            "id": 3,
+            "title": "RAW",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/raw.jpeg",
+            "location": "Volkswagen Arena",
+            "date": "",
+            "redirectUrl": "raw",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "lehar": {
+            "id": 4,
+            "title": "Lehar",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/lehar.jpeg",
+            "location": "Klein Phönix",
+            "date": "",
+            "redirectUrl": "lehar",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "the-blaze": {
+            "id": 5,
+            "title": "The Blaze DJ Set",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/the-blaze.jpeg",
+            "location": "Volkswagen Arena",
+            "date": "",
+            "redirectUrl": "the-blaze",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "nastia": {
+            "id": 6,
+            "title": "Nastia",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/nastia.png",
+            "location": "Suma Han",
+            "date": "",
+            "redirectUrl": "nastia",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "enrico-sangiuliano": {
+            "id": 7,
+            "title": "Enrico Sangiuliano",
+            "imageUrl": "",
+            "location": "Klein Phönix",
+            "date": "10 Nov 2021 Wed 18:00 - 00:00",
+            "redirectUrl": "enrico-sangiuliano",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "enrico-sangiuliano": {
+            "id": 8,
+            "title": "Enrico Sangiuliano",
+            "imageUrl": "",
+            "location": "Klein Phönix",
+            "date": "10 Nov 2021 Wed 18:00 - 00:00",
+            "redirectUrl": "enrico-sangiuliano",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "enrico-sangiuliano": {
+            "id": 9,
+            "title": "Enrico Sangiuliano",
+            "imageUrl": "",
+            "location": "Klein Phönix",
+            "date": "10 Nov 2021 Wed 18:00 - 00:00",
+            "redirectUrl": "enrico-sangiuliano",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "enrico-sangiuliano": {
+            "id": 10,
+            "title": "Enrico Sangiuliano",
+            "imageUrl": "",
+            "location": "Klein Phönix",
+            "date": "10 Nov 2021 Wed 18:00 - 00:00",
+            "redirectUrl": "enrico-sangiuliano",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "enrico-sangiuliano": {
+            "id": 11,
+            "title": "Enrico Sangiuliano",
+            "imageUrl": "",
+            "location": "Klein Phönix",
+            "date": "10 Nov 2021 Wed 18:00 - 00:00",
+            "redirectUrl": "enrico-sangiuliano",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "stavroz": {
+            "id": 12,
+            "title": "Stavroz Live",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/stavroz.jpeg",
+            "location": "Küçükçiftlik Park",
+            "date": "",
+            "redirectUrl": "stavroz",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "black-coffee": {
+            "id": 13,
+            "title": "Black Coffee",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/black-coffee.png",
+            "location": "Küçükçiftlik Park",
+            "date": "",
+            "redirectUrl": "black-coffee",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "charlotte-de-witte": {
+            "id": 14,
+            "title": "Charlotte de Witte",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/charlotte-de-witte.png",
+            "location": "Volkswagen Arena",
+            "date": "",
+            "redirectUrl": "charlotte-de-witte",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "joseph-capriati": {
+            "id": 15,
+            "title": "Joseph Capriati",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/joseph-capriati.jpeg",
+            "location": "Volkswagen Arena",
+            "date": "",
+            "redirectUrl": "joseph-capriati",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "andme-b2b-adam-port": {
+            "id": 16,
+            "title": "&ME B2B Adam Port",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/%26me-b2b-adam-port.jpeg",
+            "location": "Klein Phönix",
+            "date": "",
+            "redirectUrl": "andme-b2b-adam-port",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "enrico-sangiuliano": {
+            "id": 17,
+            "title": "Enrico Sangiuliano",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/enrico-sangiuliano.png",
+            "location": "Klein Phönix",
+            "date": "10 Nov 2021 Wed 18:00 - 00:00",
+            "redirectUrl": "enrico-sangiuliano",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "christian-loffler": {
+            "id": 18,
+            "title": "Christian Löffler",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/christian-loffler.jpeg",
+            "location": "Klein Phönix",
+            "date": "",
+            "redirectUrl": "christian-loffler",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "ben-klock": {
+            "id": 19,
+            "title": "Ben Klock",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/ben-klock.png",
+            "location": "Volkswagen Arena",
+            "date": "",
+            "redirectUrl": "ben-klock",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "paula-temple-b2b-snts": {
+            "id": 20,
+            "title": "Paula Temple B2B SNTS",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/paula-temple-b2b-snts.jpeg",
+            "location": "Volkswagen Arena",
+            "date": "",
+            "redirectUrl": "paula-temple-b2b-snts",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "exhale-by-amelie-lens": {
+            "id": 21,
+            "title": "Exhale By Amelie Lens",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/exhale-by-amelie-lens.jpeg",
+            "location": "Volkswagen Arena",
+            "date": "",
+            "redirectUrl": "exhale-by-amelie-lens",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        },
+        "ten-walls": {
+            "id": 22,
+            "title": "Ten Walls Live",
+            "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/ten-walls.jpeg",
+            "location": "Kastel",
+            "date": "",
+            "redirectUrl": "ten-walls",
+            "normalTicket":{
+                "type": "normal",
+                "title": "Early Bird",
+                "price": 20,
+                "count": 0
+            },
+            "vipTicket":{
+                "type": "vip",
+                "title": "Backstage",
+                "price": 60,
+                "count": 0
+            },
+            "totalPrice": 0
+        }        
+    },
+    "modules": {
         "this-week": {
             "bob-moses": {
                 "id": 1,
@@ -235,7 +699,7 @@
         },
         "recently-added": {
             "stavroz": {
-                "id": 1,
+                "id": 12,
                 "title": "Stavroz Live",
                 "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/stavroz.jpeg",
                 "location": "Küçükçiftlik Park",
@@ -256,7 +720,7 @@
                 "totalPrice": 0
             },
             "black-coffee": {
-                "id": 2,
+                "id": 13,
                 "title": "Black Coffee",
                 "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/black-coffee.png",
                 "location": "Küçükçiftlik Park",
@@ -277,7 +741,7 @@
                 "totalPrice": 0
             },
             "charlotte-de-witte": {
-                "id": 3,
+                "id": 14,
                 "title": "Charlotte de Witte",
                 "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/charlotte-de-witte.png",
                 "location": "Volkswagen Arena",
@@ -298,7 +762,7 @@
                 "totalPrice": 0
             },
             "joseph-capriati": {
-                "id": 4,
+                "id": 15,
                 "title": "Joseph Capriati",
                 "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/joseph-capriati.jpeg",
                 "location": "Volkswagen Arena",
@@ -319,7 +783,7 @@
                 "totalPrice": 0
             },
             "andme-b2b-adam-port": {
-                "id": 5,
+                "id": 16,
                 "title": "&ME B2B Adam Port",
                 "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/%26me-b2b-adam-port.jpeg",
                 "location": "Klein Phönix",
@@ -342,7 +806,7 @@
         },
         "buy-now": {
             "enrico-sangiuliano": {
-                "id": 1,
+                "id": 17,
                 "title": "Enrico Sangiuliano",
                 "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/enrico-sangiuliano.png",
                 "location": "Klein Phönix",
@@ -363,7 +827,7 @@
                 "totalPrice": 0
             },
             "christian-loffler": {
-                "id": 2,
+                "id": 18,
                 "title": "Christian Löffler",
                 "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/christian-loffler.jpeg",
                 "location": "Klein Phönix",
@@ -384,7 +848,7 @@
                 "totalPrice": 0
             },
             "ben-klock": {
-                "id": 3,
+                "id": 19,
                 "title": "Ben Klock",
                 "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/ben-klock.png",
                 "location": "Volkswagen Arena",
@@ -405,7 +869,7 @@
                 "totalPrice": 0
             },
             "paula-temple-b2b-snts": {
-                "id": 4,
+                "id": 20,
                 "title": "Paula Temple B2B SNTS",
                 "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/paula-temple-b2b-snts.jpeg",
                 "location": "Volkswagen Arena",
@@ -426,7 +890,7 @@
                 "totalPrice": 0
             },
             "exhale-by-amelie-lens": {
-                "id": 5,
+                "id": 21,
                 "title": "Exhale By Amelie Lens",
                 "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/exhale-by-amelie-lens.jpeg",
                 "location": "Volkswagen Arena",
@@ -447,7 +911,7 @@
                 "totalPrice": 0
             },
             "ten-walls": {
-                "id": 6,
+                "id": 22,
                 "title": "Ten Walls Live",
                 "imageUrl": "https://project-tonight.s3.eu-central-1.amazonaws.com/ten-walls.jpeg",
                 "location": "Kastel",
