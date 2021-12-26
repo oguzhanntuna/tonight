@@ -28,8 +28,7 @@ const EventTicketFrontside = (props: IEventTicketFrontSideProps): JSX.Element =>
 
     const goToEventDetail = (): void => {
         const { url } = eventData;
-
-        console.log('went to event detail');
+        
         navigate(`/events/${url}`);
     }
 

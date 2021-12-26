@@ -7,6 +7,7 @@ import {
     SET_RECENTLY_ADDED_EVENTS,
     SET_BUY_NOW_EVENTS,
     SET_ALL_EVENTS,
+    SET_SELECTED_EVENT,
     ADD_NORMAL_TICKET, 
     ADD_VIP_TICKET, 
     REMOVE_NORMAL_TICKET, 
@@ -21,6 +22,7 @@ const initialState: IEventsState = {
     buyNowEvents: [],
     recentlyAddedEvents: [],
     thisWeekEvents: [],
+    selectedEvent: null,
     activeEventIds: []
 }
 
@@ -70,6 +72,17 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
             }
 
             break; 
+
+        case SET_SELECTED_EVENT:
+            const { selectedEvent } = action;
+
+            if (selectedEvent) return {
+
+                ...state,
+                selectedEvent
+            }
+
+            break;
 
         case ADD_NORMAL_TICKET:
             const addedNormalTicketEvent = state.allEvents.find(event => event.id === action.eventId);

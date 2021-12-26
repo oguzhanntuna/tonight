@@ -19,7 +19,7 @@ const EventsPage = (): JSX.Element => {
         dispatch(fetchAllEvents());
 
         window.scrollTo({ top: 0, left: 0 });
-    }, []);
+    }, [dispatch, fetchAllEvents]);
 
     return (
         <div className="eventsPage">

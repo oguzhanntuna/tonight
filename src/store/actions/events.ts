@@ -6,6 +6,7 @@ export const SET_THIS_WEEK_EVENTS = 'SET_THIS_WEEK_EVENTS';
 export const SET_RECENTLY_ADDED_EVENTS = 'SET_RECENTLY_ADDED_EVENTS';
 export const SET_BUY_NOW_EVENTS = 'SET_BUY_NOW_EVENTS';
 export const SET_ALL_EVENTS = 'SET_ALL_EVENTS';
+export const SET_SELECTED_EVENT = 'SET_SELECTED_EVENT';
 export const ADD_NORMAL_TICKET = 'ADD_NORMAL_TICKET';
 export const ADD_VIP_TICKET = 'ADD_VIP_TICKET';
 export const REMOVE_NORMAL_TICKET = 'REMOVE_NORMAL_TICKET';
@@ -144,6 +145,7 @@ export const fetchAllEvents = () => {
                         eventsData[event].normalTicket,
                         eventsData[event].vipTicket,
                         eventsData[event].totalPrice,
+                        // Something wrong down here 
                         'buy-now'
                     ))
                 }
@@ -155,6 +157,21 @@ export const fetchAllEvents = () => {
             })
             .catch(error => console.log(error));
     }
+}
+
+export const fetchSelectedEvent = (event: string) => {
+    return async (dispatch: any) => {
+        axios.get(`https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/events/${event}.json`)
+            .then(response => {
+                const selectedEvent = response.data;
+                
+                dispatch({
+                    type: SET_SELECTED_EVENT,
+                    selectedEvent
+                })
+            })
+            .catch(error => console.log(error));
+    } 
 }
 
 export const addNormalTicket = (eventId: number): IEventsAction => {
