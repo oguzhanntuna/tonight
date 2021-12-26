@@ -5,6 +5,7 @@ import { IEventsAction } from "../../models/interfaces/store/actions/events";
 export const SET_THIS_WEEK_EVENTS = 'SET_THIS_WEEK_EVENTS';
 export const SET_RECENTLY_ADDED_EVENTS = 'SET_RECENTLY_ADDED_EVENTS';
 export const SET_BUY_NOW_EVENTS = 'SET_BUY_NOW_EVENTS';
+export const SET_ALL_EVENTS = 'SET_ALL_EVENTS';
 export const ADD_NORMAL_TICKET = 'ADD_NORMAL_TICKET';
 export const ADD_VIP_TICKET = 'ADD_VIP_TICKET';
 export const REMOVE_NORMAL_TICKET = 'REMOVE_NORMAL_TICKET';
@@ -59,7 +60,7 @@ export const fetchThisWeekEvents = () => {
                     thisWeekEvents: thisWeekEvents
                 });
             })
-            .catch(error => console.log(error))
+            .catch(error => console.log(error));
     }
 }
 
@@ -122,6 +123,37 @@ export const fetchBuyNowEvents = () => {
                 });
             })
             .catch(error => console.log(error))
+    }
+}
+
+export const fetchAllEvents = () => {
+    return async (dispatch: any) => {
+        axios.get('https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/events.json')
+            .then(response => {
+                const eventsData = response.data;
+                const allEvents: Array<EventShowcaseEvent> = [];
+
+                for (const event in eventsData) {
+                    allEvents.push(new EventShowcaseEvent( 
+                        eventsData[event].id,
+                        eventsData[event].title,
+                        eventsData[event].imageUrl,
+                        eventsData[event].location,
+                        eventsData[event].date,
+                        eventsData[event].redirectUrl,
+                        eventsData[event].normalTicket,
+                        eventsData[event].vipTicket,
+                        eventsData[event].totalPrice,
+                        'buy-now'
+                    ))
+                }
+
+                dispatch({
+                    type: SET_ALL_EVENTS,
+                    allEvents
+                })
+            })
+            .catch(error => console.log(error));
     }
 }
 
