@@ -1,0 +1,9 @@
+@import '../../variables/variables.scss';
+
+.eventPriceContainer {
+    position: fixed;
+    min-width: 30rem;
+    border-radius: 1rem;
+    background-color: $color-black;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, .4);
+}

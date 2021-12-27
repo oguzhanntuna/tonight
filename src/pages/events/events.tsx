@@ -30,7 +30,7 @@ const EventsPage = (): JSX.Element => {
                         All Events
                     </div>
                     <div className="allEventsContainer-events">
-                        { allEvents.map(event => <EventTicket key={event.id} eventData={event} /> ) }
+                        { allEvents.map((event, index) => <EventTicket key={`${index}-${event.id}`} eventData={event} /> ) }
                     </div>
                 </div>
             </div>

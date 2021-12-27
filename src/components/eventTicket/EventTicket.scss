@@ -43,7 +43,7 @@
         &::after {
             content: "";
             position: absolute;
-            left: 0;
+            left: -1.6rem;
             top: -2rem;
             width: 3.5rem;
             height: 3.5rem;
@@ -55,7 +55,7 @@
         &::before {
             content: "";
             position: absolute;
-            right: 0;
+            right: -1.6rem;
             top: -2rem;
             width: 3.5rem;
             height: 3.5rem;
