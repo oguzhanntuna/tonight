@@ -29,6 +29,16 @@ const EventPriceSlip = (props: IEventPriceSlip): JSX.Element => {
                 <span className="eventPriceSlip-text">Total:</span>
                 <span className="eventPriceSlip-price">{`${totalPrice}$`}</span>
             </div>
+            <button 
+                className={`
+                    eventPriceSlip-buyNowButton 
+                    ${totalPrice <= 0 ? 'eventPriceSlip-buyNowButton--disabled' : ''
+                }`}
+                onClick={() => console.log('clicked')}
+                disabled={totalPrice <= 0}
+            >
+                Buy Now
+            </button>
         </div>
     );
 }

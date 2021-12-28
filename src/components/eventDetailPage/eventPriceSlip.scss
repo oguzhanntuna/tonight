@@ -3,19 +3,27 @@
 .eventPriceSlip {
     position: fixed;
     min-width: 30rem;
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
     background-color: $color-black;
     box-shadow: 0 8px 16px rgba(0, 0, 0, .4);
 
     &-eventTitle {
         margin-bottom: 2rem;
+        padding: 2rem 2rem 0 2rem;
         font-size: 2rem;
+    }
+
+    &-content {
+        padding: 0 2rem;
     }
 
     &-totalPriceContainer {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-bottom: 2rem;
+        border-bottom: 4px dotted #13151C;
     }
 
     &-text {
@@ -24,5 +32,21 @@
 
     &-price {
         font-size: 1.4rem;
+    }
+
+    &-buyNowButton {
+        height: 6rem;
+        background-color: transparent;
+        border: none;
+        color: white;
+        text-transform: uppercase;
+        font-size: 1.6rem;
+        font-weight: bold;
+        cursor: pointer;
+
+        &--disabled {
+            background-color: #0A0B0F;
+            cursor: not-allowed;
+        }
     }
 }
