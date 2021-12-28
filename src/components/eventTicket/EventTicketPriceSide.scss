@@ -22,6 +22,7 @@
         flex: 1;
         font-size: 2rem;
         margin-right: 1rem;
+        font-weight: bold;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -42,8 +43,16 @@
         margin-bottom: auto;
     }
 
-    &-totalPrice {
+    &-totalPriceContainer {
         text-align: center;
+        font-size: 1.6rem;
+    }
+
+    &-text {
+        margin-right: 1rem;
+    }
+
+    &-price {
         font-size: 1.4rem;
     }
 }

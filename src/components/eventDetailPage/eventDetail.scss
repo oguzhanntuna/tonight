@@ -1,7 +1,7 @@
 @import '../../variables/variables.scss';
 
 .eventDetail {
-    &-title, &-content, &-about {
+    &-title, &-about {
         padding: 0 4rem;
     }
 
@@ -9,6 +9,7 @@
         margin-bottom: 2rem;
         font-size: 4.5rem;
         font-weight: bold;
+        text-transform: uppercase;
     }
 
     &-content {
@@ -24,7 +25,6 @@
         img {
             width: 100%;
             height: 100%;
-            border-radius: 1rem;
         }
     }
 
@@ -35,8 +35,20 @@
         background: linear-gradient(to bottom, transparent, $color-background);
     }
 
+    &-eventInfo {
+        flex: 1;
+    }
+
     &-date {
         margin-bottom: 2rem;
+    }
+
+    &-location {
+        margin-bottom: 4rem;
+    }
+
+    .addToFavoriteIconContainer {
+        justify-content: center;
     }
 
     &-aboutTitle, &-rulesTitle {
@@ -49,23 +61,37 @@
     }
 
     &-aboutTitle {
-        margin-bottom: 2rem;
+        margin-bottom: 4rem;
     }
 
     &-aboutDescription {
-        &--1 {
-            margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        line-height: 1.6;
+
+        & > * {
+            &:first-child {
+                margin-bottom: 2rem;
+            }
         }
     }
 
     &-rules {
         padding: 4rem;
         background-color: $color-black;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-        border-radius: 1rem;
     }
 
     &-rulesTitle {
-        margin-bottom: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    &-rulesDescription {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.6;
+
+        & > * {
+            margin-bottom: 2rem;
+        }
     }
 }

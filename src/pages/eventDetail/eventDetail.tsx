@@ -8,7 +8,7 @@ import { IApplicationState } from '../../models/interfaces/store/states/applicat
 import heroImage from '../../assets/heroImage.jpg';
 import HeroImage from '../../components/heroImage/HeroImage';
 import EventDetail from '../../components/eventDetailPage/eventDetail';
-import EventPriceContainer from '../../components/eventDetailPage/eventPriceContainer';
+import EventPriceSlip from '../../components/eventDetailPage/eventPriceSlip';
 
 const EventDetailPage = (): JSX.Element => {
     const { fetchSelectedEvent } = eventActions;
@@ -31,10 +31,10 @@ const EventDetailPage = (): JSX.Element => {
             <HeroImage imageUrl={heroImage} />
             <div className="eventDetailPage-content">
                 <div className="eventDetailPage-leftSide">
-                    { selectedEvent && <EventDetail data={selectedEvent} /> }
+                    { selectedEvent && <EventDetail eventData={selectedEvent} /> }
                 </div>
                 <div className="eventDetailPage-rightSide">
-                    <EventPriceContainer />
+                    { selectedEvent && <EventPriceSlip data={selectedEvent} /> }
                 </div>
             </div>
         </div>

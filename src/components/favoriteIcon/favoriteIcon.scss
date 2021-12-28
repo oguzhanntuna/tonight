@@ -1,0 +1,16 @@
+.addToFavoriteIconContainer {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &-addToFavoriteIcon {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    &-favouritesText {
+        margin-left: 1rem;
+    }
+}
+
+

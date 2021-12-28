@@ -36,7 +36,10 @@ const EventTicketPriceSide = (props: IEventTicketPriceSide): JSX.Element => {
                     eventId={id}
                 />
             </div>
-            <div className="eventTicketPriceSide-totalPrice">{`Total: ${totalPrice}$`}</div>
+            <div className="eventTicketPriceSide-totalPriceContainer">
+                <span className="eventTicketPriceSide-text">Total:</span>
+                <span className="eventTicketPriceSide-price">{`${totalPrice}$`}</span>
+            </div>
         </div> 
     );
 }

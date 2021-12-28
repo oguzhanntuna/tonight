@@ -1,0 +1,28 @@
+@import '../../variables/variables.scss';
+
+.eventPriceSlip {
+    position: fixed;
+    min-width: 30rem;
+    padding: 2rem;
+    background-color: $color-black;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, .4);
+
+    &-eventTitle {
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+
+    &-totalPriceContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-text {
+        margin-right: 1rem;
+    }
+
+    &-price {
+        font-size: 1.4rem;
+    }
+}

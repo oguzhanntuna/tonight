@@ -8,7 +8,11 @@
     }
 
     &-rightSide {
-        min-width: 30rem;
+        min-width: 34rem;
         margin-left: 2rem;
+
+        .eventPriceContainer {
+            padding: 2rem;
+        }
     }
 }
