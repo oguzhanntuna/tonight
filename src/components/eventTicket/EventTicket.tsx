@@ -1,12 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './EventTicket.scss';
 
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event';
-import { IApplicationState } from '../../models/interfaces/store/states/application';
 import * as eventActions from '../../store/actions/events';
 import * as cartActions from '../../store/actions/cart';
 import EventTicketPriceSide from './EventTicketPriceSide';
 import EventTicketInfoSide from './EventTicketInfoSide';
+import { useState } from 'react';
 
 interface IEventTicketProps {
     eventData: IEventShowcaseEvent;
@@ -14,13 +14,14 @@ interface IEventTicketProps {
 
 const EventTicket = (props: IEventTicketProps): JSX.Element => {
     const {eventData } = props;
-    const { setEventActive, resetTicketsCount } = eventActions;
+    const { resetTicketsCount } = eventActions;
     const { addToCart } = cartActions;
 
-    const dispatch = useDispatch();
-    const activeEventIdsArray = useSelector((state: IApplicationState) => state.events.activeEventIds);
+    const [isTicketSelected, setIsTicketSelected] = useState<boolean>(false);
 
-    const isEventSelected = (eventId: number) => activeEventIdsArray.indexOf(eventId) !== -1 ? true : false;
+    const dispatch = useDispatch();
+
+    const toggleTicketSide = (): void => setIsTicketSelected(prevState => !prevState);
 
     const addEventToCart = (event: IEventShowcaseEvent) => {
         dispatch(addToCart(event));
@@ -28,26 +29,26 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
     }
 
     return (
-        <div className={`eventTicket ${isEventSelected(eventData.id) ? 'active' : ''}`}>
+        <div className={`eventTicket ${isTicketSelected ? 'active' : ''}`}>
             { 
-                isEventSelected(eventData.id)
-                    ? <EventTicketPriceSide eventData={eventData} /> 
-                    : <EventTicketInfoSide eventData={eventData} /> 
+                isTicketSelected
+                    ? <EventTicketPriceSide eventData={eventData} toggleTicketSide={() => toggleTicketSide()} /> 
+                    : <EventTicketInfoSide eventData={eventData} toggleTicketSide={() => toggleTicketSide()} /> 
             }
             <button 
                 className={`
                     eventTicket-purchaseButton 
-                    ${isEventSelected(eventData.id) ? 'addToCart' : ''}
+                    ${isTicketSelected ? 'addToCart' : ''}
                     ${eventData.totalPrice > 0 ? 'active' : ''}
                 `}
                 onClick={() => {
-                    isEventSelected(eventData.id)
+                    isTicketSelected
                         ? addEventToCart(eventData)
-                        : dispatch(setEventActive(eventData.id))
+                        : toggleTicketSide()
                 }}
-                disabled={isEventSelected(eventData.id) && eventData.totalPrice === 0}
+                disabled={isTicketSelected && eventData.totalPrice === 0}
             >
-                { isEventSelected(eventData.id) ? 'Add To Cart' : 'Buy Now'}
+                { isTicketSelected ? 'Add To Cart' : 'Buy Now'}
             </button>
         </div>
     );

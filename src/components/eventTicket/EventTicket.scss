@@ -1,8 +1,10 @@
 @import '../../variables/variables.scss';
 
 .eventTicket {
+    height: 42.2rem;
     max-width: 24rem;
     border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .4);
 
     &:not(:last-child) {
         margin-right: 3rem;

@@ -1,28 +1,24 @@
-import { useDispatch } from 'react-redux';
 import './EventTicketPriceSide.scss';
 
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event';
-import * as eventActions from '../../store/actions/events';
 
 import EventTicketPriceRow from './EventTicketPriceRow';
 import returnBackIcon from '../../assets/icons/return-back.svg';
 
 interface IEventTicketPriceSide {
     eventData: IEventShowcaseEvent;
+    toggleTicketSide: () => void;
 }
 
 const EventTicketPriceSide = (props: IEventTicketPriceSide): JSX.Element => {
-    const { eventData } = props;
+    const { eventData, toggleTicketSide } = props;
     const { id, title, normalTicket, vipTicket, totalPrice } = eventData;
-    const { setEventInactive } = eventActions;
-
-    const dispatch = useDispatch();
 
     return (
         <div className="eventTicketPriceSide">
             <div className="eventTicketPriceSide-header">
                 <div className="eventTicketPriceSide-eventTitle">{title}</div>
-                <div className="eventTicketPriceSide-returnBackIcon" onClick={() => dispatch(setEventInactive(eventData.id))}>
+                <div className="eventTicketPriceSide-returnBackIcon" onClick={() => toggleTicketSide()}>
                     <img src={returnBackIcon} alt="return back icon" />
                 </div>
             </div>

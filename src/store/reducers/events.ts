@@ -12,8 +12,6 @@ import {
     ADD_VIP_TICKET, 
     REMOVE_NORMAL_TICKET, 
     REMOVE_VIP_TICKET,  
-    SET_EVENT_ACTIVE,
-    SET_EVENT_INACTIVE,
     RESET_TICKETS_COUNT
 } from '../actions/events';
 
@@ -247,20 +245,6 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
 
             // Selected event could not found!
             break;
-
-        case SET_EVENT_ACTIVE:
-
-            return {
-                ...state,
-                activeEventIds: [ ...state.activeEventIds, action.eventId ]
-            }
-
-        case SET_EVENT_INACTIVE:
-
-            return {
-                ...state,
-                activeEventIds: [ ...state.activeEventIds.filter(activeEvent => activeEvent !== action.eventId) ]
-            }
 
         case RESET_TICKETS_COUNT:
             const eventAddedToCart = state.allEvents.find(event => event.id === action.eventId);
