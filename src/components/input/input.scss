@@ -1,0 +1,22 @@
+@import '../../variables/variables.scss';
+
+.input {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+
+    label {
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+    }
+
+    input {
+        margin: 0 0.5rem;
+        padding: 0.5rem 0 1rem 0;
+        background-color: transparent;
+        color: $color-white;
+        border: none;
+        border-bottom: 1px solid $color-white;
+        outline: none;
+    }
+}
