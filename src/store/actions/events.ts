@@ -6,7 +6,7 @@ export const SET_THIS_WEEK_EVENTS = 'SET_THIS_WEEK_EVENTS';
 export const SET_RECENTLY_ADDED_EVENTS = 'SET_RECENTLY_ADDED_EVENTS';
 export const SET_BUY_NOW_EVENTS = 'SET_BUY_NOW_EVENTS';
 export const SET_ALL_EVENTS = 'SET_ALL_EVENTS';
-export const SET_SELECTED_EVENT = 'SET_SELECTED_EVENT';
+export const SET_EVENT_DETAIL = 'SET_EVENT_DETAIL';
 export const ADD_NORMAL_TICKET = 'ADD_NORMAL_TICKET';
 export const ADD_VIP_TICKET = 'ADD_VIP_TICKET';
 export const REMOVE_NORMAL_TICKET = 'REMOVE_NORMAL_TICKET';
@@ -20,37 +20,21 @@ export const fetchThisWeekEvents = () => {
                 const moduleData = response.data;
                 const thisWeekEvents: Array<EventShowcaseEvent> = [];
 
-                // if (thisWeekEvents.length > 0) {
-                //     console.log('not empty');
-                // } else {
-
-                //     thisWeekEvents.push(new EventShowcaseEvent(
-                //         moduleData[event].id,
-                //         moduleData[event].title,
-                //         moduleData[event].imageUrl,
-                //         moduleData[event].location,
-                //         moduleData[event].date,
-                //         moduleData[event].redirectUrl,
-                //         moduleData[event].normalTicket,
-                //         moduleData[event].vipTicket,
-                //         moduleData[event].totalPrice,
-                //         'this-week'
-                //     ));
-                // }
-
-                for (const event in moduleData) {
-                    thisWeekEvents.push(new EventShowcaseEvent(
-                        moduleData[event].id,
-                        moduleData[event].title,
-                        moduleData[event].imageUrl,
-                        moduleData[event].location,
-                        moduleData[event].date,
-                        moduleData[event].redirectUrl,
-                        moduleData[event].normalTicket,
-                        moduleData[event].vipTicket,
-                        moduleData[event].totalPrice,
-                        'this-week'
-                    ));
+                if (moduleData) {
+                    for (const event in moduleData) {
+                        thisWeekEvents.push(new EventShowcaseEvent(
+                            moduleData[event].id,
+                            moduleData[event].title,
+                            moduleData[event].imageUrl,
+                            moduleData[event].location,
+                            moduleData[event].date,
+                            moduleData[event].redirectUrl,
+                            moduleData[event].normalTicket,
+                            moduleData[event].vipTicket,
+                            moduleData[event].totalPrice,
+                            'this-week'
+                        ));
+                    }
                 }
 
                 dispatch({
@@ -70,19 +54,21 @@ export const fetchRecentlyAddedEvents = () => {
                 const moduleData = response.data;
                 const recentlyAddedEvents: Array<EventShowcaseEvent> = [];
 
-                for (const event in moduleData) {
-                    recentlyAddedEvents.push(new EventShowcaseEvent(
-                        moduleData[event].id,
-                        moduleData[event].title,
-                        moduleData[event].imageUrl,
-                        moduleData[event].location,
-                        moduleData[event].date,
-                        moduleData[event].redirectUrl,
-                        moduleData[event].normalTicket,
-                        moduleData[event].vipTicket,
-                        moduleData[event].totalPrice,
-                        'recently-added'
-                    ));
+                if (moduleData) {
+                    for (const event in moduleData) {
+                        recentlyAddedEvents.push(new EventShowcaseEvent(
+                            moduleData[event].id,
+                            moduleData[event].title,
+                            moduleData[event].imageUrl,
+                            moduleData[event].location,
+                            moduleData[event].date,
+                            moduleData[event].redirectUrl,
+                            moduleData[event].normalTicket,
+                            moduleData[event].vipTicket,
+                            moduleData[event].totalPrice,
+                            'recently-added'
+                        ));
+                    }
                 }
 
                 dispatch({
@@ -101,19 +87,21 @@ export const fetchBuyNowEvents = () => {
                 const moduleData = response.data;
                 const buyNowEvents: Array<EventShowcaseEvent> = [];
 
-                for (const event in moduleData) {
-                    buyNowEvents.push(new EventShowcaseEvent(
-                        moduleData[event].id,
-                        moduleData[event].title,
-                        moduleData[event].imageUrl,
-                        moduleData[event].location,
-                        moduleData[event].date,
-                        moduleData[event].redirectUrl,
-                        moduleData[event].normalTicket,
-                        moduleData[event].vipTicket,
-                        moduleData[event].totalPrice,
-                        'buy-now'
-                    ));
+                if (moduleData) {
+                    for (const event in moduleData) {
+                        buyNowEvents.push(new EventShowcaseEvent(
+                            moduleData[event].id,
+                            moduleData[event].title,
+                            moduleData[event].imageUrl,
+                            moduleData[event].location,
+                            moduleData[event].date,
+                            moduleData[event].redirectUrl,
+                            moduleData[event].normalTicket,
+                            moduleData[event].vipTicket,
+                            moduleData[event].totalPrice,
+                            'buy-now'
+                        ));
+                    }
                 }
 
                 dispatch({
@@ -132,20 +120,21 @@ export const fetchAllEvents = () => {
                 const eventsData = response.data;
                 const allEvents: Array<EventShowcaseEvent> = [];
 
-                for (const event in eventsData) {
-                    allEvents.push(new EventShowcaseEvent( 
-                        eventsData[event].id,
-                        eventsData[event].title,
-                        eventsData[event].imageUrl,
-                        eventsData[event].location,
-                        eventsData[event].date,
-                        eventsData[event].redirectUrl,
-                        eventsData[event].normalTicket,
-                        eventsData[event].vipTicket,
-                        eventsData[event].totalPrice,
-                        // Something wrong down here 
-                        'buy-now'
-                    ))
+                if (eventsData) {
+                    for (const event in eventsData) {
+                        allEvents.push(new EventShowcaseEvent( 
+                            eventsData[event].id,
+                            eventsData[event].title,
+                            eventsData[event].imageUrl,
+                            eventsData[event].location,
+                            eventsData[event].date,
+                            eventsData[event].redirectUrl,
+                            eventsData[event].normalTicket,
+                            eventsData[event].vipTicket,
+                            eventsData[event].totalPrice,
+                            'all-events'
+                        ))
+                    }
                 }
 
                 dispatch({
@@ -157,15 +146,31 @@ export const fetchAllEvents = () => {
     }
 }
 
-export const fetchSelectedEvent = (event: string) => {
+export const fetchEventDetail = (event: string) => {
     return async (dispatch: any) => {
         axios.get(`https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/events/${event}.json`)
             .then(response => {
-                const selectedEvent = response.data;
+                const eventData = response.data;
+                let eventDetail: EventShowcaseEvent | null = null;
+
+                if (eventData) {
+                    eventDetail = new EventShowcaseEvent( 
+                        eventData.id,
+                        eventData.title,
+                        eventData.imageUrl,
+                        eventData.location,
+                        eventData.date,
+                        eventData.redirectUrl,
+                        eventData.normalTicket,
+                        eventData.vipTicket,
+                        eventData.totalPrice,
+                        'event-detail'
+                    );
+                }
                 
                 dispatch({
-                    type: SET_SELECTED_EVENT,
-                    selectedEvent
+                    type: SET_EVENT_DETAIL,
+                    eventDetail
                 })
             })
             .catch(error => console.log(error));

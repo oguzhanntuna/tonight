@@ -5,6 +5,6 @@ export interface IEventsState {
     buyNowEvents: Array<EventShowcaseEvent>;
     recentlyAddedEvents: Array<EventShowcaseEvent>;
     thisWeekEvents: Array<EventShowcaseEvent>;
-    selectedEvent: EventShowcaseEvent | null;
+    eventDetail: EventShowcaseEvent | null;
     activeEventIds: Array<number | undefined>;
 }

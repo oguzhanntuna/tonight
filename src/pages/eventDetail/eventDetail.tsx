@@ -11,9 +11,9 @@ import EventDetail from '../../components/eventDetailPage/eventDetail';
 import EventPriceSlip from '../../components/eventDetailPage/eventPriceSlip';
 
 const EventDetailPage = (): JSX.Element => {
-    const { fetchSelectedEvent } = eventActions;
+    const { fetchEventDetail } = eventActions;
 
-    const selectedEvent = useSelector((state: IApplicationState) => state.events.selectedEvent);
+    const selectedEvent = useSelector((state: IApplicationState) => state.events.eventDetail);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,10 +21,10 @@ const EventDetailPage = (): JSX.Element => {
         const pathnameArray = pathname.split('/');
         const event = pathnameArray[pathnameArray.length - 1];
 
-        dispatch(fetchSelectedEvent(event));
+        dispatch(fetchEventDetail(event));
 
         window.scrollTo({ top: 0, left: 0 });
-    }, [dispatch, fetchSelectedEvent]);
+    }, [dispatch, fetchEventDetail]);
 
     return (
         <div className="eventDetailPage">

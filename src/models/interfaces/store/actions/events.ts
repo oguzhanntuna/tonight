@@ -6,6 +6,6 @@ export interface IEventsAction {
     buyNowEvents?: Array<EventShowcaseEvent>;
     recentlyAddedEvents?: Array<EventShowcaseEvent>;
     thisWeekEvents?: Array<EventShowcaseEvent>;
-    selectedEvent?: EventShowcaseEvent;
+    eventDetail?: EventShowcaseEvent;
     eventId?: number;
 }

@@ -16,6 +16,10 @@ const LoginPage = (): JSX.Element => {
 
         console.log('form submitted.');
     }
+
+    const redirectToSignUpPage = () => { 
+        navigate('/signup');
+    };
     
     return (
         <div className="loginPage">
@@ -42,7 +46,7 @@ const LoginPage = (): JSX.Element => {
                         </div>
                         <div 
                             className="loginPage-alreadyHaveAccount"
-                            onClick={() => navigate('/signup')}
+                            onClick={() => redirectToSignUpPage()}
                         >
                             Don't have an account
                         </div>
