@@ -1,5 +1,6 @@
 import axios from "axios";
 import { EventShowcaseEvent } from "../../models/eventShowcase/event";
+import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/event";
 import { IEventsAction } from "../../models/interfaces/store/actions/events";
 
 export const SET_THIS_WEEK_EVENTS = 'SET_THIS_WEEK_EVENTS';
@@ -177,27 +178,27 @@ export const fetchEventDetail = (event: string) => {
     } 
 }
 
-export const addNormalTicket = (eventId: number): IEventsAction => {
+export const addNormalTicket = (eventData: IEventShowcaseEvent): IEventsAction => {
     
-    return { type: ADD_NORMAL_TICKET, eventId};
+    return { type: ADD_NORMAL_TICKET, eventData};
 }
 
-export const addVipTicket = (eventId: number): IEventsAction => {
+export const addVipTicket = (eventData: IEventShowcaseEvent): IEventsAction => {
 
-    return { type: ADD_VIP_TICKET, eventId};
+    return { type: ADD_VIP_TICKET, eventData};
 }
 
-export const removeNormalTicket = (eventId: number): IEventsAction => {
+export const removeNormalTicket = (eventData: IEventShowcaseEvent): IEventsAction => {
 
-    return { type: REMOVE_NORMAL_TICKET, eventId };
+    return { type: REMOVE_NORMAL_TICKET, eventData };
 }
 
-export const removeVipTicket = (eventId: number): IEventsAction => {
+export const removeVipTicket = (eventData: IEventShowcaseEvent): IEventsAction => {
 
-    return { type: REMOVE_VIP_TICKET, eventId };
+    return { type: REMOVE_VIP_TICKET, eventData };
 }
 
-export const resetTicketsCount = (eventId: number): IEventsAction => {
+export const resetTicketsCount = (eventData: IEventShowcaseEvent): IEventsAction => {
 
-    return { type: RESET_TICKETS_COUNT, eventId };
+    return { type: RESET_TICKETS_COUNT, eventData };
 }

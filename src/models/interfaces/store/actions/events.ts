@@ -1,11 +1,11 @@
-import { EventShowcaseEvent } from "../../../eventShowcase/event";
+import { IEventShowcaseEvent } from "../../eventShowcase/event";
 
 export interface IEventsAction {
     type: string;
-    allEvents?: Array<EventShowcaseEvent>;
-    buyNowEvents?: Array<EventShowcaseEvent>;
-    recentlyAddedEvents?: Array<EventShowcaseEvent>;
-    thisWeekEvents?: Array<EventShowcaseEvent>;
-    eventDetail?: EventShowcaseEvent;
-    eventId?: number;
+    allEvents?: Array<IEventShowcaseEvent>;
+    buyNowEvents?: Array<IEventShowcaseEvent>;
+    recentlyAddedEvents?: Array<IEventShowcaseEvent>;
+    thisWeekEvents?: Array<IEventShowcaseEvent>;
+    eventDetail?: IEventShowcaseEvent;
+    eventData?: IEventShowcaseEvent;
 }

@@ -1,14 +1,28 @@
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event';
 import './eventPriceSlip.scss';
 
+import * as cartActions from '../../store/actions/cart';
+import * as eventActions from '../../store/actions/events';
+
 import EventTicketPriceRow from '../eventTicket/EventTicketPriceRow';
+import { useDispatch } from 'react-redux';
 
 interface IEventPriceSlip {
     data: IEventShowcaseEvent;
 }
 
 const EventPriceSlip = (props: IEventPriceSlip): JSX.Element => {
-    const { data: { id, title, normalTicket, vipTicket, totalPrice } } = props;
+    const { data } = props;
+    const { title, normalTicket, vipTicket, totalPrice } = data;
+    const { addToCart } = cartActions;
+    const { resetTicketsCount } = eventActions;
+
+    const dispatch = useDispatch();
+
+    const addEventToCart = (event: IEventShowcaseEvent) => {
+        dispatch(addToCart(event));
+        dispatch(resetTicketsCount(event));
+    }
 
     return (
         <div className="eventPriceSlip">
@@ -18,11 +32,11 @@ const EventPriceSlip = (props: IEventPriceSlip): JSX.Element => {
             <div className="eventPriceSlip-content">
                 <EventTicketPriceRow 
                     ticketData={normalTicket}
-                    eventId={id}
+                    eventData={data}
                 />
                 <EventTicketPriceRow 
                     ticketData={vipTicket}
-                    eventId={id}
+                    eventData={data}
                 />
             </div>
             <div className="eventPriceSlip-totalPriceContainer">
@@ -34,7 +48,7 @@ const EventPriceSlip = (props: IEventPriceSlip): JSX.Element => {
                     eventPriceSlip-buyNowButton 
                     ${totalPrice <= 0 ? 'eventPriceSlip-buyNowButton--disabled' : ''
                 }`}
-                onClick={() => console.log('clicked')}
+                onClick={() => addEventToCart(data)}
                 disabled={totalPrice <= 0}
             >
                 Buy Now

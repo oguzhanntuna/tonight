@@ -12,7 +12,7 @@ interface IEventTicketPriceSide {
 
 const EventTicketPriceSide = (props: IEventTicketPriceSide): JSX.Element => {
     const { eventData, toggleTicketSide } = props;
-    const { id, title, normalTicket, vipTicket, totalPrice } = eventData;
+    const { title, normalTicket, vipTicket, totalPrice } = eventData;
 
     return (
         <div className="eventTicketPriceSide">
@@ -25,11 +25,11 @@ const EventTicketPriceSide = (props: IEventTicketPriceSide): JSX.Element => {
             <div className="eventTicketPriceSide-content">
                 <EventTicketPriceRow 
                     ticketData={normalTicket} 
-                    eventId={id}
+                    eventData={eventData}
                 />
                 <EventTicketPriceRow 
                     ticketData={vipTicket} 
-                    eventId={id}
+                    eventData={eventData}
                 />
             </div>
             <div className="eventTicketPriceSide-totalPriceContainer">

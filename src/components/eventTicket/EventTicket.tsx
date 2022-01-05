@@ -13,7 +13,7 @@ interface IEventTicketProps {
 }
 
 const EventTicket = (props: IEventTicketProps): JSX.Element => {
-    const {eventData } = props;
+    const { eventData } = props;
     const { resetTicketsCount } = eventActions;
     const { addToCart } = cartActions;
 
@@ -25,7 +25,7 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
 
     const addEventToCart = (event: IEventShowcaseEvent) => {
         dispatch(addToCart(event));
-        dispatch(resetTicketsCount(event.id));
+        dispatch(resetTicketsCount(event));
     }
 
     return (

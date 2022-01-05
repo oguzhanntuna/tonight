@@ -1,19 +1,19 @@
 import './EventTicketPriceRow.scss';
 import { useDispatch } from 'react-redux';
 
-import { IEventShowCaseTicket } from '../../models/interfaces/eventShowcase/event';
+import { IEventShowcaseEvent, IEventShowCaseTicket } from '../../models/interfaces/eventShowcase/event';
 import * as eventActions from '../../store/actions/events';
 
 import addIcon from '../../assets/icons/add.svg';
 import removeIcon from '../../assets/icons/remove.svg';
 
 interface IEventTicketPriceRowProps {
-    eventId: number;
+    eventData: IEventShowcaseEvent;
     ticketData: IEventShowCaseTicket;
 }
 
 const EventTicketPriceRow = (props: IEventTicketPriceRowProps): JSX.Element => {
-    const { eventId, ticketData } = props;
+    const { ticketData, eventData } = props;
     const { type, title, price, count } = ticketData;
     const { addNormalTicket, addVipTicket, removeNormalTicket, removeVipTicket } = eventActions;
     
@@ -34,8 +34,8 @@ const EventTicketPriceRow = (props: IEventTicketPriceRowProps): JSX.Element => {
                     disabled={count === 0}
                     onClick={() => {
                         type === 'normal' 
-                            ? dispatch(removeNormalTicket(eventId)) 
-                            : dispatch(removeVipTicket(eventId))
+                            ? dispatch(removeNormalTicket(eventData)) 
+                            : dispatch(removeVipTicket(eventData))
                     }}
                 >
                     <img src={removeIcon} alt="remove icon" />
@@ -44,8 +44,8 @@ const EventTicketPriceRow = (props: IEventTicketPriceRowProps): JSX.Element => {
                     className="eventTicketPriceRow-addButton"
                     onClick={() => {
                         type === 'normal' 
-                            ? dispatch(addNormalTicket(eventId)) 
-                            : dispatch(addVipTicket(eventId))
+                            ? dispatch(addNormalTicket(eventData)) 
+                            : dispatch(addVipTicket(eventData))
                     }}
                 >
                     <img src={addIcon} alt="add icon" />

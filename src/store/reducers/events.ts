@@ -14,14 +14,14 @@ import {
     REMOVE_VIP_TICKET,  
     RESET_TICKETS_COUNT
 } from '../actions/events';
+import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event';
 
 const initialState: IEventsState = {
     allEvents: [],
     buyNowEvents: [],
     recentlyAddedEvents: [],
     thisWeekEvents: [],
-    eventDetail: null,
-    activeEventIds: []
+    eventDetail: null
 }
 
 export const eventsReducer = (state = initialState, action: IEventsAction): IEventsState => {
@@ -92,12 +92,7 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
             break;
 
         case ADD_NORMAL_TICKET:
-            const addedNormalTicketEvent = 
-                state.thisWeekEvents.find(event => event.id === action.eventId) ||
-                state.recentlyAddedEvents.find(event => event.id === action.eventId) ||
-                state.buyNowEvents.find(event => event.id === action.eventId) ||
-                state.allEvents.find(event => event.id === action.eventId);
-            console.log(addedNormalTicketEvent);
+            const addedNormalTicketEvent = action.eventData;
         
             if (addedNormalTicketEvent instanceof EventShowcaseEvent) {
                 const moduleType = addedNormalTicketEvent.moduleType;
@@ -133,6 +128,26 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
                             ...state,
                             allEvents: [ ...state.allEvents ]
                         }
+
+                    case 'event-detail':
+
+                    const updatedEventDetail = new EventShowcaseEvent(
+                        addedNormalTicketEvent.id,
+                        addedNormalTicketEvent.title,
+                        addedNormalTicketEvent.imageUrl,
+                        addedNormalTicketEvent.location,
+                        addedNormalTicketEvent.date,
+                        addedNormalTicketEvent.url,
+                        addedNormalTicketEvent.normalTicket,
+                        addedNormalTicketEvent.vipTicket,
+                        addedNormalTicketEvent.totalPrice,
+                        addedNormalTicketEvent.moduleType
+                    ) 
+
+                    return {
+                        ...state,
+                        eventDetail: updatedEventDetail
+                    }
                 }
             }
 
@@ -140,11 +155,7 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
             break;
 
         case ADD_VIP_TICKET:
-            const addedVipTicketEvent = 
-                state.thisWeekEvents.find(event => event.id === action.eventId) ||
-                state.recentlyAddedEvents.find(event => event.id === action.eventId) ||
-                state.buyNowEvents.find(event => event.id === action.eventId) ||
-                state.allEvents.find(event => event.id === action.eventId);
+            const addedVipTicketEvent = action.eventData;
             
             if (addedVipTicketEvent instanceof EventShowcaseEvent) {
                 const moduleType = addedVipTicketEvent.moduleType;
@@ -176,10 +187,30 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
                     
                     case 'all-events':
 
-                    return {
-                        ...state,
-                        allEvents: [ ...state.allEvents ]
-                    }
+                        return {
+                            ...state,
+                            allEvents: [ ...state.allEvents ]
+                        }
+
+                    case 'event-detail':
+
+                        const updatedEventDetail = new EventShowcaseEvent(
+                            addedVipTicketEvent.id,
+                            addedVipTicketEvent.title,
+                            addedVipTicketEvent.imageUrl,
+                            addedVipTicketEvent.location,
+                            addedVipTicketEvent.date,
+                            addedVipTicketEvent.url,
+                            addedVipTicketEvent.normalTicket,
+                            addedVipTicketEvent.vipTicket,
+                            addedVipTicketEvent.totalPrice,
+                            addedVipTicketEvent.moduleType
+                        ) 
+
+                        return {
+                            ...state,
+                            eventDetail: updatedEventDetail
+                        }
                 }
             }
 
@@ -187,42 +218,33 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
             break;
 
         case REMOVE_NORMAL_TICKET:
-            const removedNormalTicketEvent = 
-                state.thisWeekEvents.find(event => event.id === action.eventId) ||
-                state.recentlyAddedEvents.find(event => event.id === action.eventId) ||
-                state.buyNowEvents.find(event => event.id === action.eventId) ||
-                state.allEvents.find(event => event.id === action.eventId);
+            const removedNormalTicketEvent = action.eventData;
             
             if (removedNormalTicketEvent instanceof EventShowcaseEvent) {
                 const moduleType = removedNormalTicketEvent.moduleType;
 
                 removedNormalTicketEvent.normalTicket.count = removedNormalTicketEvent.normalTicket.count - 1;
                 removedNormalTicketEvent.totalPrice = removedNormalTicketEvent.totalPrice - removedNormalTicketEvent.normalTicket.price;
-                
-                const newCommonState = {
-                    ...state,
-                    allEvents: [ ...state.allEvents ],
-                }
 
                 switch (moduleType) {
                     case 'buy-now': 
 
                         return {
-                            ...newCommonState,
+                            ...state,
                             buyNowEvents: [ ...state.buyNowEvents ]
                         }
                     
                     case 'recently-added': 
 
                         return {
-                            ...newCommonState,
+                            ...state,
                             recentlyAddedEvents: [ ...state.recentlyAddedEvents ]
                         }
 
                     case 'this-week': 
 
                         return {
-                            ...newCommonState,
+                            ...state,
                             thisWeekEvents: [ ...state.thisWeekEvents ]
                         }
 
@@ -231,6 +253,26 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
                         return {
                             ...state,
                             allEvents: [ ...state.allEvents ]
+                        }
+
+                    case 'event-detail':
+
+                        const updatedEventDetail = new EventShowcaseEvent(
+                            removedNormalTicketEvent.id,
+                            removedNormalTicketEvent.title,
+                            removedNormalTicketEvent.imageUrl,
+                            removedNormalTicketEvent.location,
+                            removedNormalTicketEvent.date,
+                            removedNormalTicketEvent.url,
+                            removedNormalTicketEvent.normalTicket,
+                            removedNormalTicketEvent.vipTicket,
+                            removedNormalTicketEvent.totalPrice,
+                            removedNormalTicketEvent.moduleType
+                        ) 
+    
+                        return {
+                            ...state,
+                            eventDetail: updatedEventDetail
                         }
                 }
             }
@@ -239,42 +281,33 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
             break;
         
         case REMOVE_VIP_TICKET:
-            const removedVipTicketEvent = 
-                state.thisWeekEvents.find(event => event.id === action.eventId) ||
-                state.recentlyAddedEvents.find(event => event.id === action.eventId) ||
-                state.buyNowEvents.find(event => event.id === action.eventId) ||
-                state.allEvents.find(event => event.id === action.eventId);
+            const removedVipTicketEvent = action.eventData;
             
             if (removedVipTicketEvent instanceof EventShowcaseEvent) {
                 const moduleType = removedVipTicketEvent.moduleType;
 
                 removedVipTicketEvent.vipTicket.count = removedVipTicketEvent.vipTicket.count - 1;
                 removedVipTicketEvent.totalPrice = removedVipTicketEvent.totalPrice - removedVipTicketEvent.vipTicket.price;
-                
-                const newCommonState = {
-                    ...state,
-                    allEvents: [ ...state.allEvents ],
-                }
 
                 switch (moduleType) {
                     case 'buy-now': 
 
                         return {
-                            ...newCommonState,
+                            ...state,
                             buyNowEvents: [ ...state.buyNowEvents ]
                         }
                     
                     case 'recently-added': 
 
                         return {
-                            ...newCommonState,
+                            ...state,
                             recentlyAddedEvents: [ ...state.recentlyAddedEvents ]
                         }
 
                     case 'this-week': 
 
                         return {
-                            ...newCommonState,
+                            ...state,
                             thisWeekEvents: [ ...state.thisWeekEvents ]
                         }
 
@@ -283,6 +316,26 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
                         return {
                             ...state,
                             allEvents: [ ...state.allEvents ]
+                        }
+
+                    case 'event-detail':
+
+                        const updatedEventDetail = new EventShowcaseEvent(
+                            removedVipTicketEvent.id,
+                            removedVipTicketEvent.title,
+                            removedVipTicketEvent.imageUrl,
+                            removedVipTicketEvent.location,
+                            removedVipTicketEvent.date,
+                            removedVipTicketEvent.url,
+                            removedVipTicketEvent.normalTicket,
+                            removedVipTicketEvent.vipTicket,
+                            removedVipTicketEvent.totalPrice,
+                            removedVipTicketEvent.moduleType
+                        ) 
+    
+                        return {
+                            ...state,
+                            eventDetail: updatedEventDetail
                         }
                 }
             }
@@ -291,11 +344,7 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
             break;
 
         case RESET_TICKETS_COUNT:
-            const eventAddedToCart = 
-                state.thisWeekEvents.find(event => event.id === action.eventId) ||
-                state.recentlyAddedEvents.find(event => event.id === action.eventId) ||
-                state.buyNowEvents.find(event => event.id === action.eventId) ||
-                state.allEvents.find(event => event.id === action.eventId);
+            const eventAddedToCart = action.eventData;
 
             if (eventAddedToCart instanceof EventShowcaseEvent) {
                 const moduleType = eventAddedToCart.moduleType;
@@ -304,30 +353,25 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
                 eventAddedToCart.normalTicket.count = 0;
                 eventAddedToCart.vipTicket.count = 0;
 
-                const newCommonState = {
-                    ...state,
-                    allEvents: [ ...state.allEvents ],
-                }
-
                 switch (moduleType) {
                     case 'buy-now': 
 
                         return {
-                            ...newCommonState,
+                            ...state,
                             buyNowEvents: [ ...state.buyNowEvents ]
                         }
                     
                     case 'recently-added': 
 
                         return {
-                            ...newCommonState,
+                            ...state,
                             recentlyAddedEvents: [ ...state.recentlyAddedEvents ]
                         }
 
                     case 'this-week': 
 
                         return {
-                            ...newCommonState,
+                            ...state,
                             thisWeekEvents: [ ...state.thisWeekEvents ]
                         }
 
@@ -336,6 +380,26 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
                         return {
                             ...state,
                             allEvents: [ ...state.allEvents ]
+                        }
+
+                    case 'event-detail':
+
+                        const updatedEventDetail = new EventShowcaseEvent(
+                            eventAddedToCart.id,
+                            eventAddedToCart.title,
+                            eventAddedToCart.imageUrl,
+                            eventAddedToCart.location,
+                            eventAddedToCart.date,
+                            eventAddedToCart.url,
+                            eventAddedToCart.normalTicket,
+                            eventAddedToCart.vipTicket,
+                            eventAddedToCart.totalPrice,
+                            eventAddedToCart.moduleType
+                        ) 
+    
+                        return {
+                            ...state,
+                            eventDetail: updatedEventDetail
                         }
                 }
             }
