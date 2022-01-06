@@ -7,47 +7,4 @@
         display: flex;
         justify-content: center;
     }
-
-    &-form {
-        width: 60%;
-        background-color: black;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, .4);
-
-        .input {
-            &--e-mail {
-                padding-bottom: 0;
-            }
-        }
-    }
-
-    &-formLabel {
-        font-size: 2.4rem;
-        padding: 3rem 3rem 0 3rem;
-    }
-
-    &-helpfulTexts {
-        padding: 0 3rem 3rem 3rem;
-        display: flex;
-        justify-content: space-between;
-        font-size: 1.4rem;
-    }
-
-    &-rememberMe {
-
-    }
-
-    &-alreadyHaveAccount {
-        text-decoration: underline;
-        cursor: pointer;
-    }
-
-    button {
-        width: calc(100% - 6rem);
-        margin: 0 3rem 3rem 3rem;
-        padding: 1rem 0;
-        font-size: 1.6rem;
-        text-transform: uppercase;
-        font-weight: bold;
-        cursor: pointer;
-    }
 }
