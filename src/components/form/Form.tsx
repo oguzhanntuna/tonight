@@ -40,6 +40,8 @@ const Form = (props: IFormProps): JSX.Element => {
                         key={index} 
                         label={inputElement.label}
                         type={inputElement.type}
+                        onChange={inputElement.onChange}
+                        value={inputElement.value}
                     />
                 ))
             }

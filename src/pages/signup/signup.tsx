@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './signup.scss';
 
 import heroImage from '../../assets/heroImage.jpg';
@@ -5,28 +6,49 @@ import HeroImage from '../../components/heroImage/HeroImage';
 import Form from '../../components/form/Form';
 import { IInputProps } from '../../components/input/Input';
 
+interface ISignupData {
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
+
 const SignupPage = (): JSX.Element => {
-    const loginInputElements: Array<IInputProps> = [
-        {
-            label: "name",
-            type: "text"
-        },
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [confirmPassword, setConfirmPassword] = useState<string>('');
+    const signupInputElements: Array<IInputProps> = [
+        // {
+        //     label: "name",
+        //     type: "text"
+        // },
         {
             label: "e-mail", 
-            type: "e-mail"
+            type: "e-mail",
+            value: email,
+            onChange: setEmail
         },
         {
             label: "password",
-            type: "password"
+            type: "password",
+            value: password,
+            onChange: setPassword
         },
         {
             label: "confirm password",
-            type: "password"
+            type: "password",
+            value: confirmPassword,
+            onChange: setConfirmPassword
         }
     ];
 
     const handleSignUp = () => {
-        console.log('sign up form submitted.');
+        const signupData: ISignupData = {
+            email,
+            password,
+            confirmPassword
+        }
+
+        console.log(signupData);
     }
 
     return (
@@ -35,14 +57,14 @@ const SignupPage = (): JSX.Element => {
             <div className="signupPage-content">
                 <Form 
                     label="Sign Up"
-                    inputElements={loginInputElements}
+                    inputElements={signupInputElements}
                     includeHelpfulTexts={false}
                     submitButtonLabel="Sign Up"
-                    onSubmit={() => handleSignUp()}
+                    onSubmit={handleSignUp}
                 />
             </div>
         </div>
     );
 }
 
-export default SignupPage
+export default SignupPage;

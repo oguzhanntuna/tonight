@@ -24,9 +24,4 @@ export class EventShowcaseEvent{
         this.totalPrice = totalPrice;
         this.moduleType = moduleType;
     }
-
-    // public get totalPrice(): number { return this._totalPrice }
-    
-    // public set totalPrice(value: number) { this._totalPrice = value; }
-    
 }
