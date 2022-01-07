@@ -1,5 +1,5 @@
 import { IEventShowcaseEvent } from "../../eventShowcase/event";
 
 export interface ICartState {
-    cartItems: Array<IEventShowcaseEvent | undefined>;
+    cartItems: Array<IEventShowcaseEvent | null>;
 }

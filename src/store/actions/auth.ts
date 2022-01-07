@@ -1,18 +1,31 @@
 import axios from "axios";
 
-import firebaseApiKey from '../../../.env/apiKey';
+import firebaseApiKey from '../../.env/apiKey';
+import { ISignupData } from './../../models/interfaces/signup/signupData';
 
-export const signUp = (email: string, password: string) => {
+export const SIGNUP = 'SIGNUP';
+
+export const signUp = (signupData: ISignupData) => {
     return async (dispatch: any) => {
+        const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${firebaseApiKey}`;
         const userData = {
-            email,
-            password,
+            ...signupData,
             returnSecureToken: true
         };
-        const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${firebaseApiKey}`;
 
         axios.post(url, userData)
-            .then(response => console.log(response))
+            .then(response => {
+                const token = response.data.idToken;
+                const userId = response.data.localId;
+                
+                console.log(response);
+
+                dispatch({
+                    type: SIGNUP,
+                    token,
+                    userId
+                })
+            })
             .catch(error => console.log(error));
     }
 }

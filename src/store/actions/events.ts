@@ -40,7 +40,6 @@ export const fetchThisWeekEvents = () => {
 
                 dispatch({
                     type: SET_THIS_WEEK_EVENTS,
-                    // allEvents: buyNowEvents.concat(recentlyAddedEvents, thisWeekEvents),
                     thisWeekEvents: thisWeekEvents
                 });
             })
