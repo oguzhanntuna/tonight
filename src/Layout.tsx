@@ -8,9 +8,9 @@ import Page from './pages/page';
 import Footer from './components/footer/Footer';
 
 const Layout = (): JSX.Element => {
-  const auth = useSelector((state: IApplicationState) => state.auth);
+  const activeUsername = useSelector((state: IApplicationState) => state.auth.username);
 
-  console.log(auth);
+  console.log(activeUsername);
 
   return (
     <div className="layout">

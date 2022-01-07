@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './signup.scss';
 
 import * as authActions from '../../store/actions/auth';
-import { ISignupData } from '../../models/interfaces/signup/signupData';
+import { IUserData } from '../../models/interfaces/signup/userData';
 import { IInputProps } from '../../components/input/Input';
 
 import heroImage from '../../assets/heroImage.jpg';
@@ -12,15 +12,18 @@ import { useDispatch } from 'react-redux';
 
 const SignupPage = (): JSX.Element => {
     const { signUp } = authActions;
+    const [username, setUsername] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const dispatch = useDispatch();
     const signupInputElements: Array<IInputProps> = [
-        // {
-        //     label: "name",
-        //     type: "text"
-        // },
+        {
+            label: "name",
+            type: "text",
+            value: username,
+            onChange: setUsername
+        },
         {
             label: "e-mail", 
             type: "e-mail",
@@ -43,7 +46,8 @@ const SignupPage = (): JSX.Element => {
 
     const handleSignUp = () => {
         if (password === confirmPassword) {
-            const signupData: ISignupData = {
+            const signupData: IUserData = {
+                username,
                 email,
                 password
             }

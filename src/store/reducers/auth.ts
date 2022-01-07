@@ -4,6 +4,7 @@ import { IAuthAction } from './../../models/interfaces/store/actions/auth';
 import { SIGNUP } from './../actions/auth';
 
 const initialState: IAuthState = {
+    username: null,
     token: null,
     userId: null
 }
@@ -11,10 +12,11 @@ const initialState: IAuthState = {
 export const authReducer = (state = initialState, action: IAuthAction): IAuthState => {
     switch(action.type) {
         case SIGNUP:
-            const { token, userId } = action;
+            const { username, token, userId } = action;
 
             return {
                 ...state,
+                username,
                 token, 
                 userId
             }
