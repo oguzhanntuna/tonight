@@ -1,6 +1,6 @@
 export interface IAuthAction {
     type: string;
-    username: string;
+    displayName: string;
     token: string;
     userId: string;
 }

@@ -1,5 +1,5 @@
 export interface IAuthState {
-    username: string | null;
+    displayName: string | null;
     token: string | null;
     userId: string | null;
 }

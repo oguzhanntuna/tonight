@@ -1,22 +1,22 @@
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import './signup.scss';
 
 import * as authActions from '../../store/actions/auth';
-import { IUserData } from '../../models/interfaces/signup/userData';
 import { IInputProps } from '../../components/input/Input';
+import { IUserData } from '../../models/interfaces/auth/auth';
 
 import heroImage from '../../assets/heroImage.jpg';
 import HeroImage from '../../components/heroImage/HeroImage';
 import Form from '../../components/form/Form';
-import { useDispatch } from 'react-redux';
 
 const SignupPage = (): JSX.Element => {
-    const { signUp } = authActions;
+    const { signup } = authActions;
+    const dispatch = useDispatch();
     const [username, setUsername] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
-    const dispatch = useDispatch();
     const signupInputElements: Array<IInputProps> = [
         {
             label: "name",
@@ -46,13 +46,13 @@ const SignupPage = (): JSX.Element => {
 
     const handleSignUp = () => {
         if (password === confirmPassword) {
-            const signupData: IUserData = {
+            const userData: IUserData = {
                 username,
                 email,
                 password
             }
     
-            dispatch(signUp(signupData));
+            dispatch(signup(userData));
         }
     }
 

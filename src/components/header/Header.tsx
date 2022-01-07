@@ -5,7 +5,7 @@ import'./Header.scss';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 const Header = (): JSX.Element => {
-    const activeUsername = useSelector((state: IApplicationState) => state.auth.username);
+    const activeUsername = useSelector((state: IApplicationState) => state.auth.displayName);
     const navigate = useNavigate();
 
     document.addEventListener('scroll', () => {
