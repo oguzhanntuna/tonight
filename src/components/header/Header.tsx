@@ -1,12 +1,15 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import'./Header.scss';
 
 import { IApplicationState } from '../../models/interfaces/store/states/application';
+import * as AuthActions from '../../store/actions/auth';
 
 const Header = (): JSX.Element => {
-    const activeUsername = useSelector((state: IApplicationState) => state.auth.displayName);
+    const { logout } = AuthActions;
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const activeUsername = useSelector((state: IApplicationState) => state.auth.displayName);
 
     document.addEventListener('scroll', () => {
         const headerElement = document.getElementById('header');
@@ -25,7 +28,12 @@ const Header = (): JSX.Element => {
                     activeUsername
                         ? <>
                             <div>
-                                {activeUsername}
+                                <button onClick={() => dispatch(logout())}>
+                                    Log Out
+                                </button>
+                                <div>
+                                    {activeUsername}
+                                </div>
                             </div>
                         </>
                         : <>

@@ -14,3 +14,9 @@ export interface IUpdateData {
     displayName: string;
     photoUrl: string;
 }
+
+export interface ILocalStorageUserData {
+    token: string;
+    userId: string;
+    displayName: string;
+}

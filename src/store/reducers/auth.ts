@@ -1,7 +1,7 @@
 import { IAuthState } from './../../models/interfaces/store/states/auth';
 import { IAuthAction } from './../../models/interfaces/store/actions/auth';
 
-import { SIGNUP, LOGIN, UPDATE } from './../actions/auth';
+import { SIGNUP, LOGIN, AUTH_SUCCESS, LOGOUT } from './../actions/auth';
 
 const initialState: IAuthState = {
     displayName: null,
@@ -31,12 +31,24 @@ export const authReducer = (state = initialState, action: IAuthAction): IAuthSta
                 userId: loginUserId
             }
 
-        // case UPDATE:
+        case LOGOUT:
 
-        //     return {
-        //         ...state,
-        //         displayName
-        //     }
+        return {
+            ...state,
+            displayName: null,
+            token: null,
+            userId: null
+        }
+
+        case AUTH_SUCCESS:
+            const { token, userId, displayName } = action;
+
+            return {
+                ...state,
+                token,
+                userId,
+                displayName
+            }
     }
 
     return state;
