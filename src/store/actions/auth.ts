@@ -11,6 +11,7 @@ export const LOGOUT = 'LOGOUT';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 
 export const signup = (userData: IUserData) => {
+    
     return async (dispatch: any) => {
         const { username, email, password } = userData;
         const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${firebaseApiKey}`;
@@ -50,6 +51,7 @@ export const signup = (userData: IUserData) => {
 }
 
 export const login = (userData: ILoginData) => {
+
     return async (dispatch: any) => {
         const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${firebaseApiKey}`;
         const loginData = {
@@ -82,6 +84,7 @@ export const login = (userData: ILoginData) => {
 }
 
 export const logout = () => {
+
     return (dispatch: any) => {
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
@@ -94,6 +97,7 @@ export const logout = () => {
 }
 
 export const checkAuthState = () => {
+
     return async (dispatch: any) => {
         const token = localStorage.getItem('token');
         const userId = localStorage.getItem('userId');

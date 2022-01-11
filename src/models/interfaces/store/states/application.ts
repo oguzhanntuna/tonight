@@ -1,3 +1,4 @@
+import { IToastMessageState } from './toastMessage';
 import { ICartState } from "./cart";
 import { IEventsState } from "./events";
 import { IFavoritesState } from "./favorites";
@@ -8,4 +9,5 @@ export interface IApplicationState {
     cart: ICartState;
     favorites: IFavoritesState;
     auth: IAuthState;
+    toastMessage: IToastMessageState;
 }

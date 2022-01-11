@@ -1,0 +1,53 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import './toastMessage.scss';
+
+import { IApplicationState } from '../../models/interfaces/store/states/application';
+import * as toastMessageActions from '../../store/actions/toastMessage';
+
+const ToastMessage = () => {
+    const { clearToastMessage } = toastMessageActions;
+    const dispatch = useDispatch();
+    const toastMessageState = useSelector((state: IApplicationState) => state.toastMessage);
+    const visibility = toastMessageState.visibility;
+    const toastMessageContent = {
+        type: toastMessageState.messageType,
+        message: toastMessageState.message
+    }
+
+    useEffect(() => {
+
+        if (visibility) {
+            setTimeout(() => {
+                
+                dispatch(clearToastMessage());
+            }, 3000);
+        }
+
+    }, [visibility, clearToastMessage, dispatch])
+
+    return (
+        <div className={`
+            toastMessage 
+            ${toastMessageContent.type === 'warning' ? 'warning' : ''}
+            ${toastMessageContent.type === 'success' ? 'success' : ''}
+        `}>
+            { 
+                visibility &&
+                <>
+                    <div className="toastMessage-text">
+                        {toastMessageContent.message}
+                    </div>
+                    <div 
+                        className="toastMessage-closeIcon"
+                        onClick={() => dispatch(clearToastMessage())}
+                    >
+                        X
+                    </div>
+                </>  
+            }
+        </div>
+    );
+}
+
+export default ToastMessage;

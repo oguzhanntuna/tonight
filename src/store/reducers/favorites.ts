@@ -1,7 +1,7 @@
 import { IFavoritesAction } from './../../models/interfaces/store/actions/favorites';
 import { IFavoritesState } from '../../models/interfaces/store/states/favorites';
 
-import { TOGGLE_FAVORITES } from '../actions/favorites';
+import { TOGGLE_FAVORITE } from '../actions/favorites';
 
 const initialState: IFavoritesState = {
     favoriteEvents: []
@@ -9,7 +9,7 @@ const initialState: IFavoritesState = {
 
 export const favoritesReducer = (state = initialState, action: IFavoritesAction): IFavoritesState => {
     switch(action.type) {
-        case TOGGLE_FAVORITES:
+        case TOGGLE_FAVORITE:
             const addedEvent = action.addedEvent;
 
             if (state.favoriteEvents.length > 0) {

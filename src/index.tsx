@@ -13,12 +13,14 @@ import { eventsReducer } from './store/reducers/events';
 import { cartReducer } from './store/reducers/cart';
 import { favoritesReducer } from './store/reducers/favorites';
 import { authReducer } from './store/reducers/auth';
+import { toastMessageReducer } from './store/reducers/toastMessage';
 
 const rootReducer = combineReducers<IApplicationState>({
   events: eventsReducer,
   cart: cartReducer,
   favorites: favoritesReducer,
-  auth: authReducer
+  auth: authReducer,
+  toastMessage: toastMessageReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

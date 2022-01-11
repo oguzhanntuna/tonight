@@ -1,9 +1,9 @@
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event';
 import { IFavoritesAction } from './../../models/interfaces/store/actions/favorites';
 
-export const TOGGLE_FAVORITES = 'TOGGLE_FAVORITES';
+export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
 
-export const toggleFavorites = (addedEvent: IEventShowcaseEvent): IFavoritesAction => {
+export const toggleFavorite = (addedEvent: IEventShowcaseEvent): IFavoritesAction => {
 
-    return { type: TOGGLE_FAVORITES, addedEvent };
+    return { type: TOGGLE_FAVORITE, addedEvent };
 }

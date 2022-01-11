@@ -1,0 +1,22 @@
+@import '../../variables/variables.scss';
+
+.toastMessage {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 6rem);
+    margin: 2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;        
+    z-index: 3;
+
+    &.warning {
+        background-color: $color-primary--dark;
+        box-shadow: 0px 8px 16px rgba($color-primary--dark, 0.4);
+    }
+
+    &-closeIcon {
+        cursor: pointer;
+    }
+}
