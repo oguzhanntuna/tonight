@@ -18,13 +18,18 @@ const ToastMessage = () => {
     useEffect(() => {
 
         if (visibility) {
-            setTimeout(() => {
+            const timer = setTimeout(() => {
                 
                 dispatch(clearToastMessage());
             }, 3000);
+
+            return () => {
+                 
+                clearTimeout(timer);
+            }
         }
 
-    }, [visibility, clearToastMessage, dispatch])
+    }, [toastMessageState, visibility, clearToastMessage, dispatch]);
 
     return (
         <div className={`

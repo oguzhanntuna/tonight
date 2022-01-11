@@ -9,6 +9,7 @@ import LoginPage from './login/login';
 import SignupPage from './signup/signup';
 
 const Page = (): JSX.Element => {
+
     const PageRouting = () => (
         <Routes>
             <Route path="/" element={<HomePage />} />

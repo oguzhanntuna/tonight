@@ -26,6 +26,15 @@ const FavoriteIcon = (props: IFavoriteIcon): JSX.Element => {
 
     const isEventAlreadyInFavorites = favoriteEvents.some((event: any) => event?.id === eventToBeLiked.id);
 
+    const showToastMessage = () => {
+        const toastMessageData: IToastMessageData = {
+            messageType: 'warning',
+            message: 'You need to login to add any events to your favorites!' 
+        }
+
+        dispatch(setToastMessage(toastMessageData));
+    }
+
     const toggleFavoriteHandler = () => {
 
         if (isLoggedin) {
@@ -33,12 +42,8 @@ const FavoriteIcon = (props: IFavoriteIcon): JSX.Element => {
             dispatch(toggleFavorite(eventToBeLiked));
 
         } else {
-            const toastMessageData: IToastMessageData = {
-                messageType: 'warning',
-                message: 'You need to login to add any events to your favorites!' 
-            }
-    
-            dispatch(setToastMessage(toastMessageData));
+            
+            showToastMessage();
         }   
     }
 
