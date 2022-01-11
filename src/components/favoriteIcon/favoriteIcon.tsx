@@ -21,18 +21,25 @@ const FavoriteIcon = (props: IFavoriteIcon): JSX.Element => {
     const { setToastMessage } = toastMessageActions;
 
     const favoriteEvents = useSelector((state: IApplicationState) => state.favorites.favoriteEvents);
+    const isLoggedin = useSelector((state: IApplicationState) => state.auth.token);
     const dispatch = useDispatch();
 
     const isEventAlreadyInFavorites = favoriteEvents.some((event: any) => event?.id === eventToBeLiked.id);
 
     const toggleFavoriteHandler = () => {
-        const toastMessageData: IToastMessageData = {
-            messageType: 'warning',
-            message: 'Warning Message!' 
-        }
 
-        dispatch(setToastMessage(toastMessageData));
-        dispatch(toggleFavorite(eventToBeLiked));
+        if (isLoggedin) {
+
+            dispatch(toggleFavorite(eventToBeLiked));
+
+        } else {
+            const toastMessageData: IToastMessageData = {
+                messageType: 'warning',
+                message: 'You need to login to add any events to your favorites!' 
+            }
+    
+            dispatch(setToastMessage(toastMessageData));
+        }   
     }
 
     return (
