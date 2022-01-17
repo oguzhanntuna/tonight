@@ -1,7 +1,7 @@
 import './EventTicketPriceRow.scss';
 import { useDispatch } from 'react-redux';
 
-import { IEventShowcaseEvent, IEventShowCaseTicket } from '../../models/interfaces/eventShowcase/event';
+import { IEventShowcaseEvent, IEventShowCaseTicket } from '../../models/interfaces/eventShowcase/eventShowcase';
 import * as eventActions from '../../store/actions/events';
 
 import addIcon from '../../assets/icons/add.svg';

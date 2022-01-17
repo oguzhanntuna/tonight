@@ -1,5 +1,5 @@
-import { IEventShowcaseEvent } from "../../eventShowcase/event";
-
+import { IFavoriteEvent } from './../../favoriteEvent/favoriteEvent';
 export interface IFavoritesState {
-    favoriteEvents: Array<IEventShowcaseEvent | null>;
+    favoriteEvents: Array<IFavoriteEvent | null>;
+    loading: boolean;
 }

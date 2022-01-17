@@ -1,6 +1,6 @@
 import './eventDetail.scss';
 
-import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event';
+import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import FavoriteIcon from '../favoriteIcon/favoriteIcon';
 
 interface IEventDetailProps {

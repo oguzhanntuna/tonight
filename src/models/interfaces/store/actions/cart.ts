@@ -1,4 +1,4 @@
-import { IEventShowcaseEvent } from "../../eventShowcase/event";
+import { IEventShowcaseEvent } from "../../eventShowcase/eventShowcase";
 
 export interface ICartAction {
     type: string;

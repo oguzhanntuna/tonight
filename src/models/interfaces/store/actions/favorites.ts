@@ -1,6 +1,7 @@
-import { IEventShowcaseEvent } from "../../eventShowcase/event";
+import { IFavoriteEvent } from './../../favoriteEvent/favoriteEvent';
 
 export interface IFavoritesAction {
     type: string;
-    addedEvent: IEventShowcaseEvent;
+    addedEvent: IFavoriteEvent;
+    loading: boolean;
 }

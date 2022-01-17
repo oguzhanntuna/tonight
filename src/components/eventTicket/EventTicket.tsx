@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import './EventTicket.scss';
 
-import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event';
+import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
 import * as eventActions from '../../store/actions/events';

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { EventShowcaseEvent } from "../../models/eventShowcase/event";
-import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/event";
+import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/eventShowcase";
 import { IEventsAction } from "../../models/interfaces/store/actions/events";
 
 export const SET_THIS_WEEK_EVENTS = 'SET_THIS_WEEK_EVENTS';

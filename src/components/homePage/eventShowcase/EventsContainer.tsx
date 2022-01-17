@@ -1,6 +1,6 @@
 import './EventsContainer.scss';
 
-import { IEventShowcaseEvent } from '../../../models/interfaces/eventShowcase/event';
+import { IEventShowcaseEvent } from '../../../models/interfaces/eventShowcase/eventShowcase';
 
 import EventTicket from '../../eventTicket/EventTicket';
 

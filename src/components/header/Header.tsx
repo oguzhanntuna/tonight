@@ -26,14 +26,12 @@ const Header = (): JSX.Element => {
             <div className="userActionContainer">
                 {
                     activeUsername
-                        ? <>
+                        ? <>                        
+                            <button onClick={() => dispatch(logout())}>
+                                Log Out
+                            </button>
                             <div>
-                                <button onClick={() => dispatch(logout())}>
-                                    Log Out
-                                </button>
-                                <div>
-                                    {activeUsername}
-                                </div>
+                                {activeUsername}
                             </div>
                         </>
                         : <>

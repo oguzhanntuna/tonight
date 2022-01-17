@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import './EventTicketInfoSide.scss';
 
-import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event';
+import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 
 import detailIcon from '../../assets/icons/document-text-outline.svg';
 import FavoriteIcon from '../favoriteIcon/favoriteIcon';

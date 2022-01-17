@@ -1,32 +1,43 @@
 import { IFavoritesAction } from './../../models/interfaces/store/actions/favorites';
 import { IFavoritesState } from '../../models/interfaces/store/states/favorites';
 
-import { TOGGLE_FAVORITE } from '../actions/favorites';
+import { SET_LOADING, TOGGLE_FAVORITE } from '../actions/favorites';
 
 const initialState: IFavoritesState = {
-    favoriteEvents: []
+    favoriteEvents: [],
+    loading: false
 }
 
 export const favoritesReducer = (state = initialState, action: IFavoritesAction): IFavoritesState => {
     switch(action.type) {
         case TOGGLE_FAVORITE:
-            const addedEvent = action.addedEvent;
+            const { addedEvent } = action;
 
             if (state.favoriteEvents.length > 0) {
-                const isEventAlreadyInFavorites = state.favoriteEvents.some(event => event?.id === addedEvent.id);
+                const { favoriteEvents } = state;
+                const isEventAlreadyInFavorites = favoriteEvents.some(favoriteEvent => favoriteEvent?.id === addedEvent.id);
 
                 if (isEventAlreadyInFavorites) {
                     
                     return {
                         ...state,
-                        favoriteEvents: [ ...state.favoriteEvents.filter((event => event?.id !== addedEvent.id))]
+                        favoriteEvents: [ ...favoriteEvents.filter((favoriteEvent => favoriteEvent?.id !== addedEvent.id))],
+                        loading: false
                     }
                 }
             }
 
             return {
                 ...state,
-                favoriteEvents: [ ...state.favoriteEvents, addedEvent ]
+                favoriteEvents: [ ...state.favoriteEvents, addedEvent ],
+                loading: false
+            }
+
+        case SET_LOADING: 
+
+            return {
+                ...state,
+                loading: true
             }
     }
 

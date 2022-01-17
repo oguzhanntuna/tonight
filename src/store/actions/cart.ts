@@ -1,4 +1,4 @@
-import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/event";
+import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/eventShowcase";
 import { ICartAction } from "../../models/interfaces/store/actions/cart";
 
 export const ADD_TO_CART = 'ADD_TO_CART';

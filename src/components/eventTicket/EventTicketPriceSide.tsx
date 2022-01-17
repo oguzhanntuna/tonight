@@ -1,6 +1,6 @@
 import './EventTicketPriceSide.scss';
 
-import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event';
+import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 
 import EventTicketPriceRow from './EventTicketPriceRow';
 import returnBackIcon from '../../assets/icons/return-back.svg';

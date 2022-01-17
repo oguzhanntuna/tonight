@@ -1,4 +1,4 @@
-import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event';
+import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import './eventPriceSlip.scss';
 
 import * as cartActions from '../../store/actions/cart';

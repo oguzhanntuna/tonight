@@ -86,9 +86,7 @@ export const login = (userData: ILoginData) => {
 export const logout = () => {
 
     return (dispatch: any) => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('userId');
-        localStorage.removeItem('displayName');
+        localStorage.removeItem('userDataJSON');
 
         dispatch({
             type: LOGOUT
@@ -99,11 +97,11 @@ export const logout = () => {
 export const checkAuthState = () => {
 
     return async (dispatch: any) => {
-        const token = localStorage.getItem('token');
-        const userId = localStorage.getItem('userId');
-        const displayName = localStorage.getItem('displayName');
-
-        if (token && userId) {
+        const userData = localStorage.getItem('userDataJSON');
+        
+        if (userData) {
+            const parsedUserData: ILocalStorageUserData = JSON.parse(userData);
+            const { token, userId, displayName } = parsedUserData;
 
             dispatch({
                 type: AUTH_SUCCESS,
@@ -115,7 +113,6 @@ export const checkAuthState = () => {
     }
 }
 
-// Check here later on!!
 const setUserDisplayName = (userData: IUpdateData) => {
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${firebaseApiKey}`;
     const updateData = {
@@ -124,17 +121,11 @@ const setUserDisplayName = (userData: IUpdateData) => {
     }
 
     axios.post(url, updateData)
-        .then(response => {
-            console.log('response', response);
-            console.log(response.data.displayName);
-        })
+        .then(response => console.log(response))
         .catch(error => console.log(error));
 }
 
 const setUserDataToLocalStorage = (userData: ILocalStorageUserData) => {
-    const { token, userId, displayName } = userData;
 
-    localStorage.setItem('token', token);
-    localStorage.setItem('userId', userId);
-    localStorage.setItem('displayName', displayName);
+    localStorage.setItem('userDataJSON', JSON.stringify(userData));
 }  
