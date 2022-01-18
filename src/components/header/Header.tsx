@@ -5,6 +5,7 @@ import'./Header.scss';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import * as AuthActions from '../../store/actions/auth';
 
+import moreIcon from '../../assets/icons/more.svg';
 import favIconEmpty from '../../assets/icons/heart-outline.svg';
 import cartIconEmpty from '../../assets/icons/cart-outline.svg';
 
@@ -20,6 +21,11 @@ const Header = (): JSX.Element => {
         window.pageYOffset > 0 ? headerElement?.classList.add('blurred') : headerElement?.classList.remove('blurred');
     });
 
+    const capitalizeFirstLetter = (word: string) => {
+
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    }
+
     return (
         <div className="header" id="header">
             <Link to="/" className="logo">Tonight</Link>
@@ -33,8 +39,13 @@ const Header = (): JSX.Element => {
                             <button onClick={() => dispatch(logout())}>
                                 Log Out
                             </button>
-                            <div>
-                                {activeUsername}
+                            <div className="userActionContainer-profile">
+                                <span className="userActionContainer-username">
+                                    {capitalizeFirstLetter(activeUsername)}
+                                </span>
+                                <div className="userActionContainer-moreIcon">
+                                    <img src={moreIcon} alt="more" />
+                                </div>
                             </div>
                         </>
                         : <>

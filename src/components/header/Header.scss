@@ -83,21 +83,32 @@
             outline: none;
         }
 
-        &-favorites, &-cart {
+        &-favorites, &-cart, &-profile {
             display: flex;
             align-items: center;
             cursor: pointer;
         }
 
-        &-favoritesIcon, &-cartIcon {
+        &-username {
+            margin-right: .5rem;
+        }
+
+        &-moreIcon, &-favoritesIcon, &-cartIcon {
             width: 2rem;
             height: 2rem;
-            margin-right: .5rem;
 
             img {
                 width: 100%;
                 height: 100%;
             }
+        }
+
+        &-moreIcon {
+            transform: rotate(-90deg);
+        }
+
+        &-favoritesIcon, &-cartIcon {
+            margin-right: .5rem;
         }
     }
 }
