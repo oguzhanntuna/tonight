@@ -14,7 +14,6 @@ import {
     REMOVE_VIP_TICKET,  
     RESET_TICKETS_COUNT
 } from '../actions/events';
-import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 
 const initialState: IEventsState = {
     allEvents: [],

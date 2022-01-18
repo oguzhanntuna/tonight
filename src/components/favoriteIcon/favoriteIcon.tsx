@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './favoriteIcon.scss';
 
-import * as favoritesActions from '../../store/actions/favorites';
+import * as FavoritesActions from '../../store/actions/favorites';
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
@@ -15,13 +15,15 @@ interface IFavoriteIcon {
 
 const FavoriteIcon = (props: IFavoriteIcon): JSX.Element => {
     const { eventToBeLiked, showFavoritesText } = props;
-    const { toggleFavorite } = favoritesActions;
+    const { toggleFavorite } = FavoritesActions;
 
     const dispatch = useDispatch();
     const favoritesState = useSelector((state: IApplicationState) => state.favorites);
     const { favoriteEvents, loading } = favoritesState;
 
-    const isEventAlreadyInFavorites = favoriteEvents.some(favoriteEvent => favoriteEvent?.id === eventToBeLiked.id);
+    console.log(loading);
+
+    const isEventAlreadyInFavorites = favoriteEvents ? favoriteEvents.some(favoriteEvent => favoriteEvent?.id === eventToBeLiked.id) : false;
 
     return (
         <div className="addToFavoriteIconContainer" onClick={() => !loading && dispatch(toggleFavorite(eventToBeLiked))}>

@@ -1,61 +1,106 @@
-import { FavoriteEvent } from './../../models/favoriteEvent/favoriteEvent';
 import axios from 'axios';
 
+import { FavoriteEvent } from './../../models/favoriteEvent/favoriteEvent';
 import { IToastMessageData } from './../../models/interfaces/toastMessage/toastMessage';
 import { IApplicationState } from './../../models/interfaces/store/states/application';
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import { ILocalStorageUserData } from '../../models/interfaces/auth/auth';
-import { IFavoriteEvent } from './../../models/interfaces/favoriteEvent/favoriteEvent';
+import { IFavoriteEvent, uniqueId } from './../../models/interfaces/favoriteEvent/favoriteEvent';
 import * as ToastMessageActions from './toastMessage';
 
-export const SET_FAVORITES = 'SET_FAVORITES';
-export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
+export const FETCH_FAVORITES = 'FETCH_FAVORITES';
+// export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
+export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
+export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
 export const SET_LOADING = 'SET_LOADING';
 
-// export const setFavorites = () => {
+export const fetchFavorites = () => 
+    (dispatch: any) => {
+        const userData = localStorage.getItem('userDataJSON');
+        
+        if (userData) {
+            const parsedUserData: ILocalStorageUserData = JSON.parse(userData);
+            const { userId } = parsedUserData;
+            const userFavoritesUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/favorites/${userId}.json`;
 
-//     return { type: SET_FAVORITES }
-// }
+            dispatch(setLoading());
+            axios.get(userFavoritesUrl)
+                .then(response => {
+                    const { data } = response;
+                    const favoriteEvents: { [key: uniqueId]: IEventShowcaseEvent } = data;
+                    let favoriteEventsArray: Array<IFavoriteEvent> = [];
 
-export const toggleFavorite = (addedEvent: IEventShowcaseEvent): any => {
+                    for (let eventUid in favoriteEvents) {
+                        const favoritedEvent: IFavoriteEvent = new FavoriteEvent(
+                            favoriteEvents[eventUid].id,
+                            favoriteEvents[eventUid].title,
+                            favoriteEvents[eventUid].imageUrl,
+                            favoriteEvents[eventUid].location,
+                            favoriteEvents[eventUid].date,
+                            favoriteEvents[eventUid].url,
+                            favoriteEvents[eventUid].normalTicket,
+                            favoriteEvents[eventUid].vipTicket,
+                            favoriteEvents[eventUid].totalPrice,
+                            favoriteEvents[eventUid].moduleType,
+                            eventUid
+                        );
+
+                        favoriteEventsArray.push(favoritedEvent)
+                    }
+
+                    dispatch({
+                        type: FETCH_FAVORITES,
+                        favoriteEvents: favoriteEventsArray
+                    });
+                })
+                .catch(error => console.log(error));
+        }
+
+        dispatch({
+            type: FETCH_FAVORITES,
+            favoritesEvent: []
+        });
+}
+
+export const toggleFavorite = (selectedEvent: IEventShowcaseEvent): any => {
 
     return async (dispatch: any) => {
         const userData = localStorage.getItem('userDataJSON');
 
         if (userData) {
             const parsedUserData: ILocalStorageUserData = JSON.parse(userData);
-            const userFavoritesUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/favorites/${parsedUserData.userId}`;
+            const { userId } = parsedUserData;
+            const userFavoritesUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/favorites/${userId}`;
 
             dispatch(setLoading());
-            dispatch(isEventAlreadyInFavorites(addedEvent))
+            dispatch(isEventAlreadyInFavorites(selectedEvent))
                 .then((isEventAlreadyInFavorites: boolean) => {
 
                     if (isEventAlreadyInFavorites) {
                         
-                        dispatch(getEventUid(addedEvent))
+                        dispatch(getEventUid(selectedEvent))
                             .then((eventUid: string) => {
                                 const url =`${userFavoritesUrl}/${eventUid}.json`;
 
                                 axios.delete(url)
                                     .then(() => {
                                         const favoriteEvent: IFavoriteEvent = new FavoriteEvent(
-                                            addedEvent.id,
-                                            addedEvent.title,
-                                            addedEvent.imageUrl,
-                                            addedEvent.location,
-                                            addedEvent.date,
-                                            addedEvent.url,
-                                            addedEvent.normalTicket,
-                                            addedEvent.vipTicket,
-                                            addedEvent.totalPrice,
-                                            addedEvent.moduleType,
+                                            selectedEvent.id,
+                                            selectedEvent.title,
+                                            selectedEvent.imageUrl,
+                                            selectedEvent.location,
+                                            selectedEvent.date,
+                                            selectedEvent.url,
+                                            selectedEvent.normalTicket,
+                                            selectedEvent.vipTicket,
+                                            selectedEvent.totalPrice,
+                                            selectedEvent.moduleType,
                                             eventUid
                                         );
 
                                         dispatch({
-                                            type: TOGGLE_FAVORITE,
-                                            addedEvent: favoriteEvent,
-                                            loading: false
+                                            type: REMOVE_FROM_FAVORITES,
+                                            selectedEvent: favoriteEvent
                                         });
                                     })
                                     .catch(error => console.log(error)); 
@@ -64,33 +109,31 @@ export const toggleFavorite = (addedEvent: IEventShowcaseEvent): any => {
                     } else {
                         const url =`${userFavoritesUrl}.json`;
                         
-                        axios.post(url, addedEvent)
+                        axios.post(url, selectedEvent)
                             .then(response => {
-                                const { name } = response.data;
+                                const { name: eventUid } = response.data;
                                 const favoriteEvent: IFavoriteEvent = new FavoriteEvent(
-                                    addedEvent.id,
-                                    addedEvent.title,
-                                    addedEvent.imageUrl,
-                                    addedEvent.location,
-                                    addedEvent.date,
-                                    addedEvent.url,
-                                    addedEvent.normalTicket,
-                                    addedEvent.vipTicket,
-                                    addedEvent.totalPrice,
-                                    addedEvent.moduleType,
-                                    name
+                                    selectedEvent.id,
+                                    selectedEvent.title,
+                                    selectedEvent.imageUrl,
+                                    selectedEvent.location,
+                                    selectedEvent.date,
+                                    selectedEvent.url,
+                                    selectedEvent.normalTicket,
+                                    selectedEvent.vipTicket,
+                                    selectedEvent.totalPrice,
+                                    selectedEvent.moduleType,
+                                    eventUid
                                 )
 
                                 dispatch({
-                                    type: TOGGLE_FAVORITE,
-                                    addedEvent: favoriteEvent,
-                                    loading: false
+                                    type: ADD_TO_FAVORITES,
+                                    selectedEvent: favoriteEvent
                                 });
                             })
                             .catch(error => console.log(error));
                     }
                 });
-
         } else {
             const { setToastMessage } = ToastMessageActions;
             const toastMessageData: IToastMessageData = {
@@ -103,31 +146,36 @@ export const toggleFavorite = (addedEvent: IEventShowcaseEvent): any => {
     }
 }
 
-const setLoading = () => {
+const getFavoritesEvents = () => 
+    (_dispatch: any, getState: () => IApplicationState): Array<IFavoriteEvent | null> => 
+        getState().favorites.favoriteEvents; 
 
-    return { type: SET_LOADING };
-} 
+const isEventAlreadyInFavorites = (event: IEventShowcaseEvent) => 
+    (dispatch: any): Promise<boolean> => 
+        new Promise((resolve, _reject) => {
+            const favoriteEvents: Array<IFavoriteEvent | null> = dispatch(getFavoritesEvents());
 
-const isEventAlreadyInFavorites = (addedEvent: IEventShowcaseEvent) => 
-    (_dispatch: any, getState: () => IApplicationState): Promise<boolean> => {
-    
-        return new Promise((resolve, _reject) => {
-            const favoriteEvents = getState().favorites.favoriteEvents;
+            if (favoriteEvents) {
 
-            resolve(favoriteEvents.some(favoriteEvent => favoriteEvent?.id === addedEvent.id));
+                resolve(favoriteEvents.some(favoriteEvent => favoriteEvent?.id === event.id));
+            }
         });
-}
 
-const getEventUid = (addedEvent: IEventShowcaseEvent) => 
-    (_dispatch: any, getState: () => IApplicationState): Promise<string> => {
 
-        return new Promise((resolve, _reject) => {
-            const favoriteEvents = getState().favorites.favoriteEvents;
-            const selectedEvent = favoriteEvents.find(favoriteEvent => favoriteEvent?.id === addedEvent.id);
+const getEventUid = (event: IEventShowcaseEvent) => 
+    (dispatch: any): Promise<string> =>
+        new Promise(async (resolve, _reject) => {
+            const favoriteEvents: Array<IFavoriteEvent | null> = dispatch(getFavoritesEvents());
+            const selectedEvent = favoriteEvents.find(favoriteEvent => favoriteEvent?.id === event.id);
 
             if (selectedEvent) {
 
                 resolve(selectedEvent.uniqueId);
             }
         });
-}
+
+
+const setLoading = () => {
+    
+    return { type: SET_LOADING };
+} 

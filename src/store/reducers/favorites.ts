@@ -1,7 +1,6 @@
+import { ADD_TO_FAVORITES, FETCH_FAVORITES, REMOVE_FROM_FAVORITES, SET_LOADING } from './../actions/favorites';
 import { IFavoritesAction } from './../../models/interfaces/store/actions/favorites';
 import { IFavoritesState } from '../../models/interfaces/store/states/favorites';
-
-import { SET_LOADING, TOGGLE_FAVORITE } from '../actions/favorites';
 
 const initialState: IFavoritesState = {
     favoriteEvents: [],
@@ -10,26 +9,30 @@ const initialState: IFavoritesState = {
 
 export const favoritesReducer = (state = initialState, action: IFavoritesAction): IFavoritesState => {
     switch(action.type) {
-        case TOGGLE_FAVORITE:
-            const { addedEvent } = action;
-
-            if (state.favoriteEvents.length > 0) {
-                const { favoriteEvents } = state;
-                const isEventAlreadyInFavorites = favoriteEvents.some(favoriteEvent => favoriteEvent?.id === addedEvent.id);
-
-                if (isEventAlreadyInFavorites) {
-                    
-                    return {
-                        ...state,
-                        favoriteEvents: [ ...favoriteEvents.filter((favoriteEvent => favoriteEvent?.id !== addedEvent.id))],
-                        loading: false
-                    }
-                }
-            }
+        case FETCH_FAVORITES:
 
             return {
                 ...state,
-                favoriteEvents: [ ...state.favoriteEvents, addedEvent ],
+                favoriteEvents: action.favoriteEvents,
+                loading: false
+            }
+        
+        case ADD_TO_FAVORITES:
+            const { selectedEvent: selectedEventToBeAdded } = action;
+
+            return {
+                ...state,
+                favoriteEvents: [ ...state.favoriteEvents, selectedEventToBeAdded ],
+                loading: false
+            }
+
+        case REMOVE_FROM_FAVORITES:
+            const { selectedEvent: selectedEventToBeRemoved } = action;
+            const newFavoriteEvents = state.favoriteEvents.filter((favoriteEvent => favoriteEvent?.id !== selectedEventToBeRemoved.id));
+
+            return {
+                ...state,
+                favoriteEvents: [ ...newFavoriteEvents ],
                 loading: false
             }
 

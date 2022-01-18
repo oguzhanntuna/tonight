@@ -7,8 +7,10 @@ import * as toastMessageActions from '../../store/actions/toastMessage';
 
 const ToastMessage = () => {
     const { clearToastMessage } = toastMessageActions;
+
     const dispatch = useDispatch();
     const toastMessageState = useSelector((state: IApplicationState) => state.toastMessage);
+    
     const visibility = toastMessageState.visibility;
     const toastMessageContent = {
         type: toastMessageState.messageType,

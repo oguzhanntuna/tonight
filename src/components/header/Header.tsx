@@ -10,6 +10,7 @@ const Header = (): JSX.Element => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const activeUsername = useSelector((state: IApplicationState) => state.auth.displayName);
+    const favoritesEvents = useSelector((state: IApplicationState) => state.favorites.favoriteEvents);
 
     document.addEventListener('scroll', () => {
         const headerElement = document.getElementById('header');
@@ -32,6 +33,9 @@ const Header = (): JSX.Element => {
                             </button>
                             <div>
                                 {activeUsername}
+                            </div>
+                            <div>
+                                {favoritesEvents ? favoritesEvents.length : 'Favorites'}
                             </div>
                         </>
                         : <>

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import './Layout.scss'
 
 import * as AuthActions from './store/actions/auth';
+import * as FavoritesActions from './store/actions/favorites';
 
 import Header from './components/header/Header';
 import Page from './pages/page';
@@ -11,12 +12,14 @@ import ToastMessage from './components/toastMessage/toastMessage';
 
 const Layout = (): JSX.Element => {
   const { checkAuthState } = AuthActions;
+  const { fetchFavorites } = FavoritesActions;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(checkAuthState());
-
-  }, [dispatch, checkAuthState]);
+    dispatch(fetchFavorites());
+    
+  }, [dispatch, checkAuthState, fetchFavorites]);
 
   return (
     <div className="layout">

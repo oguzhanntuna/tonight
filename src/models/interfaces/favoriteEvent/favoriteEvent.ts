@@ -1,5 +1,7 @@
 import { IEventShowCaseTicket } from "../eventShowcase/eventShowcase";
 
+export type uniqueId = string;
+
 export interface IFavoriteEvent {
     id: number;
     title: string;
@@ -11,5 +13,5 @@ export interface IFavoriteEvent {
     vipTicket: IEventShowCaseTicket;
     totalPrice: number;
     moduleType: string;
-    uniqueId: string;
+    uniqueId: uniqueId;
 }
