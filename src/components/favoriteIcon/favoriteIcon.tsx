@@ -21,8 +21,6 @@ const FavoriteIcon = (props: IFavoriteIcon): JSX.Element => {
     const favoritesState = useSelector((state: IApplicationState) => state.favorites);
     const { favoriteEvents, loading } = favoritesState;
 
-    console.log(loading);
-
     const isEventAlreadyInFavorites = favoriteEvents ? favoriteEvents.some(favoriteEvent => favoriteEvent?.id === eventToBeLiked.id) : false;
 
     return (

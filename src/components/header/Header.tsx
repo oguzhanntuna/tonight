@@ -5,12 +5,14 @@ import'./Header.scss';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import * as AuthActions from '../../store/actions/auth';
 
+import favIconEmpty from '../../assets/icons/heart-outline.svg';
+import cartIconEmpty from '../../assets/icons/cart-outline.svg';
+
 const Header = (): JSX.Element => {
     const { logout } = AuthActions;
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const activeUsername = useSelector((state: IApplicationState) => state.auth.displayName);
-    const favoritesEvents = useSelector((state: IApplicationState) => state.favorites.favoriteEvents);
 
     document.addEventListener('scroll', () => {
         const headerElement = document.getElementById('header');
@@ -34,9 +36,6 @@ const Header = (): JSX.Element => {
                             <div>
                                 {activeUsername}
                             </div>
-                            <div>
-                                {favoritesEvents ? favoritesEvents.length : 'Favorites'}
-                            </div>
                         </>
                         : <>
                             <button 
@@ -53,6 +52,28 @@ const Header = (): JSX.Element => {
                             </button>
                         </>
                 }
+                <div 
+                    className="userActionContainer-favorites" 
+                    onClick={() => navigate('/favorites')}
+                >
+                    <div className="userActionContainer-favoritesIcon">
+                        <img src={favIconEmpty} alt="favorites" /> 
+                    </div>
+                    <span>
+                        Favorites
+                    </span>
+                </div>
+                <div 
+                    className="userActionContainer-cart"
+                    onClick={() => navigate('/cart')}
+                >
+                    <div className="userActionContainer-cartIcon">
+                        <img src={cartIconEmpty} alt="cart" />
+                    </div>
+                    <span>
+                        Cart
+                    </span>
+                </div>
             </div>
         </div>
     )
