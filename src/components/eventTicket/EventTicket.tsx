@@ -2,25 +2,30 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import './EventTicket.scss';
 
+import { EventShowcaseEvent } from '../../models/eventShowcase/event';
+import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
-import * as eventActions from '../../store/actions/events';
-import * as cartActions from '../../store/actions/cart';
-import * as toastMessageActions from '../../store/actions/toastMessage';
+import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
+import * as EventActions from '../../store/actions/events';
+import * as CartActions from '../../store/actions/cart';
+import * as ToastMessageActions from '../../store/actions/toastMessage';
+import * as FavoritesEventActions from '../../store/actions/favorites';
 
 import EventTicketPriceSide from './EventTicketPriceSide';
 import EventTicketInfoSide from './EventTicketInfoSide';
 
 interface IEventTicketProps {
-    eventData: IEventShowcaseEvent;
+    eventData: IEventShowcaseEvent | IFavoriteEvent;
 }
 
 const EventTicket = (props: IEventTicketProps): JSX.Element => {
     const { eventData } = props;
-    const { resetTicketsCount } = eventActions;
-    const { addToCart } = cartActions;
-    const { setToastMessage } = toastMessageActions;
+    const { resetTicketsCount } = EventActions;
+    const { addToCart } = CartActions;
+    const { setToastMessage } = ToastMessageActions;
+    const { favoritesResetTicketsCount } = FavoritesEventActions;
 
     const [isTicketSelected, setIsTicketSelected] = useState<boolean>(false);
     const isLoggedin = useSelector((state: IApplicationState) => state.auth.token);
@@ -29,7 +34,7 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
 
     const toggleTicketSide = (): void => setIsTicketSelected(prevState => !prevState);
 
-    const addEventToCart = (event: IEventShowcaseEvent) => {
+    const addEventToCart = (event: IEventShowcaseEvent | IFavoriteEvent) => {
         let toastMessageData: IToastMessageData;
 
         if (isLoggedin) {
@@ -43,7 +48,16 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
             }
 
             dispatch(addToCart(event));
-            dispatch(resetTicketsCount(event));
+
+            if (event instanceof EventShowcaseEvent) {
+
+                dispatch(resetTicketsCount(event));
+            }
+
+            if (event instanceof FavoriteEvent) {
+                
+                dispatch(favoritesResetTicketsCount(event));
+            }
             
             dispatch(setToastMessage(toastMessageData));
 

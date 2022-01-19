@@ -1,0 +1,31 @@
+.favoritesPage {
+    &-content {
+        position: relative;
+        width: 95%;
+        max-width: 1024px;
+        margin: 12rem auto 0 auto;
+        display: flex;
+    }
+
+    .favoritesPageContainer {
+        display: flex;
+        flex-direction: column;
+
+        &-title {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            font-size: 4.5rem;
+        }
+
+        &-favoriteEvents {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            .eventTicket {
+                height: 42.2rem;
+                margin: 0 0.5rem 6rem 0.5rem;
+            }
+        }
+    }
+}

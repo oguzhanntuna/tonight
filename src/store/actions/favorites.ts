@@ -7,12 +7,18 @@ import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event
 import { ILocalStorageUserData } from '../../models/interfaces/auth/auth';
 import { IFavoriteEvent, uniqueId } from './../../models/interfaces/favoriteEvent/favoriteEvent';
 import * as ToastMessageActions from './toastMessage';
+import { IFavoritesAction } from '../../models/interfaces/store/actions/favorites';
 
 export const FETCH_FAVORITES = 'FETCH_FAVORITES';
-// export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
 export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
 export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
 export const SET_LOADING = 'SET_LOADING';
+export const FAVORITES_ADD_NORMAL_TICKET = 'FAVORITES_ADD_NORMAL_TICKET';
+export const FAVORITES_ADD_VIP_TICKET = 'FAVORITES_ADD_VIP_TICKET';
+export const FAVORITES_REMOVE_NORMAL_TICKET = 'FAVORITES_REMOVE_NORMAL_TICKET';
+export const FAVORITES_REMOVE_VIP_TICKET = 'FAVORITES_REMOVE_VIP_TICKET';
+export const FAVORITES_RESET_TICKET_COUNT = 'FAVORITES_RESET_TICKET_COUNT';
+export const FAVORITES_RESET_ALL_TICKETS = 'FAVORITES_RESET_ALL_TICKETS';
 
 export const fetchFavorites = () => 
     (dispatch: any) => {
@@ -41,7 +47,7 @@ export const fetchFavorites = () =>
                             favoriteEvents[eventUid].normalTicket,
                             favoriteEvents[eventUid].vipTicket,
                             favoriteEvents[eventUid].totalPrice,
-                            favoriteEvents[eventUid].moduleType,
+                            'favorites',
                             eventUid
                         );
 
@@ -144,6 +150,36 @@ export const toggleFavorite = (selectedEvent: IEventShowcaseEvent): any => {
             dispatch(setToastMessage(toastMessageData));
         }
     }
+}
+
+export const favoritesAddNormalTicket = (selectedEvent: IFavoriteEvent): IFavoritesAction => {
+    
+    return { type: FAVORITES_ADD_NORMAL_TICKET, selectedEvent};
+}
+
+export const favoritesAddVipTicket = (selectedEvent: IFavoriteEvent): IFavoritesAction => {
+
+    return { type: FAVORITES_ADD_VIP_TICKET, selectedEvent};
+}
+
+export const favoritesRemoveNormalTicket = (selectedEvent: IFavoriteEvent): IFavoritesAction => {
+
+    return { type: FAVORITES_REMOVE_NORMAL_TICKET, selectedEvent };
+}
+
+export const favoritesRemoveVipTicket = (selectedEvent: IFavoriteEvent): IFavoritesAction => {
+
+    return { type: FAVORITES_REMOVE_VIP_TICKET, selectedEvent };
+}
+
+export const favoritesResetTicketsCount = (selectedEvent: IFavoriteEvent): IFavoritesAction => {
+
+    return { type: FAVORITES_RESET_TICKET_COUNT, selectedEvent };
+}
+
+export const favoritesResetAllTickets = (): IFavoritesAction => {
+
+    return { type: FAVORITES_RESET_ALL_TICKETS };
 }
 
 const getFavoritesEvents = () => 

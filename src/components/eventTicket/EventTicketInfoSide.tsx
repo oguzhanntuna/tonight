@@ -2,12 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import './EventTicketInfoSide.scss';
 
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
+import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
 
 import detailIcon from '../../assets/icons/document-text-outline.svg';
 import FavoriteIcon from '../favoriteIcon/favoriteIcon';
 
 interface IEventTicketFrontSideProps {
-    eventData: IEventShowcaseEvent;
+    eventData: IEventShowcaseEvent | IFavoriteEvent;
     toggleTicketSide: () => void;
 }
 

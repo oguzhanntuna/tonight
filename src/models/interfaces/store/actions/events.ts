@@ -1,3 +1,4 @@
+import { IFavoriteEvent } from './../../favoriteEvent/favoriteEvent';
 import { IEventShowcaseEvent } from "../../eventShowcase/eventShowcase";
 
 export interface IEventsAction {
@@ -7,5 +8,5 @@ export interface IEventsAction {
     recentlyAddedEvents?: Array<IEventShowcaseEvent>;
     thisWeekEvents?: Array<IEventShowcaseEvent>;
     eventDetail?: IEventShowcaseEvent;
-    eventData?: IEventShowcaseEvent;
+    eventData?: IEventShowcaseEvent | IFavoriteEvent | null;
 }

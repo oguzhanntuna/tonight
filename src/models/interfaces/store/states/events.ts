@@ -1,9 +1,9 @@
-import { EventShowcaseEvent } from "../../../eventShowcase/event";
+import { IEventShowcaseEvent } from "../../eventShowcase/eventShowcase";
 
 export interface IEventsState {
-    allEvents: Array<EventShowcaseEvent>;
-    buyNowEvents: Array<EventShowcaseEvent>;
-    recentlyAddedEvents: Array<EventShowcaseEvent>;
-    thisWeekEvents: Array<EventShowcaseEvent>;
-    eventDetail: EventShowcaseEvent | null;
+    allEvents: Array<IEventShowcaseEvent>;
+    buyNowEvents: Array<IEventShowcaseEvent>;
+    recentlyAddedEvents: Array<IEventShowcaseEvent>;
+    thisWeekEvents: Array<IEventShowcaseEvent>;
+    eventDetail: IEventShowcaseEvent | null;
 }

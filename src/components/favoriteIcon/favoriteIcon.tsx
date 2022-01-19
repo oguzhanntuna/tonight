@@ -4,12 +4,13 @@ import './favoriteIcon.scss';
 import * as FavoritesActions from '../../store/actions/favorites';
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
+import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
 
 import favIconEmpty from '../../assets/icons/heart-outline.svg';
 import favIconFull from '../../assets/icons/heart-full.svg';
 
 interface IFavoriteIcon {
-    eventToBeLiked: IEventShowcaseEvent;
+    eventToBeLiked: IEventShowcaseEvent | IFavoriteEvent;
     showFavoritesText: boolean;
 }
 
@@ -32,7 +33,16 @@ const FavoriteIcon = (props: IFavoriteIcon): JSX.Element => {
                         : <img src={favIconEmpty} alt="empty favorite icon" /> 
                 }
             </div>
-            { showFavoritesText && <span className="addToFavoriteIconContainer-favouritesText">Add To Favorites</span> }
+            { 
+                showFavoritesText && 
+                <span className="addToFavoriteIconContainer-favouritesText">
+                    {
+                        isEventAlreadyInFavorites
+                            ? 'Remove From Favorites'
+                            : 'Add To Favorites'
+                    }    
+                </span> 
+            }
         </div>
     );
 }

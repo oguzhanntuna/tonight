@@ -7,10 +7,11 @@ import EventDetailPage from './eventDetail/eventDetail';
 import ProfilePage from './profile/profile';
 import LoginPage from './login/login';
 import SignupPage from './signup/signup';
+import FavoritesPage from './favorites/favorites';
 
 const Page = (): JSX.Element => {
-
     const PageRouting = () => (
+    
         <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/events" element={<EventsPage />} />
@@ -18,6 +19,7 @@ const Page = (): JSX.Element => {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
+            <Route path="favorites" element={<FavoritesPage />} />
         </Routes>
     );
 

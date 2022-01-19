@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import { EventShowcaseEvent } from "../../models/eventShowcase/event";
 import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/eventShowcase";
 import { IEventsAction } from "../../models/interfaces/store/actions/events";

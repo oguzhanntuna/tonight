@@ -26,7 +26,7 @@ const EventsPage = (): JSX.Element => {
             <HeroImage imageUrl={heroImage} />
             <div className="eventsPage-content">
                 <div className="allEventsContainer">
-                    <div className="allEventsContainer-header">
+                    <div className="allEventsContainer-title">
                         All Events
                     </div>
                     <div className="allEventsContainer-events">

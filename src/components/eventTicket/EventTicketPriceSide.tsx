@@ -1,12 +1,13 @@
 import './EventTicketPriceSide.scss';
 
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
+import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
 
 import EventTicketPriceRow from './EventTicketPriceRow';
 import returnBackIcon from '../../assets/icons/return-back.svg';
 
 interface IEventTicketPriceSide {
-    eventData: IEventShowcaseEvent;
+    eventData: IEventShowcaseEvent | IFavoriteEvent;
     toggleTicketSide: () => void;
 }
 

@@ -1,6 +1,6 @@
+import { EventShowcaseEvent } from '../../models/eventShowcase/event';
 import { IEventsAction } from './../../models/interfaces/store/actions/events';
 import { IEventsState } from '../../models/interfaces/store/states/events';
-import { EventShowcaseEvent } from '../../models/eventShowcase/event';
 
 import { 
     SET_THIS_WEEK_EVENTS,
@@ -130,23 +130,23 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
 
                     case 'event-detail':
 
-                    const updatedEventDetail = new EventShowcaseEvent(
-                        addedNormalTicketEvent.id,
-                        addedNormalTicketEvent.title,
-                        addedNormalTicketEvent.imageUrl,
-                        addedNormalTicketEvent.location,
-                        addedNormalTicketEvent.date,
-                        addedNormalTicketEvent.url,
-                        addedNormalTicketEvent.normalTicket,
-                        addedNormalTicketEvent.vipTicket,
-                        addedNormalTicketEvent.totalPrice,
-                        addedNormalTicketEvent.moduleType
-                    ) 
+                        const updatedEventDetail = new EventShowcaseEvent(
+                            addedNormalTicketEvent.id,
+                            addedNormalTicketEvent.title,
+                            addedNormalTicketEvent.imageUrl,
+                            addedNormalTicketEvent.location,
+                            addedNormalTicketEvent.date,
+                            addedNormalTicketEvent.url,
+                            addedNormalTicketEvent.normalTicket,
+                            addedNormalTicketEvent.vipTicket,
+                            addedNormalTicketEvent.totalPrice,
+                            addedNormalTicketEvent.moduleType
+                        ) 
 
-                    return {
-                        ...state,
-                        eventDetail: updatedEventDetail
-                    }
+                        return {
+                            ...state,
+                            eventDetail: updatedEventDetail
+                        }
                 }
             }
 
