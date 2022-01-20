@@ -7,8 +7,10 @@ import { imageSliderData } from '../../../data/imageSliderData';
 
 const ImageSlider = (): JSX.Element => {
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-    const lastImageIndex: number = imageSliderData.length - 1;
+    const [paginationItemLoadingPercentage, setPaginationItemLoadingPercentage] = useState<number>(0);
     const [imageSliderRef, imageSliderHover] = useHover();
+    
+    const lastImageIndex: number = imageSliderData.length - 1;
 
     const goToNextImage = useCallback((): void => {
         const nextImageIndex = currentImageIndex + 1
@@ -24,12 +26,22 @@ const ImageSlider = (): JSX.Element => {
 
     useEffect(() => {
         const intervalId: NodeJS.Timeout = setInterval(() => { goToNextImage() }, 5000);
+        const loadingPercentageIntervalId: NodeJS.Timeout = setInterval(() => {
+
+            setPaginationItemLoadingPercentage(prevLoadingPercentage => prevLoadingPercentage + 1);
+        }, 50);
 
         if (imageSliderHover) {
             clearInterval(intervalId);
+            clearInterval(loadingPercentageIntervalId);
+            setPaginationItemLoadingPercentage(0);
         }
 
-        return () => clearInterval(intervalId);
+        return () => { 
+            clearInterval(intervalId);
+            clearInterval(loadingPercentageIntervalId);
+            setPaginationItemLoadingPercentage(0);
+        } 
     }, [goToNextImage, imageSliderHover]);
 
     const renderPagination = (): JSX.Element => (
@@ -39,8 +51,17 @@ const ImageSlider = (): JSX.Element => {
                     <div 
                         className={`imageSlider-paginationItem ${currentImageIndex === index ? 'active' : ''}`} 
                         onClick={() => setCurrentImageIndex(index)}
-                        key={`paginationItem-${index}`} 
-                    />
+                        key={`paginationItem-${index}`}
+                    >
+                        {
+                            currentImageIndex === index
+                                ? <div 
+                                    className="imageSlider-paginationLoader" 
+                                    style={{ width: `${paginationItemLoadingPercentage}%` }} 
+                                />
+                                : <></>
+                        }
+                    </div>
                 ))
             }
         </div>
@@ -80,10 +101,14 @@ const ImageSlider = (): JSX.Element => {
             { renderSliderItems() }
             { renderPagination() }
             <div className="imageSlider-previousButton" onClick={() => goToPreviousImage()}>
-                <img src={sliderButton} alt="previous button icon" />
+                <div className="imageSlider-previousIcon">
+                    <img src={sliderButton} alt="previous button icon" />
+                </div>
             </div>
             <div className="imageSlider-nextButton" onClick={() => goToNextImage()}>
-                <img src={sliderButton} alt="next button icon" />
+                <div className="imageSlider-nextIcon">
+                    <img src={sliderButton} alt="next button icon" />
+                </div>
             </div>
         </div>
     );
