@@ -1,17 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import'./Header.scss';
 
 import { IApplicationState } from '../../models/interfaces/store/states/application';
-import * as AuthActions from '../../store/actions/auth';
 
-import moreIcon from '../../assets/icons/more.svg';
+import ProfileTab from './ProfileTab';
 import favIconEmpty from '../../assets/icons/heart-outline.svg';
 import cartIconEmpty from '../../assets/icons/cart-outline.svg';
 
 const Header = (): JSX.Element => {
-    const { logout } = AuthActions;
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const activeUsername = useSelector((state: IApplicationState) => state.auth.displayName);
 
@@ -20,11 +17,6 @@ const Header = (): JSX.Element => {
         
         window.pageYOffset > 0 ? headerElement?.classList.add('blurred') : headerElement?.classList.remove('blurred');
     });
-
-    const capitalizeFirstLetter = (word: string) => {
-
-        return word.charAt(0).toUpperCase() + word.slice(1);
-    }
 
     return (
         <div className="header" id="header">
@@ -35,19 +27,7 @@ const Header = (): JSX.Element => {
             <div className="userActionContainer">
                 {
                     activeUsername
-                        ? <>                        
-                            <button onClick={() => dispatch(logout())}>
-                                Log Out
-                            </button>
-                            <div className="userActionContainer-profile">
-                                <span className="userActionContainer-username">
-                                    {capitalizeFirstLetter(activeUsername)}
-                                </span>
-                                <div className="userActionContainer-moreIcon">
-                                    <img src={moreIcon} alt="more" />
-                                </div>
-                            </div>
-                        </>
+                        ? <ProfileTab activeUsername={activeUsername} />
                         : <>
                             <button 
                                 className="userActionContainer-login"

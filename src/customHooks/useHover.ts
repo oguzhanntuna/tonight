@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 
-const useHover = (): [React.MutableRefObject<HTMLDivElement | null>, boolean] => {
+export const useHover = (): [React.MutableRefObject<HTMLDivElement | null>, boolean] => {
     const ref = useRef<HTMLDivElement | null>(null);
     const [hovered, setHovered] = useState<boolean>(false);
+    
     const enter = (): void => setHovered(true);
     const leave = (): void => setHovered(false);
 
@@ -11,19 +12,17 @@ const useHover = (): [React.MutableRefObject<HTMLDivElement | null>, boolean] =>
 
         if (elementRef) {
 
-            elementRef.addEventListener('mouseenter', () => enter() );
-            elementRef.addEventListener('mouseleave', () => leave() );
+            elementRef.addEventListener('mouseenter', () => enter());
+            elementRef.addEventListener('mouseleave', () => leave());
 
             return () => {
                 console.log('cleanup');
 
-                elementRef.removeEventListener('mouseenter', () => enter() );
-                elementRef.removeEventListener('mouseleave', () => leave() );
+                elementRef.removeEventListener('mouseenter', () => enter());
+                elementRef.removeEventListener('mouseleave', () => leave());
             }
         }
     }, []);
 
     return [ref, hovered];
 }
-
-export default useHover;

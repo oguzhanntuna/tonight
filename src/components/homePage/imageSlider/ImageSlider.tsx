@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import useHover from '../../../customHooks/useHover';
+import { useHover } from '../../../customHooks/useHover';
 import './ImageSlider.scss';
 
 import sliderButton from '../../../assets/icons/arrow-forward-outline.svg';
