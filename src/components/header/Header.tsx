@@ -4,7 +4,7 @@ import'./Header.scss';
 
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
-import ProfileTab from './ProfileTab';
+import AccountTab from './AccountTab';
 import favIconEmpty from '../../assets/icons/heart-outline.svg';
 import cartIconEmpty from '../../assets/icons/cart-outline.svg';
 
@@ -18,6 +18,19 @@ const Header = (): JSX.Element => {
         window.pageYOffset > 0 ? headerElement?.classList.add('blurred') : headerElement?.classList.remove('blurred');
     });
 
+    {/* <button 
+        className="userActionContainer-login"
+        onClick={() => navigate('/login')} 
+    >
+        Log In
+    </button>
+    <button 
+        className="userActionContainer-signup"
+        onClick={() => navigate('/signup')}
+    >
+        Sign Up
+    </button> */}
+
     return (
         <div className="header" id="header">
             <Link to="/" className="logo">Tonight</Link>
@@ -27,21 +40,8 @@ const Header = (): JSX.Element => {
             <div className="userActionContainer">
                 {
                     activeUsername
-                        ? <ProfileTab activeUsername={activeUsername} />
-                        : <>
-                            <button 
-                                className="userActionContainer-login"
-                                onClick={() => navigate('/login')} 
-                            >
-                                Log In
-                            </button>
-                            <button 
-                                className="userActionContainer-signup"
-                                onClick={() => navigate('/signup')}
-                            >
-                                Sign Up
-                            </button>
-                        </>
+                        ? <AccountTab tabLabel={activeUsername} />
+                        : <AccountTab />
                 }
                 <div 
                     className="userActionContainer-favorites" 
