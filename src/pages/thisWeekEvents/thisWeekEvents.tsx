@@ -3,7 +3,7 @@ import './thisWeekEvents.scss';
 import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/heroImage.jpg';
 
-const thisWeekEventsPage = () => {
+const thisWeekEventsPage = (): JSX.Element => {
 
     return (
         <div className="thisWeekEventsPage">

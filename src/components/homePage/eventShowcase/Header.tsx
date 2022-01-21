@@ -13,6 +13,13 @@ const EventShowcaseHeader = (props: IEventShowcaseHeaderProps): JSX.Element => {
     const { title, displayFilters } = props;
     const navigate = useNavigate();
 
+    const convertTitleToRedirectUrl = (title: string) => {
+        const splittedTitleArray = title.toLowerCase().split(' ');
+        const redirectUrl = splittedTitleArray.join('-');
+
+        return redirectUrl;
+    }
+    
     return (
         <div className="eventShowcaseHeader">
             <div className="eventShowcaseHeader-title">{title}</div>
@@ -20,7 +27,7 @@ const EventShowcaseHeader = (props: IEventShowcaseHeaderProps): JSX.Element => {
             <div className="eventShowcaseHeader-moreButton">
                 <div 
                     className="eventShowcaseHeader-text"
-                    onClick={() => navigate('/this-week')}
+                    onClick={() => navigate(`/${convertTitleToRedirectUrl(title)}`)}
                 >
                     See All
                 </div>

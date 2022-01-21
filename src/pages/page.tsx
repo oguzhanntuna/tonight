@@ -9,6 +9,7 @@ import LoginPage from './login/login';
 import SignupPage from './signup/signup';
 import FavoritesPage from './favorites/favorites';
 import ThisWeekEventsPage from './thisWeekEvents/thisWeekEvents';
+import RecentlyAddedEventsPage from './recentlyAddedEvents/recentlyAddedEvents';
 
 const Page = (): JSX.Element => {
     const PageRouting = () => (
@@ -17,6 +18,7 @@ const Page = (): JSX.Element => {
             <Route path="/" element={<HomePage />} />
             <Route path="/events" element={<AllEventsPage />} />
             <Route path="/this-week" element={<ThisWeekEventsPage />} />
+            <Route path="/recently-added" element={<RecentlyAddedEventsPage />} />
             <Route path="/events/:eventName" element={<EventDetailPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/login" element={<LoginPage />} />
