@@ -2,19 +2,21 @@ import { Routes, Route } from 'react-router-dom';
 import './page.scss';
 
 import HomePage from './home/home';
-import EventsPage from './events/events';
+import AllEventsPage from './allEvents/allEvents';
 import EventDetailPage from './eventDetail/eventDetail';
 import ProfilePage from './profile/profile';
 import LoginPage from './login/login';
 import SignupPage from './signup/signup';
 import FavoritesPage from './favorites/favorites';
+import ThisWeekEventsPage from './thisWeekEvents/thisWeekEvents';
 
 const Page = (): JSX.Element => {
     const PageRouting = () => (
     
         <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/events" element={<EventsPage />} />
+            <Route path="/events" element={<AllEventsPage />} />
+            <Route path="/this-week" element={<ThisWeekEventsPage />} />
             <Route path="/events/:eventName" element={<EventDetailPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/login" element={<LoginPage />} />

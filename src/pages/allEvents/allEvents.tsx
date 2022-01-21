@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './events.scss';
+import './allEvents.scss';
 
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import * as eventActions from '../../store/actions/events';
@@ -9,7 +9,7 @@ import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/heroImage.jpg';
 import EventTicket from '../../components/eventTicket/EventTicket';
 
-const EventsPage = (): JSX.Element => {
+const AllEventsPage = (): JSX.Element => {
     const { fetchAllEvents } = eventActions;
     const allEvents = useSelector((state: IApplicationState) => state.events.allEvents);
 
@@ -22,9 +22,9 @@ const EventsPage = (): JSX.Element => {
     }, [dispatch, fetchAllEvents]);
 
     return (
-        <div className="eventsPage">
+        <div className="allEventsPage">
             <HeroImage imageUrl={heroImage} />
-            <div className="eventsPage-content">
+            <div className="allEventsPage-content">
                 <div className="allEventsContainer">
                     <div className="allEventsContainer-title">
                         All Events
@@ -38,4 +38,4 @@ const EventsPage = (): JSX.Element => {
     );
 }
 
-export default EventsPage;
+export default AllEventsPage;
