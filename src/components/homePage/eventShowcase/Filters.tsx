@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './Filters.scss';
 
 const EventShowcaseFilters = (): JSX.Element => {
-    const daysOfTheWeekArray: Array<string> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Firday', 'Saturday', 'Sunday'];
+    const daysOfTheWeekArray: Array<string> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const [activeDaysFilter, setActiveDaysFilter] = useState<number>(0);
     
     return (

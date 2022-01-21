@@ -10,18 +10,17 @@ export const useClickOutside = (): IUseClickOutsideReturnValue => {
     const ref = useRef<HTMLDivElement | null>(null);
 
     const handleClickOutside = (event: any) => {
-
+        
         if (ref.current && !ref.current.contains(event.target)) {
-
             setIsClickedOutside(true);
-        }  
+        }
     }
 
     useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('click', handleClickOutside);
 
         return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('click', handleClickOutside);
         }
     }, []);
 

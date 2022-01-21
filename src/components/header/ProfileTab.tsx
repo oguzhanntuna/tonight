@@ -23,12 +23,17 @@ const ProfileTab = (props: IProfileTabProps): JSX.Element => {
     } 
 
     return (
-        <div className="profileTab" onClick={() => toggleProfileDropdown()}>
-            <span className="profileTab-username">
-                {capitalizeFirstLetter(activeUsername)}
-            </span>
-            <div className="profileTab-moreIcon">
-                <img src={moreIcon} alt="more" />
+        <div 
+            className="profileTab"
+            onClick={() => toggleProfileDropdown()}
+        >
+            <div className="profileTabContainer">
+                <span className="profileTabContainer-username">
+                    {capitalizeFirstLetter(activeUsername)}
+                </span>
+                <div className={`profileTabContainer-moreIcon ${showProfileDropdown ? 'active' : '' }`}>
+                    <img src={moreIcon} alt="more" />
+                </div>
             </div>
             { 
                 showProfileDropdown && 

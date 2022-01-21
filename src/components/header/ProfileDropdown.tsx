@@ -16,10 +16,9 @@ const ProfileDropdown = (props: IProfileDropdownProps): JSX.Element => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { ref, isClickedOutside } = useClickOutside();
-
+    
     useEffect(() => {
         if (isClickedOutside) {
-
             setShowProfileDropdown(false);
         }
 
