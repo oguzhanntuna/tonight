@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import './signup.scss';
@@ -13,6 +14,7 @@ import Form from '../../components/form/Form';
 const SignupPage = (): JSX.Element => {
     const { signup } = authActions;
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [username, setUsername] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -52,7 +54,8 @@ const SignupPage = (): JSX.Element => {
                 password
             }
     
-            dispatch(signup(userData));
+            dispatch(signup(userData))
+            navigate('/');
         }
     }
 
