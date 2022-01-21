@@ -18,24 +18,14 @@ const Header = (): JSX.Element => {
         window.pageYOffset > 0 ? headerElement?.classList.add('blurred') : headerElement?.classList.remove('blurred');
     });
 
-    {/* <button 
-        className="userActionContainer-login"
-        onClick={() => navigate('/login')} 
-    >
-        Log In
-    </button>
-    <button 
-        className="userActionContainer-signup"
-        onClick={() => navigate('/signup')}
-    >
-        Sign Up
-    </button> */}
-
     return (
         <div className="header" id="header">
             <Link to="/" className="logo">Tonight</Link>
             <ul className="navigationContainer">
-                <NavLink to="/events" className="navigationContainer-tab">Events</NavLink>
+                <NavLink to="/events" className="navigationContainer-tab">All Events</NavLink>
+                <NavLink to="/this-week" className="navigationContainer-tab">This Week</NavLink>
+                <NavLink to="/recently-added" className="navigationContainer-tab">Recently Added</NavLink>
+                <NavLink to="/buy-now" className="navigationContainer-tab">Buy Now</NavLink>
             </ul>
             <div className="userActionContainer">
                 {
