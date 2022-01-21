@@ -3,7 +3,7 @@ import './buyNowEvents.scss';
 import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/heroImage.jpg';
 
-const buyNowEventsPage = (): JSX.Element => {
+const BuyNowEventsPage = (): JSX.Element => {
 
     return (
         <div className="buyNowEventsPage">
@@ -15,4 +15,4 @@ const buyNowEventsPage = (): JSX.Element => {
     );
 }
 
-export default buyNowEventsPage;
+export default BuyNowEventsPage;

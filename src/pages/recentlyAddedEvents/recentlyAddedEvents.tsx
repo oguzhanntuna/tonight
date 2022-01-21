@@ -3,7 +3,7 @@ import './recentlyAddedEvents.scss';
 import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/heroImage.jpg';
 
-const recentlyAddedEventsPage = (): JSX.Element => {
+const RecentlyAddedEventsPage = (): JSX.Element => {
 
     return (
         <div className="recentlyAddedEventsPage">
@@ -15,4 +15,4 @@ const recentlyAddedEventsPage = (): JSX.Element => {
     );
 }
 
-export default recentlyAddedEventsPage;
+export default RecentlyAddedEventsPage;
