@@ -19,7 +19,7 @@ const ThisWeekEventsPage = (): JSX.Element => {
         if (thisWeekEvents && thisWeekEvents.length === 0) {
             dispatch(fetchThisWeekEvents());
         }
-    }, [thisWeekEvents, dispatch, fetchThisWeekEvents])
+    }, [thisWeekEvents, dispatch, fetchThisWeekEvents]);
 
     return (
         <div className="thisWeekEventsPage">

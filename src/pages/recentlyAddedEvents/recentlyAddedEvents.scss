@@ -5,4 +5,27 @@
         max-width: 1024px;
         margin: 12rem auto 0 auto;
     }
+
+    .recentlyAddedEventsContainer {
+        &-title {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            font-size: 6.4rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: -.6rem;
+            word-spacing: 1rem;
+        }
+
+        &-events {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            .eventTicket {
+                height: 42.2rem;
+                margin: 0 .5rem 6rem .5rem;
+            }
+        }
+    }
 }
