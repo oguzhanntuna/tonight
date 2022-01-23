@@ -1,3 +1,5 @@
+@import '../../variables/variables.scss';
+
 .favoritesPage {
     .favoritesPageContainer {
         position: relative;
@@ -8,8 +10,11 @@
         flex-direction: column;
 
         &-title {
-            margin-bottom: 1rem;
-            padding-left: 2rem;
+            width: fit-content;
+            margin-bottom: 2rem;
+            padding: 0 2rem;
+            background-color: $color-background;
+            z-index: 1;
             font-size: 6.4rem;
             font-weight: bold;
             text-transform: uppercase;
