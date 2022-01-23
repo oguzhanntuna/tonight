@@ -1,3 +1,4 @@
+import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import './buyNowEvents.scss';
@@ -13,6 +14,8 @@ const BuyNowEventsPage = (): JSX.Element => {
     const { fetchBuyNowEvents } = EventActions;
     const buyNowEvents = useSelector((state: IApplicationState) => state.events.buyNowEvents);
     const dispatch = useDispatch();
+
+    useScrollToTop();
 
     useEffect(() => {
 

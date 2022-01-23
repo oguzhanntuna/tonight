@@ -8,11 +8,14 @@ import * as EventActions from '../../store/actions/events';
 import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/heroImage.jpg';
 import EventTicket from '../../components/eventTicket/EventTicket';
+import { useScrollToTop } from '../../customHooks/useScrollToTop';
 
 const RecentlyAddedEventsPage = (): JSX.Element => {
     const { fetchRecentlyAddedEvents } = EventActions;
     const recentlyAddedEvents = useSelector((state: IApplicationState) => state.events.recentlyAddedEvents);
     const dispatch = useDispatch();
+    
+    useScrollToTop();
 
     useEffect(() => {
 

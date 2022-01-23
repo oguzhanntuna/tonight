@@ -8,12 +8,15 @@ import * as EventActions from '../../store/actions/events';
 import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/heroImage.jpg';
 import EventTicket from '../../components/eventTicket/EventTicket';
+import { useScrollToTop } from '../../customHooks/useScrollToTop';
 
 const ThisWeekEventsPage = (): JSX.Element => {
     const { fetchThisWeekEvents } = EventActions;
     const thisWeekEvents = useSelector((state: IApplicationState) => state.events.thisWeekEvents);
     const dispatch = useDispatch();
 
+    useScrollToTop();
+    
     useEffect(() => {
 
         if (thisWeekEvents && thisWeekEvents.length === 0) {

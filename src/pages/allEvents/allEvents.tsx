@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import './allEvents.scss';
 
 import { IApplicationState } from '../../models/interfaces/store/states/application';
@@ -11,14 +12,14 @@ import EventTicket from '../../components/eventTicket/EventTicket';
 
 const AllEventsPage = (): JSX.Element => {
     const { fetchAllEvents } = eventActions;
+    const dispatch = useDispatch();
     const allEvents = useSelector((state: IApplicationState) => state.events.allEvents);
 
-    const dispatch = useDispatch();
+    useScrollToTop();
 
     useEffect(() => {
         dispatch(fetchAllEvents());
 
-        window.scrollTo({ top: 0, left: 0 });
     }, [dispatch, fetchAllEvents]);
 
     return (

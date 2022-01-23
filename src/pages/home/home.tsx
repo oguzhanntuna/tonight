@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import './home.scss';
 
 import heroImage from '../../assets/heroImage.jpg';
@@ -8,9 +8,7 @@ import HeroImage from '../../components/heroImage/HeroImage';
 
 const HomePage = (): JSX.Element => {
 
-    useEffect(() => {
-        window.scrollTo({ top: 0, left: 0 });
-    }, []);
+    useScrollToTop();
 
     return (
         <div className="homePage">
