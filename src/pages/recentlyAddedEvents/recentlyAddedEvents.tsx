@@ -6,7 +6,7 @@ import { IApplicationState } from '../../models/interfaces/store/states/applicat
 import * as EventActions from '../../store/actions/events';
 
 import HeroImage from '../../components/heroImage/HeroImage';
-import heroImage from '../../assets/heroImage.jpg';
+import heroImage from '../../assets/techno8.jpeg';
 import EventTicket from '../../components/eventTicket/EventTicket';
 import { useScrollToTop } from '../../customHooks/useScrollToTop';
 

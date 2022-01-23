@@ -5,7 +5,7 @@ import './favorites.scss';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import * as FavoritesActions from '../../store/actions/favorites';
 
-import heroImage from '../../assets/heroImage.jpg'
+import heroImage from '../../assets/techno2.jpg'
 import favoriteIcon from '../../assets/icons/heart-favorites.svg';
 import HeroImage from '../../components/heroImage/HeroImage';
 import EventTicket from '../../components/eventTicket/EventTicket';

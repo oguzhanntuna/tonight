@@ -6,7 +6,7 @@ import './eventDetail.scss';
 import * as eventActions from '../../store/actions/events';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
-import heroImage from '../../assets/heroImage.jpg';
+import heroImage from '../../assets/techno2.jpg';
 import HeroImage from '../../components/heroImage/HeroImage';
 import EventDetail from '../../components/eventDetailPage/EventDetail';
 import EventPriceSlip from '../../components/eventDetailPage/EventPriceSlip';
