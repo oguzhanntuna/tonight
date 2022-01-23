@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import './favoriteIcon.scss';
+import './FavoriteIcon.scss';
 
 import * as FavoritesActions from '../../store/actions/favorites';
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';

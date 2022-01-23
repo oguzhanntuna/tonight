@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import './toastMessage.scss';
+import './ToastMessage.scss';
 
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import * as toastMessageActions from '../../store/actions/toastMessage';

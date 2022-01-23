@@ -5,7 +5,7 @@ import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event
 import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
 
 import detailIcon from '../../assets/icons/document-text-outline.svg';
-import FavoriteIcon from '../favoriteIcon/favoriteIcon';
+import FavoriteIcon from '../favoriteIcon/FavoriteIcon';
 
 interface IEventTicketFrontSideProps {
     eventData: IEventShowcaseEvent | IFavoriteEvent;

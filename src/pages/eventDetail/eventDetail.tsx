@@ -8,8 +8,8 @@ import { IApplicationState } from '../../models/interfaces/store/states/applicat
 
 import heroImage from '../../assets/heroImage.jpg';
 import HeroImage from '../../components/heroImage/HeroImage';
-import EventDetail from '../../components/eventDetailPage/eventDetail';
-import EventPriceSlip from '../../components/eventDetailPage/eventPriceSlip';
+import EventDetail from '../../components/eventDetailPage/EventDetail';
+import EventPriceSlip from '../../components/eventDetailPage/EventPriceSlip';
 
 const EventDetailPage = (): JSX.Element => {
     const { fetchEventDetail } = eventActions;

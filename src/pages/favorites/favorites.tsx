@@ -1,13 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import './favorites.scss';
 
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import * as FavoritesActions from '../../store/actions/favorites';
 
-import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/heroImage.jpg'
+import favoriteIcon from '../../assets/icons/heart-favorites.svg';
+import HeroImage from '../../components/heroImage/HeroImage';
 import EventTicket from '../../components/eventTicket/EventTicket';
-import { useEffect } from 'react';
+import EmptyState from '../../components/emptyState/EmptyState';
 
 const FavoritesPage = (): JSX.Element => {
     const { favoritesResetAllTickets } = FavoritesActions;
@@ -21,37 +23,41 @@ const FavoritesPage = (): JSX.Element => {
         }
     }, [dispatch, favoritesResetAllTickets]);
 
-    const renderFavoriteEvents = (): Array<JSX.Element> => {
+    const renderFavoriteEvents = (): JSX.Element => {
 
-        return favoriteEvents.map((favoriteEvent, index) => (
-            <EventTicket  
-                key={`${index}-${favoriteEvent?.id}`} 
-                eventData={favoriteEvent} 
-            />
-        ));
+        return <div className="favoriteEvents">
+            {
+                favoriteEvents.map((favoriteEvent, index) => (
+                    <EventTicket  
+                        key={`${index}-${favoriteEvent?.id}`} 
+                        eventData={favoriteEvent} 
+                    />
+                ))
+            }
+        </div> 
     }
 
     const renderEmptyState = (): JSX.Element => (
-        <div className="favoritesPageContainer-emptyState">
-            Empty State
-        </div>
+        
+        <EmptyState 
+            icon={favoriteIcon}
+            text="No favourites yet!"
+        />
     )
 
     return (
         <div className="favoritesPage">
             <HeroImage imageUrl={heroImage} />
-            <div className="favoritesPage-content">
-                <div className="favoritesPageContainer">
-                    <div className="favoritesPageContainer-title">
-                        My Favorites
-                    </div>
-                    <div className="favoritesPageContainer-favoriteEvents">
-                        {
-                            favoriteEvents && favoriteEvents.length > 0
-                                ? renderFavoriteEvents()
-                                : renderEmptyState()
-                        }
-                    </div>
+            <div className="favoritesPageContainer">
+                <div className="favoritesPageContainer-title">
+                    My Favorites
+                </div>
+                <div className="favoritesPageContainer-content">
+                    {
+                        favoriteEvents && favoriteEvents.length > 0
+                            ? renderFavoriteEvents()
+                            : renderEmptyState()
+                    }
                 </div>
             </div>
         </div>
