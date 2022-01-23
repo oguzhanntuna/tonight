@@ -1,0 +1,25 @@
+@import '../../variables/variables.scss';
+
+.cartPage {
+    .cartPageContainer {
+        position: relative;
+        width: 95%;
+        max-width: 1024px;
+        margin: 12rem auto 0 auto;
+        display: flex;
+        flex-direction: column;
+
+        &-title {
+            width: fit-content;
+            margin-bottom: 2rem;
+            padding: 0 2rem;
+            background-color: $color-background;
+            z-index: 1;
+            font-size: 6.4rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: -.6rem;
+            word-spacing: 1rem;
+        }
+    }
+}

@@ -11,6 +11,7 @@ import FavoritesPage from './favorites/favorites';
 import ThisWeekEventsPage from './thisWeekEvents/thisWeekEvents';
 import RecentlyAddedEventsPage from './recentlyAddedEvents/recentlyAddedEvents';
 import BuyNowEventsPage from './buyNowEvents/buyNowEvents';
+import CartPage from './cart/cart';
 
 const Page = (): JSX.Element => {
     const PageRouting = () => (
@@ -25,7 +26,8 @@ const Page = (): JSX.Element => {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
-            <Route path="favorites" element={<FavoritesPage />} />
+            <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="/cart" element={<CartPage />} />
         </Routes>
     );
 
