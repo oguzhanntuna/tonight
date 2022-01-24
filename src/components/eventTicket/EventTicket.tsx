@@ -49,15 +49,15 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
 
             dispatch(addToCart(event));
 
-            if (event instanceof EventShowcaseEvent) {
+            // if (event instanceof EventShowcaseEvent) {
 
-                dispatch(resetTicketsCount(event));
-            }
+            //     dispatch(resetTicketsCount(event));
+            // }
 
-            if (event instanceof FavoriteEvent) {
+            // if (event instanceof FavoriteEvent) {
                 
-                dispatch(favoritesResetTicketsCount(event));
-            }
+            //     dispatch(favoritesResetTicketsCount(event));
+            // }
             
             dispatch(setToastMessage(toastMessageData));
 

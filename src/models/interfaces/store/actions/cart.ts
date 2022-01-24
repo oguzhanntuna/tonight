@@ -1,7 +1,7 @@
-import { IFavoriteEvent } from './../../favoriteEvent/favoriteEvent';
-import { IEventShowcaseEvent } from "../../eventShowcase/eventShowcase";
+import { ICartEvent } from '../../cartEvent/cartEvent';
 
 export interface ICartAction {
     type: string;
-    addedEvent: IEventShowcaseEvent | IFavoriteEvent;
+    addedEvent: ICartEvent;
+    updatedEvent: ICartEvent;
 }

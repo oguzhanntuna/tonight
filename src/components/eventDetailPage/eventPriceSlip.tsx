@@ -21,7 +21,7 @@ const EventPriceSlip = (props: IEventPriceSlip): JSX.Element => {
 
     const addEventToCart = (event: IEventShowcaseEvent) => {
         dispatch(addToCart(event));
-        dispatch(resetTicketsCount(event));
+        // dispatch(resetTicketsCount(event));
     }
 
     return (
@@ -51,7 +51,7 @@ const EventPriceSlip = (props: IEventPriceSlip): JSX.Element => {
                 onClick={() => addEventToCart(data)}
                 disabled={totalPrice <= 0}
             >
-                Buy Now
+                Add To Cart
             </button>
         </div>
     );

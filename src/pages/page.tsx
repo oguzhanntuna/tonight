@@ -12,9 +12,10 @@ import ThisWeekEventsPage from './thisWeekEvents/thisWeekEvents';
 import RecentlyAddedEventsPage from './recentlyAddedEvents/recentlyAddedEvents';
 import BuyNowEventsPage from './buyNowEvents/buyNowEvents';
 import CartPage from './cart/cart';
+import { useEffect } from 'react';
 
 const Page = (): JSX.Element => {
-    const PageRouting = () => (
+    const PageRouting = (): JSX.Element => (
     
         <Routes>
             <Route path="/" element={<HomePage />} />

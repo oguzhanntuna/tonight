@@ -1,6 +1,5 @@
-import { IFavoriteEvent } from './../../favoriteEvent/favoriteEvent';
-import { IEventShowcaseEvent } from "../../eventShowcase/eventShowcase";
+import { ICartEvent } from '../../cartEvent/cartEvent';
 
 export interface ICartState {
-    cartItems: Array<IEventShowcaseEvent | IFavoriteEvent | null>;
+    cartItems: Array<ICartEvent | null>;
 }
