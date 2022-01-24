@@ -2,15 +2,65 @@ import axios from 'axios';
 
 import * as ToastMessageActions from './toastMessage';
 import { CartEvent } from './../../models/cartEvent/cartEvent';
-import { ICartEvent } from './../../models/interfaces/cartEvent/cartEvent';
+import { ICartEvent, uniqueId } from './../../models/interfaces/cartEvent/cartEvent';
 import { ILocalStorageUserData } from './../../models/interfaces/auth/auth';
 import { IFavoriteEvent } from './../../models/interfaces/favoriteEvent/favoriteEvent';
 import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/eventShowcase";
 import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
+export const FETCH_CART = 'FETCH_CART';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const UPDATE_ITEM_IN_CART = 'UPDATE_ITEM_IN_CART';
+export const SET_LOADING = 'SET_LOADING';
+
+export const fetchCart = () => 
+    (dispatch: any) => {
+        const userData = localStorage.getItem('userDataJSON');
+        
+        if (userData) {
+            const parsedUserData: ILocalStorageUserData = JSON.parse(userData);
+            const { userId } = parsedUserData;
+            const userCartUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/cart/${userId}.json`;
+
+            // dispatch(setLoading());
+            axios.get(userCartUrl)
+                .then(response => {
+                    const { data } = response;
+                    const cartEvents: { [key: uniqueId]: ICartEvent } = data;
+                    let cartEventsArray: Array<IFavoriteEvent> = [];
+
+                    for (let eventUid in cartEvents) {
+                        const cartEvent: IFavoriteEvent = new CartEvent(
+                            cartEvents[eventUid].id,
+                            cartEvents[eventUid].title,
+                            cartEvents[eventUid].imageUrl,
+                            cartEvents[eventUid].location,
+                            cartEvents[eventUid].date,
+                            cartEvents[eventUid].url,
+                            cartEvents[eventUid].normalTicket,
+                            cartEvents[eventUid].vipTicket,
+                            cartEvents[eventUid].totalPrice,
+                            'cart',
+                            eventUid
+                        );
+
+                        cartEventsArray.push(cartEvent)
+                    }
+
+                    dispatch({
+                        type: FETCH_CART,
+                        cartEvents: cartEventsArray
+                    });
+                })
+                .catch(error => console.log(error));
+        }
+
+        dispatch({
+            type: FETCH_CART,
+            cartEvents: []
+        });
+}
 
 export const addToCart = (addedEvent: IEventShowcaseEvent | IFavoriteEvent): any => {
 
@@ -170,7 +220,7 @@ const getEventAlreadyInCart = (event: IEventShowcaseEvent | IFavoriteEvent) => {
     }  
 }
 
-// const setLoading = () => {
+const setLoading = () => {
     
-//     return { type: SET_LOADING };
-// } 
+    return { type: SET_LOADING };
+} 

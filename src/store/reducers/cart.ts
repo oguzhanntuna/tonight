@@ -1,7 +1,7 @@
 import { ICartAction } from '../../models/interfaces/store/actions/cart';
 import { ICartState } from '../../models/interfaces/store/states/cart';
 
-import { ADD_TO_CART, UPDATE_ITEM_IN_CART } from '../actions/cart';
+import { ADD_TO_CART, FETCH_CART, UPDATE_ITEM_IN_CART } from '../actions/cart';
 
 const initialState: ICartState = {
     cartItems: []
@@ -9,6 +9,18 @@ const initialState: ICartState = {
 
 export const cartReducer = (state = initialState, action: ICartAction): ICartState => {
     switch(action.type) {
+        case FETCH_CART:
+
+            if (action.cartEvents) {
+
+                return {
+                    ...state,
+                    cartItems: action.cartEvents
+                }
+            }
+
+        break;
+
         case ADD_TO_CART:
             const { addedEvent } = action;
 

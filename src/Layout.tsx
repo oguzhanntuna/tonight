@@ -4,6 +4,7 @@ import './Layout.scss'
 
 import * as AuthActions from './store/actions/auth';
 import * as FavoritesActions from './store/actions/favorites';
+import * as CartActions from './store/actions/cart';
 
 import Header from './components/header/Header';
 import Page from './pages/page';
@@ -14,13 +15,15 @@ import ToastMessage from './components/toastMessage/ToastMessage';
 const Layout = (): JSX.Element => {
   const { checkAuthState } = AuthActions;
   const { fetchFavorites } = FavoritesActions;
+  const { fetchCart } = CartActions;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(checkAuthState());
     dispatch(fetchFavorites());
+    dispatch(fetchCart());
     
-  }, [dispatch, checkAuthState, fetchFavorites]);
+  }, [dispatch, checkAuthState, fetchFavorites, fetchCart]);
 
   return (
     <div className="layout">
