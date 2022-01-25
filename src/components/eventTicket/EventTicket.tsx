@@ -15,9 +15,10 @@ import * as FavoritesEventActions from '../../store/actions/favorites';
 
 import EventTicketPriceSide from './EventTicketPriceSide';
 import EventTicketInfoSide from './EventTicketInfoSide';
+import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
 
 interface IEventTicketProps {
-    eventData: IEventShowcaseEvent | IFavoriteEvent;
+    eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent;
 }
 
 const EventTicket = (props: IEventTicketProps): JSX.Element => {

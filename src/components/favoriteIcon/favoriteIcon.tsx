@@ -5,12 +5,13 @@ import * as FavoritesActions from '../../store/actions/favorites';
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
+import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
 
 import favIconEmpty from '../../assets/icons/heart-outline.svg';
 import favIconFull from '../../assets/icons/heart-full.svg';
 
 interface IFavoriteIcon {
-    eventToBeLiked: IEventShowcaseEvent | IFavoriteEvent;
+    eventToBeLiked: IEventShowcaseEvent | IFavoriteEvent | ICartEvent;
     showFavoritesText: boolean;
 }
 

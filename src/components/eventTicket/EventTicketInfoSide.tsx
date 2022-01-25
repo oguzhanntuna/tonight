@@ -3,12 +3,13 @@ import './EventTicketInfoSide.scss';
 
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
+import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
 
 import detailIcon from '../../assets/icons/document-text-outline.svg';
 import FavoriteIcon from '../favoriteIcon/FavoriteIcon';
 
 interface IEventTicketFrontSideProps {
-    eventData: IEventShowcaseEvent | IFavoriteEvent;
+    eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent;
     toggleTicketSide: () => void;
 }
 

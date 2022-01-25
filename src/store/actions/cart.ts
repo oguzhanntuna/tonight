@@ -14,8 +14,8 @@ export const ADD_TO_CART = 'ADD_TO_CART';
 export const UPDATE_ITEM_IN_CART = 'UPDATE_ITEM_IN_CART';
 export const SET_LOADING = 'SET_LOADING';
 
-export const fetchCart = () => 
-    (dispatch: any) => {
+export const fetchCart = () => {
+    return (dispatch: any) => {
         const userData = localStorage.getItem('userDataJSON');
         
         if (userData) {
@@ -60,7 +60,9 @@ export const fetchCart = () =>
             type: FETCH_CART,
             cartEvents: []
         });
+    }
 }
+
 
 export const addToCart = (addedEvent: IEventShowcaseEvent | IFavoriteEvent): any => {
 

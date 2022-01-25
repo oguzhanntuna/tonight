@@ -8,6 +8,8 @@ import heroImage from '../../assets/heroImage.jpg'
 import cartIcon from '../../assets/icons/cart-full.svg';
 import HeroImage from '../../components/heroImage/HeroImage';
 import EmptyState from '../../components/emptyState/EmptyState';
+import EventTicket from '../../components/eventTicket/EventTicket';
+import Checkout from '../../components/checkout/Checkout';
 
 const CartPage = (): JSX.Element => {
     const cartItems = useSelector((state: IApplicationState) => state.cart.cartItems);
@@ -16,6 +18,20 @@ const CartPage = (): JSX.Element => {
         console.log(cartItems);
 
     }, [cartItems]);
+
+    const renderCartEvents = (): JSX.Element => {
+
+        return <div className="cartEvents">
+            {
+                cartItems.map((cartItem, index) => (
+                    <EventTicket  
+                        key={`${index}-${cartItem?.id}`} 
+                        eventData={cartItem} 
+                    />
+                ))
+            }
+        </div>
+    } 
 
     const renderEmptyState = (): JSX.Element => (
         
@@ -33,14 +49,16 @@ const CartPage = (): JSX.Element => {
                     My Cart
                 </div>
                 <div className="cartPageContainer-content">
-                    {/* {
-                        favoriteEvents && favoriteEvents.length > 0
-                            ? renderFavoriteEvents()
-                            : renderEmptyState()
-                    } */}
-                    {
-                        renderEmptyState()
-                    }
+                    <div className="cartPageContainer-leftSide">
+                        {
+                            cartItems && cartItems.length > 0
+                                ? renderCartEvents()
+                                : renderEmptyState()
+                        }
+                    </div>
+                    <div className="cartPageContainer-rightSide">
+                       <Checkout cartItems={cartItems} />
+                    </div>
                 </div>
             </div>
         </div>

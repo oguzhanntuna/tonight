@@ -22,5 +22,28 @@
             letter-spacing: -.6rem;
             word-spacing: 1rem;
         }
+
+        &-content {
+            display: flex;
+
+            .cartEvents {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+
+                .eventTicket {
+                    margin: 0 3rem 3rem 0;
+                }
+            }
+
+        }
+
+        &-leftSide {
+            width: 100%;
+        }
+
+        &-rightSide {
+
+        }
     }
 }
