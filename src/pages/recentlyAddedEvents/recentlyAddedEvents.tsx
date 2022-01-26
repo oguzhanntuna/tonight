@@ -30,7 +30,7 @@ const RecentlyAddedEventsPage = (): JSX.Element => {
             <div className="recentlyAddedEventsPage-content">
                 <div className="recentlyAddedEventsContainer">
                     <div className="recentlyAddedEventsContainer-title">
-                    Recently Added Events
+                        Recently Added Events
                     </div>
                     <div className="recentlyAddedEventsContainer-events">
                         { 
