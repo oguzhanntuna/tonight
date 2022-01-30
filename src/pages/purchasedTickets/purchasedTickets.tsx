@@ -16,13 +16,24 @@ const PurchasedTickets = (): JSX.Element => {
     const renderPurchasedTickets = () => {
 
         return (
-            <div className="purchasedTickets">
+            <div className="orders">
                 {
                     orders.map(order => {
-                        <div className="purchasedTickets-orderContainer">
-                            Orders
-                            {/* <EventTicket data={order} /> */}
-                        </div>
+                        const purchasedTickets = order.purchasedTickets;
+
+                        return (
+                            <div className="orders-order">
+                                { 
+                                    purchasedTickets.map(purchasedTicket => (
+                                        <div className="orders-purchasedTickets">
+                                            {
+                                                purchasedTicket.title
+                                            }
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        )
                     })
                 }
             </div>
