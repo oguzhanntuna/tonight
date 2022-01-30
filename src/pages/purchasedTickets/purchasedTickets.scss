@@ -1,13 +1,13 @@
-.myTicketsPage {
-    &-content {
+.purchasedTicketsPage {
+    .purchasedTicketsPageContainer {
         position: relative;
         width: 95%;
         max-width: 1024px;
         margin: 12rem auto 0 auto;
-
-        .myTicketsPageContainer {
-            margin-bottom: 1rem;
-            padding-left: 2rem;
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+        
+        &-title {
             font-size: 6.4rem;
             font-weight: bold;
             text-transform: uppercase;

@@ -1,4 +1,4 @@
-import { OrderItem } from './../../models/orderItem/orderItem';
+import { PurchasedTicket } from './../../models/purchasedTicket/purchasedTicket';
 import axios from 'axios'; 
 
 import * as ToastMessageActions from './toastMessage';
@@ -10,8 +10,10 @@ import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/event
 import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
-import { ADD_TO_MY_TICKETS } from './myTickets';
-import { IOrderItem } from '../../models/interfaces/orderItem/orderItem';
+import { ADD_TO_ORDERS } from './orders';
+import { Order } from '../../models/order/order';
+import { IPurchasedTicket } from '../../models/interfaces/purchasedTicket/purchasedTicket';
+import { IOrder } from '../../models/interfaces/order/order';
 
 export const FETCH_CART = 'FETCH_CART';
 export const ADD_TO_CART = 'ADD_TO_CART';
@@ -180,15 +182,15 @@ export const purchaseCart = () => {
         if (userData) {
             const parsedUserData: ILocalStorageUserData = JSON.parse(userData);
             const { userId } = parsedUserData;
-            const userCartUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/my-tickets/${userId}.json`;
+            const userCartUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/orders/${userId}.json`;
 
             axios.post(userCartUrl, cartEvents)
                 .then(() => {
-                    let myTickets: Array<IOrderItem> = [];
-                    let order:  Array<Array<IOrderItem>> = [];
+                    let purchasedTickets: Array<IPurchasedTicket> = [];
+                    let orders:  Array<IOrder> = [];
 
                     cartEvents.forEach(cartEvent => {
-                        const myTicketEvent: IOrderItem = new OrderItem(
+                        const purchasedTicket: IPurchasedTicket = new PurchasedTicket(
                             cartEvent.id,
                             cartEvent.title,
                             cartEvent.imageUrl,
@@ -200,19 +202,18 @@ export const purchaseCart = () => {
                             cartEvent.totalPrice
                         )
 
-                        myTickets.push(myTicketEvent);
+                        purchasedTickets.push(purchasedTicket);
                     });
 
-                    order.push(myTickets);
-
-                    // myTickets.push(order);
-
-                    // We need to store that response to fetch myTickets /userId/cartUq ??
-                    console.log('purchased myTickets:', order);
+                    const order: IOrder = new Order(
+                        purchasedTickets,
+                        'date'
+                    )
+                    orders.push(order);
 
                     dispatch({
-                        type: ADD_TO_MY_TICKETS,
-                        purchasedEvents: order
+                        type: ADD_TO_ORDERS,
+                        orders: orders
                     });
                 })
                 .catch(error => console.log(error));

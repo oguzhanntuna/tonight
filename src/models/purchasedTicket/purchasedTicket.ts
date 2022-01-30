@@ -1,6 +1,6 @@
 import { IEventShowCaseTicket } from "../interfaces/eventShowcase/eventShowcase";
 
-export class OrderItem {
+export class PurchasedTicket {
     constructor(
         public id: number, 
         public title: string, 

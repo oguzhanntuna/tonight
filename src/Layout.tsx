@@ -5,7 +5,7 @@ import './Layout.scss'
 import * as AuthActions from './store/actions/auth';
 import * as FavoritesActions from './store/actions/favorites';
 import * as CartActions from './store/actions/cart';
-import * as MyTicketsActions from './store/actions/myTickets';
+import * as MyTicketsActions from './store/actions/orders';
 
 import Header from './components/header/Header';
 import Page from './pages/page';

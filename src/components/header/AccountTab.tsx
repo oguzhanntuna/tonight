@@ -43,8 +43,8 @@ const AccountTab = (props: IAccountTabProps): JSX.Element => {
     
                 setDropdownItems([
                     {
-                        label: 'My Tickets',
-                        onClick: () => navigate('/my-tickets')
+                        label: 'Purchased Tickets',
+                        onClick: () => navigate('/purchased-tickets')
                     },
                     {
                         label: 'Log Out',

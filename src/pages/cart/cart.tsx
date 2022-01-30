@@ -16,7 +16,7 @@ const CartPage = (): JSX.Element => {
     const isLoggedin = useSelector((state: IApplicationState) => state.auth.token);
 
     useEffect(() => {
-        console.log(cartItems);
+        console.log('cartItems:', cartItems);
 
     }, [cartItems]);
 

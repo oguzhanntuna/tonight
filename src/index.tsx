@@ -13,7 +13,7 @@ import { cartReducer } from './store/reducers/cart';
 import { favoritesReducer } from './store/reducers/favorites';
 import { authReducer } from './store/reducers/auth';
 import { toastMessageReducer } from './store/reducers/toastMessage';
-import { myTicketsReducer } from './store/reducers/myTickets';
+import { ordersReducer } from './store/reducers/orders';
 import Layout from './Layout';
 
 const rootReducer = combineReducers<IApplicationState>({
@@ -22,7 +22,7 @@ const rootReducer = combineReducers<IApplicationState>({
   favorites: favoritesReducer,
   auth: authReducer,
   toastMessage: toastMessageReducer,
-  myTickets: myTicketsReducer
+  orders: ordersReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
