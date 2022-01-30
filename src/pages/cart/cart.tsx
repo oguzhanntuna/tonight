@@ -13,6 +13,7 @@ import Checkout from '../../components/checkout/Checkout';
 
 const CartPage = (): JSX.Element => {
     const cartItems = useSelector((state: IApplicationState) => state.cart.cartItems);
+    const isLoggedin = useSelector((state: IApplicationState) => state.auth.token);
 
     useEffect(() => {
         console.log(cartItems);
@@ -57,7 +58,10 @@ const CartPage = (): JSX.Element => {
                         }
                     </div>
                     <div className="cartPageContainer-rightSide">
-                       <Checkout cartItems={cartItems} />
+                        {
+                            isLoggedin &&
+                            <Checkout cartItems={cartItems} cartPurchasable={cartItems.length > 0} />
+                        }
                     </div>
                 </div>
             </div>

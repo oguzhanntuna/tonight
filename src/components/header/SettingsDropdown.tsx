@@ -1,27 +1,27 @@
-import './AccountDropdown.scss';
+import { useClickOutside } from '../../customHooks/useClickOutside';
+import { useEffect } from 'react';
+import './SettingsDropdown.scss';
 
 import { IDropdownItems } from './AccountTab';
-import { useEffect } from 'react';
-import { useClickOutside } from '../../customHooks/useClickOutside';
 
-interface IAccountDropdownProps {
+interface ISettingsDropdownProps {
     dropdownItems: Array<IDropdownItems>;
-    setShowAccountDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+    setShowSettingsDropdown: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AccountDropdown = (props: IAccountDropdownProps): JSX.Element => {
-    const { dropdownItems, setShowAccountDropdown } = props;
+const SettingsDropdown = (props: ISettingsDropdownProps): JSX.Element => {
+    const { dropdownItems, setShowSettingsDropdown } = props;
     const { ref, isClickedOutside } = useClickOutside();
     
     useEffect(() => {
         if (isClickedOutside) {
-            setShowAccountDropdown(false);
+            setShowSettingsDropdown(false);
         }
 
-    }, [isClickedOutside, setShowAccountDropdown]);
+    }, [isClickedOutside, setShowSettingsDropdown]);
 
     return (
-        <div className="accountDropdown" ref={ref}>
+        <div className="settingsDropdown" ref={ref}>
             <ul>
                 {
                     dropdownItems.map((item, index) => (
@@ -38,5 +38,5 @@ const AccountDropdown = (props: IAccountDropdownProps): JSX.Element => {
     );
 }
 
-export default AccountDropdown;
+export default SettingsDropdown;
 

@@ -1,6 +1,6 @@
 import { IEventShowCaseTicket } from "../interfaces/eventShowcase/eventShowcase";
 
-export class FavoriteEvent {
+export class MyTicketEvent {
     constructor(
         public id: number, 
         public title: string, 
@@ -10,9 +10,7 @@ export class FavoriteEvent {
         public url: string,
         public normalTicket: IEventShowCaseTicket,
         public vipTicket: IEventShowCaseTicket,
-        public totalPrice: number,
-        public moduleType: string,
-        public uniqueId: string
+        public totalPrice: number
     ) {
         this.id = id;
         this.title = title;
@@ -23,7 +21,5 @@ export class FavoriteEvent {
         this.normalTicket = normalTicket;
         this.vipTicket = vipTicket;
         this.totalPrice = totalPrice;
-        this.moduleType = moduleType;
-        this.uniqueId = uniqueId;
     }
 }

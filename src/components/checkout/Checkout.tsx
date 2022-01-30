@@ -1,13 +1,18 @@
+import { useDispatch } from 'react-redux';
 import './Checkout.scss';
 
+import * as CartActions from '../../store/actions/cart';
 import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
 
 interface ICheckoutProps {
     cartItems: Array<ICartEvent>;
+    cartPurchasable: boolean;
 }
 
 const Checkout = (props: ICheckoutProps): JSX.Element => {
-    const { cartItems } = props;
+    const { cartItems, cartPurchasable } = props;
+    const { purchaseCart } = CartActions;
+    const dispatch = useDispatch();
 
     const calculateTotalPrice = (): number => {
         let totalPrice: number = 0;
@@ -38,7 +43,14 @@ const Checkout = (props: ICheckoutProps): JSX.Element => {
                     { getTotalPrice() }
                 </div>
             </div>
-            <button className="checkout-purchaseButton">
+            <button 
+                className={`
+                    checkout-purchaseButton 
+                    ${!cartPurchasable ? 'checkout-purchaseButton--disabled' : ''}
+                `}
+                onClick={() => dispatch(purchaseCart())}
+                disabled={!cartPurchasable}
+            >
                 Purchase
             </button>
         </div>

@@ -1,6 +1,6 @@
 import { IEventShowCaseTicket } from "../interfaces/eventShowcase/eventShowcase";
 
-export class CartEvent{
+export class CartEvent {
     constructor(
         public id: number, 
         public title: string, 

@@ -1,6 +1,6 @@
 import { IEventShowCaseTicket } from "../interfaces/eventShowcase/eventShowcase";
 
-export class EventShowcaseEvent{
+export class EventShowcaseEvent {
     constructor(
         public id: number, 
         public title: string, 

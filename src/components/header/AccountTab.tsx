@@ -5,7 +5,7 @@ import './AccountTab.scss';
 
 import * as AuthActions from '../../store/actions/auth';
 
-import AccountDropdown from './AccountDropdown';
+import SettingsDropdown from './SettingsDropdown';
 import moreIcon from '../../assets/icons/more.svg';
 
 export interface IDropdownItems {
@@ -83,9 +83,9 @@ const AccountTab = (props: IAccountTabProps): JSX.Element => {
             </div>
             { 
                 showProfileDropdown && 
-                <AccountDropdown 
+                <SettingsDropdown 
                     dropdownItems={dropdownItems} 
-                    setShowAccountDropdown={setShowProfileDropdown}
+                    setShowSettingsDropdown={setShowProfileDropdown}
                 />
             }
         </div>

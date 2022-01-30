@@ -1,3 +1,4 @@
+import { OrderItem } from './../../models/orderItem/orderItem';
 import axios from 'axios'; 
 
 import * as ToastMessageActions from './toastMessage';
@@ -8,6 +9,9 @@ import { IFavoriteEvent } from './../../models/interfaces/favoriteEvent/favorite
 import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/eventShowcase";
 import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
+
+import { ADD_TO_MY_TICKETS } from './myTickets';
+import { IOrderItem } from '../../models/interfaces/orderItem/orderItem';
 
 export const FETCH_CART = 'FETCH_CART';
 export const ADD_TO_CART = 'ADD_TO_CART';
@@ -104,7 +108,7 @@ export const addToCart = (addedEvent: IEventShowcaseEvent | IFavoriteEvent): any
                                             vipTicket: updatedVipTicket,
                                             totalPrice: updatedTotalPrice
                                         })
-                                            .then(response => {
+                                            .then(() => {
                                                 const updatedEvent: ICartEvent = new CartEvent(
                                                     addedEvent.id,
                                                     addedEvent.title,
@@ -166,6 +170,57 @@ export const addToCart = (addedEvent: IEventShowcaseEvent | IFavoriteEvent): any
         }
     }
 };
+
+export const purchaseCart = () => {
+
+    return (dispatch: any) => {
+        const cartEvents: Array<ICartEvent> = dispatch(getCartEvents());
+        const userData = localStorage.getItem('userDataJSON');
+
+        if (userData) {
+            const parsedUserData: ILocalStorageUserData = JSON.parse(userData);
+            const { userId } = parsedUserData;
+            const userCartUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/my-tickets/${userId}.json`;
+
+            axios.post(userCartUrl, cartEvents)
+                .then(() => {
+                    let myTickets: Array<IOrderItem> = [];
+                    let order:  Array<Array<IOrderItem>> = [];
+
+                    cartEvents.forEach(cartEvent => {
+                        const myTicketEvent: IOrderItem = new OrderItem(
+                            cartEvent.id,
+                            cartEvent.title,
+                            cartEvent.imageUrl,
+                            cartEvent.location,
+                            cartEvent.date,
+                            cartEvent.url,
+                            cartEvent.normalTicket,
+                            cartEvent.vipTicket,
+                            cartEvent.totalPrice
+                        )
+
+                        myTickets.push(myTicketEvent);
+                    });
+
+                    order.push(myTickets);
+
+                    // myTickets.push(order);
+
+                    // We need to store that response to fetch myTickets /userId/cartUq ??
+                    console.log('purchased myTickets:', order);
+
+                    dispatch({
+                        type: ADD_TO_MY_TICKETS,
+                        purchasedEvents: order
+                    });
+                })
+                .catch(error => console.log(error));
+        }
+
+        // No need for else case since user can't see the cart logged out.
+    }
+}
 
 const getCartEvents = () => {
 

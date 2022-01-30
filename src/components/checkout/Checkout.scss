@@ -28,5 +28,9 @@
         text-transform: uppercase;
         outline: none;
         cursor: pointer;
+
+        &--disabled {
+            cursor: not-allowed;
+        }
     }
 }

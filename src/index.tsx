@@ -1,26 +1,28 @@
+import './index.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-
-import './index.scss';
 import reportWebVitals from './reportWebVitals';
-import Layout from './Layout';
+
 import { IApplicationState } from './models/interfaces/store/states/application';
 import { eventsReducer } from './store/reducers/events';
 import { cartReducer } from './store/reducers/cart';
 import { favoritesReducer } from './store/reducers/favorites';
 import { authReducer } from './store/reducers/auth';
 import { toastMessageReducer } from './store/reducers/toastMessage';
+import { myTicketsReducer } from './store/reducers/myTickets';
+import Layout from './Layout';
 
 const rootReducer = combineReducers<IApplicationState>({
   events: eventsReducer,
   cart: cartReducer,
   favorites: favoritesReducer,
   auth: authReducer,
-  toastMessage: toastMessageReducer
+  toastMessage: toastMessageReducer,
+  myTickets: myTicketsReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
