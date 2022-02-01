@@ -4,12 +4,16 @@ import './EventTicketInfoSide.scss';
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
 import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
+import { IPurchasedTicket } from '../../models/interfaces/purchasedTicket/purchasedTicket';
 
 import detailIcon from '../../assets/icons/document-text-outline.svg';
 import FavoriteIcon from '../favoriteIcon/FavoriteIcon';
+import { EventShowcaseEvent } from '../../models/eventShowcase/event';
+import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
+import { CartEvent } from '../../models/cartEvent/cartEvent';
 
 interface IEventTicketFrontSideProps {
-    eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent;
+    eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent | IPurchasedTicket;
     toggleTicketSide: () => void;
 }
 
@@ -40,10 +44,15 @@ const EventTicketFrontside = (props: IEventTicketFrontSideProps): JSX.Element =>
             >
                 <img src={detailIcon} alt="detail icon" />
             </div>
-            <FavoriteIcon 
-                eventToBeLiked={eventData}
-                showFavoritesText={false} 
-            />
+            {
+                (eventData instanceof EventShowcaseEvent ||
+                eventData instanceof FavoriteEvent ||
+                eventData instanceof CartEvent) &&
+                <FavoriteIcon 
+                    eventToBeLiked={eventData}
+                    showFavoritesText={false} 
+                />
+            }
             <div 
                 className="eventTicketInfoSide-content" 
                 onClick={() => toggleTicketSide()}

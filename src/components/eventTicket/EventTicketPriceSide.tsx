@@ -6,9 +6,10 @@ import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
 
 import EventTicketPriceRow from './EventTicketPriceRow';
 import returnBackIcon from '../../assets/icons/return-back.svg';
+import { IPurchasedTicket } from '../../models/interfaces/purchasedTicket/purchasedTicket';
 
 interface IEventTicketPriceSide {
-    eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent;
+    eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent | IPurchasedTicket;
     toggleTicketSide: () => void;
 }
 

@@ -1,3 +1,5 @@
+@import '../../variables/variables.scss';
+
 .purchasedTicketsPage {
     .purchasedTicketsPageContainer {
         position: relative;
@@ -8,6 +10,7 @@
         padding-left: 2rem;
         
         &-title {
+            margin-bottom: 6rem;
             font-size: 6.4rem;
             font-weight: bold;
             text-transform: uppercase;
@@ -16,12 +19,33 @@
         }
 
         .orders {
-            &-order {
-
+            &-orderContainer {
+                margin-bottom: 12rem;
             }
 
-            &-purchasedTickets {
-                
+            &-orderDate {
+                margin: 0 38rem 4rem 38rem;
+                padding-bottom: 1rem;
+                border-bottom: 3px solid $color-white;
+                text-align: center;
+                font-size: 2.5rem;
+                font-weight: bold;
+                text-transform: uppercase;
+            }   
+
+            &-purchasedTicketsContainer {
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                border-bottom: 3px solid $color-white;
+            }
+
+            &-purchasedTicket {
+                margin-bottom: 4rem;
+
+                &:not(:last-child) {
+                    margin-right: 1.5rem;
+                }
             }
         }
     }

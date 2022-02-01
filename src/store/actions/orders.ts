@@ -10,7 +10,7 @@ import { Order } from '../../models/order/order';
 export const ADD_TO_ORDERS = 'ADD_TO_ORDERS';
 export const FETCH_ORDERS = 'FETCH_ORDERS';
 
-export const fetchMyTickets = () => {
+export const fetchOrders = () => {
     return (dispatch: any) => {
         const userData = localStorage.getItem('userDataJSON');
         
@@ -62,9 +62,10 @@ export const fetchMyTickets = () => {
                 .catch(error => console.log(error));
         }
 
+        // Is it necessary?
         // dispatch({
-        //     type: FETCH_FAVORITES,
-        //     favoritesEvent: []
+        //     type: FETCH_ORDERS,
+        //     orders: []
         // });
     }
 }

@@ -8,6 +8,8 @@ import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/event
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
 import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
+import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
+import { IPurchasedTicket } from '../../models/interfaces/purchasedTicket/purchasedTicket';
 import * as EventActions from '../../store/actions/events';
 import * as CartActions from '../../store/actions/cart';
 import * as ToastMessageActions from '../../store/actions/toastMessage';
@@ -15,10 +17,9 @@ import * as FavoritesEventActions from '../../store/actions/favorites';
 
 import EventTicketPriceSide from './EventTicketPriceSide';
 import EventTicketInfoSide from './EventTicketInfoSide';
-import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
 
 interface IEventTicketProps {
-    eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent;
+    eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent | IPurchasedTicket;
 }
 
 const EventTicket = (props: IEventTicketProps): JSX.Element => {
@@ -87,7 +88,8 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
                 `}
                 onClick={() => {
                     isTicketSelected
-                        ? addEventToCart(eventData)
+                        ? (eventData instanceof EventShowcaseEvent || eventData instanceof FavoriteEvent) && 
+                            addEventToCart(eventData)
                         : toggleTicketSide()
                 }}
                 disabled={isTicketSelected && eventData.totalPrice === 0}

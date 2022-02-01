@@ -5,7 +5,7 @@ import './Layout.scss'
 import * as AuthActions from './store/actions/auth';
 import * as FavoritesActions from './store/actions/favorites';
 import * as CartActions from './store/actions/cart';
-import * as MyTicketsActions from './store/actions/orders';
+import * as OrdersActions from './store/actions/orders';
 
 import Header from './components/header/Header';
 import Page from './pages/page';
@@ -17,16 +17,16 @@ const Layout = (): JSX.Element => {
   const { checkAuthState } = AuthActions;
   const { fetchFavorites } = FavoritesActions;
   const { fetchCart } = CartActions;
-  const { fetchMyTickets } = MyTicketsActions;
+  const { fetchOrders } = OrdersActions;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(checkAuthState());
     dispatch(fetchFavorites());
     dispatch(fetchCart());
-    dispatch(fetchMyTickets());
+    dispatch(fetchOrders());
     
-  }, [dispatch, checkAuthState, fetchFavorites, fetchCart, fetchMyTickets]);
+  }, [dispatch, checkAuthState, fetchFavorites, fetchCart, fetchOrders]);
 
   return (
     <div className="layout">

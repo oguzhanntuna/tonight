@@ -6,6 +6,7 @@ import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
 import { IEventShowcaseEvent, IEventShowCaseTicket } from '../../models/interfaces/eventShowcase/eventShowcase';
 import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
 import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
+import { IPurchasedTicket } from '../../models/interfaces/purchasedTicket/purchasedTicket';
 import * as EventActions from '../../store/actions/events';
 import * as FavoritesActions from '../../store/actions/favorites';
 
@@ -13,7 +14,7 @@ import addIcon from '../../assets/icons/add.svg';
 import removeIcon from '../../assets/icons/remove.svg';
 
 interface IEventTicketPriceRowProps {
-    eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent;
+    eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent | IPurchasedTicket;
     ticketData: IEventShowCaseTicket;
 }
 

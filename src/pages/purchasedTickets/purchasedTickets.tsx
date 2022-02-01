@@ -5,6 +5,7 @@ import HeroImage from '../../components/heroImage/HeroImage';
 import { useSelector } from 'react-redux';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import { useEffect } from 'react';
+import EventTicket from '../../components/eventTicket/EventTicket';
 
 const PurchasedTickets = (): JSX.Element => {
     const orders = useSelector((state: IApplicationState) => state.orders.orders);
@@ -13,32 +14,35 @@ const PurchasedTickets = (): JSX.Element => {
         console.log('orders: ', orders);
     }, [orders]);
 
-    const renderPurchasedTickets = () => {
+    const renderPurchasedTickets = () => (
+        <div className="orders">
+            {
+                orders.map(order => {
+                    const purchasedTickets = order.purchasedTickets;
 
-        return (
-            <div className="orders">
-                {
-                    orders.map(order => {
-                        const purchasedTickets = order.purchasedTickets;
-
-                        return (
-                            <div className="orders-order">
+                    return (
+                        <div className="orders-orderContainer">
+                            <div className="orders-orderDate">
+                                31 Ocak 2022
+                            </div>
+                            <div className="orders-purchasedTicketsContainer">
                                 { 
                                     purchasedTickets.map(purchasedTicket => (
-                                        <div className="orders-purchasedTickets">
+                                        <div className="orders-purchasedTicket">
                                             {
-                                                purchasedTicket.title
+                                                // purchasedTicket.title 
+                                                <EventTicket eventData={purchasedTicket} />
                                             }
                                         </div>
                                     ))
                                 }
                             </div>
-                        )
-                    })
-                }
-            </div>
-        );
-    }
+                        </div>
+                    )
+                })
+            }
+        </div>
+    );
 
     return (
         <div className="purchasedTicketsPage">
