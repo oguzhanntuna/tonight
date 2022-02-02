@@ -4,5 +4,6 @@ export interface ICartAction {
     type: string;
     addedEvent: ICartEvent;
     updatedEvent: ICartEvent;
-    cartEvents: Array<ICartEvent>
+    cartEvents: Array<ICartEvent>;
+    ticketCount: number;
 }

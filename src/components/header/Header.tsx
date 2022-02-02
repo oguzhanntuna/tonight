@@ -11,6 +11,9 @@ import cartIconEmpty from '../../assets/icons/cart-outline.svg';
 const Header = (): JSX.Element => {
     const navigate = useNavigate();
     const activeUsername = useSelector((state: IApplicationState) => state.auth.displayName);
+    const ticketCount = useSelector((state: IApplicationState) => state.cart.ticketCount);
+
+    console.log(ticketCount);
 
     document.addEventListener('scroll', () => {
         const headerElement = document.getElementById('header');
@@ -53,6 +56,9 @@ const Header = (): JSX.Element => {
                     </div>
                     <span>
                         Cart
+                    </span>
+                    <span className="userActionContainer-ticketCount">
+                        { ticketCount }
                     </span>
                 </div>
             </div>

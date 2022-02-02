@@ -35,6 +35,7 @@ export const fetchCart = () => {
                     const { data } = response;
                     const cartEvents: { [key: uniqueId]: ICartEvent } = data;
                     let cartEventsArray: Array<IFavoriteEvent> = [];
+                    let ticketCount = 0;
 
                     for (let eventUid in cartEvents) {
                         const cartEvent: IFavoriteEvent = new CartEvent(
@@ -51,12 +52,16 @@ export const fetchCart = () => {
                             eventUid
                         );
 
-                        cartEventsArray.push(cartEvent)
+                        ticketCount = ticketCount + 
+                            cartEvents[eventUid].normalTicket.count + 
+                            cartEvents[eventUid].vipTicket.count;
+                        cartEventsArray.push(cartEvent);
                     }
 
                     dispatch({
                         type: FETCH_CART,
-                        cartEvents: cartEventsArray
+                        cartEvents: cartEventsArray,
+                        ticketCount
                     });
                 })
                 .catch(error => console.log(error));
@@ -111,6 +116,7 @@ export const addToCart = (addedEvent: IEventShowcaseEvent | IFavoriteEvent): any
                                             totalPrice: updatedTotalPrice
                                         })
                                             .then(() => {
+                                                const ticketCount = addedEvent.normalTicket.count + addedEvent.vipTicket.count;
                                                 const updatedEvent: ICartEvent = new CartEvent(
                                                     addedEvent.id,
                                                     addedEvent.title,
@@ -127,7 +133,8 @@ export const addToCart = (addedEvent: IEventShowcaseEvent | IFavoriteEvent): any
                                                 
                                                 dispatch({
                                                     type: UPDATE_ITEM_IN_CART,
-                                                    updatedEvent: updatedEvent
+                                                    updatedEvent: updatedEvent,
+                                                    ticketCount
                                                 });
                                             })
                                             .catch(error => console.log(error));
@@ -139,6 +146,7 @@ export const addToCart = (addedEvent: IEventShowcaseEvent | IFavoriteEvent): any
                         axios.post(url, addedEvent)
                             .then(response => {
                                 const { name: eventUid } = response.data;
+                                const ticketCount = addedEvent.normalTicket.count + addedEvent.vipTicket.count;
                                 const cartEvent: ICartEvent = new CartEvent(
                                     addedEvent.id,
                                     addedEvent.title,
@@ -155,7 +163,8 @@ export const addToCart = (addedEvent: IEventShowcaseEvent | IFavoriteEvent): any
 
                                 dispatch({
                                     type: ADD_TO_CART,
-                                    addedEvent: cartEvent
+                                    addedEvent: cartEvent,
+                                    ticketCount
                                 });
                             })
                             .catch(error => console.log(error));

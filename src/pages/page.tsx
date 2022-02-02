@@ -11,7 +11,7 @@ import ThisWeekEventsPage from './thisWeekEvents/thisWeekEvents';
 import RecentlyAddedEventsPage from './recentlyAddedEvents/recentlyAddedEvents';
 import BuyNowEventsPage from './buyNowEvents/buyNowEvents';
 import CartPage from './cart/cart';
-import PurchasedTickets from './purchasedTickets/purchasedTickets';
+import PurchasedTicketsPage from './purchasedTickets/purchasedTickets';
 
 const Page = (): JSX.Element => {
     const PageRouting = (): JSX.Element => (
@@ -27,7 +27,7 @@ const Page = (): JSX.Element => {
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
             <Route path="/cart" element={<CartPage />} />
-            <Route path="/purchased-tickets" element={<PurchasedTickets />} />
+            <Route path="/purchased-tickets" element={<PurchasedTicketsPage />} />
         </Routes>
     );
 

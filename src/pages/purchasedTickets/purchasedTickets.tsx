@@ -7,7 +7,7 @@ import { IApplicationState } from '../../models/interfaces/store/states/applicat
 import { useEffect } from 'react';
 import EventTicket from '../../components/eventTicket/EventTicket';
 
-const PurchasedTickets = (): JSX.Element => {
+const PurchasedTicketsPage = (): JSX.Element => {
     const orders = useSelector((state: IApplicationState) => state.orders.orders);
 
     useEffect(() => {
@@ -57,4 +57,4 @@ const PurchasedTickets = (): JSX.Element => {
     );
 }
 
-export default PurchasedTickets;
+export default PurchasedTicketsPage;

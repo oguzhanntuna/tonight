@@ -106,6 +106,10 @@
             outline: none;
         }
 
+        &-cart {
+            position: relative;
+        }
+
         &-favorites, &-cart {
             display: flex;
             align-items: center;
@@ -124,6 +128,23 @@
 
         &-favoritesIcon, &-cartIcon {
             margin-right: .5rem;
+        }
+
+        &-ticketCount {
+            height: 1.5rem;
+            width: 2.4rem;
+            position: absolute;
+            right: 4.4rem;
+            top: -0.9rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.2rem;
+            border-radius: 10rem;
+            background: linear-gradient(270deg, #177C85, #19EFF7, #177C85);
+            text-shadow: 0 4px 8px rgb(0, 0, 0);
+            font-size: 1.2rem;
+            font-weight: bold;
         }
     }
 }
