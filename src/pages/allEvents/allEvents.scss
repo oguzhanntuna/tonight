@@ -1,3 +1,5 @@
+@import '../../variables/variables.scss';
+
 .allEventsPage {
     &-content {
         position: relative;
@@ -14,6 +16,7 @@
                 text-transform: uppercase;
                 letter-spacing: -.6rem;
                 word-spacing: 1rem;
+                text-shadow: 0 8px 16px $color-black;
             }
 
             &-events {

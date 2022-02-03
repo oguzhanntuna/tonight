@@ -11,9 +11,8 @@ import cartIconEmpty from '../../assets/icons/cart-outline.svg';
 const Header = (): JSX.Element => {
     const navigate = useNavigate();
     const activeUsername = useSelector((state: IApplicationState) => state.auth.displayName);
-    const ticketCount = useSelector((state: IApplicationState) => state.cart.ticketCount);
-
-    console.log(ticketCount);
+    const cartCount = useSelector((state: IApplicationState) => state.cart.ticketCount);
+    const favoritesCount = useSelector((state: IApplicationState) => state.favorites.favoriteEvents.length);
 
     document.addEventListener('scroll', () => {
         const headerElement = document.getElementById('header');
@@ -43,9 +42,11 @@ const Header = (): JSX.Element => {
                     <div className="userActionContainer-favoritesIcon">
                         <img src={favIconEmpty} alt="favorites" /> 
                     </div>
-                    <span>
-                        Favorites
-                    </span>
+                    <p>Favorites</p>
+                    {
+                        favoritesCount > 0 &&
+                        <span>{`(${favoritesCount})`}</span>
+                    }
                 </div>
                 <div 
                     className="userActionContainer-cart"
@@ -54,12 +55,13 @@ const Header = (): JSX.Element => {
                     <div className="userActionContainer-cartIcon">
                         <img src={cartIconEmpty} alt="cart" />
                     </div>
-                    <span>
-                        Cart
-                    </span>
-                    <span className="userActionContainer-ticketCount">
-                        { ticketCount }
-                    </span>
+                    <p> Cart</p>
+                    {
+                        cartCount > 0 &&
+                        <span className="userActionContainer-cartCount">
+                            {cartCount}
+                        </span>
+                    }
                 </div>
             </div>
         </div>

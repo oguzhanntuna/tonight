@@ -29,6 +29,7 @@
         text-transform: uppercase;
         letter-spacing: -.2rem;
         cursor: pointer;
+        text-shadow: 0px 4px 8px $color-black;
     }
 
     .navigationContainer {
@@ -44,6 +45,7 @@
             color: $color-white;
             border-bottom: 1px solid transparent;
             text-decoration: none;
+            text-shadow: 0px 4px 8px black;
             cursor: pointer;
             transition: all .2s;
 
@@ -110,10 +112,20 @@
             position: relative;
         }
 
+        &-favorites {
+            p {
+                margin-right: 0.5rem;
+            }
+        }
+
         &-favorites, &-cart {
             display: flex;
             align-items: center;
             cursor: pointer;
+
+            p {
+                text-shadow: 0px 4px 8px black;
+            }
         }
 
         &-favoritesIcon, &-cartIcon {
@@ -130,12 +142,12 @@
             margin-right: .5rem;
         }
 
-        &-ticketCount {
+        &-cartCount {
             height: 1.5rem;
             width: 2.4rem;
             position: absolute;
             right: 4.4rem;
-            top: -0.9rem;
+            top: 0.5rem;
             display: flex;
             justify-content: center;
             align-items: center;

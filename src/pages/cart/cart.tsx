@@ -4,7 +4,7 @@ import './cart.scss';
 
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
-import heroImage from '../../assets/heroImage.jpg'
+import heroImage from '../../assets/techno8.jpg'
 import cartIcon from '../../assets/icons/cart-full.svg';
 import HeroImage from '../../components/heroImage/HeroImage';
 import EmptyState from '../../components/emptyState/EmptyState';
