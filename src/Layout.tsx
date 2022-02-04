@@ -12,7 +12,6 @@ import Page from './pages/page';
 import Footer from './components/footer/Footer';
 import ToastMessage from './components/toastMessage/ToastMessage';
 
-
 const Layout = (): JSX.Element => {
   const { checkAuthState } = AuthActions;
   const { fetchFavorites } = FavoritesActions;
