@@ -3,16 +3,72 @@ import axios from "axios";
 
 import firebaseApiKey from '../../.env/apiKey';
 import { IUserData, ILoginData } from "../../models/interfaces/auth/auth";
+import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
+import * as ToastMessageActions from './toastMessage';
 
+export const AUTH_START = 'AUTH_START';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAIL = 'AUTH_FAIL';
 export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';
 export const UPDATE = 'UPDATE';
 export const LOGOUT = 'LOGOUT';
-export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+
+const authStart = () => {
+
+    return {
+        type: AUTH_START
+    }
+}
+
+const authSuccess = (userData: ILocalStorageUserData) => {
+
+    return {
+        type: AUTH_SUCCESS,
+        userData
+    }
+}
+
+const authFail = (errorMessage: string) => {
+
+    return (dispatch: any) => {
+        const { setToastMessage } = ToastMessageActions;
+        const toastMessageData: IToastMessageData = {
+            messageType: 'warning',
+            message: errorMessage
+        }
+        
+        dispatch(setToastMessage(toastMessageData));
+        
+        return {
+            type: AUTH_FAIL,
+            error: errorMessage
+        }
+    }
+}
+
+const setUserDisplayName = (userData: IUpdateData) => {
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${firebaseApiKey}`;
+    const updateData = {
+        ...userData,
+        returnSecureToken: true
+    }
+
+    axios.post(url, updateData)
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
+}
+
+const setUserDataToLocalStorage = (userData: ILocalStorageUserData) => {
+
+    localStorage.setItem('userDataJSON', JSON.stringify(userData));
+}  
 
 export const signup = (userData: IUserData) => {
     
     return async (dispatch: any) => {
+        dispatch(authStart());
+
         const { username, email, password } = userData;
         const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${firebaseApiKey}`;
         const signupData = {
@@ -22,7 +78,7 @@ export const signup = (userData: IUserData) => {
         };
 
         axios.post(url, signupData)
-            .then(async response => {
+            .then(response => {
                 const token = response.data.idToken;
                 const userId = response.data.localId;
                 const updateData: IUpdateData = {
@@ -39,20 +95,19 @@ export const signup = (userData: IUserData) => {
                 setUserDisplayName(updateData);
                 setUserDataToLocalStorage(localStorageUserData);
 
-                dispatch({
-                    type: SIGNUP,
-                    displayName: username,
-                    token,
-                    userId
-                });
+                dispatch(authSuccess(localStorageUserData));
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                dispatch(authFail(error));
+            });
     }
 }
 
 export const login = (userData: ILoginData) => {
 
     return async (dispatch: any) => {
+        dispatch(authStart());
+
         const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${firebaseApiKey}`;
         const loginData = {
             ...userData,
@@ -72,14 +127,25 @@ export const login = (userData: ILoginData) => {
 
                 setUserDataToLocalStorage(localStorageUserData);
 
-                dispatch({
-                    type: LOGIN,
-                    token,
-                    userId,
-                    displayName
-                });
+                dispatch(authSuccess(localStorageUserData));
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                const { response: { data: { error: { message } } } } = error;
+                let errorMessage: string;
+
+                if (message === 'EMAIL_NOT_FOUND') {
+
+                    errorMessage = 'This email does not exist. Please try again!'
+                } else if (message === 'INVALID_PASSWORD') {
+
+                    errorMessage = 'The password is invalid. Please try again!'
+                } else {
+
+                    errorMessage = error;
+                }
+
+                dispatch(authFail(errorMessage));
+            });
     } 
 }
 
@@ -101,31 +167,8 @@ export const checkAuthState = () => {
         
         if (userData) {
             const parsedUserData: ILocalStorageUserData = JSON.parse(userData);
-            const { token, userId, displayName } = parsedUserData;
 
-            dispatch({
-                type: AUTH_SUCCESS,
-                token,
-                userId,
-                displayName
-            });
+            dispatch(authSuccess(parsedUserData));
         }
     }
 }
-
-const setUserDisplayName = (userData: IUpdateData) => {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${firebaseApiKey}`;
-    const updateData = {
-        ...userData,
-        returnSecureToken: true
-    }
-
-    axios.post(url, updateData)
-        .then(response => console.log(response))
-        .catch(error => console.log(error));
-}
-
-const setUserDataToLocalStorage = (userData: ILocalStorageUserData) => {
-
-    localStorage.setItem('userDataJSON', JSON.stringify(userData));
-}  

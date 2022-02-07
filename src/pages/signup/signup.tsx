@@ -28,7 +28,7 @@ const SignupPage = (): JSX.Element => {
         },
         {
             label: "e-mail", 
-            type: "e-mail",
+            type: "email",
             value: email,
             onChange: setEmail
         },

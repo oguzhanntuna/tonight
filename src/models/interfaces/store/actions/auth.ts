@@ -1,6 +1,6 @@
+import { ILocalStorageUserData } from './../../auth/auth';
 export interface IAuthAction {
     type: string;
-    displayName: string;
-    token: string;
-    userId: string;
+    userData : ILocalStorageUserData;
+    error: string;
 }

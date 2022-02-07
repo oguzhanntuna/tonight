@@ -1,53 +1,53 @@
 import { IAuthState } from './../../models/interfaces/store/states/auth';
 import { IAuthAction } from './../../models/interfaces/store/actions/auth';
 
-import { SIGNUP, LOGIN, AUTH_SUCCESS, LOGOUT } from './../actions/auth';
+import { AUTH_SUCCESS, LOGOUT, AUTH_START, AUTH_FAIL } from './../actions/auth';
 
 const initialState: IAuthState = {
     displayName: null,
     token: null,
-    userId: null
+    userId: null,
+    error: null,
+    loading: false
 }
 
 export const authReducer = (state = initialState, action: IAuthAction): IAuthState => {
     switch(action.type) {
-        case SIGNUP:
-            const { token: signupToken, userId: signupUserId, displayName: signupDisplayName } = action;
+        case AUTH_START:
 
             return {
                 ...state,
-                displayName: signupDisplayName,
-                token: signupToken, 
-                userId: signupUserId
+                error: null,
+                loading: true
             }
 
-        case LOGIN:
-            const { token: loginToken, userId: loginUserId, displayName: loginDisplayName } = action;
+        case AUTH_SUCCESS:
+            const { userData: { displayName, token, userId, } } = action;
 
             return {
                 ...state,
-                displayName: loginDisplayName,
-                token: loginToken,
-                userId: loginUserId
+                displayName,
+                token,
+                userId,
+                error: null,
+                loading: false
+            }
+
+        case AUTH_FAIL:
+
+            return {
+                ...state,
+                error: action.error,
+                loading: false
             }
 
         case LOGOUT:
 
-        return {
-            ...state,
-            displayName: null,
-            token: null,
-            userId: null
-        }
-
-        case AUTH_SUCCESS:
-            const { token, userId, displayName } = action;
-
             return {
                 ...state,
-                token,
-                userId,
-                displayName
+                displayName: null,
+                token: null,
+                userId: null
             }
     }
 

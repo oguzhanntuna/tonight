@@ -3,6 +3,8 @@ import './Form.scss';
 
 import { useNavigate } from 'react-router-dom';
 import Input, { IInputProps } from '../input/Input';
+import { useSelector } from 'react-redux';
+import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 interface IFormProps {
     label: string;
@@ -14,6 +16,8 @@ interface IFormProps {
 
 const Form = (props: IFormProps): JSX.Element => {
     const { label, inputElements, includeHelpfulTexts, submitButtonLabel, onSubmit } = props;
+    const authState = useSelector((state: IApplicationState) => state.auth);
+    const { loading } = authState;
     const navigate = useNavigate();
 
     const handleFormSubmit = (event: FormEvent) => {
@@ -25,6 +29,8 @@ const Form = (props: IFormProps): JSX.Element => {
     const redirectToSignUpPage = () => { 
         navigate('/signup');
     };
+
+    console.log('loading', loading);
 
     return (
         <form 
@@ -59,8 +65,12 @@ const Form = (props: IFormProps): JSX.Element => {
                     </div>
                 </div>
             }
-            <button>
-                {submitButtonLabel}
+            <button className="form-c2aButton">
+                {
+                    loading 
+                        ? 'Loading...' 
+                        : submitButtonLabel
+                }
             </button>
         </form>
     );

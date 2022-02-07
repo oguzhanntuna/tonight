@@ -20,7 +20,7 @@ const LoginPage = (): JSX.Element => {
     const loginInputElements: Array<IInputProps> = [
         {
             label: "e-mail", 
-            type: "e-mail",
+            type: "email",
             value: email,
             onChange: setEmail
         },
@@ -39,7 +39,7 @@ const LoginPage = (): JSX.Element => {
         }
 
         dispatch(login(loginData));
-        navigate('/');
+        // navigate('/');
     }
     
     return (

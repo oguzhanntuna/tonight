@@ -21,6 +21,7 @@ const Input = (props: IInputProps): JSX.Element => {
                 onChange={event => onChange(event.target.value)}
                 value={value}
                 autoComplete='off'
+                required
             />
         </div>
     );
