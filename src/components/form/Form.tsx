@@ -1,4 +1,4 @@
-import { FormEvent } from 'react';
+import { FormEvent, useEffect } from 'react';
 import './Form.scss';
 
 import { useNavigate } from 'react-router-dom';
@@ -30,7 +30,10 @@ const Form = (props: IFormProps): JSX.Element => {
         navigate('/signup');
     };
 
-    console.log('loading', loading);
+    useEffect(() => {
+
+        console.log('loading', loading);
+    }, [loading]);
 
     return (
         <form 

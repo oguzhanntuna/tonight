@@ -39,11 +39,10 @@ const authFail = (errorMessage: string) => {
         }
         
         dispatch(setToastMessage(toastMessageData));
-        
-        return {
+        dispatch({
             type: AUTH_FAIL,
             error: errorMessage
-        }
+        });
     }
 }
 
