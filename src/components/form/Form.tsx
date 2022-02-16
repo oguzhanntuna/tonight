@@ -1,4 +1,4 @@
-import { FormEvent, useEffect } from 'react';
+import { FormEvent } from 'react';
 import './Form.scss';
 
 import { useNavigate } from 'react-router-dom';
@@ -30,11 +30,6 @@ const Form = (props: IFormProps): JSX.Element => {
         navigate('/signup');
     };
 
-    useEffect(() => {
-
-        console.log('loading', loading);
-    }, [loading]);
-
     return (
         <form 
             className="form" 
@@ -44,15 +39,25 @@ const Form = (props: IFormProps): JSX.Element => {
                 {label}
             </div>
             {
-                inputElements.map((inputElement, index) => (
-                    <Input 
-                        key={index} 
-                        label={inputElement.label}
-                        type={inputElement.type}
-                        onChange={inputElement.onChange}
-                        value={inputElement.value}
-                    />
-                ))
+                inputElements.map((inputElement, index) => {
+                    const { label, type, value, minLength, maxLength, placeholder, onChange } = inputElement;
+                    const defaultMinLength = 0;
+                    const defaultMaxLength = 524288;
+                    const defaultPlaceholder = "Enter"
+
+                    return (
+                        <Input 
+                            key={index} 
+                            label={label}
+                            type={type}
+                            onChange={onChange}
+                            value={value}
+                            minLength={minLength ? minLength : defaultMinLength}
+                            maxLength={maxLength ? maxLength : defaultMaxLength}
+                            placeholder={placeholder ? placeholder : defaultPlaceholder}
+                        />
+                    );
+                })
             }
             {
                 includeHelpfulTexts &&

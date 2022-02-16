@@ -7,7 +7,7 @@ import { IApplicationState } from '../../models/interfaces/store/states/applicat
 import * as eventActions from '../../store/actions/events';
 
 import HeroImage from '../../components/heroImage/HeroImage';
-import heroImage from '../../assets/techno2.jpg';
+import heroImage from '../../assets/hero.jpg';
 import EventTicket from '../../components/eventTicket/EventTicket';
 
 const AllEventsPage = (): JSX.Element => {

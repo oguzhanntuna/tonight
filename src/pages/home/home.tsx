@@ -1,7 +1,7 @@
 import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import './home.scss';
 
-import heroImage from '../../assets/techno2.jpg';
+import heroImage from '../../assets/hero.jpg';
 import ImageSlider from '../../components/homePage/imageSlider/ImageSlider';
 import EventShowcaseModule from '../../components/homePage/eventShowcase/Module';
 import HeroImage from '../../components/heroImage/HeroImage';

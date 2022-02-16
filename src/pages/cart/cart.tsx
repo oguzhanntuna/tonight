@@ -2,9 +2,10 @@ import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import './cart.scss';
 
+import { useLoggedIn } from '../../customHooks/useLoggedIn';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
-import heroImage from '../../assets/techno8.jpg'
+import heroImage from '../../assets/hero.jpg'
 import cartIcon from '../../assets/icons/cart-full.svg';
 import HeroImage from '../../components/heroImage/HeroImage';
 import EmptyState from '../../components/emptyState/EmptyState';
@@ -13,7 +14,7 @@ import Checkout from '../../components/checkout/Checkout';
 
 const CartPage = (): JSX.Element => {
     const cartItems = useSelector((state: IApplicationState) => state.cart.cartItems);
-    const isLoggedin = useSelector((state: IApplicationState) => state.auth.token);
+    const isLoggedin = useLoggedIn();
 
     useEffect(() => {
         console.log('cartItems:', cartItems);

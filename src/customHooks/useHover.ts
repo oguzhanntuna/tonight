@@ -16,8 +16,6 @@ export const useHover = (): [React.MutableRefObject<HTMLDivElement | null>, bool
             elementRef.addEventListener('mouseleave', () => leave());
 
             return () => {
-                console.log('cleanup');
-
                 elementRef.removeEventListener('mouseenter', () => enter());
                 elementRef.removeEventListener('mouseleave', () => leave());
             }

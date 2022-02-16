@@ -1,8 +1,7 @@
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './EmptyState.scss';
 
-import { IApplicationState } from '../../models/interfaces/store/states/application';
+import { useLoggedIn } from '../../customHooks/useLoggedIn';
 
 interface IEmptyStateProps {
     icon: string;
@@ -12,7 +11,7 @@ interface IEmptyStateProps {
 const EmptyState = (props: IEmptyStateProps): JSX.Element => {
     const { icon, text } = props;
     const navigate = useNavigate();
-    const isLoggedin = useSelector((state: IApplicationState) => state.auth.token);
+    const isLoggedin = useLoggedIn();
 
     return (
         <div className="emptyState">

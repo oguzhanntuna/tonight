@@ -1,11 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import './EventTicket.scss';
 
 import { EventShowcaseEvent } from '../../models/eventShowcase/event';
 import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
-import { IApplicationState } from '../../models/interfaces/store/states/application';
 import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
 import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
 import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
@@ -17,6 +16,7 @@ import * as FavoritesEventActions from '../../store/actions/favorites';
 
 import EventTicketPriceSide from './EventTicketPriceSide';
 import EventTicketInfoSide from './EventTicketInfoSide';
+import { useLoggedIn } from '../../customHooks/useLoggedIn';
 
 interface IEventTicketProps {
     eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent | IPurchasedTicket;
@@ -30,8 +30,7 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
     const { favoritesResetTicketsCount } = FavoritesEventActions;
 
     const [isTicketSelected, setIsTicketSelected] = useState<boolean>(false);
-    const isLoggedin = useSelector((state: IApplicationState) => state.auth.token);
-
+    const isLoggedin = useLoggedIn();
     const dispatch = useDispatch();
 
     const toggleTicketSide = (): void => setIsTicketSelected(prevState => !prevState);

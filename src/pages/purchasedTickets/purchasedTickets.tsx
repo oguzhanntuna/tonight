@@ -1,6 +1,6 @@
 import './purchasedTickets.scss';
 
-import heroImage from '../../assets/techno2.jpg';
+import heroImage from '../../assets/hero.jpg';
 import HeroImage from '../../components/heroImage/HeroImage';
 import { useSelector } from 'react-redux';
 import { IApplicationState } from '../../models/interfaces/store/states/application';

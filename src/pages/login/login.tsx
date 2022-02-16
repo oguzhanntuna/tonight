@@ -1,20 +1,23 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './login.scss';
 
+import * as authActions from '../../store/actions/auth';
+import { useLoggedIn } from '../../customHooks/useLoggedIn';
 import { IInputProps } from '../../components/input/Input';
 import { ILoginData } from '../../models/interfaces/auth/auth';
-import * as authActions from '../../store/actions/auth';
 
-import heroImage from '../../assets/heroImage.jpg';
+import heroImage from '../../assets/hero.jpg';
 import HeroImage from '../../components/heroImage/HeroImage';
 import Form from '../../components/form/Form';
+
 
 const LoginPage = (): JSX.Element => {
     const { login } = authActions;
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const isLoggedin = useLoggedIn();
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const loginInputElements: Array<IInputProps> = [
@@ -28,9 +31,16 @@ const LoginPage = (): JSX.Element => {
             label: "password",
             type: "password",
             value: password,
+            minLength: 8,
             onChange: setPassword
         }
     ];
+
+    useEffect(() => {
+        if (isLoggedin) {
+            navigate('/');
+        }
+    }, [isLoggedin, navigate]);
 
     const handleLogin = async () => {
         const loginData: ILoginData = {
@@ -39,7 +49,6 @@ const LoginPage = (): JSX.Element => {
         }
 
         dispatch(login(loginData));
-        // navigate('/');
     }
     
     return (
