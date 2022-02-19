@@ -2,26 +2,27 @@
 
 .toastMessage {
     position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 13rem;
+    right: 3rem;
     display: flex;
     justify-content: space-between;
-    width: calc(100% - 5rem);;
-    max-width: calc(1024px - 3rem);
+    width: 40rem;
     margin-bottom: 2rem;
     padding: 1rem 1.5rem;
-    border-radius: 1rem;        
+    border-radius: .75rem;       
     z-index: 3;
 
+    &.success,
+    &.warning {
+        background-color: $color-black; 
+    }
+
     &.success {
-        background-color: green;
-        box-shadow: 0px 8px 16px rgba(green, 0.4);
+        border: 2px solid green;
     }
 
     &.warning {
-        background-color: $color-primary--dark;
-        box-shadow: 0px 8px 16px rgba($color-primary--dark, 0.4);
+        background-color: red;
     }
 
     &-closeIcon {

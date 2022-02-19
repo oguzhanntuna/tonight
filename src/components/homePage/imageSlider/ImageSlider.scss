@@ -17,6 +17,7 @@
         img {
             width: 100%;
             height: 35rem;
+            border-radius: .75rem;
         }
 
         &.active {
@@ -49,14 +50,13 @@
         }
 
         &.active {
-            background-color: $color-primary--dark;
             height: 1rem;
         }
     }
 
     &-paginationLoader {
         height: 100%;
-        background-color: $color-primary--light;
+        background-color: $color-secondary;
     }
 
     &-previousButton, &-nextButton {
@@ -65,12 +65,18 @@
         transform: translateY(-50%);
         width: 2rem;
         height: 4rem;
+        padding: .5rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: .5rem;
+        border-radius: .75rem;
         background-color: $color-background;
         cursor: pointer;
+        transition: all .2s;
+
+        &:hover {
+            background-color: rgba($color-background, .8);
+        }
     }
 
     &-previousButton {

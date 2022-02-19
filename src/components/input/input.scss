@@ -18,5 +18,10 @@
         border: none;
         border-bottom: 1px solid $color-white;
         outline: none;
+        transition: all .2s;
+
+        &:focus {
+            border-bottom: 1px solid $color-secondary;
+        }
     }
 }

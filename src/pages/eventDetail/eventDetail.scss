@@ -9,6 +9,8 @@
 
     &-rightSide {
         min-width: 34rem;
+        display: flex;
+        justify-content: center;
         margin-left: 2rem;
 
         .eventPriceContainer {

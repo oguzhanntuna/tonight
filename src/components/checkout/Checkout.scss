@@ -1,7 +1,10 @@
+@import '../../variables/variables.scss';
+
 .checkout {
-    background-color: black;
     width: 30rem;
     padding: 2rem;
+    border-radius: .75rem;
+    background-color: $color-black;
 
     &-title {
         margin-bottom: 4rem;
@@ -22,12 +25,22 @@
     &-purchaseButton {
         width: 100%;
         padding: 1.5rem 0;
-        border: none;
+        border: 2px solid $color-secondary;
+        border-radius: 0.75rem;
+        color: $color-secondary;
+        background-color: transparent;
         font-size: 1.4rem;
         font-weight: bold;
         text-transform: uppercase;
         outline: none;
         cursor: pointer;
+        transition: all .4s;
+
+        &:hover {
+            font-size: 1.6rem;
+            background-color: $color-secondary;
+            color: $color-black;
+        }
 
         &--disabled {
             cursor: not-allowed;

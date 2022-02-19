@@ -12,6 +12,7 @@
         text-transform: uppercase;
         letter-spacing: -.6rem;
         word-spacing: 1rem;
+        text-shadow: 0 8px 16px $color-black;
     }
 
     &-content {
@@ -80,6 +81,7 @@
 
     &-rules {
         padding: 4rem;
+        border-radius: .75rem;
         background-color: $color-black;
     }
 
