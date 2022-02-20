@@ -14,6 +14,7 @@ import { favoritesReducer } from './store/reducers/favorites';
 import { authReducer } from './store/reducers/auth';
 import { toastMessageReducer } from './store/reducers/toastMessage';
 import { ordersReducer } from './store/reducers/orders';
+import { thisWeekEventsReducer } from './store/reducers/thisWeekEvents';
 import Layout from './Layout';
 
 const rootReducer = combineReducers<IApplicationState>({
@@ -22,7 +23,8 @@ const rootReducer = combineReducers<IApplicationState>({
   favorites: favoritesReducer,
   auth: authReducer,
   toastMessage: toastMessageReducer,
-  orders: ordersReducer
+  orders: ordersReducer,
+  thisWeekEvents: thisWeekEventsReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

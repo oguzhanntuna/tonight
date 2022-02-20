@@ -1,5 +1,6 @@
 import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import './eventDetail.scss';
 
@@ -14,19 +15,17 @@ import EventPriceSlip from '../../components/eventDetailPage/EventPriceSlip';
 const EventDetailPage = (): JSX.Element => {
     const { fetchEventDetail } = eventActions;
 
+    const { eventName } = useParams();
     const selectedEvent = useSelector((state: IApplicationState) => state.events.eventDetail);
     const dispatch = useDispatch();
-
+    
     useScrollToTop();
 
     useEffect(() => {
-        const pathname = window.location.pathname;
-        const pathnameArray = pathname.split('/');
-        const event = pathnameArray[pathnameArray.length - 1];
-
-        dispatch(fetchEventDetail(event));
-
-    }, [dispatch, fetchEventDetail]);
+        if (eventName) {
+            dispatch(fetchEventDetail(eventName));
+        }
+    }, []);
 
     return (
         <div className="eventDetailPage">

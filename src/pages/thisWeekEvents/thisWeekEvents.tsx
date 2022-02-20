@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import './thisWeekEvents.scss';
 
 import { IApplicationState } from '../../models/interfaces/store/states/application';
-import * as EventActions from '../../store/actions/events';
+import * as thisWeekEventActions from '../../store/actions/thisWeekEvents';
 
 import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/hero.jpg';
@@ -11,18 +11,18 @@ import EventTicket from '../../components/eventTicket/EventTicket';
 import { useScrollToTop } from '../../customHooks/useScrollToTop';
 
 const ThisWeekEventsPage = (): JSX.Element => {
-    const { fetchThisWeekEvents } = EventActions;
-    const thisWeekEvents = useSelector((state: IApplicationState) => state.events.thisWeekEvents);
+    const { events: thisWeekEvents, loading } = useSelector((state: IApplicationState) => state.thisWeekEvents);
     const dispatch = useDispatch();
 
     useScrollToTop();
     
     useEffect(() => {
+        const { fetchThisWeekEvents } = thisWeekEventActions;
 
-        if (thisWeekEvents && thisWeekEvents.length === 0) {
+        if (thisWeekEvents && thisWeekEvents.length === 0 && !loading) {
             dispatch(fetchThisWeekEvents());
         }
-    }, [thisWeekEvents, dispatch, fetchThisWeekEvents]);
+    }, [thisWeekEvents, loading, dispatch]);
 
     return (
         <div className="thisWeekEventsPage">
@@ -32,16 +32,22 @@ const ThisWeekEventsPage = (): JSX.Element => {
                     <div className="thisWeekEventsContainer-title">
                         This Week Events
                     </div>
-                    <div className="thisWeekEventsContainer-events">
-                        { 
-                            thisWeekEvents.map((event, index) => (
-                                <EventTicket 
-                                    key={`${index}-${event.id}`} 
-                                    eventData={event} 
-                                />
-                            )) 
-                        }
-                    </div>
+                    {
+                        loading
+                            ? <p>Loading...</p>
+                            : (
+                                <div className="thisWeekEventsContainer-events">
+                                    { 
+                                        thisWeekEvents.map((event, index) => (
+                                            <EventTicket 
+                                                key={`${index}-${event.id}`} 
+                                                eventData={event} 
+                                            />
+                                        )) 
+                                    }
+                                </div>
+                            )
+                    }
                 </div>
             </div>
         </div>

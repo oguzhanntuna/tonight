@@ -4,6 +4,7 @@ import './Module.scss';
 
 import { IApplicationState } from '../../../models/interfaces/store/states/application';
 import * as eventActions from '../../../store/actions/events';
+import * as thisWeekEventActions from '../../../store/actions/thisWeekEvents';
 
 import EventShowcaseHeader from './Header';
 import EventShowcaseEventsContainer from './EventsContainer';
@@ -15,15 +16,13 @@ interface IEventShowcaseModuleProps {
 }
 
 const EventShowcaseModule = (props: IEventShowcaseModuleProps): JSX.Element => {
-    const { fetchThisWeekEvents, fetchRecentlyAddedEvents, fetchBuyNowEvents } = eventActions;
     const { title, moduleType, displayFilters } = props;
 
     const dispatch = useDispatch();
-
     const eventData = useSelector((state: IApplicationState) => {
         switch (moduleType) {
             case 'this-week': 
-                return state.events.thisWeekEvents;
+                return state.thisWeekEvents.events;
 
             case 'recently-added': 
                 return state.events.recentlyAddedEvents;
@@ -34,21 +33,29 @@ const EventShowcaseModule = (props: IEventShowcaseModuleProps): JSX.Element => {
     });
 
     useEffect(() => {
-        switch (moduleType) {
-            case 'this-week':
-                dispatch(fetchThisWeekEvents());
-                break;
+        console.log(eventData);
+    }, [eventData]);
 
-            case 'recently-added':
-                dispatch(fetchRecentlyAddedEvents());
-                break;
+    useEffect(() => {
+        const { fetchRecentlyAddedEvents, fetchBuyNowEvents } = eventActions;
+        const { fetchThisWeekEvents } = thisWeekEventActions;
 
-            case 'buy-now':
-                dispatch(fetchBuyNowEvents());
-                break;
+        if (eventData && eventData.length === 0) {
+            switch (moduleType) {
+                case 'this-week':
+                    dispatch(fetchThisWeekEvents());
+                    break;
+    
+                case 'recently-added':
+                    dispatch(fetchRecentlyAddedEvents());
+                    break;
+    
+                case 'buy-now':
+                    dispatch(fetchBuyNowEvents());
+                    break;
+            }
         }
-        
-    }, [dispatch, fetchThisWeekEvents, fetchRecentlyAddedEvents, fetchBuyNowEvents, moduleType]);
+    }, [eventData, moduleType, dispatch]);
 
     return (
         <div className="eventShowcaseModule" >

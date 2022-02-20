@@ -4,6 +4,7 @@ import { ICartState } from "./cart";
 import { IEventsState } from "./events";
 import { IFavoritesState } from "./favorites";
 import { IAuthState } from './auth';
+import { IThisWeekEventsState } from './thisWeekEvents';
 
 export interface IApplicationState {
     events: IEventsState;
@@ -12,4 +13,5 @@ export interface IApplicationState {
     auth: IAuthState;
     toastMessage: IToastMessageState;
     orders: IOrdersState;
+    thisWeekEvents: IThisWeekEventsState
 }
