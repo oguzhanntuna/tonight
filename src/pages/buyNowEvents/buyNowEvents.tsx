@@ -4,25 +4,25 @@ import { useEffect } from 'react';
 import './buyNowEvents.scss';
 
 import { IApplicationState } from '../../models/interfaces/store/states/application';
-import * as EventActions from '../../store/actions/events';
+import * as BuyNowEventsActions from '../../store/actions/buyNowEvents';
 
 import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/hero.jpg';
 import EventTicket from '../../components/eventTicket/EventTicket';
 
 const BuyNowEventsPage = (): JSX.Element => {
-    const { fetchBuyNowEvents } = EventActions;
-    const buyNowEvents = useSelector((state: IApplicationState) => state.events.buyNowEvents);
+    const { events: buyNowEvents, loading } = useSelector((state: IApplicationState) => state.buyNowEvents);
     const dispatch = useDispatch();
 
     useScrollToTop();
 
     useEffect(() => {
+        const { fetchBuyNowEvents } = BuyNowEventsActions;
 
-        if (buyNowEvents && buyNowEvents.length === 0) {
+        if (buyNowEvents && buyNowEvents.length === 0 && !loading) {
             dispatch(fetchBuyNowEvents());
         }
-    }, [buyNowEvents, dispatch, fetchBuyNowEvents]);
+    }, [buyNowEvents, loading, dispatch]);
 
     return (
         <div className="buyNowEventsPage">
@@ -32,16 +32,22 @@ const BuyNowEventsPage = (): JSX.Element => {
                     <div className="buyNowEventsContainer-title">
                         Buy Now Events
                     </div>
-                    <div className="buyNowEventsContainer-events">
-                        { 
-                            buyNowEvents.map((event, index) => (
-                                <EventTicket 
-                                    key={`${index}-${event.id}`} 
-                                    eventData={event} 
-                                />
-                            )) 
-                        }
-                    </div>
+                    {
+                        loading
+                            ? <p>Loading...</p>
+                            : (
+                                <div className="buyNowEventsContainer-events">
+                                    { 
+                                        buyNowEvents.map((event, index) => (
+                                            <EventTicket 
+                                                key={`${index}-${event.id}`} 
+                                                eventData={event} 
+                                            />
+                                        )) 
+                                    }
+                                </div>
+                            )
+                    }
                 </div>
             </div>
         </div>

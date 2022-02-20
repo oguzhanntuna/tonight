@@ -19,10 +19,10 @@ const RecentlyAddedEventsPage = (): JSX.Element => {
     useEffect(() => {
         const { fetchRecentlyAddedEvents } = RecentlyAddedEventsActions;
 
-        if (recentlyAddedEvents && recentlyAddedEvents.length === 0) {
+        if (recentlyAddedEvents && recentlyAddedEvents.length === 0 && !loading) {
             dispatch(fetchRecentlyAddedEvents());
         }
-    }, [recentlyAddedEvents, dispatch])
+    }, [recentlyAddedEvents, loading, dispatch])
 
     return (
         <div className="recentlyAddedEventsPage">

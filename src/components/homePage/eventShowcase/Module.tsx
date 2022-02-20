@@ -4,8 +4,9 @@ import './Module.scss';
 
 import { IApplicationState } from '../../../models/interfaces/store/states/application';
 import * as eventActions from '../../../store/actions/events';
-import * as thisWeekEventActions from '../../../store/actions/thisWeekEvents';
-import * as recentlyAddedEventActions from '../../../store/actions/recentlyAddedEvents';
+import * as thisWeekEventsActions from '../../../store/actions/thisWeekEvents';
+import * as recentlyAddedEventsActions from '../../../store/actions/recentlyAddedEvents';
+import * as buyNowEventsActions from '../../../store/actions/buyNowEvents';
 
 import EventShowcaseHeader from './Header';
 import EventShowcaseEventsContainer from './EventsContainer';
@@ -29,18 +30,14 @@ const EventShowcaseModule = (props: IEventShowcaseModuleProps): JSX.Element => {
                 return state.recentlyAddedEvents.events;
 
             case 'buy-now': 
-                return state.events.buyNowEvents;
+                return state.buyNowEvents.events;
         }
     });
 
     useEffect(() => {
-        console.log(eventData);
-    }, [eventData]);
-
-    useEffect(() => {
-        const { fetchBuyNowEvents } = eventActions;
-        const { fetchThisWeekEvents } = thisWeekEventActions;
-        const { fetchRecentlyAddedEvents } = recentlyAddedEventActions;
+        const { fetchThisWeekEvents } = thisWeekEventsActions;
+        const { fetchRecentlyAddedEvents } = recentlyAddedEventsActions
+        const { fetchBuyNowEvents } = buyNowEventsActions;
 
         if (eventData && eventData.length === 0) {
             switch (moduleType) {

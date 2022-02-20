@@ -1,3 +1,4 @@
+import { IBuyNowEventsState } from './buyNowEvents';
 import { IRecentlyAddedEventsState } from './recentlyAddedEvents';
 import { IOrdersState } from './orders';
 import { IToastMessageState } from './toastMessage';
@@ -16,4 +17,5 @@ export interface IApplicationState {
     orders: IOrdersState;
     thisWeekEvents: IThisWeekEventsState;
     recentlyAddedEvents: IRecentlyAddedEventsState;
+    buyNowEvents: IBuyNowEventsState;
 }

@@ -4,7 +4,6 @@ import { EventShowcaseEvent } from "../../models/eventShowcase/event";
 import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/eventShowcase";
 import { IEventsAction } from "../../models/interfaces/store/actions/events";
 
-export const SET_BUY_NOW_EVENTS = 'SET_BUY_NOW_EVENTS';
 export const SET_ALL_EVENTS = 'SET_ALL_EVENTS';
 export const SET_EVENT_DETAIL = 'SET_EVENT_DETAIL';
 export const ADD_NORMAL_TICKET = 'ADD_NORMAL_TICKET';
@@ -12,39 +11,6 @@ export const ADD_VIP_TICKET = 'ADD_VIP_TICKET';
 export const REMOVE_NORMAL_TICKET = 'REMOVE_NORMAL_TICKET';
 export const REMOVE_VIP_TICKET = 'REMOVE_VIP_TICKET';
 export const RESET_TICKETS_COUNT = 'RESET_TICKETS_COUNT';
-
-export const fetchBuyNowEvents = () => {
-    return async (dispatch: any) => {
-        axios.get('https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/modules/buy-now.json')
-            .then(response => {
-                const moduleData = response.data;
-                const buyNowEvents: Array<EventShowcaseEvent> = [];
-
-                if (moduleData) {
-                    for (const event in moduleData) {
-                        buyNowEvents.push(new EventShowcaseEvent(
-                            moduleData[event].id,
-                            moduleData[event].title,
-                            moduleData[event].imageUrl,
-                            moduleData[event].location,
-                            moduleData[event].date,
-                            moduleData[event].redirectUrl,
-                            moduleData[event].normalTicket,
-                            moduleData[event].vipTicket,
-                            moduleData[event].totalPrice,
-                            'buy-now'
-                        ));
-                    }
-                }
-
-                dispatch({
-                    type: SET_BUY_NOW_EVENTS,
-                    buyNowEvents: buyNowEvents
-                });
-            })
-            .catch(error => console.log(error))
-    }
-}
 
 export const fetchAllEvents = () => {
     return async (dispatch: any) => {

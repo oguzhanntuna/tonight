@@ -16,6 +16,7 @@ import { toastMessageReducer } from './store/reducers/toastMessage';
 import { ordersReducer } from './store/reducers/orders';
 import { thisWeekEventsReducer } from './store/reducers/thisWeekEvents';
 import { recentlyAddedEventsReducer } from './store/reducers/recentlyAddedEvents';
+import { buyNowEventsReducer } from './store/reducers/buyNowEvents';
 import Layout from './Layout';
 
 const rootReducer = combineReducers<IApplicationState>({
@@ -26,7 +27,8 @@ const rootReducer = combineReducers<IApplicationState>({
   toastMessage: toastMessageReducer,
   orders: ordersReducer,
   thisWeekEvents: thisWeekEventsReducer,
-  recentlyAddedEvents: recentlyAddedEventsReducer
+  recentlyAddedEvents: recentlyAddedEventsReducer,
+  buyNowEvents: buyNowEventsReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
