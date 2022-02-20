@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import './Module.scss';
 
 import { IApplicationState } from '../../../models/interfaces/store/states/application';
-import * as eventActions from '../../../store/actions/events';
 import * as thisWeekEventsActions from '../../../store/actions/thisWeekEvents';
 import * as recentlyAddedEventsActions from '../../../store/actions/recentlyAddedEvents';
 import * as buyNowEventsActions from '../../../store/actions/buyNowEvents';

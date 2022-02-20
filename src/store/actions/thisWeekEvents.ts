@@ -1,11 +1,17 @@
+import { IEventTicketsActions } from './../../models/interfaces/store/actions/eventTickets';
 import axios from "axios";
 
 import { EventShowcaseEvent } from "../../models/eventShowcase/event";
+import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/eventShowcase";
 
 export const SET_THIS_WEEK_EVENTS = 'SET_THIS_WEEK_EVENTS';
 export const THIS_WEEK_EVENTS_FETCH_START = 'THIS_WEEK_EVENTS_FETCH_START';
 export const THIS_WEEK_EVENTS_FETCH_SUCCESS = 'THIS_WEEK_EVENTS_FETCH_SUCCESS';
 export const THIS_WEEK_EVENTS_FETCH_FAIL = 'THIS_WEEK_EVENTS_FETCH_FAIL';
+export const THIS_WEEK_EVENTS_ADD_NORMAL_TICKET = 'THIS_WEEK_EVENTS_ADD_NORMAL_TICKET';
+export const THIS_WEEK_EVENTS_ADD_VIP_TICKET = 'THIS_WEEK_EVENTS_ADD_VIP_TICKET';
+export const THIS_WEEK_EVENTS_REMOVE_NORMAL_TICKET = 'THIS_WEEK_EVENTS_REMOVE_NORMAL_TICKET';
+export const THIS_WEEK_EVENTS_REMOVE_VIP_TICKET = 'THIS_WEEK_EVENTS_REMOVE_VIP_TICKET';
 
 const fetchStart = () => {
     return { type: THIS_WEEK_EVENTS_FETCH_START }
@@ -54,4 +60,24 @@ export const fetchThisWeekEvents = () => {
             })
             .catch(error => dispatch(fetchFail(error)));
     }
+}
+
+export const addNormalTicket = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
+    
+    return { type: THIS_WEEK_EVENTS_ADD_NORMAL_TICKET, eventData};
+}
+
+export const addVipTicket = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
+
+    return { type: THIS_WEEK_EVENTS_ADD_VIP_TICKET, eventData};
+}
+
+export const removeNormalTicket = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
+
+    return { type: THIS_WEEK_EVENTS_REMOVE_NORMAL_TICKET, eventData };
+}
+
+export const removeVipTicket = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
+
+    return { type: THIS_WEEK_EVENTS_REMOVE_VIP_TICKET, eventData };
 }

@@ -9,10 +9,8 @@ import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMes
 import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
 import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
 import { IPurchasedTicket } from '../../models/interfaces/purchasedTicket/purchasedTicket';
-import * as EventActions from '../../store/actions/events';
 import * as CartActions from '../../store/actions/cart';
 import * as ToastMessageActions from '../../store/actions/toastMessage';
-import * as FavoritesEventActions from '../../store/actions/favorites';
 
 import EventTicketPriceSide from './EventTicketPriceSide';
 import EventTicketInfoSide from './EventTicketInfoSide';
@@ -24,10 +22,8 @@ interface IEventTicketProps {
 
 const EventTicket = (props: IEventTicketProps): JSX.Element => {
     const { eventData } = props;
-    const { resetTicketsCount } = EventActions;
     const { addToCart } = CartActions;
     const { setToastMessage } = ToastMessageActions;
-    const { favoritesResetTicketsCount } = FavoritesEventActions;
 
     const [isTicketSelected, setIsTicketSelected] = useState<boolean>(false);
     const isLoggedin = useLoggedIn();
@@ -49,17 +45,6 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
             }
 
             dispatch(addToCart(event));
-
-            // if (event instanceof EventShowcaseEvent) {
-
-            //     dispatch(resetTicketsCount(event));
-            // }
-
-            // if (event instanceof FavoriteEvent) {
-                
-            //     dispatch(favoritesResetTicketsCount(event));
-            // }
-            
             dispatch(setToastMessage(toastMessageData));
 
         } else {

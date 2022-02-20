@@ -1,11 +1,17 @@
+import { IEventTicketsActions } from './../../models/interfaces/store/actions/eventTickets';
 import axios from "axios";
 
 import { EventShowcaseEvent } from "../../models/eventShowcase/event";
+import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 
 export const SET_EVENT_DETAIL = 'SET_EVENT_DETAIL';
 export const EVENT_DETAIL_FETCH_START = 'EVENT_DETAIL_FETCH_START';
 export const EVENT_DETAIL_FETCH_SUCCESS = 'EVENT_DETAIL_FETCH_SUCCESS';
 export const EVENT_DETAIL_FETCH_FAIL = 'EVENT_DETAIL_FETCH_FAIL';
+export const EVENT_DETAIL_ADD_NORMAL_TICKET = 'EVENT_DETAIL_ADD_NORMAL_TICKET';
+export const EVENT_DETAIL_ADD_VIP_TICKET = 'EVENT_DETAIL_ADD_VIP_TICKET';
+export const EVENT_DETAIL_REMOVE_NORMAL_TICKET = 'EVENT_DETAIL_REMOVE_NORMAL_TICKET';
+export const EVENT_DETAIL_REMOVE_VIP_TICKET = 'EVENT_DETAIL_REMOVE_VIP_TICKET';
 
 const fetchStart = () => {
     return { type: EVENT_DETAIL_FETCH_START }
@@ -52,4 +58,24 @@ export const fetchEventDetail = (eventName: string) => {
             })
             .catch(error => dispatch(fetchFail(error)));
     } 
+}
+
+export const addNormalTicket = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
+    
+    return { type: EVENT_DETAIL_ADD_NORMAL_TICKET, eventData};
+}
+
+export const addVipTicket = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
+
+    return { type: EVENT_DETAIL_ADD_VIP_TICKET, eventData};
+}
+
+export const removeNormalTicket = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
+
+    return { type: EVENT_DETAIL_REMOVE_NORMAL_TICKET, eventData };
+}
+
+export const removeVipTicket = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
+
+    return { type: EVENT_DETAIL_REMOVE_VIP_TICKET, eventData };
 }

@@ -8,7 +8,6 @@ import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 
 import { IApplicationState } from './models/interfaces/store/states/application';
-import { eventsReducer } from './store/reducers/events';
 import { cartReducer } from './store/reducers/cart';
 import { favoritesReducer } from './store/reducers/favorites';
 import { authReducer } from './store/reducers/auth';
@@ -21,17 +20,16 @@ import { eventDetailReducer } from './store/reducers/eventDetail';
 import Layout from './Layout';
 
 const rootReducer = combineReducers<IApplicationState>({
-  events: eventsReducer,
+  thisWeekEvents: thisWeekEventsReducer,
+  recentlyAddedEvents: recentlyAddedEventsReducer,
+  buyNowEvents: buyNowEventsReducer,
+  eventDetail: eventDetailReducer,
   cart: cartReducer,
   favorites: favoritesReducer,
   auth: authReducer,
   toastMessage: toastMessageReducer,
-  orders: ordersReducer,
-  thisWeekEvents: thisWeekEventsReducer,
-  recentlyAddedEvents: recentlyAddedEventsReducer,
-  buyNowEvents: buyNowEventsReducer,
-  eventDetail: eventDetailReducer
-})
+  orders: ordersReducer
+});
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 

@@ -7,8 +7,11 @@ import { IEventShowcaseEvent, IEventShowCaseTicket } from '../../models/interfac
 import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
 import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
 import { IPurchasedTicket } from '../../models/interfaces/purchasedTicket/purchasedTicket';
-import * as EventActions from '../../store/actions/events';
 import * as FavoritesActions from '../../store/actions/favorites';
+import * as ThisWeekEventsActions from '../../store/actions/thisWeekEvents';
+import * as RecentlyAddedEventsActions from '../../store/actions/recentlyAddedEvents';
+import * as BuyNowEventsActions from '../../store/actions/buyNowEvents';
+import * as EventDetailActions from '../../store/actions/eventDetail';
 
 import addIcon from '../../assets/icons/add.svg';
 import removeIcon from '../../assets/icons/remove.svg';
@@ -21,7 +24,6 @@ interface IEventTicketPriceRowProps {
 const EventTicketPriceRow = (props: IEventTicketPriceRowProps): JSX.Element => {
     const { ticketData, eventData } = props;
     const { type, title, price, count } = ticketData;
-    const { addNormalTicket, addVipTicket, removeNormalTicket, removeVipTicket } = EventActions;
     const { favoritesAddNormalTicket, favoritesAddVipTicket, favoritesRemoveNormalTicket, favoritesRemoveVipTicket } = FavoritesActions;
     
     const dispatch = useDispatch();
@@ -29,34 +31,82 @@ const EventTicketPriceRow = (props: IEventTicketPriceRowProps): JSX.Element => {
     const addTicket = () => {
 
         if (eventData instanceof EventShowcaseEvent) {
+            const { moduleType } = eventData;
 
-            type === 'normal' 
-                ? dispatch(addNormalTicket(eventData)) 
-                : dispatch(addVipTicket(eventData))
+            if (moduleType === 'this-week') {
+                const { addNormalTicket, addVipTicket } = ThisWeekEventsActions;
+
+                type === 'normal' && dispatch(addNormalTicket(eventData)); 
+                type === 'vip' && dispatch(addVipTicket(eventData));
+            }
+
+            if (moduleType === 'recently-added') {
+                const { addNormalTicket, addVipTicket } = RecentlyAddedEventsActions;
+
+                type === 'normal' && dispatch(addNormalTicket(eventData)); 
+                type === 'vip' && dispatch(addVipTicket(eventData));
+            }
+
+            if (moduleType === 'buy-now') {
+                const { addNormalTicket, addVipTicket } = BuyNowEventsActions;
+
+                type === 'normal' && dispatch(addNormalTicket(eventData)); 
+                type === 'vip' && dispatch(addVipTicket(eventData));
+            }
+
+            if (moduleType === 'event-detail') {
+                const { addNormalTicket, addVipTicket } = EventDetailActions;
+
+                type === 'normal' && dispatch(addNormalTicket(eventData)); 
+                type === 'vip' && dispatch(addVipTicket(eventData));
+            }
         } 
         
         if (eventData instanceof FavoriteEvent) {
-            
-            type === 'normal' 
-                ? dispatch(favoritesAddNormalTicket(eventData)) 
-                : dispatch(favoritesAddVipTicket(eventData))
+
+            type === 'normal' && dispatch(favoritesAddNormalTicket(eventData));
+            type === 'vip' && dispatch(favoritesAddVipTicket(eventData));
         }
     }
 
     const removeTicket = () => {
 
         if (eventData instanceof EventShowcaseEvent) {
+            const { moduleType } = eventData;
 
-            type === 'normal' 
-                ? dispatch(removeNormalTicket(eventData)) 
-                : dispatch(removeVipTicket(eventData))
+            if (moduleType === 'this-week') {
+                const { removeNormalTicket, removeVipTicket } = ThisWeekEventsActions;
+
+                type === 'normal' && dispatch(removeNormalTicket(eventData)); 
+                type === 'vip' && dispatch(removeVipTicket(eventData));
+            }
+
+            if (moduleType === 'recently-added') {
+                const { removeNormalTicket, removeVipTicket } = RecentlyAddedEventsActions;
+
+                type === 'normal' && dispatch(removeNormalTicket(eventData)); 
+                type === 'vip' && dispatch(removeVipTicket(eventData));
+            }
+
+            if (moduleType === 'buy-now') {
+                const { removeNormalTicket, removeVipTicket } = BuyNowEventsActions;
+
+                type === 'normal' && dispatch(removeNormalTicket(eventData)); 
+                type === 'vip' && dispatch(removeVipTicket(eventData));
+            }
+
+            if (moduleType === 'event-detail') {
+                const { removeNormalTicket, removeVipTicket } = EventDetailActions;
+
+                type === 'normal' && dispatch(removeNormalTicket(eventData)); 
+                type === 'vip' && dispatch(removeVipTicket(eventData));
+            }
         } 
         
         if (eventData instanceof FavoriteEvent) {
-            
-            type === 'normal' 
-                ? dispatch(favoritesRemoveNormalTicket(eventData)) 
-                : dispatch(favoritesRemoveVipTicket(eventData))
+
+            type === 'normal' && dispatch(favoritesRemoveNormalTicket(eventData)); 
+            type === 'vip' && dispatch(favoritesRemoveVipTicket(eventData));
         }
     }
 

@@ -1,11 +1,9 @@
-import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
+import { useDispatch } from 'react-redux';
 import './EventPriceSlip.scss';
 
 import * as cartActions from '../../store/actions/cart';
-import * as eventActions from '../../store/actions/events';
-
 import EventTicketPriceRow from '../eventTicket/EventTicketPriceRow';
-import { useDispatch } from 'react-redux';
+import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 
 interface IEventPriceSlip {
     data: IEventShowcaseEvent;
@@ -15,13 +13,12 @@ const EventPriceSlip = (props: IEventPriceSlip): JSX.Element => {
     const { data } = props;
     const { title, normalTicket, vipTicket, totalPrice } = data;
     const { addToCart } = cartActions;
-    const { resetTicketsCount } = eventActions;
 
     const dispatch = useDispatch();
 
     const addEventToCart = (event: IEventShowcaseEvent) => {
         dispatch(addToCart(event));
-        // dispatch(resetTicketsCount(event));
+        // reset ticket count
     }
 
     return (
