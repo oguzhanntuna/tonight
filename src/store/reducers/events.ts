@@ -3,7 +3,6 @@ import { IEventsAction } from './../../models/interfaces/store/actions/events';
 import { IEventsState } from '../../models/interfaces/store/states/events';
 
 import { 
-    SET_RECENTLY_ADDED_EVENTS,
     SET_BUY_NOW_EVENTS,
     SET_ALL_EVENTS,
     SET_EVENT_DETAIL,
@@ -24,19 +23,6 @@ const initialState: IEventsState = {
 
 export const eventsReducer = (state = initialState, action: IEventsAction): IEventsState => {
     switch(action.type) {
-        case SET_RECENTLY_ADDED_EVENTS:
-            const { recentlyAddedEvents } = action;
-
-            if (recentlyAddedEvents) {
-
-                return {
-                    ...state,
-                    recentlyAddedEvents
-                }
-            }
-            
-            break;
-        
         case SET_BUY_NOW_EVENTS:
             const { buyNowEvents } = action;
 

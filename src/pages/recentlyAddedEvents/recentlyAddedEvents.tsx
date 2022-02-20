@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import './recentlyAddedEvents.scss';
 
 import { IApplicationState } from '../../models/interfaces/store/states/application';
-import * as EventActions from '../../store/actions/events';
+import * as RecentlyAddedEventsActions from '../../store/actions/recentlyAddedEvents';
 
 import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/hero.jpg';
@@ -11,18 +11,18 @@ import EventTicket from '../../components/eventTicket/EventTicket';
 import { useScrollToTop } from '../../customHooks/useScrollToTop';
 
 const RecentlyAddedEventsPage = (): JSX.Element => {
-    const { fetchRecentlyAddedEvents } = EventActions;
-    const recentlyAddedEvents = useSelector((state: IApplicationState) => state.events.recentlyAddedEvents);
+    const { events: recentlyAddedEvents, loading } = useSelector((state: IApplicationState) => state.recentlyAddedEvents);
     const dispatch = useDispatch();
     
     useScrollToTop();
 
     useEffect(() => {
+        const { fetchRecentlyAddedEvents } = RecentlyAddedEventsActions;
 
         if (recentlyAddedEvents && recentlyAddedEvents.length === 0) {
             dispatch(fetchRecentlyAddedEvents());
         }
-    }, [recentlyAddedEvents, dispatch, fetchRecentlyAddedEvents])
+    }, [recentlyAddedEvents, dispatch])
 
     return (
         <div className="recentlyAddedEventsPage">
@@ -32,16 +32,22 @@ const RecentlyAddedEventsPage = (): JSX.Element => {
                     <div className="recentlyAddedEventsContainer-title">
                         Recently Added Events
                     </div>
-                    <div className="recentlyAddedEventsContainer-events">
-                        { 
-                            recentlyAddedEvents.map((event, index) => (
-                                <EventTicket 
-                                    key={`${index}-${event.id}`} 
-                                    eventData={event} 
-                                />
-                            )) 
-                        }
-                    </div>
+                    {
+                        loading
+                            ? <p>Loading...</p>
+                            : (
+                                <div className="recentlyAddedEventsContainer-events">
+                                    { 
+                                        recentlyAddedEvents.map((event, index) => (
+                                            <EventTicket 
+                                                key={`${index}-${event.id}`} 
+                                                eventData={event} 
+                                            />
+                                        )) 
+                                    }
+                                </div>
+                            )
+                    }
                 </div>
             </div>
         </div>

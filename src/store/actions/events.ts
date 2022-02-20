@@ -4,7 +4,6 @@ import { EventShowcaseEvent } from "../../models/eventShowcase/event";
 import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/eventShowcase";
 import { IEventsAction } from "../../models/interfaces/store/actions/events";
 
-export const SET_RECENTLY_ADDED_EVENTS = 'SET_RECENTLY_ADDED_EVENTS';
 export const SET_BUY_NOW_EVENTS = 'SET_BUY_NOW_EVENTS';
 export const SET_ALL_EVENTS = 'SET_ALL_EVENTS';
 export const SET_EVENT_DETAIL = 'SET_EVENT_DETAIL';
@@ -13,39 +12,6 @@ export const ADD_VIP_TICKET = 'ADD_VIP_TICKET';
 export const REMOVE_NORMAL_TICKET = 'REMOVE_NORMAL_TICKET';
 export const REMOVE_VIP_TICKET = 'REMOVE_VIP_TICKET';
 export const RESET_TICKETS_COUNT = 'RESET_TICKETS_COUNT';
-
-export const fetchRecentlyAddedEvents = () => {
-    return async (dispatch: any) => {
-        axios.get('https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/modules/recently-added.json')
-            .then(response => {
-                const moduleData = response.data;
-                const recentlyAddedEvents: Array<EventShowcaseEvent> = [];
-
-                if (moduleData) {
-                    for (const event in moduleData) {
-                        recentlyAddedEvents.push(new EventShowcaseEvent(
-                            moduleData[event].id,
-                            moduleData[event].title,
-                            moduleData[event].imageUrl,
-                            moduleData[event].location,
-                            moduleData[event].date,
-                            moduleData[event].redirectUrl,
-                            moduleData[event].normalTicket,
-                            moduleData[event].vipTicket,
-                            moduleData[event].totalPrice,
-                            'recently-added'
-                        ));
-                    }
-                }
-
-                dispatch({
-                    type: SET_RECENTLY_ADDED_EVENTS,
-                    recentlyAddedEvents: recentlyAddedEvents
-                });
-            })
-            .catch(error => console.log(error))
-    }
-}
 
 export const fetchBuyNowEvents = () => {
     return async (dispatch: any) => {

@@ -1,4 +1,4 @@
-import { IThisWeekEventsAction } from './../../models/interfaces/store/actions/thisWeekEvents';
+import { IThisWeekEventsActions } from './../../models/interfaces/store/actions/thisWeekEvents';
 import { IThisWeekEventsState } from './../../models/interfaces/store/states/thisWeekEvents';
 import { 
     THIS_WEEK_EVENTS_FETCH_FAIL, 
@@ -12,7 +12,7 @@ const initialState: IThisWeekEventsState = {
     error: null
 }
 
-export const thisWeekEventsReducer = (state = initialState, action: IThisWeekEventsAction): IThisWeekEventsState => {
+export const thisWeekEventsReducer = (state = initialState, action: IThisWeekEventsActions): IThisWeekEventsState => {
     switch(action.type) {
         case THIS_WEEK_EVENTS_FETCH_START:
             return {

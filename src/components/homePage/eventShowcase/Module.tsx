@@ -5,6 +5,7 @@ import './Module.scss';
 import { IApplicationState } from '../../../models/interfaces/store/states/application';
 import * as eventActions from '../../../store/actions/events';
 import * as thisWeekEventActions from '../../../store/actions/thisWeekEvents';
+import * as recentlyAddedEventActions from '../../../store/actions/recentlyAddedEvents';
 
 import EventShowcaseHeader from './Header';
 import EventShowcaseEventsContainer from './EventsContainer';
@@ -25,7 +26,7 @@ const EventShowcaseModule = (props: IEventShowcaseModuleProps): JSX.Element => {
                 return state.thisWeekEvents.events;
 
             case 'recently-added': 
-                return state.events.recentlyAddedEvents;
+                return state.recentlyAddedEvents.events;
 
             case 'buy-now': 
                 return state.events.buyNowEvents;
@@ -37,8 +38,9 @@ const EventShowcaseModule = (props: IEventShowcaseModuleProps): JSX.Element => {
     }, [eventData]);
 
     useEffect(() => {
-        const { fetchRecentlyAddedEvents, fetchBuyNowEvents } = eventActions;
+        const { fetchBuyNowEvents } = eventActions;
         const { fetchThisWeekEvents } = thisWeekEventActions;
+        const { fetchRecentlyAddedEvents } = recentlyAddedEventActions;
 
         if (eventData && eventData.length === 0) {
             switch (moduleType) {
