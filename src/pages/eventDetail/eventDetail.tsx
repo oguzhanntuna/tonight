@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import './eventDetail.scss';
 
-import * as eventActions from '../../store/actions/events';
+import * as eventDetailActions from '../../store/actions/eventDetail';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 import heroImage from '../../assets/hero.jpg';
@@ -13,30 +13,36 @@ import EventDetail from '../../components/eventDetailPage/EventDetail';
 import EventPriceSlip from '../../components/eventDetailPage/EventPriceSlip';
 
 const EventDetailPage = (): JSX.Element => {
-    const { fetchEventDetail } = eventActions;
-
     const { eventName } = useParams();
-    const selectedEvent = useSelector((state: IApplicationState) => state.events.eventDetail);
+    const { event: selectedEvent, loading } = useSelector((state: IApplicationState) => state.eventDetail);
     const dispatch = useDispatch();
     
     useScrollToTop();
 
     useEffect(() => {
-        if (eventName) {
+        const { fetchEventDetail } = eventDetailActions;
+
+        if (eventName && !loading) {
             dispatch(fetchEventDetail(eventName));
         }
-    }, []);
+    }, [eventName, dispatch]);
 
     return (
         <div className="eventDetailPage">
             <HeroImage imageUrl={heroImage} />
             <div className="eventDetailPage-content">
-                <div className="eventDetailPage-leftSide">
-                    { selectedEvent && <EventDetail eventData={selectedEvent} /> }
-                </div>
-                <div className="eventDetailPage-rightSide">
-                    { selectedEvent && <EventPriceSlip data={selectedEvent} /> }
-                </div>
+                {
+                    loading
+                        ? <p>Loading...</p>
+                        : <>
+                            <div className="eventDetailPage-leftSide">
+                                { selectedEvent && <EventDetail eventData={selectedEvent} /> }
+                            </div>
+                            <div className="eventDetailPage-rightSide">
+                                { selectedEvent && <EventPriceSlip data={selectedEvent} /> }
+                            </div>
+                        </>
+                }
             </div>
         </div>
     );

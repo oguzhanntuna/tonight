@@ -17,6 +17,7 @@ import { ordersReducer } from './store/reducers/orders';
 import { thisWeekEventsReducer } from './store/reducers/thisWeekEvents';
 import { recentlyAddedEventsReducer } from './store/reducers/recentlyAddedEvents';
 import { buyNowEventsReducer } from './store/reducers/buyNowEvents';
+import { eventDetailReducer } from './store/reducers/eventDetail';
 import Layout from './Layout';
 
 const rootReducer = combineReducers<IApplicationState>({
@@ -28,7 +29,8 @@ const rootReducer = combineReducers<IApplicationState>({
   orders: ordersReducer,
   thisWeekEvents: thisWeekEventsReducer,
   recentlyAddedEvents: recentlyAddedEventsReducer,
-  buyNowEvents: buyNowEventsReducer
+  buyNowEvents: buyNowEventsReducer,
+  eventDetail: eventDetailReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

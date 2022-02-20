@@ -4,7 +4,6 @@ import { IEventsState } from '../../models/interfaces/store/states/events';
 
 import { 
     SET_ALL_EVENTS,
-    SET_EVENT_DETAIL,
     ADD_NORMAL_TICKET, 
     ADD_VIP_TICKET, 
     REMOVE_NORMAL_TICKET, 
@@ -30,19 +29,6 @@ export const eventsReducer = (state = initialState, action: IEventsAction): IEve
                 return {
                     ...state,
                     allEvents
-                }
-            }
-
-            break; 
-
-        case SET_EVENT_DETAIL:
-            const { eventDetail } = action;
-
-            if (eventDetail) {
-
-                return {
-                    ...state,
-                    eventDetail
                 }
             }
 

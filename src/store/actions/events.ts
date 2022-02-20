@@ -5,7 +5,6 @@ import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/event
 import { IEventsAction } from "../../models/interfaces/store/actions/events";
 
 export const SET_ALL_EVENTS = 'SET_ALL_EVENTS';
-export const SET_EVENT_DETAIL = 'SET_EVENT_DETAIL';
 export const ADD_NORMAL_TICKET = 'ADD_NORMAL_TICKET';
 export const ADD_VIP_TICKET = 'ADD_VIP_TICKET';
 export const REMOVE_NORMAL_TICKET = 'REMOVE_NORMAL_TICKET';
@@ -43,37 +42,6 @@ export const fetchAllEvents = () => {
             })
             .catch(error => console.log(error));
     }
-}
-
-export const fetchEventDetail = (event: string) => {
-    return async (dispatch: any) => {
-        axios.get(`https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/events/${event}.json`)
-            .then(response => {
-                const eventData = response.data;
-                let eventDetail: EventShowcaseEvent | null = null;
-
-                if (eventData) {
-                    eventDetail = new EventShowcaseEvent( 
-                        eventData.id,
-                        eventData.title,
-                        eventData.imageUrl,
-                        eventData.location,
-                        eventData.date,
-                        eventData.redirectUrl,
-                        eventData.normalTicket,
-                        eventData.vipTicket,
-                        eventData.totalPrice,
-                        'event-detail'
-                    );
-                }
-                
-                dispatch({
-                    type: SET_EVENT_DETAIL,
-                    eventDetail
-                })
-            })
-            .catch(error => console.log(error));
-    } 
 }
 
 export const addNormalTicket = (eventData: IEventShowcaseEvent): IEventsAction => {
