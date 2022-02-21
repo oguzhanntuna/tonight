@@ -153,9 +153,7 @@ export const logout = () => {
     return (dispatch: any) => {
         localStorage.removeItem('userDataJSON');
 
-        dispatch({
-            type: LOGOUT
-        });
+        dispatch({ type: LOGOUT });
     }
 }
 

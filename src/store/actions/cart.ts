@@ -19,6 +19,33 @@ export const FETCH_CART = 'FETCH_CART';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const UPDATE_ITEM_IN_CART = 'UPDATE_ITEM_IN_CART';
 export const SET_LOADING = 'SET_LOADING';
+export const FETCH_CART_START = 'FETCH_CART_START';
+export const FETCH_CART_SUCCESS = 'FETCH_CART_SUCCESS';
+export const FETCH_CART_FAIL = 'FETCH_CART_FAIL';
+export const RESET_CART = 'RESET_CART';
+
+const fetchCartStart = () => {
+    return { type: FETCH_CART_START }
+}
+
+const fetchCartSuccess = (cartEvents: Array<IFavoriteEvent>, ticketCount: number) => {
+    return {
+        type: FETCH_CART_SUCCESS,
+        cartEvents,
+        ticketCount
+    }
+}
+
+const fetchCartFail = (error: string) => {
+    return {
+        type: FETCH_CART_FAIL,
+        error
+    }
+}
+
+const resetCart = () => {
+    return { type: RESET_CART }
+}
 
 export const fetchCart = () => {
     return (dispatch: any) => {
@@ -29,7 +56,7 @@ export const fetchCart = () => {
             const { userId } = parsedUserData;
             const userCartUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/cart/${userId}.json`;
 
-            // dispatch(setLoading());
+            dispatch(fetchCartStart());
             axios.get(userCartUrl)
                 .then(response => {
                     const { data } = response;
@@ -58,22 +85,14 @@ export const fetchCart = () => {
                         cartEventsArray.push(cartEvent);
                     }
 
-                    dispatch({
-                        type: FETCH_CART,
-                        cartEvents: cartEventsArray,
-                        ticketCount
-                    });
+                    dispatch(fetchCartSuccess(cartEventsArray, ticketCount));
                 })
-                .catch(error => console.log(error));
+                .catch(error => dispatch(fetchCartFail(error)));
         }
 
-        dispatch({
-            type: FETCH_CART,
-            cartEvents: []
-        });
+        dispatch(resetCart());
     }
 }
-
 
 export const addToCart = (addedEvent: IEventShowcaseEvent | IFavoriteEvent): any => {
 
@@ -286,8 +305,3 @@ const getEventAlreadyInCart = (event: IEventShowcaseEvent | IFavoriteEvent) => {
         });
     }  
 }
-
-const setLoading = () => {
-    
-    return { type: SET_LOADING };
-} 

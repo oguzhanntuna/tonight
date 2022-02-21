@@ -6,4 +6,5 @@ export interface ICartAction {
     updatedEvent: ICartEvent;
     cartEvents: Array<ICartEvent>;
     ticketCount: number;
+    fetchError: string;
 }

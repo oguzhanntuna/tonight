@@ -13,7 +13,7 @@ import EventTicket from '../../components/eventTicket/EventTicket';
 import Checkout from '../../components/checkout/Checkout';
 
 const CartPage = (): JSX.Element => {
-    const cartItems = useSelector((state: IApplicationState) => state.cart.cartItems);
+    const { cartItems, fetchLoading } = useSelector((state: IApplicationState) => state.cart);
     const isLoggedin = useLoggedIn();
 
     useEffect(() => {
@@ -51,19 +51,25 @@ const CartPage = (): JSX.Element => {
                     My Cart
                 </div>
                 <div className="cartPageContainer-content">
-                    <div className="cartPageContainer-leftSide">
-                        {
-                            cartItems && cartItems.length > 0
-                                ? renderCartEvents()
-                                : renderEmptyState()
-                        }
-                    </div>
-                    <div className="cartPageContainer-rightSide">
-                        {
-                            isLoggedin &&
-                            <Checkout cartItems={cartItems} cartPurchasable={cartItems.length > 0} />
-                        }
-                    </div>
+                    {
+                        fetchLoading
+                            ? <p>Loading...</p>
+                            : <>
+                                <div className="cartPageContainer-leftSide">
+                                    {
+                                        cartItems && cartItems.length > 0
+                                            ? renderCartEvents()
+                                            : renderEmptyState()
+                                    }
+                                </div>
+                                {
+                                    cartItems && cartItems.length > 0 &&
+                                    <div className="cartPageContainer-rightSide">
+                                        <Checkout cartItems={cartItems} cartPurchasable={cartItems.length > 0} />
+                                    </div>
+                                }
+                            </>
+                    }
                 </div>
             </div>
         </div>
