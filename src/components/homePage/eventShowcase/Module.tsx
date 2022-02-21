@@ -32,13 +32,25 @@ const EventShowcaseModule = (props: IEventShowcaseModuleProps): JSX.Element => {
                 return state.buyNowEvents.events;
         }
     });
+    const loading = useSelector((state: IApplicationState) => {
+        switch (moduleType) {
+            case 'this-week': 
+                return state.thisWeekEvents.loading;
+
+            case 'recently-added': 
+                return state.recentlyAddedEvents.loading;
+
+            case 'buy-now': 
+                return state.buyNowEvents.loading;
+        }
+    });
 
     useEffect(() => {
         const { fetchThisWeekEvents } = thisWeekEventsActions;
         const { fetchRecentlyAddedEvents } = recentlyAddedEventsActions
         const { fetchBuyNowEvents } = buyNowEventsActions;
 
-        if (eventData && eventData.length === 0) {
+        if (eventData && eventData.length === 0 && !loading) {
             switch (moduleType) {
                 case 'this-week':
                     dispatch(fetchThisWeekEvents());
@@ -53,12 +65,16 @@ const EventShowcaseModule = (props: IEventShowcaseModuleProps): JSX.Element => {
                     break;
             }
         }
-    }, [eventData, moduleType, dispatch]);
+    }, [eventData, loading, moduleType, dispatch]);
 
     return (
         <div className="eventShowcaseModule" >
             <EventShowcaseHeader title={title} displayFilters={displayFilters}/>
-            <EventShowcaseEventsContainer eventData={eventData} />            
+            {
+                loading
+                    ? <p>Loading...</p>
+                    : <EventShowcaseEventsContainer eventData={eventData} />  
+            }          
         </div>   
     );
 }
