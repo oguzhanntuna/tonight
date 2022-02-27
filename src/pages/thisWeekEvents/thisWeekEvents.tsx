@@ -19,10 +19,10 @@ const ThisWeekEventsPage = (): JSX.Element => {
     useEffect(() => {
         const { fetchThisWeekEvents } = thisWeekEventActions;
 
-        if (thisWeekEvents && thisWeekEvents.length === 0 && !loading) {
+        if (thisWeekEvents && thisWeekEvents.length === 0) {
             dispatch(fetchThisWeekEvents());
         }
-    }, [thisWeekEvents, loading, dispatch]);
+    }, [thisWeekEvents, dispatch]);
 
     return (
         <div className="thisWeekEventsPage">

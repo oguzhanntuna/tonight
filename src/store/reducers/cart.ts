@@ -7,14 +7,18 @@ import {
     FETCH_CART_FAIL, 
     FETCH_CART_START, 
     FETCH_CART_SUCCESS, 
-    UPDATE_ITEM_IN_CART 
+    UPDATE_ITEM_IN_CART, 
+    ADD_TO_CART_START,
+    ADD_TO_CART_FAIL
 } from '../actions/cart';
 
 const initialState: ICartState = {
     cartItems: [],
     ticketCount: 0,
     fetchLoading: false,
-    fetchError: null
+    fetchError: null,
+    addToCartLoading: false,
+    addToCartError: null
 }
 
 export const cartReducer = (state = initialState, action: ICartAction): ICartState => {
@@ -53,13 +57,31 @@ export const cartReducer = (state = initialState, action: ICartAction): ICartSta
                 fetchError: action.fetchError
             }
 
+        case ADD_TO_CART_START:
+
+            return {
+                ...state,
+                addToCartLoading: true,
+                addToCartError: null
+            }
+
+        case ADD_TO_CART_FAIL: 
+
+            return {
+                ...state,
+                addToCartLoading: false,
+                addToCartError: action.addToCartError
+            }
+
         case ADD_TO_CART:
             const { addedEvent } = action;
 
             return {
                 ...state,
                 cartItems: [ ...state.cartItems, addedEvent ],
-                ticketCount: state.ticketCount + action.ticketCount
+                ticketCount: state.ticketCount + action.ticketCount,
+                addToCartLoading: false,
+                addToCartError: null
             };
 
         case UPDATE_ITEM_IN_CART: 
@@ -74,7 +96,9 @@ export const cartReducer = (state = initialState, action: ICartAction): ICartSta
             return {
                 ...state,
                 cartItems: updatedCartItems,
-                ticketCount: state.ticketCount + action.ticketCount
+                ticketCount: state.ticketCount + action.ticketCount,
+                addToCartLoading: false,
+                addToCartError: null
             }
     }
 

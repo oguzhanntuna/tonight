@@ -19,10 +19,10 @@ const BuyNowEventsPage = (): JSX.Element => {
     useEffect(() => {
         const { fetchBuyNowEvents } = BuyNowEventsActions;
 
-        if (buyNowEvents && buyNowEvents.length === 0 && !loading) {
+        if (buyNowEvents && buyNowEvents.length === 0) {
             dispatch(fetchBuyNowEvents());
         }
-    }, [buyNowEvents, loading, dispatch]);
+    }, [buyNowEvents, dispatch]);
 
     return (
         <div className="buyNowEventsPage">

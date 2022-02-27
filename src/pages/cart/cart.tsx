@@ -1,8 +1,6 @@
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import './cart.scss';
 
-import { useLoggedIn } from '../../customHooks/useLoggedIn';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 import heroImage from '../../assets/hero.jpg'
@@ -14,16 +12,9 @@ import Checkout from '../../components/checkout/Checkout';
 
 const CartPage = (): JSX.Element => {
     const { cartItems, fetchLoading } = useSelector((state: IApplicationState) => state.cart);
-    const isLoggedin = useLoggedIn();
 
-    useEffect(() => {
-        console.log('cartItems:', cartItems);
-
-    }, [cartItems]);
-
-    const renderCartEvents = (): JSX.Element => {
-
-        return <div className="cartEvents">
+    const renderCartEvents = (): JSX.Element => (
+        <div className="cartEvents">
             {
                 cartItems.map((cartItem, index) => (
                     <EventTicket  
@@ -33,10 +24,9 @@ const CartPage = (): JSX.Element => {
                 ))
             }
         </div>
-    } 
+    );
 
     const renderEmptyState = (): JSX.Element => (
-        
         <EmptyState 
             icon={cartIcon}
             text="No tickets in cart yet!"

@@ -1,5 +1,5 @@
 import './EventTicketPriceRow.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { EventShowcaseEvent } from '../../models/eventShowcase/event';
 import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
@@ -15,6 +15,8 @@ import * as EventDetailActions from '../../store/actions/eventDetail';
 
 import addIcon from '../../assets/icons/add.svg';
 import removeIcon from '../../assets/icons/remove.svg';
+import { useEffect } from 'react';
+import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 interface IEventTicketPriceRowProps {
     eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent | IPurchasedTicket;
@@ -25,6 +27,13 @@ const EventTicketPriceRow = (props: IEventTicketPriceRowProps): JSX.Element => {
     const { ticketData, eventData } = props;
     const { type, title, price, count } = ticketData;
     const { favoritesAddNormalTicket, favoritesAddVipTicket, favoritesRemoveNormalTicket, favoritesRemoveVipTicket } = FavoritesActions;
+
+    const ticketCount = useSelector((state:IApplicationState) => state.cart.ticketCount); 
+
+    console.log('hı');
+    useEffect(() => {
+
+    }, [ticketCount]);
     
     const dispatch = useDispatch();
 

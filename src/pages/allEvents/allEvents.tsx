@@ -28,25 +28,29 @@ const AllEventsPage = (): JSX.Element => {
     useScrollToTop();
 
     useEffect(() => {
-        const { fetchThisWeekEvents } = ThisWeekEventsActions;
-        const { fetchRecentlyAddedEvents } = RecentlyAddedEventsActions;
-        const { fetchBuyNowEvents } = BuyNowEventsActions;
-
-        if (thisWeekEvents && thisWeekEvents.length === 0 && !thisWeekEventsLoading) {
-
-            dispatch(fetchThisWeekEvents());
+        const fetchAllEvents = () => {
+            const { fetchThisWeekEvents } = ThisWeekEventsActions;
+            const { fetchRecentlyAddedEvents } = RecentlyAddedEventsActions;
+            const { fetchBuyNowEvents } = BuyNowEventsActions;
+    
+            if (thisWeekEvents && thisWeekEvents.length === 0) {
+    
+                dispatch(fetchThisWeekEvents());
+            }
+    
+            if (recentlyAddedEvents && recentlyAddedEvents.length === 0) {
+    
+                dispatch(fetchRecentlyAddedEvents());
+            }
+    
+            if (buyNowEvents && buyNowEvents.length === 0) {
+    
+                dispatch(fetchBuyNowEvents());
+            }
         }
 
-        if (recentlyAddedEvents && recentlyAddedEvents.length === 0 && !recentlyAddedEventsLoading) {
-
-            dispatch(fetchRecentlyAddedEvents());
-        }
-
-        if (buyNowEvents && buyNowEvents.length === 0 && !buyNowEventsLoading) {
-
-            dispatch(fetchBuyNowEvents());
-        }
-
+        fetchAllEvents();
+        
         if (
             thisWeekEvents && thisWeekEvents.length > 0 && 
             recentlyAddedEvents && recentlyAddedEvents.length > 0 && 
@@ -55,7 +59,7 @@ const AllEventsPage = (): JSX.Element => {
             setAllEvents([...thisWeekEvents, ...recentlyAddedEvents, ...buyNowEvents]);
         }
 
-    }, [thisWeekEvents, thisWeekEventsLoading, recentlyAddedEvents, recentlyAddedEventsLoading, buyNowEvents, buyNowEventsLoading, dispatch]);
+    }, [thisWeekEvents, recentlyAddedEvents, buyNowEvents, dispatch]);
 
     return (
         <div className="allEventsPage">

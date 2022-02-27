@@ -22,10 +22,10 @@ const EventDetailPage = (): JSX.Element => {
     useEffect(() => {
         const { fetchEventDetail } = eventDetailActions;
 
-        if (eventName && !loading) {
+        if (eventName && !selectedEvent) {
             dispatch(fetchEventDetail(eventName));
         }
-    }, [eventName, dispatch]);
+    }, [eventName, selectedEvent, dispatch]);
 
     return (
         <div className="eventDetailPage">

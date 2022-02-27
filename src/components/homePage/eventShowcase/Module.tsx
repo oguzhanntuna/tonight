@@ -50,7 +50,7 @@ const EventShowcaseModule = (props: IEventShowcaseModuleProps): JSX.Element => {
         const { fetchRecentlyAddedEvents } = recentlyAddedEventsActions
         const { fetchBuyNowEvents } = buyNowEventsActions;
 
-        if (eventData && eventData.length === 0 && !loading) {
+        if (eventData && eventData.length === 0) {
             switch (moduleType) {
                 case 'this-week':
                     dispatch(fetchThisWeekEvents());
@@ -65,7 +65,7 @@ const EventShowcaseModule = (props: IEventShowcaseModuleProps): JSX.Element => {
                     break;
             }
         }
-    }, [eventData, loading, moduleType, dispatch]);
+    }, [eventData, moduleType, dispatch]);
 
     return (
         <div className="eventShowcaseModule" >

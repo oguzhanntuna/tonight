@@ -8,7 +8,8 @@ import {
     RECENTLY_ADDED_EVENTS_FETCH_START, 
     RECENTLY_ADDED_EVENTS_FETCH_SUCCESS, 
     RECENTLY_ADDED_EVENTS_REMOVE_NORMAL_TICKET,
-    RECENTLY_ADDED_EVENTS_REMOVE_VIP_TICKET
+    RECENTLY_ADDED_EVENTS_REMOVE_VIP_TICKET,
+    RECENTLY_ADDED_EVENTS_RESET_TICKETS
 } from "../actions/recentlyAddedEvents";
 
 const initialState: IRecentlyAddedEventsState = {
@@ -103,6 +104,20 @@ export const recentlyAddedEventsReducer = (state = initialState, action: IRecent
             }
 
             break;
+
+        case RECENTLY_ADDED_EVENTS_RESET_TICKETS:
+            const resettedTicketsEvent = action.eventData;
+
+            if (resettedTicketsEvent instanceof EventShowcaseEvent) {
+                resettedTicketsEvent.normalTicket.count = 0;
+                resettedTicketsEvent.vipTicket.count = 0;
+                resettedTicketsEvent.totalPrice = 0;
+            }
+
+            return {
+                ...state,
+                events: [ ...state.events ]
+            }
     }
 
     return state;

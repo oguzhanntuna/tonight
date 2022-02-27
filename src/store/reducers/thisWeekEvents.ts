@@ -8,7 +8,8 @@ import {
     THIS_WEEK_EVENTS_ADD_NORMAL_TICKET,
     THIS_WEEK_EVENTS_ADD_VIP_TICKET,
     THIS_WEEK_EVENTS_REMOVE_NORMAL_TICKET,
-    THIS_WEEK_EVENTS_REMOVE_VIP_TICKET
+    THIS_WEEK_EVENTS_REMOVE_VIP_TICKET,
+    THIS_WEEK_EVENTS_RESET_TICKETS
 } from "../actions/thisWeekEvents"
 
 const initialState: IThisWeekEventsState = {
@@ -103,6 +104,20 @@ export const thisWeekEventsReducer = (state = initialState, action: IThisWeekEve
             }
 
             break;
+
+        case THIS_WEEK_EVENTS_RESET_TICKETS:
+            const resettedTicketsEvent = action.eventData;
+
+            if (resettedTicketsEvent instanceof EventShowcaseEvent) {
+                resettedTicketsEvent.normalTicket.count = 0;
+                resettedTicketsEvent.vipTicket.count = 0;
+                resettedTicketsEvent.totalPrice = 0;
+            }
+
+            return {
+                ...state,
+                events: [ ...state.events ]
+            }
     }
 
     return state;

@@ -15,7 +15,6 @@ import PurchasedTicketsPage from './purchasedTickets/purchasedTickets';
 
 const Page = (): JSX.Element => {
     const PageRouting = (): JSX.Element => (
-    
         <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/events" element={<AllEventsPage />} />
@@ -28,6 +27,7 @@ const Page = (): JSX.Element => {
             <Route path="/favorites" element={<FavoritesPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/purchased-tickets" element={<PurchasedTicketsPage />} />
+            {/* Add 404 pages */}
         </Routes>
     );
 

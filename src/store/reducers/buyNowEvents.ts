@@ -1,3 +1,4 @@
+import { BUY_NOW_EVENTS_RESET_TICKETS } from './../actions/buyNowEvents';
 import { EventShowcaseEvent } from '../../models/eventShowcase/event';
 import { IBuyNowEventsActions } from './../../models/interfaces/store/actions/buyNowEvents';
 import { IBuyNowEventsState } from './../../models/interfaces/store/states/buyNowEvents';
@@ -103,6 +104,20 @@ export const buyNowEventsReducer = (state = initialState, action: IBuyNowEventsA
             }
 
             break;
+
+        case BUY_NOW_EVENTS_RESET_TICKETS:
+            const resettedTicketsEvent = action.eventData;
+
+            if (resettedTicketsEvent instanceof EventShowcaseEvent) {
+                resettedTicketsEvent.normalTicket.count = 0;
+                resettedTicketsEvent.vipTicket.count = 0;
+                resettedTicketsEvent.totalPrice = 0;
+            }
+
+            return {
+                ...state,
+                events: [ ...state.events ]
+            }
     }
 
     return state;

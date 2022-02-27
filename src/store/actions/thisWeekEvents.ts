@@ -12,6 +12,7 @@ export const THIS_WEEK_EVENTS_ADD_NORMAL_TICKET = 'THIS_WEEK_EVENTS_ADD_NORMAL_T
 export const THIS_WEEK_EVENTS_ADD_VIP_TICKET = 'THIS_WEEK_EVENTS_ADD_VIP_TICKET';
 export const THIS_WEEK_EVENTS_REMOVE_NORMAL_TICKET = 'THIS_WEEK_EVENTS_REMOVE_NORMAL_TICKET';
 export const THIS_WEEK_EVENTS_REMOVE_VIP_TICKET = 'THIS_WEEK_EVENTS_REMOVE_VIP_TICKET';
+export const THIS_WEEK_EVENTS_RESET_TICKETS = 'THIS_WEEK_EVENTS_RESET_TICKET';
 
 const fetchStart = () => {
     return { type: THIS_WEEK_EVENTS_FETCH_START }
@@ -80,4 +81,9 @@ export const removeNormalTicket = (eventData: IEventShowcaseEvent): IEventTicket
 export const removeVipTicket = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
 
     return { type: THIS_WEEK_EVENTS_REMOVE_VIP_TICKET, eventData };
+}
+
+export const resetTickets = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
+
+    return { type: THIS_WEEK_EVENTS_RESET_TICKETS, eventData }
 }

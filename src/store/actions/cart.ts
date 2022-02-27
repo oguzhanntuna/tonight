@@ -2,6 +2,9 @@ import { PurchasedTicket } from './../../models/purchasedTicket/purchasedTicket'
 import axios from 'axios'; 
 
 import * as ToastMessageActions from './toastMessage';
+import * as BuyNowEventsActions from './buyNowEvents';
+import * as ThisWeekEventsActions from './thisWeekEvents';
+import * as RecentlyAddedEventsActions from './recentlyAddedEvents';
 import { CartEvent } from './../../models/cartEvent/cartEvent';
 import { ICartEvent, uniqueId } from './../../models/interfaces/cartEvent/cartEvent';
 import { ILocalStorageUserData } from './../../models/interfaces/auth/auth';
@@ -15,13 +18,13 @@ import { Order } from '../../models/order/order';
 import { IPurchasedTicket } from '../../models/interfaces/purchasedTicket/purchasedTicket';
 import { IOrder } from '../../models/interfaces/order/order';
 
-export const FETCH_CART = 'FETCH_CART';
-export const ADD_TO_CART = 'ADD_TO_CART';
-export const UPDATE_ITEM_IN_CART = 'UPDATE_ITEM_IN_CART';
-export const SET_LOADING = 'SET_LOADING';
 export const FETCH_CART_START = 'FETCH_CART_START';
 export const FETCH_CART_SUCCESS = 'FETCH_CART_SUCCESS';
 export const FETCH_CART_FAIL = 'FETCH_CART_FAIL';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const UPDATE_ITEM_IN_CART = 'UPDATE_ITEM_IN_CART';
+export const ADD_TO_CART_START = 'ADD_TO_CART_START';
+export const ADD_TO_CART_FAIL = 'ADD_TO_CART_FAIL';
 export const RESET_CART = 'RESET_CART';
 
 const fetchCartStart = () => {
@@ -45,6 +48,36 @@ const fetchCartFail = (error: string) => {
 
 const resetCart = () => {
     return { type: RESET_CART }
+}
+
+const addToCartStart = () => {
+    return {  type: ADD_TO_CART_START}
+}
+
+const addToCartFail = (error: string) => {
+    return { type: ADD_TO_CART_FAIL,  }
+}
+
+const resetTickets = (selectedEvent: IEventShowcaseEvent) => {
+    return (dispatch: any) => {
+        if (selectedEvent.moduleType === 'this-week') {
+            const { resetTickets } = ThisWeekEventsActions;
+
+            dispatch(resetTickets(selectedEvent));
+        }
+    
+        if (selectedEvent.moduleType === 'recently-added') {
+            const { resetTickets } = RecentlyAddedEventsActions;
+
+            dispatch(resetTickets(selectedEvent));
+        }
+    
+        if (selectedEvent.moduleType === 'buy-now') {
+            const { resetTickets } = BuyNowEventsActions;
+
+            dispatch(resetTickets(selectedEvent));
+        }
+    }
 }
 
 export const fetchCart = () => {
@@ -104,9 +137,9 @@ export const addToCart = (addedEvent: IEventShowcaseEvent | IFavoriteEvent): any
             const { userId } = parsedUserData;
             const userCartUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/cart/${userId}`;
 
+            dispatch(addToCartStart());
             dispatch(isEventAlreadyInCart(addedEvent))
                 .then((isEventAlreadyInCart: boolean) => {
-
                     if (isEventAlreadyInCart) {
 
                         dispatch(getEventUid(addedEvent))
@@ -149,16 +182,17 @@ export const addToCart = (addedEvent: IEventShowcaseEvent | IFavoriteEvent): any
                                                     addedEvent.moduleType,
                                                     eventUid
                                                 )
-                                                
+        
                                                 dispatch({
                                                     type: UPDATE_ITEM_IN_CART,
                                                     updatedEvent: updatedEvent,
                                                     ticketCount
                                                 });
+                                                dispatch(resetTickets(addedEvent));
                                             })
-                                            .catch(error => console.log(error));
-                                    })
-                            })
+                                            .catch(error => dispatch(addToCartFail(error)))
+                                    });
+                            });
                     } else {
                         const url =`${userCartUrl}.json`;
 
@@ -173,8 +207,8 @@ export const addToCart = (addedEvent: IEventShowcaseEvent | IFavoriteEvent): any
                                     addedEvent.location,
                                     addedEvent.date,
                                     addedEvent.url,
-                                    addedEvent.normalTicket,
-                                    addedEvent.vipTicket,
+                                    { ...addedEvent.normalTicket },
+                                    { ...addedEvent.vipTicket },
                                     addedEvent.totalPrice,
                                     addedEvent.moduleType,
                                     eventUid
@@ -185,8 +219,9 @@ export const addToCart = (addedEvent: IEventShowcaseEvent | IFavoriteEvent): any
                                     addedEvent: cartEvent,
                                     ticketCount
                                 });
+                                dispatch(resetTickets(addedEvent));
                             })
-                            .catch(error => console.log(error));
+                            .catch(error => dispatch(addToCartFail(error)));
                     }
                 });
         } else {

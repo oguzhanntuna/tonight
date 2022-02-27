@@ -1,9 +1,8 @@
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './EventTicket.scss';
 
 import { EventShowcaseEvent } from '../../models/eventShowcase/event';
-import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
 import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
@@ -26,34 +25,35 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
     const { setToastMessage } = ToastMessageActions;
 
     const [isTicketSelected, setIsTicketSelected] = useState<boolean>(false);
+    const [toastMessageData, setToastMessageData] = useState<IToastMessageData>({messageType: '', message: ''});
     const isLoggedin = useLoggedIn();
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        if (toastMessageData.message !== '') {
+            dispatch(setToastMessage(toastMessageData));
+
+            setToastMessageData({ messageType: '', message: '' });
+        }
+    }, [toastMessageData, dispatch, setToastMessage]);
+
     const toggleTicketSide = (): void => setIsTicketSelected(prevState => !prevState);
 
-    const addEventToCart = (event: IEventShowcaseEvent | IFavoriteEvent) => {
-        let toastMessageData: IToastMessageData;
-
+    const addEventToCart = (event: EventShowcaseEvent) => {
         if (isLoggedin) {
             const { normalTicket, vipTicket } = event;
-            const normalTicketCount = normalTicket.count;
-            const vipTicketCount = vipTicket.count;
+            const totalTicketCount = normalTicket.count + vipTicket.count
 
-            toastMessageData = {
+            setToastMessageData({
                 messageType: 'success',
-                message: `${normalTicketCount+vipTicketCount} ${normalTicketCount+vipTicketCount > 1 ? 'tickets' : 'ticket'} added to cart. `
-            }
-
+                message: `${totalTicketCount} ${totalTicketCount > 1 ? 'tickets' : 'ticket'} added to your cart.`
+            });
             dispatch(addToCart(event));
-            dispatch(setToastMessage(toastMessageData));
-
         } else {
-            toastMessageData = {
+            setToastMessageData({
                 messageType: 'warning',
                 message: 'You need to login to add any ticket to your cart!'
-            }
-
-            dispatch(setToastMessage(toastMessageData));
+            });
         }
     }
 
@@ -72,7 +72,7 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
                 `}
                 onClick={() => {
                     isTicketSelected
-                        ? (eventData instanceof EventShowcaseEvent || eventData instanceof FavoriteEvent) && 
+                        ? (eventData instanceof EventShowcaseEvent) && 
                             addEventToCart(eventData)
                         : toggleTicketSide()
                 }}

@@ -12,6 +12,7 @@ export const BUY_NOW_EVENTS_ADD_NORMAL_TICKET = 'BUY_NOW_EVENTS_ADD_NORMAL_TICKE
 export const BUY_NOW_EVENTS_ADD_VIP_TICKET = 'BUY_NOW_EVENTS_ADD_VIP_TICKET';
 export const BUY_NOW_EVENTS_REMOVE_NORMAL_TICKET = 'BUY_NOW_EVENTS_REMOVE_NORMAL_TICKET';
 export const BUY_NOW_EVENTS_REMOVE_VIP_TICKET = 'BUY_NOW_EVENTS_REMOVE_VIP_TICKET';
+export const BUY_NOW_EVENTS_RESET_TICKETS = 'BUY_NOW_EVENTS_RESET_TICKETS';
 
 const fetchStart = () => {
     return { type: BUY_NOW_EVENTS_FETCH_START }
@@ -80,4 +81,9 @@ export const removeNormalTicket = (eventData: IEventShowcaseEvent): IEventTicket
 export const removeVipTicket = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
 
     return { type: BUY_NOW_EVENTS_REMOVE_VIP_TICKET, eventData };
+}
+
+export const resetTickets = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
+
+    return { type: BUY_NOW_EVENTS_RESET_TICKETS, eventData }
 }

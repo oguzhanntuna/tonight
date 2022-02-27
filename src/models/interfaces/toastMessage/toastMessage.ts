@@ -1,4 +1,4 @@
 export interface IToastMessageData {
-    messageType: 'warning' | 'success';
+    messageType: 'warning' | 'success' | '';
     message: string;
 }
