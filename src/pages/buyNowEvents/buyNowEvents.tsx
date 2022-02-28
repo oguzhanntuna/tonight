@@ -9,6 +9,7 @@ import * as BuyNowEventsActions from '../../store/actions/buyNowEvents';
 import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/hero.jpg';
 import EventTicket from '../../components/eventTicket/EventTicket';
+import Spinner from '../../components/spinner/spinner';
 
 const BuyNowEventsPage = (): JSX.Element => {
     const { events: buyNowEvents, loading } = useSelector((state: IApplicationState) => state.buyNowEvents);
@@ -34,7 +35,7 @@ const BuyNowEventsPage = (): JSX.Element => {
                     </div>
                     {
                         loading
-                            ? <p>Loading...</p>
+                            ? <Spinner />
                             : (
                                 <div className="buyNowEventsContainer-events">
                                     { 

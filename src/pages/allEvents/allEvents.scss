@@ -8,6 +8,9 @@
         margin: 12rem auto 0 auto;
 
         .allEventsContainer {
+            display: flex;
+            flex-direction: column;
+
             &-title {
                 margin-bottom: 1rem;
                 padding-left: 2rem;
@@ -17,6 +20,10 @@
                 letter-spacing: -.6rem;
                 word-spacing: 1rem;
                 text-shadow: 0 8px 16px $color-black;
+            }
+
+            .spinner {
+                align-self: center;
             }
 
             &-events {

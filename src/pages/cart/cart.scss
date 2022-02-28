@@ -25,6 +25,10 @@
         &-content {
             display: flex;
 
+            .spinner {
+                margin: 0 auto;
+            }
+
             .cartEvents {
                 display: flex;
                 justify-content: center;

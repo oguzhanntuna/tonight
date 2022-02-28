@@ -1,9 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import './favorites.scss';
 
 import { IApplicationState } from '../../models/interfaces/store/states/application';
-import * as FavoritesActions from '../../store/actions/favorites';
 
 import heroImage from '../../assets/hero.jpg'
 import favoriteIcon from '../../assets/icons/heart-favorites.svg';
@@ -12,16 +10,7 @@ import EventTicket from '../../components/eventTicket/EventTicket';
 import EmptyState from '../../components/emptyState/EmptyState';
 
 const FavoritesPage = (): JSX.Element => {
-    const { favoritesResetAllTickets } = FavoritesActions;
     const favoriteEvents = useSelector((state: IApplicationState) => state.favorites.favoriteEvents);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-
-        return () => {
-            dispatch(favoritesResetAllTickets());
-        }
-    }, [dispatch, favoritesResetAllTickets]);
 
     const renderFavoriteEvents = (): JSX.Element => {
 

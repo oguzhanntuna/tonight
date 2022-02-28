@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import './EventTicket.scss';
 
@@ -8,12 +8,14 @@ import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMes
 import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
 import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
 import { IPurchasedTicket } from '../../models/interfaces/purchasedTicket/purchasedTicket';
+import { IApplicationState } from '../../models/interfaces/store/states/application';
 import * as CartActions from '../../store/actions/cart';
 import * as ToastMessageActions from '../../store/actions/toastMessage';
 
 import EventTicketPriceSide from './EventTicketPriceSide';
 import EventTicketInfoSide from './EventTicketInfoSide';
 import { useLoggedIn } from '../../customHooks/useLoggedIn';
+import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
 
 interface IEventTicketProps {
     eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent | IPurchasedTicket;
@@ -26,6 +28,7 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
 
     const [isTicketSelected, setIsTicketSelected] = useState<boolean>(false);
     const [toastMessageData, setToastMessageData] = useState<IToastMessageData>({messageType: '', message: ''});
+    const addToCartLoading = useSelector((state: IApplicationState) => state.cart.addToCartLoading);
     const isLoggedin = useLoggedIn();
     const dispatch = useDispatch();
 
@@ -39,7 +42,7 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
 
     const toggleTicketSide = (): void => setIsTicketSelected(prevState => !prevState);
 
-    const addEventToCart = (event: EventShowcaseEvent) => {
+    const addEventToCart = (event: EventShowcaseEvent | FavoriteEvent) => {
         if (isLoggedin) {
             const { normalTicket, vipTicket } = event;
             const totalTicketCount = normalTicket.count + vipTicket.count
@@ -72,11 +75,11 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
                 `}
                 onClick={() => {
                     isTicketSelected
-                        ? (eventData instanceof EventShowcaseEvent) && 
+                        ? (eventData instanceof EventShowcaseEvent || eventData instanceof FavoriteEvent) && 
                             addEventToCart(eventData)
                         : toggleTicketSide()
                 }}
-                disabled={isTicketSelected && eventData.totalPrice === 0}
+                disabled={addToCartLoading || (isTicketSelected && eventData.totalPrice === 0)}
             >
                 { isTicketSelected ? 'Add To Cart' : 'Buy Now'}
             </button>

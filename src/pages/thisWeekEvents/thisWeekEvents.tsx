@@ -2,13 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import './thisWeekEvents.scss';
 
+import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import * as thisWeekEventActions from '../../store/actions/thisWeekEvents';
 
 import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/hero.jpg';
 import EventTicket from '../../components/eventTicket/EventTicket';
-import { useScrollToTop } from '../../customHooks/useScrollToTop';
+import Spinner from '../../components/spinner/spinner';
 
 const ThisWeekEventsPage = (): JSX.Element => {
     const { events: thisWeekEvents, loading } = useSelector((state: IApplicationState) => state.thisWeekEvents);
@@ -34,7 +35,7 @@ const ThisWeekEventsPage = (): JSX.Element => {
                     </div>
                     {
                         loading
-                            ? <p>Loading...</p>
+                            ? <Spinner />
                             : (
                                 <div className="thisWeekEventsContainer-events">
                                     { 

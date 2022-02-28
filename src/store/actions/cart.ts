@@ -1,3 +1,4 @@
+import { EventShowcaseEvent } from './../../models/eventShowcase/event';
 import { PurchasedTicket } from './../../models/purchasedTicket/purchasedTicket';
 import axios from 'axios'; 
 
@@ -5,6 +6,7 @@ import * as ToastMessageActions from './toastMessage';
 import * as BuyNowEventsActions from './buyNowEvents';
 import * as ThisWeekEventsActions from './thisWeekEvents';
 import * as RecentlyAddedEventsActions from './recentlyAddedEvents';
+import * as FavoritesActions from './favorites';
 import { CartEvent } from './../../models/cartEvent/cartEvent';
 import { ICartEvent, uniqueId } from './../../models/interfaces/cartEvent/cartEvent';
 import { ILocalStorageUserData } from './../../models/interfaces/auth/auth';
@@ -17,6 +19,7 @@ import { ADD_TO_ORDERS } from './orders';
 import { Order } from '../../models/order/order';
 import { IPurchasedTicket } from '../../models/interfaces/purchasedTicket/purchasedTicket';
 import { IOrder } from '../../models/interfaces/order/order';
+import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
 
 export const FETCH_CART_START = 'FETCH_CART_START';
 export const FETCH_CART_SUCCESS = 'FETCH_CART_SUCCESS';
@@ -58,25 +61,36 @@ const addToCartFail = (error: string) => {
     return { type: ADD_TO_CART_FAIL,  }
 }
 
-const resetTickets = (selectedEvent: IEventShowcaseEvent) => {
+const resetTickets = (selectedEvent: IEventShowcaseEvent | IFavoriteEvent) => {
     return (dispatch: any) => {
-        if (selectedEvent.moduleType === 'this-week') {
-            const { resetTickets } = ThisWeekEventsActions;
-
-            dispatch(resetTickets(selectedEvent));
-        }
+        if (selectedEvent instanceof EventShowcaseEvent) {
+            if (selectedEvent.moduleType === 'this-week') {
+                const { resetTickets } = ThisWeekEventsActions;
     
-        if (selectedEvent.moduleType === 'recently-added') {
-            const { resetTickets } = RecentlyAddedEventsActions;
-
-            dispatch(resetTickets(selectedEvent));
-        }
+                dispatch(resetTickets(selectedEvent));
+            }
+        
+            if (selectedEvent.moduleType === 'recently-added') {
+                const { resetTickets } = RecentlyAddedEventsActions;
     
-        if (selectedEvent.moduleType === 'buy-now') {
-            const { resetTickets } = BuyNowEventsActions;
-
-            dispatch(resetTickets(selectedEvent));
+                dispatch(resetTickets(selectedEvent));
+            }
+        
+            if (selectedEvent.moduleType === 'buy-now') {
+                const { resetTickets } = BuyNowEventsActions;
+    
+                dispatch(resetTickets(selectedEvent));
+            }
         }
+
+        if (
+            selectedEvent instanceof FavoriteEvent && 
+            selectedEvent.moduleType === 'favorites'
+        ) {
+            const { favoritesResetTickets } = FavoritesActions;
+
+            dispatch(favoritesResetTickets(selectedEvent));
+        } 
     }
 }
 

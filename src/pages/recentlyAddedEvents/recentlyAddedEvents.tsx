@@ -2,13 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import './recentlyAddedEvents.scss';
 
+import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import * as RecentlyAddedEventsActions from '../../store/actions/recentlyAddedEvents';
 
 import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/hero.jpg';
 import EventTicket from '../../components/eventTicket/EventTicket';
-import { useScrollToTop } from '../../customHooks/useScrollToTop';
+import Spinner from '../../components/spinner/spinner';
 
 const RecentlyAddedEventsPage = (): JSX.Element => {
     const { events: recentlyAddedEvents, loading } = useSelector((state: IApplicationState) => state.recentlyAddedEvents);
@@ -34,7 +35,7 @@ const RecentlyAddedEventsPage = (): JSX.Element => {
                     </div>
                     {
                         loading
-                            ? <p>Loading...</p>
+                            ? <Spinner />
                             : (
                                 <div className="recentlyAddedEventsContainer-events">
                                     { 

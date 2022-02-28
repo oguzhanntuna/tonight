@@ -12,6 +12,7 @@ import * as BuyNowEventsActions from '../../store/actions/buyNowEvents';
 import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/hero.jpg';
 import EventTicket from '../../components/eventTicket/EventTicket';
+import Spinner from '../../components/spinner/spinner';
 
 const AllEventsPage = (): JSX.Element => {
     const dispatch = useDispatch();
@@ -71,7 +72,7 @@ const AllEventsPage = (): JSX.Element => {
                     </div>
                     {
                         thisWeekEventsLoading || recentlyAddedEventsLoading || buyNowEventsLoading
-                            ? <p>Loading...</p>
+                            ? <Spinner />
                             : (
                                 <div className="allEventsContainer-events">
                                     { 

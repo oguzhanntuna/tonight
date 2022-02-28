@@ -9,6 +9,7 @@ import * as buyNowEventsActions from '../../../store/actions/buyNowEvents';
 
 import EventShowcaseHeader from './Header';
 import EventShowcaseEventsContainer from './EventsContainer';
+import Spinner from '../../spinner/spinner';
 
 interface IEventShowcaseModuleProps {
     title: string;
@@ -72,7 +73,7 @@ const EventShowcaseModule = (props: IEventShowcaseModuleProps): JSX.Element => {
             <EventShowcaseHeader title={title} displayFilters={displayFilters}/>
             {
                 loading
-                    ? <p>Loading...</p>
+                    ? <Spinner />
                     : <EventShowcaseEventsContainer eventData={eventData} />  
             }          
         </div>   

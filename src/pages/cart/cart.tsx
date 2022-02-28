@@ -9,6 +9,7 @@ import HeroImage from '../../components/heroImage/HeroImage';
 import EmptyState from '../../components/emptyState/EmptyState';
 import EventTicket from '../../components/eventTicket/EventTicket';
 import Checkout from '../../components/checkout/Checkout';
+import Spinner from '../../components/spinner/spinner';
 
 const CartPage = (): JSX.Element => {
     const { cartItems, fetchLoading } = useSelector((state: IApplicationState) => state.cart);
@@ -43,7 +44,7 @@ const CartPage = (): JSX.Element => {
                 <div className="cartPageContainer-content">
                     {
                         fetchLoading
-                            ? <p>Loading...</p>
+                            ? <Spinner />
                             : <>
                                 <div className="cartPageContainer-leftSide">
                                     {

@@ -1,0 +1,20 @@
+@import '../../variables/variables.scss';
+
+.spinner {
+    background-color: transparent;
+    border-radius: 50%;
+    border: 1.2rem solid $color-secondary;
+    border-bottom: 1.2rem solid $color-white;
+    animation-name: spinnerAnimation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes spinnerAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+         transform: rotate(360deg);
+    }
+}

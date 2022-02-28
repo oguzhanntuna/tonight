@@ -7,8 +7,7 @@ import {
     FAVORITES_REMOVE_NORMAL_TICKET, 
     FAVORITES_REMOVE_VIP_TICKET, 
     REMOVE_FROM_FAVORITES, 
-    FAVORITES_RESET_TICKET_COUNT,
-    FAVORITES_RESET_ALL_TICKETS
+    FAVORITES_RESET_TICKETS
 } from './../actions/favorites';
 import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
 import { IFavoritesAction } from './../../models/interfaces/store/actions/favorites';
@@ -129,7 +128,7 @@ export const favoritesReducer = (state = initialState, action: IFavoritesAction)
 
             break;  
 
-        case FAVORITES_RESET_TICKET_COUNT:
+        case FAVORITES_RESET_TICKETS:
             const favoritesEventAddedToCart = action.selectedEvent;
 
             if (favoritesEventAddedToCart instanceof FavoriteEvent) {
@@ -142,23 +141,8 @@ export const favoritesReducer = (state = initialState, action: IFavoritesAction)
                     favoriteEvents: [ ...state.favoriteEvents ]
                 }
             }
-
-            // Event added to cart could not found!
+            
             break;
-
-        case FAVORITES_RESET_ALL_TICKETS:
-            const { favoriteEvents } = state;
-
-            favoriteEvents.forEach(favoriteEvent => {
-                favoriteEvent.totalPrice = 0;
-                favoriteEvent.normalTicket.count = 0;
-                favoriteEvent.vipTicket.count = 0;
-            });
-
-            return {
-                ...state,
-                favoriteEvents: [ ...state.favoriteEvents ]
-            }
     }
 
     return state;
