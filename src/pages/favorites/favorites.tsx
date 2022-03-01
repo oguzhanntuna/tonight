@@ -8,13 +8,14 @@ import favoriteIcon from '../../assets/icons/heart-favorites.svg';
 import HeroImage from '../../components/heroImage/HeroImage';
 import EventTicket from '../../components/eventTicket/EventTicket';
 import EmptyState from '../../components/emptyState/EmptyState';
+import Spinner from '../../components/spinner/spinner';
 
 const FavoritesPage = (): JSX.Element => {
-    const favoriteEvents = useSelector((state: IApplicationState) => state.favorites.favoriteEvents);
+    const favoritesState = useSelector((state: IApplicationState) => state.favorites);
+    const { favoriteEvents, fetchLoading } = favoritesState;
 
-    const renderFavoriteEvents = (): JSX.Element => {
-
-        return <div className="favoriteEvents">
+    const renderFavoriteEvents = (): JSX.Element => (
+        <div className="favoriteEvents">
             {
                 favoriteEvents.map((favoriteEvent, index) => (
                     <EventTicket  
@@ -24,7 +25,7 @@ const FavoritesPage = (): JSX.Element => {
                 ))
             }
         </div> 
-    }
+    );
 
     const renderEmptyState = (): JSX.Element => (
         
@@ -32,7 +33,7 @@ const FavoritesPage = (): JSX.Element => {
             icon={favoriteIcon}
             text="No favourites yet!"
         />
-    )
+    );
 
     return (
         <div className="favoritesPage">
@@ -43,9 +44,12 @@ const FavoritesPage = (): JSX.Element => {
                 </div>
                 <div className="favoritesPageContainer-content">
                     {
-                        favoriteEvents && favoriteEvents.length > 0
-                            ? renderFavoriteEvents()
-                            : renderEmptyState()
+                        fetchLoading
+                            ? <Spinner />
+                            : favoriteEvents && favoriteEvents.length > 0
+                                ? renderFavoriteEvents()
+                                : renderEmptyState()
+                        
                     }
                 </div>
             </div>

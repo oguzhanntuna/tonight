@@ -1,13 +1,15 @@
 import { 
-    ADD_TO_FAVORITES, 
-    FETCH_FAVORITES, 
-    SET_LOADING, 
     FAVORITES_ADD_NORMAL_TICKET, 
     FAVORITES_ADD_VIP_TICKET, 
     FAVORITES_REMOVE_NORMAL_TICKET, 
     FAVORITES_REMOVE_VIP_TICKET, 
-    REMOVE_FROM_FAVORITES, 
-    FAVORITES_RESET_TICKETS
+    FAVORITES_RESET_TICKETS,
+    FAVORITES_FETCH_START,
+    FAVORITES_FETCH_SUCCESS,
+    FAVORITES_FETCH_FAIL,
+    FAVORITES_TOGGLE_START,
+    FAVORITES_TOGGLE_SUCCESS,
+    FAVORITES_TOGGLE_FAIL
 } from './../actions/favorites';
 import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
 import { IFavoritesAction } from './../../models/interfaces/store/actions/favorites';
@@ -15,54 +17,95 @@ import { IFavoritesState } from '../../models/interfaces/store/states/favorites'
 
 const initialState: IFavoritesState = {
     favoriteEvents: [],
-    loading: false
+    fetchLoading: false,
+    toggleLoading: false,
+    fetchError: null,
+    toggleError: null
 }
 
 export const favoritesReducer = (state = initialState, action: IFavoritesAction): IFavoritesState => {
     switch(action.type) {
-        case FETCH_FAVORITES:
+        case FAVORITES_FETCH_START:
 
-            if (action.favoriteEvents) {
-
-                return {
-                    ...state,
-                    favoriteEvents: action.favoriteEvents,
-                    loading: false
-                }
+            return {
+                ...state,
+                fetchLoading: true
             }
 
-        break;
-        
-        case ADD_TO_FAVORITES:
-            const { selectedEvent: selectedEventToBeAdded } = action;
+        case FAVORITES_FETCH_SUCCESS:
+            const { favoriteEvents } = action;
 
-            if (state.favoriteEvents && selectedEventToBeAdded) {
+            if (favoriteEvents) {
 
                 return {
                     ...state,
-                    favoriteEvents: [ ...state.favoriteEvents, selectedEventToBeAdded ],
-                    loading: false
+                    favoriteEvents,
+                    fetchLoading: false,
+                    fetchError: null
                 }
             }
 
             break;
 
-        case REMOVE_FROM_FAVORITES:
-            const { selectedEvent: selectedEventToBeRemoved } = action;
-            const newFavoriteEvents = state.favoriteEvents.filter((favoriteEvent => favoriteEvent?.id !== selectedEventToBeRemoved?.id));
+
+        case FAVORITES_FETCH_FAIL:
+            if (action.error) {
+                
+                return {
+                    ...state,
+                    fetchError: action.error,
+                    fetchLoading: false
+                }
+            }
+
+            break;
+
+        case FAVORITES_TOGGLE_START:
 
             return {
                 ...state,
-                favoriteEvents: [ ...newFavoriteEvents ],
-                loading: false
+                toggleLoading: true
             }
 
-        case SET_LOADING: 
+        case FAVORITES_TOGGLE_SUCCESS:
+            const { selectedEvent, toggleType } = action;
 
-            return {
-                ...state,
-                loading: true
+            if (selectedEvent) {
+                if (toggleType === 'add') {
+    
+                    return {
+                        ...state,
+                        favoriteEvents: [ ...state.favoriteEvents, selectedEvent ],
+                        toggleLoading: false,
+                        toggleError: null
+                    }
+                }
+    
+                if (toggleType === 'remove') {
+                    const newFavoriteEvents = state.favoriteEvents.filter((favoriteEvent => favoriteEvent?.id !== selectedEvent?.id));
+    
+                    return {
+                        ...state,
+                        favoriteEvents: [ ...newFavoriteEvents ],
+                        toggleLoading: false,
+                        toggleError: null
+                    }
+                }
             }
+
+            break;
+    
+        case FAVORITES_TOGGLE_FAIL:
+            if (action.error) {
+                
+                return {
+                    ...state,
+                    toggleError: action.error,
+                    toggleLoading: false
+                }
+            }
+
+            break;
 
         case FAVORITES_ADD_NORMAL_TICKET:
             const addedNormalTicketFavoritesEvent = action.selectedEvent;

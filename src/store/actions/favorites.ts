@@ -9,10 +9,15 @@ import { IFavoriteEvent, uniqueId } from './../../models/interfaces/favoriteEven
 import * as ToastMessageActions from './toastMessage';
 import { IFavoritesAction } from '../../models/interfaces/store/actions/favorites';
 
+export const FAVORITES_FETCH_START = 'FAVORITES_FETCH_START';
+export const FAVORITES_FETCH_SUCCESS = 'FAVORITES_FETCH_SUCCESS';
+export const FAVORITES_FETCH_FAIL = 'FAVORITES_FETCH_FAIL';
+export const FAVORITES_TOGGLE_START = 'FAVORITES_TOGGLE_START';
+export const FAVORITES_TOGGLE_SUCCESS = 'FAVORITES_TOGGLE_SUCCESS';
+export const FAVORITES_TOGGLE_FAIL = 'FAVORITES_TOGGLE_FAIL';
 export const FETCH_FAVORITES = 'FETCH_FAVORITES';
 export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
 export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
-export const SET_LOADING = 'SET_LOADING';
 export const FAVORITES_ADD_NORMAL_TICKET = 'FAVORITES_ADD_NORMAL_TICKET';
 export const FAVORITES_ADD_VIP_TICKET = 'FAVORITES_ADD_VIP_TICKET';
 export const FAVORITES_REMOVE_NORMAL_TICKET = 'FAVORITES_REMOVE_NORMAL_TICKET';
@@ -29,7 +34,7 @@ export const fetchFavorites = () =>
             const { userId } = parsedUserData;
             const userFavoritesUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/favorites/${userId}.json`;
 
-            dispatch(setLoading());
+            dispatch(fetchStart());
             axios.get(userFavoritesUrl)
                 .then(response => {
                     const { data } = response;
@@ -54,12 +59,9 @@ export const fetchFavorites = () =>
                         favoriteEventsArray.push(favoritedEvent)
                     }
 
-                    dispatch({
-                        type: FETCH_FAVORITES,
-                        favoriteEvents: favoriteEventsArray
-                    });
+                    dispatch(fetchSuccess(favoriteEventsArray));
                 })
-                .catch(error => console.log(error));
+                .catch(error => dispatch(fetchFail(error)));
         }
 
         dispatch({
@@ -78,7 +80,6 @@ export const toggleFavorite = (selectedEvent: IEventShowcaseEvent): any => {
             const { userId } = parsedUserData;
             const userFavoritesUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/favorites/${userId}`;
 
-            dispatch(setLoading());
             dispatch(isEventAlreadyInFavorites(selectedEvent))
                 .then((isEventAlreadyInFavorites: boolean) => {
 
@@ -87,7 +88,8 @@ export const toggleFavorite = (selectedEvent: IEventShowcaseEvent): any => {
                         dispatch(getEventUid(selectedEvent))
                             .then((eventUid: string) => {
                                 const url =`${userFavoritesUrl}/${eventUid}.json`;
-
+                                
+                                dispatch(toggleStart());
                                 axios.delete(url)
                                     .then(() => {
                                         const favoriteEvent: IFavoriteEvent = new FavoriteEvent(
@@ -104,17 +106,15 @@ export const toggleFavorite = (selectedEvent: IEventShowcaseEvent): any => {
                                             eventUid
                                         );
 
-                                        dispatch({
-                                            type: REMOVE_FROM_FAVORITES,
-                                            selectedEvent: favoriteEvent
-                                        });
+                                        dispatch(toggleSuccess(favoriteEvent, 'remove'));
                                     })
-                                    .catch(error => console.log(error)); 
+                                    .catch(error => dispatch(toggleFail(error))); 
                             });
 
                     } else {
                         const url =`${userFavoritesUrl}.json`;
                         
+                        dispatch(toggleStart());
                         axios.post(url, selectedEvent)
                             .then(response => {
                                 const { name: eventUid } = response.data;
@@ -132,12 +132,9 @@ export const toggleFavorite = (selectedEvent: IEventShowcaseEvent): any => {
                                     eventUid
                                 )
 
-                                dispatch({
-                                    type: ADD_TO_FAVORITES,
-                                    selectedEvent: favoriteEvent
-                                });
+                                dispatch(toggleSuccess(favoriteEvent, 'add'));
                             })
-                            .catch(error => console.log(error));
+                            .catch(error => dispatch(toggleFail(error)));
                     }
                 });
         } else {
@@ -177,6 +174,49 @@ export const favoritesResetTickets = (selectedEvent: IFavoriteEvent): IFavorites
     return { type: FAVORITES_RESET_TICKETS, selectedEvent };
 }
 
+const fetchStart = () => {
+
+    return { type: FAVORITES_FETCH_START }
+}
+
+const fetchSuccess = (events: Array<IFavoriteEvent>) => {
+
+    return {
+        type: FAVORITES_FETCH_SUCCESS,
+        favoriteEvents: events
+    }
+}
+
+const fetchFail = (error: string) => {
+
+    return { 
+        type: FAVORITES_FETCH_FAIL,
+        error
+    }
+}
+
+const toggleStart = () => {
+
+    return { type: FAVORITES_TOGGLE_START }
+}
+
+const toggleSuccess = (event: IFavoriteEvent, toggleType: 'remove' | 'add') => {
+
+    return {
+        type: FAVORITES_TOGGLE_SUCCESS,
+        selectedEvent: event,
+        toggleType
+    }
+}
+
+const toggleFail = (error: string) => {
+
+    return { 
+        type: FAVORITES_TOGGLE_FAIL,
+        toggleError: error
+    }
+}
+
 const getFavoritesEvents = () => 
     (_dispatch: any, getState: () => IApplicationState): Array<IFavoriteEvent | null> => 
         getState().favorites.favoriteEvents; 
@@ -204,9 +244,3 @@ const getEventUid = (event: IEventShowcaseEvent) =>
                 resolve(selectedEvent.uniqueId);
             }
         });
-
-
-const setLoading = () => {
-    
-    return { type: SET_LOADING };
-} 

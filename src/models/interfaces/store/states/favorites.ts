@@ -1,5 +1,8 @@
 import { IFavoriteEvent } from './../../favoriteEvent/favoriteEvent';
 export interface IFavoritesState {
     favoriteEvents: Array<IFavoriteEvent>;
-    loading: boolean;
+    fetchLoading: boolean;
+    toggleLoading: boolean;
+    fetchError: string | null;
+    toggleError: string | null;
 }

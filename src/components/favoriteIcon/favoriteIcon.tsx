@@ -21,12 +21,12 @@ const FavoriteIcon = (props: IFavoriteIcon): JSX.Element => {
 
     const dispatch = useDispatch();
     const favoritesState = useSelector((state: IApplicationState) => state.favorites);
-    const { favoriteEvents, loading } = favoritesState;
+    const { favoriteEvents, toggleLoading } = favoritesState;
 
     const isEventAlreadyInFavorites = favoriteEvents ? favoriteEvents.some(favoriteEvent => favoriteEvent?.id === eventToBeLiked.id) : false;
 
     return (
-        <div className="addToFavoriteIconContainer" onClick={() => !loading && dispatch(toggleFavorite(eventToBeLiked))}>
+        <div className="addToFavoriteIconContainer" onClick={() => !toggleLoading && dispatch(toggleFavorite(eventToBeLiked))}>
             <div className="addToFavoriteIconContainer-addToFavoriteIcon">
                 { 
                     isEventAlreadyInFavorites 

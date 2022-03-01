@@ -5,4 +5,6 @@ export interface IFavoritesAction {
     favoriteEvents?: Array<IFavoriteEvent>;
     selectedEvent?: IFavoriteEvent;
     loading?: boolean;
+    error?: string;
+    toggleType?: 'remove' | 'add';
 }
