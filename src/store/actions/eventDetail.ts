@@ -1,4 +1,3 @@
-import { IEventTicketsActions } from './../../models/interfaces/store/actions/eventTickets';
 import axios from "axios";
 
 import { EventShowcaseEvent } from "../../models/eventShowcase/event";
@@ -12,6 +11,7 @@ export const EVENT_DETAIL_ADD_NORMAL_TICKET = 'EVENT_DETAIL_ADD_NORMAL_TICKET';
 export const EVENT_DETAIL_ADD_VIP_TICKET = 'EVENT_DETAIL_ADD_VIP_TICKET';
 export const EVENT_DETAIL_REMOVE_NORMAL_TICKET = 'EVENT_DETAIL_REMOVE_NORMAL_TICKET';
 export const EVENT_DETAIL_REMOVE_VIP_TICKET = 'EVENT_DETAIL_REMOVE_VIP_TICKET';
+export const EVENT_DETAIL_RESET_TICKETS = 'EVENT_DETAIL_RESET_TICKETS';
 
 const fetchStart = () => {
     return { type: EVENT_DETAIL_FETCH_START }
@@ -60,22 +60,27 @@ export const fetchEventDetail = (eventName: string) => {
     } 
 }
 
-export const addNormalTicket = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
+export const addNormalTicket = (eventData: IEventShowcaseEvent) => {
     
-    return { type: EVENT_DETAIL_ADD_NORMAL_TICKET, eventData};
+    return { type: EVENT_DETAIL_ADD_NORMAL_TICKET, eventDetail: eventData};
 }
 
-export const addVipTicket = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
+export const addVipTicket = (eventData: IEventShowcaseEvent) => {
 
-    return { type: EVENT_DETAIL_ADD_VIP_TICKET, eventData};
+    return { type: EVENT_DETAIL_ADD_VIP_TICKET, eventDetail: eventData};
 }
 
-export const removeNormalTicket = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
+export const removeNormalTicket = (eventData: IEventShowcaseEvent) => {
 
-    return { type: EVENT_DETAIL_REMOVE_NORMAL_TICKET, eventData };
+    return { type: EVENT_DETAIL_REMOVE_NORMAL_TICKET, eventDetail: eventData };
 }
 
-export const removeVipTicket = (eventData: IEventShowcaseEvent): IEventTicketsActions => {
+export const removeVipTicket = (eventData: IEventShowcaseEvent) => {
 
-    return { type: EVENT_DETAIL_REMOVE_VIP_TICKET, eventData };
+    return { type: EVENT_DETAIL_REMOVE_VIP_TICKET, eventDetail: eventData };
+}
+
+export const eventDetailResetTickets = (eventData: IEventShowcaseEvent) => {
+
+    return { type: EVENT_DETAIL_RESET_TICKETS, eventDetail: eventData }
 }

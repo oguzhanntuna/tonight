@@ -18,7 +18,6 @@ const EventPriceSlip = (props: IEventPriceSlip): JSX.Element => {
 
     const addEventToCart = (event: IEventShowcaseEvent) => {
         dispatch(addToCart(event));
-        // reset ticket count
     }
 
     return (

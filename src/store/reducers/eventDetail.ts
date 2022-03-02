@@ -1,3 +1,4 @@
+import { EVENT_DETAIL_RESET_TICKETS } from './../actions/eventDetail';
 import { IEventDetailActions } from './../../models/interfaces/store/actions/eventDetail';
 import { IEventDetailState } from './../../models/interfaces/store/states/eventDetail';
 import { 
@@ -16,6 +17,8 @@ const initialState: IEventDetailState = {
     loading: false,
     error: null
 }
+
+// const updateEventDetail = () => {}
 
 export const eventDetailReducer = (state = initialState, action: IEventDetailActions): IEventDetailState => {
     switch(action.type) {
@@ -158,6 +161,35 @@ export const eventDetailReducer = (state = initialState, action: IEventDetailAct
             }
 
             break;
+
+            case EVENT_DETAIL_RESET_TICKETS:
+                const resettedTicketsEvent = action.eventDetail;
+                
+                if (resettedTicketsEvent instanceof EventShowcaseEvent) {
+                    resettedTicketsEvent.vipTicket.count = 0;
+                    resettedTicketsEvent.normalTicket.count = 0;
+                    resettedTicketsEvent.totalPrice = 0;
+    
+                    const updatedEventDetail = new EventShowcaseEvent(
+                        resettedTicketsEvent.id,
+                        resettedTicketsEvent.title,
+                        resettedTicketsEvent.imageUrl,
+                        resettedTicketsEvent.location,
+                        resettedTicketsEvent.date,
+                        resettedTicketsEvent.url,
+                        resettedTicketsEvent.normalTicket,
+                        resettedTicketsEvent.vipTicket,
+                        resettedTicketsEvent.totalPrice,
+                        resettedTicketsEvent.moduleType
+                    ) 
+    
+                    return {
+                        ...state,
+                        event: updatedEventDetail
+                    }
+                }
+    
+                break;
     }
 
     return state;

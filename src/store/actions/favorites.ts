@@ -88,7 +88,7 @@ export const toggleFavorite = (selectedEvent: IEventShowcaseEvent): any => {
                         dispatch(getEventUid(selectedEvent))
                             .then((eventUid: string) => {
                                 const url =`${userFavoritesUrl}/${eventUid}.json`;
-                                
+
                                 dispatch(toggleStart());
                                 axios.delete(url)
                                     .then(() => {
@@ -102,7 +102,7 @@ export const toggleFavorite = (selectedEvent: IEventShowcaseEvent): any => {
                                             selectedEvent.normalTicket,
                                             selectedEvent.vipTicket,
                                             selectedEvent.totalPrice,
-                                            selectedEvent.moduleType,
+                                            'favorites',
                                             eventUid
                                         );
 
@@ -117,6 +117,7 @@ export const toggleFavorite = (selectedEvent: IEventShowcaseEvent): any => {
                         dispatch(toggleStart());
                         axios.post(url, selectedEvent)
                             .then(response => {
+
                                 const { name: eventUid } = response.data;
                                 const favoriteEvent: IFavoriteEvent = new FavoriteEvent(
                                     selectedEvent.id,
@@ -128,7 +129,7 @@ export const toggleFavorite = (selectedEvent: IEventShowcaseEvent): any => {
                                     selectedEvent.normalTicket,
                                     selectedEvent.vipTicket,
                                     selectedEvent.totalPrice,
-                                    selectedEvent.moduleType,
+                                    'favorites',
                                     eventUid
                                 )
 

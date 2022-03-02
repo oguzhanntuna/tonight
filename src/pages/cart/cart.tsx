@@ -32,36 +32,41 @@ const CartPage = (): JSX.Element => {
             icon={cartIcon}
             text="No tickets in cart yet!"
         />
-    )
+    );
 
     return (
         <div className="cartPage">
             <HeroImage imageUrl={heroImage} />
             <div className="cartPageContainer">
-                <div className="cartPageContainer-title">
-                    My Cart
+                <div className="cartPageContainer-leftSide">
+                    <div className="cartPageContainer-title">
+                        My Cart
+                    </div>
+                    {
+                        fetchLoading
+                            ? <Spinner />
+                            : cartItems && cartItems.length > 0
+                                ? renderCartEvents()
+                                : renderEmptyState()
+                    }
                 </div>
-                <div className="cartPageContainer-content">
+                {
+                    cartItems && cartItems.length > 0 && !fetchLoading &&
+                    <div className="cartPageContainer-rightSide">
+                        <Checkout cartItems={cartItems} cartPurchasable={cartItems.length > 0} />
+                    </div>
+                }
+                
+                {/* <div className="cartPageContainer-content">
                     {
                         fetchLoading
                             ? <Spinner />
                             : <>
-                                <div className="cartPageContainer-leftSide">
-                                    {
-                                        cartItems && cartItems.length > 0
-                                            ? renderCartEvents()
-                                            : renderEmptyState()
-                                    }
-                                </div>
-                                {
-                                    cartItems && cartItems.length > 0 &&
-                                    <div className="cartPageContainer-rightSide">
-                                        <Checkout cartItems={cartItems} cartPurchasable={cartItems.length > 0} />
-                                    </div>
-                                }
+                                
+                                
                             </>
                     }
-                </div>
+                </div> */}
             </div>
         </div>
     );

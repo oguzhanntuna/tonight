@@ -7,6 +7,7 @@ import * as BuyNowEventsActions from './buyNowEvents';
 import * as ThisWeekEventsActions from './thisWeekEvents';
 import * as RecentlyAddedEventsActions from './recentlyAddedEvents';
 import * as FavoritesActions from './favorites';
+import * as EventDetailActions from './eventDetail';
 import { CartEvent } from './../../models/cartEvent/cartEvent';
 import { ICartEvent, uniqueId } from './../../models/interfaces/cartEvent/cartEvent';
 import { ILocalStorageUserData } from './../../models/interfaces/auth/auth';
@@ -45,7 +46,7 @@ const fetchCartSuccess = (cartEvents: Array<IFavoriteEvent>, ticketCount: number
 const fetchCartFail = (error: string) => {
     return {
         type: FETCH_CART_FAIL,
-        error
+        fetchError: error
     }
 }
 
@@ -58,7 +59,7 @@ const addToCartStart = () => {
 }
 
 const addToCartFail = (error: string) => {
-    return { type: ADD_TO_CART_FAIL,  }
+    return { type: ADD_TO_CART_FAIL, addToCartError: error }
 }
 
 const resetTickets = (selectedEvent: IEventShowcaseEvent | IFavoriteEvent) => {
@@ -80,6 +81,12 @@ const resetTickets = (selectedEvent: IEventShowcaseEvent | IFavoriteEvent) => {
                 const { resetTickets } = BuyNowEventsActions;
     
                 dispatch(resetTickets(selectedEvent));
+            }
+
+            if (selectedEvent.moduleType === 'event-detail') {
+                const { eventDetailResetTickets } = EventDetailActions;
+    
+                dispatch(eventDetailResetTickets(selectedEvent));
             }
         }
 

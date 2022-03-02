@@ -45,9 +45,7 @@ const EventTicketFrontside = (props: IEventTicketFrontSideProps): JSX.Element =>
                 <img src={detailIcon} alt="detail icon" />
             </div>
             {
-                (eventData instanceof EventShowcaseEvent ||
-                eventData instanceof FavoriteEvent ||
-                eventData instanceof CartEvent) &&
+                (eventData instanceof EventShowcaseEvent || eventData instanceof FavoriteEvent) &&
                 <FavoriteIcon 
                     eventToBeLiked={eventData}
                     showFavoritesText={false} 

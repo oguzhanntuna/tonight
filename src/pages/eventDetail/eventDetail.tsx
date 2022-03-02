@@ -15,6 +15,7 @@ import EventPriceSlip from '../../components/eventDetailPage/EventPriceSlip';
 const EventDetailPage = (): JSX.Element => {
     const { eventName } = useParams();
     const { event: selectedEvent, loading } = useSelector((state: IApplicationState) => state.eventDetail);
+
     const dispatch = useDispatch();
     
     useScrollToTop();

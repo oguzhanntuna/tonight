@@ -19,7 +19,6 @@ export const fetchOrders = () => {
             const { userId } = parsedUserData;
             const ordersUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/orders/${userId}.json`;
 
-            // dispatch(setLoading());
             axios.get(ordersUrl)
                 .then(response => {
                     const { data } = response;
@@ -61,11 +60,5 @@ export const fetchOrders = () => {
                 })
                 .catch(error => console.log(error));
         }
-
-        // Is it necessary?
-        // dispatch({
-        //     type: FETCH_ORDERS,
-        //     orders: []
-        // });
     }
 }

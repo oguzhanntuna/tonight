@@ -1,18 +1,14 @@
+import { useSelector } from 'react-redux';
 import './purchasedTickets.scss';
+
+import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 import heroImage from '../../assets/hero.jpg';
 import HeroImage from '../../components/heroImage/HeroImage';
-import { useSelector } from 'react-redux';
-import { IApplicationState } from '../../models/interfaces/store/states/application';
-import { useEffect } from 'react';
 import EventTicket from '../../components/eventTicket/EventTicket';
 
 const PurchasedTicketsPage = (): JSX.Element => {
     const orders = useSelector((state: IApplicationState) => state.orders.orders);
-
-    useEffect(() => {
-        console.log('orders: ', orders);
-    }, [orders]);
 
     const renderPurchasedTickets = () => (
         <div className="orders">
