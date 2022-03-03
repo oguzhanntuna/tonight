@@ -15,6 +15,7 @@ import * as EventDetailActions from '../../store/actions/eventDetail';
 
 import addIcon from '../../assets/icons/add.svg';
 import removeIcon from '../../assets/icons/remove.svg';
+import { PurchasedTicket } from '../../models/purchasedTicket/purchasedTicket';
 
 interface IEventTicketPriceRowProps {
     eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent | IPurchasedTicket;
@@ -118,21 +119,24 @@ const EventTicketPriceRow = (props: IEventTicketPriceRowProps): JSX.Element => {
                 </div>
                 <div className="eventTicketPriceRow-ticketCount">{count}</div>
             </div>
-            <div className="eventTicketPriceRow-buttonContainer">
-                <button 
-                    className={`eventTicketPriceRow-removeButton ${count === 0 ? 'disable' : ''}`} 
-                    disabled={count === 0}
-                    onClick={() => removeTicket()}
-                >
-                    <img src={removeIcon} alt="remove icon" />
-                </button>
-                <button 
-                    className="eventTicketPriceRow-addButton"
-                    onClick={() => addTicket()}
-                >
-                    <img src={addIcon} alt="add icon" />
-                </button>
-            </div>
+            {
+                !(eventData instanceof PurchasedTicket) &&
+                <div className="eventTicketPriceRow-buttonContainer">
+                    <button 
+                        className={`eventTicketPriceRow-removeButton ${count === 0 ? 'disable' : ''}`} 
+                        disabled={count === 0 || eventData instanceof PurchasedTicket}
+                        onClick={() => removeTicket()}
+                    >
+                        <img src={removeIcon} alt="remove icon" />
+                    </button>
+                    <button 
+                        className="eventTicketPriceRow-addButton"
+                        onClick={() => addTicket()}
+                    >
+                        <img src={addIcon} alt="add icon" />
+                    </button>
+                </div>
+            }
         </div>
     );
 }

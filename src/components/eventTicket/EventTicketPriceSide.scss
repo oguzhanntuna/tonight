@@ -41,6 +41,10 @@
 
     &-content {
         margin-bottom: auto;
+
+        &--hideActionButtons {
+            margin: auto 0;
+        }
     }
 
     &-totalPriceContainer {

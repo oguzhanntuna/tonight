@@ -2,6 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import './EventTicket.scss';
 
+import { useLoggedIn } from '../../customHooks/useLoggedIn';
+import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
+import { CartEvent } from '../../models/cartEvent/cartEvent';
+import { PurchasedTicket } from '../../models/purchasedTicket/purchasedTicket';
 import { EventShowcaseEvent } from '../../models/eventShowcase/event';
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
@@ -14,8 +18,6 @@ import * as ToastMessageActions from '../../store/actions/toastMessage';
 
 import EventTicketPriceSide from './EventTicketPriceSide';
 import EventTicketInfoSide from './EventTicketInfoSide';
-import { useLoggedIn } from '../../customHooks/useLoggedIn';
-import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
 
 interface IEventTicketProps {
     eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent | IPurchasedTicket;
@@ -81,7 +83,11 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
                 }}
                 disabled={addToCartLoading || (isTicketSelected && eventData.totalPrice === 0)}
             >
-                { isTicketSelected ? 'Add To Cart' : 'Buy Now'}
+                {
+                    (eventData instanceof CartEvent || eventData instanceof PurchasedTicket)
+                        ? 'Details'
+                        : isTicketSelected ? 'Add To Cart' : 'Buy Now'
+                }
             </button>
         </div>
     );
