@@ -1,9 +1,14 @@
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './EventPriceSlip.scss';
 
 import * as cartActions from '../../store/actions/cart';
-import EventTicketPriceRow from '../eventTicket/EventTicketPriceRow';
+import { setToastMessage } from '../../store/actions/toastMessage';
+import { useLoggedIn } from '../../customHooks/useLoggedIn';
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
+import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
+
+import EventTicketPriceRow from '../eventTicket/EventTicketPriceRow';
 
 interface IEventPriceSlip {
     data: IEventShowcaseEvent;
@@ -14,10 +19,36 @@ const EventPriceSlip = (props: IEventPriceSlip): JSX.Element => {
     const { title, normalTicket, vipTicket, totalPrice } = data;
     const { addToCart } = cartActions;
 
+    const [toastMessageData, setToastMessageData] = useState<IToastMessageData>({messageType: '', message: ''});
+    const isLoggedin = useLoggedIn();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (toastMessageData.message !== '') {
+            dispatch(setToastMessage(toastMessageData));
+
+            setToastMessageData({ messageType: '', message: '' });
+        }
+    }, [toastMessageData, dispatch]);
 
     const addEventToCart = (event: IEventShowcaseEvent) => {
         dispatch(addToCart(event));
+
+        if (isLoggedin) {
+            const { normalTicket, vipTicket } = event;
+            const totalTicketCount = normalTicket.count + vipTicket.count
+
+            setToastMessageData({
+                messageType: 'success',
+                message: `${totalTicketCount} ${totalTicketCount > 1 ? 'tickets' : 'ticket'} added to your cart.`
+            });
+            dispatch(addToCart(event));
+        } else {
+            setToastMessageData({
+                messageType: 'warning',
+                message: 'You need to login to add any ticket to your cart!'
+            });
+        }
     }
 
     return (

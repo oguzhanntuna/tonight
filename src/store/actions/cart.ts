@@ -2,7 +2,6 @@ import { EventShowcaseEvent } from './../../models/eventShowcase/event';
 import { PurchasedTicket } from './../../models/purchasedTicket/purchasedTicket';
 import axios from 'axios'; 
 
-import * as ToastMessageActions from './toastMessage';
 import * as BuyNowEventsActions from './buyNowEvents';
 import * as ThisWeekEventsActions from './thisWeekEvents';
 import * as RecentlyAddedEventsActions from './recentlyAddedEvents';
@@ -13,7 +12,6 @@ import { ICartEvent, uniqueId } from './../../models/interfaces/cartEvent/cartEv
 import { ILocalStorageUserData } from './../../models/interfaces/auth/auth';
 import { IFavoriteEvent } from './../../models/interfaces/favoriteEvent/favoriteEvent';
 import { IEventShowcaseEvent } from "../../models/interfaces/eventShowcase/eventShowcase";
-import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 import { ADD_TO_ORDERS } from './orders';
@@ -245,15 +243,7 @@ export const addToCart = (addedEvent: IEventShowcaseEvent | IFavoriteEvent): any
                             .catch(error => dispatch(addToCartFail(error)));
                     }
                 });
-        } else {
-            const { setToastMessage } = ToastMessageActions;
-            const toastMessageData: IToastMessageData = {
-                messageType: 'warning',
-                message: 'You need to login in order to add ticket to the cart!'
-            }
-
-            dispatch(setToastMessage(toastMessageData));
-        }
+        } 
     }
 };
 
