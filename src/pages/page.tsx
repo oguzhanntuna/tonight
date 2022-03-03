@@ -21,7 +21,7 @@ const Page = (): JSX.Element => {
             <Route path="/this-week" element={<ThisWeekEventsPage />} />
             <Route path="/recently-added" element={<RecentlyAddedEventsPage />} />
             <Route path="/buy-now" element={<BuyNowEventsPage />} />
-            <Route path="/events/:eventName" element={<EventDetailPage />} />
+            <Route path="/:tabName/:eventName" element={<EventDetailPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />

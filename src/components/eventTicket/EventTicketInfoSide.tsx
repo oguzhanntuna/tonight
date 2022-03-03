@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './EventTicketInfoSide.scss';
 
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
@@ -10,7 +10,6 @@ import detailIcon from '../../assets/icons/document-text-outline.svg';
 import FavoriteIcon from '../favoriteIcon/FavoriteIcon';
 import { EventShowcaseEvent } from '../../models/eventShowcase/event';
 import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
-import { CartEvent } from '../../models/cartEvent/cartEvent';
 
 interface IEventTicketFrontSideProps {
     eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent | IPurchasedTicket;
@@ -20,12 +19,14 @@ interface IEventTicketFrontSideProps {
 const EventTicketFrontside = (props: IEventTicketFrontSideProps): JSX.Element => {
     const { eventData, toggleTicketSide } = props;
     
+    const location = useLocation(); 
     const navigate = useNavigate();
-
+    
     const goToEventDetail = (): void => {
         const { url } = eventData;
+        const { pathname } = location;
         
-        navigate(`/events/${url}`);
+        navigate(`${pathname}/${url}`);
     }
 
     return (
