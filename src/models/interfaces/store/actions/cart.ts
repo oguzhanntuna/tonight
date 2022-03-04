@@ -8,4 +8,5 @@ export interface ICartAction {
     ticketCount: number;
     fetchError: string;
     addToCartError: string;
+    eventData:  ICartEvent;
 }

@@ -12,10 +12,12 @@ import * as ThisWeekEventsActions from '../../store/actions/thisWeekEvents';
 import * as RecentlyAddedEventsActions from '../../store/actions/recentlyAddedEvents';
 import * as BuyNowEventsActions from '../../store/actions/buyNowEvents';
 import * as EventDetailActions from '../../store/actions/eventDetail';
+import * as CartActions from '../../store/actions/cart';
 
 import addIcon from '../../assets/icons/add.svg';
 import removeIcon from '../../assets/icons/remove.svg';
 import { PurchasedTicket } from '../../models/purchasedTicket/purchasedTicket';
+import { CartEvent } from '../../models/cartEvent/cartEvent';
 
 interface IEventTicketPriceRowProps {
     eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent | IPurchasedTicket;
@@ -25,11 +27,9 @@ interface IEventTicketPriceRowProps {
 const EventTicketPriceRow = (props: IEventTicketPriceRowProps): JSX.Element => {
     const { ticketData, eventData } = props;
     const { type, title, price, count } = ticketData;
-    const { favoritesAddNormalTicket, favoritesAddVipTicket, favoritesRemoveNormalTicket, favoritesRemoveVipTicket } = FavoritesActions;
     const dispatch = useDispatch();
 
     const addTicket = () => {
-
         if (eventData instanceof EventShowcaseEvent) {
             const { moduleType } = eventData;
 
@@ -63,9 +63,17 @@ const EventTicketPriceRow = (props: IEventTicketPriceRowProps): JSX.Element => {
         } 
         
         if (eventData instanceof FavoriteEvent) {
+            const { favoritesAddNormalTicket, favoritesAddVipTicket } = FavoritesActions;
 
             type === 'normal' && dispatch(favoritesAddNormalTicket(eventData));
             type === 'vip' && dispatch(favoritesAddVipTicket(eventData));
+        }
+
+        if (eventData instanceof CartEvent) {
+            const { addNormalTicket, addVipTicket } = CartActions;
+
+            type === 'normal' && dispatch(addNormalTicket(eventData));
+            type === 'vip' && dispatch(addVipTicket(eventData));
         }
     }
 
@@ -104,9 +112,17 @@ const EventTicketPriceRow = (props: IEventTicketPriceRowProps): JSX.Element => {
         } 
         
         if (eventData instanceof FavoriteEvent) {
+            const { favoritesRemoveNormalTicket, favoritesRemoveVipTicket } = FavoritesActions;
 
             type === 'normal' && dispatch(favoritesRemoveNormalTicket(eventData)); 
             type === 'vip' && dispatch(favoritesRemoveVipTicket(eventData));
+        }
+
+        if (eventData instanceof CartEvent) {
+            const { removeNormalTicket, removeVipTicket } = CartActions;
+
+            type === 'normal' && dispatch(removeNormalTicket(eventData));
+            type === 'vip' && dispatch(removeVipTicket(eventData));
         }
     }
 

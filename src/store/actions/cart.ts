@@ -28,6 +28,11 @@ export const UPDATE_ITEM_IN_CART = 'UPDATE_ITEM_IN_CART';
 export const ADD_TO_CART_START = 'ADD_TO_CART_START';
 export const ADD_TO_CART_FAIL = 'ADD_TO_CART_FAIL';
 export const RESET_CART = 'RESET_CART';
+export const CART_ADD_NORMAL_TICKET = 'CART_ADD_NORMAL_TICKET';
+export const CART_ADD_VIP_TICKET = 'CART_ADD_VIP_TICKET';
+export const CART_REMOVE_NORMAL_TICKET = 'CART_REMOVE_NORMAL_TICKET';
+export const CART_REMOVE_VIP_TICKET = 'CART_REMOVE_VIP_TICKET';
+export const CART_REMOVE_EVENT = 'CART_REMOVE_EVENT';
 
 const fetchCartStart = () => {
     return { type: FETCH_CART_START }
@@ -296,6 +301,52 @@ export const purchaseCart = () => {
         // No need for else case since user can't see the cart logged out.
     }
 }
+
+export const addNormalTicket = (eventData: ICartEvent) => {
+    
+    return { type: CART_ADD_NORMAL_TICKET, eventData};
+}
+
+export const addVipTicket = (eventData: ICartEvent) => {
+
+    return { type: CART_ADD_VIP_TICKET, eventData};
+}
+
+export const removeNormalTicket = (eventData: ICartEvent) => {
+
+    return { type: CART_REMOVE_NORMAL_TICKET, eventData };
+}
+
+export const removeVipTicket = (eventData: ICartEvent) => {
+
+    return { type: CART_REMOVE_VIP_TICKET, eventData };
+}
+
+export const removeEvent = (eventData: ICartEvent) => {
+    return (dispatch: any) => {
+        const userData = localStorage.getItem('userDataJSON');
+
+        if (userData) {
+            const parsedUserData: ILocalStorageUserData = JSON.parse(userData);
+            const { userId } = parsedUserData;
+            const userCartUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/cart/${userId}`;
+
+            dispatch(getEventUid(eventData))
+                .then((eventUid: string) => {
+                    const url =`${userCartUrl}/${eventUid}.json`;
+
+                    axios.delete(url)
+                        .then(() => {
+                            dispatch({
+                                type: CART_REMOVE_EVENT,
+                                eventData
+                            });
+                        })
+                        .catch(error => console.log(error));
+                });
+        }      
+    }
+} 
 
 const getCartEvents = () => {
 

@@ -1,6 +1,10 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import './EventTicketInfoSide.scss';
 
+import * as CartActions from '../../store/actions/cart';
+import { EventShowcaseEvent } from '../../models/eventShowcase/event';
+import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
+import { CartEvent } from '../../models/cartEvent/cartEvent';
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
 import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
@@ -8,8 +12,7 @@ import { IPurchasedTicket } from '../../models/interfaces/purchasedTicket/purcha
 
 import detailIcon from '../../assets/icons/document-text-outline.svg';
 import FavoriteIcon from '../favoriteIcon/FavoriteIcon';
-import { EventShowcaseEvent } from '../../models/eventShowcase/event';
-import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
+import { useDispatch } from 'react-redux';
 
 interface IEventTicketFrontSideProps {
     eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent | IPurchasedTicket;
@@ -18,7 +21,9 @@ interface IEventTicketFrontSideProps {
 
 const EventTicketFrontside = (props: IEventTicketFrontSideProps): JSX.Element => {
     const { eventData, toggleTicketSide } = props;
+    const { removeEvent } = CartActions;
     
+    const dispatch = useDispatch();
     const location = useLocation(); 
     const navigate = useNavigate();
     
@@ -51,6 +56,14 @@ const EventTicketFrontside = (props: IEventTicketFrontSideProps): JSX.Element =>
                     eventToBeLiked={eventData}
                     showFavoritesText={false} 
                 />
+            }
+            {
+                (eventData instanceof CartEvent) &&
+                <div 
+                    className="eventTicketInfoSide-removeEventButton" 
+                    onClick={() => dispatch(removeEvent(eventData))}>
+                        -
+                </div>
             }
             <div 
                 className="eventTicketInfoSide-content" 

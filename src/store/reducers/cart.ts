@@ -1,3 +1,4 @@
+import { CartEvent } from '../../models/cartEvent/cartEvent';
 import { ICartAction } from '../../models/interfaces/store/actions/cart';
 import { ICartState } from '../../models/interfaces/store/states/cart';
 
@@ -9,7 +10,12 @@ import {
     FETCH_CART_SUCCESS, 
     UPDATE_ITEM_IN_CART, 
     ADD_TO_CART_START,
-    ADD_TO_CART_FAIL
+    ADD_TO_CART_FAIL,
+    CART_ADD_NORMAL_TICKET,
+    CART_ADD_VIP_TICKET,
+    CART_REMOVE_VIP_TICKET,
+    CART_REMOVE_NORMAL_TICKET,
+    CART_REMOVE_EVENT
 } from '../actions/cart';
 
 const initialState: ICartState = {
@@ -99,6 +105,82 @@ export const cartReducer = (state = initialState, action: ICartAction): ICartSta
                 ticketCount: state.ticketCount + action.ticketCount,
                 addToCartLoading: false,
                 addToCartError: null
+            }
+
+        case CART_ADD_NORMAL_TICKET:
+            const addedNormalTicketEvent = action.eventData;
+        
+            if (addedNormalTicketEvent instanceof CartEvent) {
+                addedNormalTicketEvent.normalTicket.count = addedNormalTicketEvent.normalTicket.count + 1;
+                addedNormalTicketEvent.totalPrice = addedNormalTicketEvent.totalPrice + addedNormalTicketEvent.normalTicket.price;
+
+                return {
+                    ...state,
+                    cartItems: [ ...state.cartItems ],
+                    ticketCount: state.ticketCount + 1
+                }
+            }
+
+            break;
+
+        case CART_ADD_VIP_TICKET:
+            const addedVipTicketEvent = action.eventData;
+            
+            if (addedVipTicketEvent instanceof CartEvent) {
+                addedVipTicketEvent.vipTicket.count = addedVipTicketEvent.vipTicket.count + 1;
+                addedVipTicketEvent.totalPrice = addedVipTicketEvent.totalPrice + addedVipTicketEvent.vipTicket.price;
+
+                return {
+                    ...state,
+                    cartItems: [ ...state.cartItems ],
+                    ticketCount: state.ticketCount + 1
+                }
+            }    
+            
+            break;
+
+        case CART_REMOVE_NORMAL_TICKET:
+            const removedNormalTicketEvent = action.eventData;
+            console.log(state);
+            
+            if (removedNormalTicketEvent instanceof CartEvent) {
+                removedNormalTicketEvent.normalTicket.count = removedNormalTicketEvent.normalTicket.count - 1;
+                removedNormalTicketEvent.totalPrice = removedNormalTicketEvent.totalPrice - removedNormalTicketEvent.normalTicket.price;
+
+                return {
+                    ...state,
+                    cartItems: [ ...state.cartItems ],
+                    ticketCount: state.ticketCount - 1
+                }
+            }
+
+            break;
+
+        case CART_REMOVE_VIP_TICKET:
+            const removedVipTicketEvent = action.eventData;
+            
+            if (removedVipTicketEvent instanceof CartEvent) {
+                removedVipTicketEvent.vipTicket.count = removedVipTicketEvent.vipTicket.count - 1;
+                removedVipTicketEvent.totalPrice = removedVipTicketEvent.totalPrice - removedVipTicketEvent.vipTicket.price;
+
+                return {
+                    ...state,
+                    cartItems: [ ...state.cartItems ],
+                    ticketCount: state.ticketCount - 1
+                }
+            }
+
+            break;
+
+        case CART_REMOVE_EVENT:
+            const removedEvent = action.eventData;
+            const removedEventTotalTicketCount = removedEvent.normalTicket.count + removedEvent.vipTicket.count;
+            const filteredCartItems = state.cartItems.filter(cartItem => cartItem.uniqueId !== removedEvent.uniqueId);
+
+            return {
+                ...state,
+                cartItems: [ ...filteredCartItems ],
+                ticketCount: state.ticketCount - removedEventTotalTicketCount
             }
     }
 
