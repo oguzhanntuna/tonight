@@ -24,7 +24,7 @@
 
     &-purchaseButton {
         width: 100%;
-        padding: 1.5rem 0;
+        height: 6rem;
         border: 2px solid $color-secondary;
         border-radius: 0.75rem;
         color: $color-secondary;
@@ -44,6 +44,12 @@
 
         &--disabled {
             cursor: not-allowed;
+        }
+
+        &--loading {
+            &:hover {
+                background-color: transparent;
+            }
         }
     }
 }

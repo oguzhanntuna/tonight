@@ -7,4 +7,6 @@ export interface ICartState {
     fetchError: string | null;
     addToCartLoading: boolean;
     addToCartError: string | null;
+    purchaseLoading: boolean;
+    purchaseError: string | null;
 }

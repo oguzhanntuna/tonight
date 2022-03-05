@@ -36,12 +36,12 @@
     }
 
     &-paginationItem {
-        width: 8rem;
-        height: .6rem;
+        width: 1rem;
+        height: 1rem;
         border-radius: .75rem;
         background-color: $color-black;
         cursor: pointer;
-        transition: all .4s;
+        transition: all 1s;
 
         &:hover {
             background-color: $color-white;
@@ -52,7 +52,7 @@
         }
 
         &.active {
-            height: 1rem;
+            width: 6rem;
         }
     }
 

@@ -7,6 +7,7 @@ import * as ThisWeekEventsActions from './thisWeekEvents';
 import * as RecentlyAddedEventsActions from './recentlyAddedEvents';
 import * as FavoritesActions from './favorites';
 import * as EventDetailActions from './eventDetail';
+import * as ToastMessageActions from './toastMessage';
 import { CartEvent } from './../../models/cartEvent/cartEvent';
 import { ICartEvent, uniqueId } from './../../models/interfaces/cartEvent/cartEvent';
 import { ILocalStorageUserData } from './../../models/interfaces/auth/auth';
@@ -19,14 +20,18 @@ import { Order } from '../../models/order/order';
 import { IPurchasedTicket } from '../../models/interfaces/purchasedTicket/purchasedTicket';
 import { IOrder } from '../../models/interfaces/order/order';
 import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
+import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
 
 export const FETCH_CART_START = 'FETCH_CART_START';
 export const FETCH_CART_SUCCESS = 'FETCH_CART_SUCCESS';
 export const FETCH_CART_FAIL = 'FETCH_CART_FAIL';
 export const ADD_TO_CART = 'ADD_TO_CART';
-export const UPDATE_ITEM_IN_CART = 'UPDATE_ITEM_IN_CART';
 export const ADD_TO_CART_START = 'ADD_TO_CART_START';
 export const ADD_TO_CART_FAIL = 'ADD_TO_CART_FAIL';
+export const PURCHASE_CART_START = 'PURCHASE_CART_START';
+export const PURCHASE_CART_SUCCESS = 'PURCHASE_CART_SUCCESS';
+export const PURCHASE_CART_FAIL = 'PURCHASE_CART_FAIL';
+export const UPDATE_ITEM_IN_CART = 'UPDATE_ITEM_IN_CART';
 export const RESET_CART = 'RESET_CART';
 export const CART_ADD_NORMAL_TICKET = 'CART_ADD_NORMAL_TICKET';
 export const CART_ADD_VIP_TICKET = 'CART_ADD_VIP_TICKET';
@@ -53,10 +58,6 @@ const fetchCartFail = (error: string) => {
     }
 }
 
-const resetCart = () => {
-    return { type: RESET_CART }
-}
-
 const addToCartStart = () => {
     return {  type: ADD_TO_CART_START}
 }
@@ -64,6 +65,51 @@ const addToCartStart = () => {
 const addToCartFail = (error: string) => {
     return { type: ADD_TO_CART_FAIL, addToCartError: error }
 }
+
+const purchaseCartStart = () => {
+    return { type: PURCHASE_CART_START }
+}
+
+const purchaseCartSuccess = (orders: Array<IOrder>) => {
+    return (dispatch: any) => {
+        const { setToastMessage } = ToastMessageActions;
+        const toastMessageData: IToastMessageData = {
+            messageType: 'success',
+            message: 'Your cart items are successfully purchased.'
+        }
+
+        dispatch({
+            type: ADD_TO_ORDERS,
+            orders: orders
+        });
+        dispatch(resetCart());
+        dispatch({
+            type: PURCHASE_CART_SUCCESS
+        });
+        dispatch(setToastMessage(toastMessageData));
+    }
+}
+
+const purchaseCartFail = (error: string) => {
+    return { type: PURCHASE_CART_FAIL, purchaseError: error }
+}
+
+const resetCart = () => 
+    (dispatch: any) => {
+        const userData = localStorage.getItem('userDataJSON');
+
+        if (userData) {
+            const parsedUserData: ILocalStorageUserData = JSON.parse(userData);
+            const { userId } = parsedUserData;
+            const userCartUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/cart/${userId}.json`;
+
+            axios.delete(userCartUrl)
+                .then(() => {
+                    dispatch({ type: RESET_CART });
+                })
+                .catch(error => console.log(error));
+        }
+    }
 
 const resetTickets = (selectedEvent: IEventShowcaseEvent | IFavoriteEvent) => {
     return (dispatch: any) => {
@@ -146,8 +192,6 @@ export const fetchCart = () => {
                 })
                 .catch(error => dispatch(fetchCartFail(error)));
         }
-
-        dispatch(resetCart());
     }
 }
 
@@ -263,6 +307,7 @@ export const purchaseCart = () => {
             const { userId } = parsedUserData;
             const userCartUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/orders/${userId}.json`;
 
+            dispatch(purchaseCartStart());
             axios.post(userCartUrl, cartEvents)
                 .then(() => {
                     let purchasedTickets: Array<IPurchasedTicket> = [];
@@ -290,12 +335,9 @@ export const purchaseCart = () => {
                     )
                     orders.push(order);
 
-                    dispatch({
-                        type: ADD_TO_ORDERS,
-                        orders: orders
-                    });
+                    dispatch(purchaseCartSuccess(orders));
                 })
-                .catch(error => console.log(error));
+                .catch(error => dispatch(purchaseCartFail(error)));
         }
 
         // No need for else case since user can't see the cart logged out.

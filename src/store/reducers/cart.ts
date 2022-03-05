@@ -15,7 +15,10 @@ import {
     CART_ADD_VIP_TICKET,
     CART_REMOVE_VIP_TICKET,
     CART_REMOVE_NORMAL_TICKET,
-    CART_REMOVE_EVENT
+    CART_REMOVE_EVENT,
+    PURCHASE_CART_SUCCESS,
+    PURCHASE_CART_START,
+    PURCHASE_CART_FAIL
 } from '../actions/cart';
 
 const initialState: ICartState = {
@@ -24,7 +27,9 @@ const initialState: ICartState = {
     fetchLoading: false,
     fetchError: null,
     addToCartLoading: false,
-    addToCartError: null
+    addToCartError: null,
+    purchaseLoading: false,
+    purchaseError: null
 }
 
 export const cartReducer = (state = initialState, action: ICartAction): ICartState => {
@@ -89,6 +94,28 @@ export const cartReducer = (state = initialState, action: ICartAction): ICartSta
                 addToCartLoading: false,
                 addToCartError: null
             };
+
+        case PURCHASE_CART_START:
+
+            return {
+                ...state,
+                purchaseLoading: true,
+                purchaseError: null
+            }
+
+        case PURCHASE_CART_FAIL:
+
+            return {
+                ...state,
+                purchaseLoading: false,
+                purchaseError: action.purchaseError
+            }
+
+        case PURCHASE_CART_SUCCESS:
+
+            return {
+                ...state,
+            }
 
         case UPDATE_ITEM_IN_CART: 
             const { cartItems } = state;

@@ -1,8 +1,11 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Checkout.scss';
 
 import * as CartActions from '../../store/actions/cart';
 import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
+import { IApplicationState } from '../../models/interfaces/store/states/application';
+
+import Spinner from '../spinner/spinner';
 
 interface ICheckoutProps {
     cartItems: Array<ICartEvent>;
@@ -12,6 +15,7 @@ interface ICheckoutProps {
 const Checkout = (props: ICheckoutProps): JSX.Element => {
     const { cartItems, cartPurchasable } = props;
     const { purchaseCart } = CartActions;
+    const { purchaseLoading } = useSelector((state: IApplicationState) => state.cart);
     const dispatch = useDispatch();
 
     const calculateTotalPrice = (): number => {
@@ -47,11 +51,22 @@ const Checkout = (props: ICheckoutProps): JSX.Element => {
                 className={`
                     checkout-purchaseButton 
                     ${!cartPurchasable ? 'checkout-purchaseButton--disabled' : ''}
+                    ${purchaseLoading ? 'checkout-purchaseButton--loading' : ''}
                 `}
                 onClick={() => dispatch(purchaseCart())}
                 disabled={!cartPurchasable}
             >
-                Purchase
+                {
+                    purchaseLoading 
+                        ? (
+                            <Spinner 
+                                width='2.5rem' 
+                                height='2.5rem' 
+                                borderWidth='.2rem' 
+                            /> 
+                        )
+                        : 'Purchase'
+                }
             </button>
         </div>
     );

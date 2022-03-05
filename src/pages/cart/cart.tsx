@@ -56,17 +56,6 @@ const CartPage = (): JSX.Element => {
                         <Checkout cartItems={cartItems} cartPurchasable={cartItems.length > 0} />
                     </div>
                 }
-                
-                {/* <div className="cartPageContainer-content">
-                    {
-                        fetchLoading
-                            ? <Spinner />
-                            : <>
-                                
-                                
-                            </>
-                    }
-                </div> */}
             </div>
         </div>
     );
