@@ -10,7 +10,6 @@
 
         &-leftSide {
             flex: 1;
-            margin-right: 4rem;
 
             .cartPageContainer {
                 &-title {
@@ -39,6 +38,7 @@
 
         &-rightSide {
             min-width: 34rem;
+            margin-left: 4rem;
 
             .checkout {
                 position: fixed;

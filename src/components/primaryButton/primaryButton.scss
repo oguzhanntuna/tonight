@@ -1,0 +1,21 @@
+@import '../../variables/variables.scss';
+
+.primaryButton {
+    height: 6rem;
+    border: 2px solid $color-secondary;
+    border-radius: 0.75rem;
+    color: #C724B1;
+    background-color: $color-black;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: none;
+    cursor: pointer;
+    transition: all .4s;
+
+    &:hover {
+        font-size: 1.6rem;
+        background-color: $color-secondary;
+        color: $color-black;
+    }
+}

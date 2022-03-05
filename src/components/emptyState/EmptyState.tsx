@@ -3,6 +3,8 @@ import './EmptyState.scss';
 
 import { useLoggedIn } from '../../customHooks/useLoggedIn';
 
+import PrimaryButton from '../primaryButton/primaryButton';
+
 interface IEmptyStateProps {
     icon: string;
     text: string
@@ -27,12 +29,13 @@ const EmptyState = (props: IEmptyStateProps): JSX.Element => {
             </span>
             {
                 !isLoggedin &&
-                <button 
+                <PrimaryButton 
                     className="emptyState-redirectButton"
+                    width="28rem"
                     onClick={() => navigate('/login')}
                 >
                     Log In
-                </button>
+                </PrimaryButton>
             }
         </div>
     );

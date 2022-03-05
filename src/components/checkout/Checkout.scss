@@ -23,32 +23,13 @@
     }
 
     &-purchaseButton {
-        width: 100%;
-        height: 6rem;
-        border: 2px solid $color-secondary;
-        border-radius: 0.75rem;
-        color: $color-secondary;
-        background-color: transparent;
-        font-size: 1.4rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        outline: none;
-        cursor: pointer;
-        transition: all .4s;
-
-        &:hover {
-            font-size: 1.6rem;
-            background-color: $color-secondary;
-            color: $color-black;
-        }
-
         &--disabled {
             cursor: not-allowed;
         }
 
         &--loading {
             &:hover {
-                background-color: transparent;
+                background-color: transparent !important;
             }
         }
     }

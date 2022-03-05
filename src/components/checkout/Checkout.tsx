@@ -6,6 +6,7 @@ import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 import Spinner from '../spinner/spinner';
+import PrimaryButton from '../primaryButton/primaryButton';
 
 interface ICheckoutProps {
     cartItems: Array<ICartEvent>;
@@ -47,7 +48,7 @@ const Checkout = (props: ICheckoutProps): JSX.Element => {
                     { getTotalPrice() }
                 </div>
             </div>
-            <button 
+            <PrimaryButton
                 className={`
                     checkout-purchaseButton 
                     ${!cartPurchasable ? 'checkout-purchaseButton--disabled' : ''}
@@ -67,7 +68,7 @@ const Checkout = (props: ICheckoutProps): JSX.Element => {
                         )
                         : 'Purchase'
                 }
-            </button>
+            </PrimaryButton>
         </div>
     );
 }

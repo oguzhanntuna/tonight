@@ -6,6 +6,8 @@ import Input, { IInputProps } from '../input/Input';
 import { useSelector } from 'react-redux';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
+import PrimaryButton from '../primaryButton/primaryButton';
+
 interface IFormProps {
     label: string;
     inputElements: Array<IInputProps>;
@@ -73,13 +75,16 @@ const Form = (props: IFormProps): JSX.Element => {
                     </div>
                 </div>
             }
-            <button className="form-c2aButton">
+            <PrimaryButton 
+                className="form-c2aButton" 
+                width="calc(100% - 6rem)"
+            >
                 {
                     loading 
                         ? 'Loading...' 
                         : submitButtonLabel
                 }
-            </button>
+            </PrimaryButton>
         </form>
     );
 }

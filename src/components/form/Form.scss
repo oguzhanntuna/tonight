@@ -27,24 +27,7 @@
         cursor: pointer;
     }
     
-    button {
-        width: calc(100% - 6rem);
+    .primaryButton {
         margin: 3rem;
-        padding: 1rem 0;
-        border: 2px solid $color-secondary;
-        color: $color-secondary;
-        background-color: transparent;
-        border-radius: .75rem;
-        font-size: 1.6rem;
-        text-transform: uppercase;
-        font-weight: bold;
-        outline: none;
-        cursor: pointer;
-        transition: all .2s;
-
-        &:hover {
-            background-color: $color-secondary;
-            color: $color-black;
-        }
     }
 }

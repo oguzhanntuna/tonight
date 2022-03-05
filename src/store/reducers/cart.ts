@@ -39,7 +39,7 @@ export const cartReducer = (state = initialState, action: ICartAction): ICartSta
             return {
                 ...state,
                 cartItems: [],
-                ticketCount: 0
+                ticketCount: 0,
             }
 
         case FETCH_CART_START:
@@ -115,6 +115,8 @@ export const cartReducer = (state = initialState, action: ICartAction): ICartSta
 
             return {
                 ...state,
+                purchaseLoading: false,
+                purchaseError: null
             }
 
         case UPDATE_ITEM_IN_CART: 
