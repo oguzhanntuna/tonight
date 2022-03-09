@@ -10,7 +10,7 @@ import * as OrdersActions from './store/actions/orders';
 import Header from './components/header/Header';
 import Page from './pages/page';
 import Footer from './components/footer/Footer';
-import ToastMessage from './components/toastMessage/ToastMessage';
+import ToastMessage from './components/toastMessage/toastMessage';
 
 const Layout = (): JSX.Element => {
   const { checkAuthState } = AuthActions;

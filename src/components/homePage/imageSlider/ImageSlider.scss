@@ -5,7 +5,7 @@
     width: 95%;
     height: 35rem;
     margin: 0 auto 8rem auto;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 16px rgba($color-black, 0.4);
 
     &-item {
         width: 100%;
@@ -120,6 +120,7 @@
 @media only screen and (max-width: 480px) {
     .imageSlider {
         height: 20rem;
+        margin-bottom: 6rem;
 
         &-item {
             img {

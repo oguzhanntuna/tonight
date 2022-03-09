@@ -72,3 +72,11 @@
         font-size: 2rem;
     }
 }
+
+@media only screen and (max-width: 480px) {
+    .eventTicketInfoSide {
+        width: 20rem;
+        min-width: 20rem;
+        height: 32rem;
+    }   
+}

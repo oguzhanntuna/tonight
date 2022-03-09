@@ -60,3 +60,15 @@
         font-size: 1.4rem;
     }
 }
+
+@media only screen and (max-width: 480px) {
+    .eventTicketPriceSide {
+        width: 16rem;
+        min-width: 16rem;
+        height: 27.5rem;
+
+        &-header {
+            margin-bottom: 2.5rem;
+        }
+    }   
+}

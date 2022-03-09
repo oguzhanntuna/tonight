@@ -2,9 +2,8 @@
 
 .eventTicket {
     height: 42.2rem;
-    max-width: 24rem;
     border-radius: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, .4);
+    box-shadow: 0 4px 8px rgba($color-black, .4);
 
     &:not(:last-child) {
         margin-right: 3rem;
@@ -70,3 +69,12 @@
     }
 }
 
+@media only screen and (max-width: 480px) {
+    .eventTicket {
+        height: 37.2rem;
+
+        &-purchaseButton {
+            padding: 1.5rem 0;
+        }
+    }
+}

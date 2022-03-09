@@ -1,5 +1,10 @@
+.page {
+    max-width: 1024px;
+    margin: 12rem auto 0 auto;
+}
+
 @media only screen and (max-width: 480px) {
     .page {
-        margin-top: 9rem;
+        margin-top: 6rem;
     }
 }
