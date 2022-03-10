@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import './Layout.scss'
 
+import { useDeviceType } from './customHooks/useDeviceType';
 import * as AuthActions from './store/actions/auth';
 import * as FavoritesActions from './store/actions/favorites';
 import * as CartActions from './store/actions/cart';
@@ -11,6 +12,7 @@ import Header from './components/header/Header';
 import Page from './pages/page';
 import Footer from './components/footer/Footer';
 import ToastMessage from './components/toastMessage/toastMessage';
+import NavBar from './components/navBar/navBar';
 
 const Layout = (): JSX.Element => {
   const { checkAuthState } = AuthActions;
@@ -18,6 +20,7 @@ const Layout = (): JSX.Element => {
   const { fetchCart } = CartActions;
   const { fetchOrders } = OrdersActions;
   const dispatch = useDispatch();
+  const deviceType = useDeviceType();
 
   useEffect(() => {
     dispatch(checkAuthState());
@@ -32,6 +35,7 @@ const Layout = (): JSX.Element => {
       <ToastMessage />
       <Header />
       <Page />
+      { deviceType === 'mobile' && <NavBar /> }
       <Footer />
     </div>
   )

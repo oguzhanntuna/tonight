@@ -17,6 +17,9 @@
 
 @media only screen and (max-width: 480px) {
   .layout {
+      position: relative;
+      padding-bottom: 6rem;
+
       &-heroImage {
           height: 26rem;
       }

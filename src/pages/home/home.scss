@@ -3,3 +3,9 @@
         position: relative;
     }
 }
+
+@media only screen and (max-width: 480px) {
+    .homePage {
+        padding: 0 1.5rem;
+    }
+}
