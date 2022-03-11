@@ -2,32 +2,23 @@
 
 @media only screen and (max-width: 480px) {
     .navBar {
-        width: 100%;
+        width: calc(100% - 1rem);
         height: 4rem;
-        padding: 1.5rem 0 3rem 0;
+        padding: 1rem 0.5rem;
         position: fixed;
-        bottom: 0;
+        bottom: -0.1rem;
         left: 0;
         z-index: 1;
-        background: linear-gradient(to top, $color-black, $color-background);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: 0 -8px 16px rgba($color-black, 0.6);
+        background: linear-gradient(to top, $color-black, $color-background);        
+        box-shadow: 0 -8px 16px rgba($color-black, 0.4);
 
         &-items {
             height: 100%;
             display: flex;
             align-items: center;
             margin: 0;
-            padding: 0 1.5rem;
+            padding: 0;
             list-style: none;
-        }
-
-        &-item {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
 
             a {
                 display: flex;
@@ -40,13 +31,39 @@
                 p {
                     margin: 0;
                     font-size: 1.2rem;
+                    text-shadow: 0px 4px 8px $color-black;
+                    font-weight: 300;
                 }
             }
         }
 
+        &-item {
+            width: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:nth-child(2) {
+                margin-right: auto;
+            }
+        }
+
+        &-cart {
+            position: absolute;
+            left: 50%;
+            top: -1.5rem;
+            transform: translateX(-50%);
+            width: 14%;
+            height: 6.5rem;
+            background: linear-gradient(to bottom, $color-black, $color-background);
+            border-radius: 0.75rem;
+            display: flex;
+            justify-content: center;
+        }
+
         &-iconContainer {
-            width: 3rem;
-            height: 3rem;
+            width: 2rem;
+            height: 2rem;
             margin-bottom: 0.5rem;
 
             img {

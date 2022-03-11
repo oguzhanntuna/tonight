@@ -28,7 +28,7 @@ const NavBar = () => {
                         <p>Search</p>
                     </NavLink>
                 </li>
-                <li className="navBar-item">
+                <li className="navBar-cart">
                     <NavLink to="/cart">
                         <div className="navBar-iconContainer">
                             <img src={cartIcon} alt="cart" />    
