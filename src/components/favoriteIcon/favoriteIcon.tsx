@@ -7,8 +7,8 @@ import { IApplicationState } from '../../models/interfaces/store/states/applicat
 import { IFavoriteEvent } from '../../models/interfaces/favoriteEvent/favoriteEvent';
 import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
 
-import favIconEmpty from '../../assets/icons/heart-outline.svg';
-import favIconFull from '../../assets/icons/heart-full.svg';
+import favIconEmpty from '../../assets/icons/heart/heart-outline.svg';
+import favIconFull from '../../assets/icons/heart/heart-full.svg';
 
 interface IFavoriteIcon {
     eventToBeLiked: IEventShowcaseEvent | IFavoriteEvent | ICartEvent;

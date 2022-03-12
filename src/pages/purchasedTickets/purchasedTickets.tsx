@@ -4,8 +4,10 @@ import './purchasedTickets.scss';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 import heroImage from '../../assets/hero.jpg';
+import ticketIcon from '../../assets/icons/ticket/ticket-full.svg';
 import HeroImage from '../../components/heroImage/HeroImage';
 import EventTicket from '../../components/eventTicket/EventTicket';
+import EmptyState from '../../components/emptyState/EmptyState';
 
 const PurchasedTicketsPage = (): JSX.Element => {
     const orders = useSelector((state: IApplicationState) => state.orders.orders);
@@ -40,6 +42,14 @@ const PurchasedTicketsPage = (): JSX.Element => {
         </div>
     );
 
+    const renderEmptyState = (): JSX.Element => (
+        
+        <EmptyState 
+            icon={ticketIcon}
+            text="No tickets are purchased yet!"
+        />
+    );
+
     return (
         <div className="purchasedTicketsPage">
             <HeroImage imageUrl={heroImage} />
@@ -47,7 +57,11 @@ const PurchasedTicketsPage = (): JSX.Element => {
                 <div className="purchasedTicketsPageContainer-title">
                     Purchased Tickets
                 </div>
-                { renderPurchasedTickets() }
+                { 
+                    orders && orders.length > 0
+                        ? renderPurchasedTickets()
+                        : renderEmptyState()
+                }
             </div>
         </div>
     );

@@ -4,16 +4,16 @@ import './navBar.scss';
 
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
-import homeIcon from "../../assets/icons/home.svg";
-import activeHomeIcon from "../../assets/icons/active-home.svg";
-import searchIcon from "../../assets/icons/search.svg";
-import activeSearchIcon from "../../assets/icons/active-search.svg";
-import cartIcon from "../../assets/icons/cart-outline.svg";
-import activeCartIcon from "../../assets/icons/active-cart.svg";
-import ticketIcon from "../../assets/icons/ticket.svg";
-import activeTicketIcon from "../../assets/icons/active-ticket.svg";
-import favIcon from "../../assets/icons/heart-outline.svg";
-import activeFavIcon from "../../assets/icons/active-heart.svg";
+import homeIcon from "../../assets/icons/home/home.svg";
+import activeHomeIcon from "../../assets/icons/home/active-home.svg";
+import searchIcon from "../../assets/icons/search/search.svg";
+import activeSearchIcon from "../../assets/icons/search/active-search.svg";
+import cartIcon from "../../assets/icons/cart/cart-outline.svg";
+import activeCartIcon from "../../assets/icons/cart/active-cart.svg";
+import ticketIcon from "../../assets/icons/ticket/ticket-outline.svg";
+import activeTicketIcon from "../../assets/icons/ticket/active-ticket.svg";
+import favIcon from "../../assets/icons/heart/heart-outline.svg";
+import activeFavIcon from "../../assets/icons/heart/active-heart.svg";
 
 const NavBar = () => {
     const { pathname } = useLocation();

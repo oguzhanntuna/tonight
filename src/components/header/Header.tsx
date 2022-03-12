@@ -6,8 +6,9 @@ import { useDeviceType } from '../../customHooks/useDeviceType';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 import AccountTab from './AccountTab';
-import favIconEmpty from '../../assets/icons/heart-outline.svg';
-import cartIconEmpty from '../../assets/icons/cart-outline.svg';
+import favIconEmpty from '../../assets/icons/heart/heart-outline.svg';
+import cartIconEmpty from '../../assets/icons/cart/cart-outline.svg';
+import PrimaryButton from '../primaryButton/primaryButton';
 
 const Header = (): JSX.Element => {
     const deviceType = useDeviceType();
@@ -21,8 +22,6 @@ const Header = (): JSX.Element => {
         
         window.pageYOffset > 0 ? headerElement?.classList.add('active') : headerElement?.classList.remove('active');
     });
-
-    console.log(deviceType);
 
     if (deviceType === 'desktop') {
 
@@ -81,11 +80,25 @@ const Header = (): JSX.Element => {
                 <div className="header-backgroundOverlay" id="backgroundOverlay" />
                 <Link to="/" className="logo">Tonight</Link>
                 <div className="userActionContainer">
-                    {
+                    {/* {
                         activeUsername
                             ? <AccountTab tabLabel={activeUsername} />
                             : <AccountTab />
-                    }
+                    } */}
+                    <PrimaryButton 
+                        className="userActionContainer-loginButton" 
+                        width="6rem" 
+                        onClick={() => navigate('/login')}
+                    >
+                        Login
+                    </PrimaryButton>
+                    <PrimaryButton 
+                        className="userActionContainer-signupButton" 
+                        width="6rem" 
+                        onClick={() => navigate('/signup')}
+                    >
+                        Sign Up
+                    </PrimaryButton>
                 </div>
             </div>
         )

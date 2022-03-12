@@ -4,7 +4,7 @@ import './favorites.scss';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 import heroImage from '../../assets/hero.jpg'
-import favoriteIcon from '../../assets/icons/heart-favorites.svg';
+import favoriteIcon from '../../assets/icons/heart/heart-favorites.svg';
 import HeroImage from '../../components/heroImage/HeroImage';
 import EventTicket from '../../components/eventTicket/EventTicket';
 import EmptyState from '../../components/emptyState/EmptyState';

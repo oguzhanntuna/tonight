@@ -165,9 +165,10 @@
             justify-content: center;
             align-items: center;
             padding: 0.2rem;
+            border: 1px solid $color-black;
             border-radius: 10rem;
             background: $color-secondary;
-            text-shadow: 0 4px 8px rgb(0, 0, 0);
+            text-shadow: 0 4px 8px rgba($color-black, 1);
             font-size: 1.2rem;
             font-weight: bold;
         }
@@ -182,5 +183,48 @@
         .logo {
             margin-right: auto;
         }
+
+        .userActionContainer {
+            padding: 0;
+            height: 3.2rem;
+
+            & > * {
+
+                &:not(:last-child) {
+                    margin-right: 1rem;
+                }
+            }
+
+            &-loginButton,
+            &-signupButton {
+                min-width: 6.5rem;
+                height: 100%;
+                width: 100%;
+                font-size: 1.2rem;
+            }
+            
+            &-loginButton {
+                background: $color-secondary;
+                color: $color-black;
+
+                &:hover {
+                    font-size: 1.2rem;;
+                    background: $color-secondary;
+                    color: $color-black;
+                }
+            }
+    
+            &-signupButton {
+                background: transparent;
+                border-width: 1px;
+
+                &:hover {
+                    font-size: 1.2rem;;
+                    background: transparent;
+                    color: $color-secondary;
+                }
+            }
+        }
+
     }
 }
