@@ -36,3 +36,16 @@
         cursor: pointer;
     }
 }
+
+@media only screen and (max-width: 480px) {
+    .toastMessage {
+        width: calc(100% - 5rem);
+        padding: 1rem 1.5rem;
+        margin: 0 1rem;
+        right: unset;
+        top: unset;
+        bottom: 9rem;
+        left: 0;
+    }
+}
+

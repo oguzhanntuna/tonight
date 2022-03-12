@@ -28,9 +28,15 @@ const Form = (props: IFormProps): JSX.Element => {
         onSubmit();
     }
 
-    const redirectToSignUpPage = () => { 
-        navigate('/signup');
-    };
+    const pageRedirect = () => {
+        if (label === 'Sign Up') {
+            navigate('/login');
+        }
+
+        if (label === 'Login') {
+            navigate('/signup');
+        }
+    }
 
     return (
         <form 
@@ -63,15 +69,10 @@ const Form = (props: IFormProps): JSX.Element => {
             }
             {
                 includeHelpfulTexts &&
-                <div className="form-helpfulTexts">
-                    <div className="form-rememberMe">
-                        Remeber me
-                    </div>
-                    <div 
-                        className="form-alreadyHaveAccount"
-                        onClick={() => redirectToSignUpPage()}
-                    >
-                        Don't have an account
+                <div className="form-helpfulTextContainer">
+                    <div className="form-helpfulTextButton" onClick={() => pageRedirect()}>
+                        {label === 'Login' && `Don't have an account`} 
+                        {label === 'Sign Up' && `Already have an account`} 
                     </div>
                 </div>
             }

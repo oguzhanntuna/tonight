@@ -5,3 +5,9 @@
         justify-content: center;
     }
 }
+
+@media only screen and (max-width: 480px) {
+    .signupPage {
+        height: calc(100vh - 28.5rem);
+    }
+}

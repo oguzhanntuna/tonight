@@ -80,7 +80,7 @@ const SignupPage = (): JSX.Element => {
                 <Form 
                     label="Sign Up"
                     inputElements={signupInputElements}
-                    includeHelpfulTexts={false}
+                    includeHelpfulTexts={true}
                     submitButtonLabel="Sign Up"
                     onSubmit={handleSignUp}
                 />

@@ -15,19 +15,27 @@
         padding: 3rem 3rem 0 3rem;
     }
     
-    &-helpfulTexts {
+    &-helpfulTextContainer {
         padding: 3rem 3rem 0 3rem;
         display: flex;
         justify-content: space-between;
         font-size: 1.4rem;
     }
     
-    &-alreadyHaveAccount {
+    &-helpfulTextButton {
         text-decoration: underline;
         cursor: pointer;
     }
+
     
     .primaryButton {
         margin: 3rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .form {
+        width: 100%;
+        border-radius: 0;
     }
 }
