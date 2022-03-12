@@ -14,4 +14,9 @@
         background-color: $color-secondary;
         border-radius: 2rem;
     }
+
+    &-content {
+        margin: 0 1rem;
+        text-align: center;
+    }
 }

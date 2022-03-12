@@ -80,25 +80,27 @@ const Header = (): JSX.Element => {
                 <div className="header-backgroundOverlay" id="backgroundOverlay" />
                 <Link to="/" className="logo">Tonight</Link>
                 <div className="userActionContainer">
-                    {/* {
+                    {
                         activeUsername
-                            ? <AccountTab tabLabel={activeUsername} />
-                            : <AccountTab />
-                    } */}
-                    <PrimaryButton 
-                        className="userActionContainer-loginButton" 
-                        width="6rem" 
-                        onClick={() => navigate('/login')}
-                    >
-                        Login
-                    </PrimaryButton>
-                    <PrimaryButton 
-                        className="userActionContainer-signupButton" 
-                        width="6rem" 
-                        onClick={() => navigate('/signup')}
-                    >
-                        Sign Up
-                    </PrimaryButton>
+                            ? <AccountTab tabLabel={activeUsername} /> 
+                            : <>
+                                <PrimaryButton 
+                                    className="userActionContainer-loginButton" 
+                                    width="6rem" 
+                                    onClick={() => navigate('/login')}
+                                >
+                                    Login
+                                </PrimaryButton>
+                                <PrimaryButton 
+                                    className="userActionContainer-signupButton" 
+                                    width="6rem" 
+                                    onClick={() => navigate('/signup')}
+                                >
+                                    Sign Up
+                                </PrimaryButton>
+                            </>
+                    }
+                    
                 </div>
             </div>
         )

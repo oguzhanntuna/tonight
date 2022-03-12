@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import './AccountTab.scss';
 
 import * as AuthActions from '../../store/actions/auth';
+import { useDeviceType } from '../../customHooks/useDeviceType';
 
 import SettingsDropdown from './SettingsDropdown';
 import moreIcon from '../../assets/icons/more.svg';
@@ -20,6 +21,7 @@ interface IAccountTabProps {
 const AccountTab = (props: IAccountTabProps): JSX.Element => {
     const { tabLabel = 'My Account' } = props;
     const { logout } = AuthActions;
+    const deviceType = useDeviceType();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [showProfileDropdown, setShowProfileDropdown] = useState<boolean>(false);
@@ -27,31 +29,41 @@ const AccountTab = (props: IAccountTabProps): JSX.Element => {
 
     useEffect(() => {
         const setDropdownItemsAccordingToLabel = () => {
-            if (tabLabel === 'My Account') {
-    
+            if (deviceType === 'mobile') {
                 setDropdownItems([
-                    {
-                        label: 'Log In',
-                        onClick: () => navigate('/login')
-                    },
-                    {
-                        label: 'Sign Up',
-                        onClick: () => navigate('/signup')
-                    }
-                ]);
-            } else {
-    
-                setDropdownItems([
-                    {
-                        label: 'Purchased Tickets',
-                        onClick: () => navigate('/purchased-tickets')
-                    },
                     {
                         label: 'Log Out',
                         onClick: () => dispatch(logout())
                     }
                 ]);
+            } else {
+                if (tabLabel === 'My Account') {
+        
+                    setDropdownItems([
+                        {
+                            label: 'Log In',
+                            onClick: () => navigate('/login')
+                        },
+                        {
+                            label: 'Sign Up',
+                            onClick: () => navigate('/signup')
+                        }
+                    ]);
+                } else {
+        
+                    setDropdownItems([
+                        {
+                            label: 'Purchased Tickets',
+                            onClick: () => navigate('/purchased-tickets')
+                        },
+                        {
+                            label: 'Log Out',
+                            onClick: () => dispatch(logout())
+                        }
+                    ]);
+                }
             }
+
         }
 
         setDropdownItemsAccordingToLabel();
