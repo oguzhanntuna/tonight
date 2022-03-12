@@ -17,15 +17,18 @@ const Header = (): JSX.Element => {
     const favoritesCount = useSelector((state: IApplicationState) => state.favorites.favoriteEvents.length);
 
     document.addEventListener('scroll', () => {
-        const headerElement = document.getElementById('header');
+        const headerElement = document.getElementById('backgroundOverlay');
         
-        window.pageYOffset > 0 ? headerElement?.classList.add('blurred') : headerElement?.classList.remove('blurred');
+        window.pageYOffset > 0 ? headerElement?.classList.add('active') : headerElement?.classList.remove('active');
     });
+
+    console.log(deviceType);
 
     if (deviceType === 'desktop') {
 
         return (
             <div className="header" id="header">
+                <div className="header-backgroundOverlay" id="backgroundOverlay" />
                 <Link to="/" className="logo">Tonight</Link>
                 <ul className="navigationContainer">
                     <NavLink to="/events" className="navigationContainer-tab">All Events</NavLink>
@@ -75,6 +78,7 @@ const Header = (): JSX.Element => {
     if (deviceType === 'mobile') {
         return (
             <div className="header" id="header">
+                <div className="header-backgroundOverlay" id="backgroundOverlay" />
                 <Link to="/" className="logo">Tonight</Link>
                 <div className="userActionContainer">
                     {

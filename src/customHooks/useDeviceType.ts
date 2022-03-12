@@ -9,6 +9,7 @@ export const useDeviceType = () => {
     }
 
     window.addEventListener('resize', updateSize);
+    updateSize();
 
     return () => window.removeEventListener('resize', updateSize);
   }, []);
