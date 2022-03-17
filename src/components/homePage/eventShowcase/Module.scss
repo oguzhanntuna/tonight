@@ -1,7 +1,7 @@
 @import '../../../variables/variables.scss';
 
 .eventShowcaseModule {
-    width: 95%;
+    width: 100%;
     min-height: 53rem;
     margin: 0 auto;
 
@@ -26,9 +26,8 @@
     }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 1024px) {
     .eventShowcaseModule {
-        width: 100%;
         min-height: unset;
     }   
 }

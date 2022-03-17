@@ -2,7 +2,7 @@
 
 .toastMessage {
     position: fixed;
-    top: 13rem;
+    top: 10rem;
     right: 3rem;
     display: flex;
     justify-content: space-between;
@@ -20,12 +20,10 @@
 
     &.success {
         border: 2px solid green;
-        box-shadow:  0 4px 8px rgba(green, 0.4); 
     }
 
     &.warning {
         border: 2px solid red;
-        box-shadow:  0 4px 8px rgba(red, 0.4); 
     }
 
     &-text {
@@ -37,7 +35,7 @@
     }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 1024px) {
     .toastMessage {
         width: calc(100% - 5rem);
         padding: 1rem 1.5rem;

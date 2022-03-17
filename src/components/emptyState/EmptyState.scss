@@ -1,9 +1,8 @@
 @import '../../variables/variables.scss';
 
 .emptyState {
-    width: 90%;
-    padding: 6rem 0 10rem 0;
-    margin: -6.5rem auto 0 auto;
+    margin: -4.5rem 4rem 0 4rem;
+    padding: 8rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,23 +26,28 @@
     }
 
     &-redirectButton {
-        padding: 1rem 10rem;
-        margin-top: 4.5rem;
-        color: $color-white;
-        background-color: transparent;
-        border: 2px solid $color-secondary;
-        color: #C724B1;
-        border-radius: 0.5rem;
-        font-size: 2rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        outline: none;
-        cursor: pointer;
-        transition: all .2s;
+        height: 5rem;
+        margin-top: 4rem;
+    }
+}
 
-        &:hover {
-            background-color: $color-secondary;
-            color: $color-black;
+@media only screen and (max-width: 1024px) {
+    .emptyState {
+        margin: 0;
+        padding: 6rem 0;
+
+        &-icon {
+            width: 4.5rem;
+            height: 4.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        &-text {
+            font-size: 1.4rem;
+        }
+
+        &-redirectButton {
+            height: 4rem;
         }
     }
 }

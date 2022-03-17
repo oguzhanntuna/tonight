@@ -2,7 +2,7 @@
 
 .eventsContainer {
     height: 44rem;
-    padding: 1rem;
+    padding-bottom: 1rem;
     display: flex;
     overflow-x: scroll;
 
@@ -22,9 +22,9 @@
     }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 1024px) {
     .eventsContainer {
         height: 40rem;
-        padding: 0;
+        padding-bottom: 0;
     }
 }

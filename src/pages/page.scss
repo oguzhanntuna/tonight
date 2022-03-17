@@ -1,10 +1,12 @@
 .page {
     max-width: 1024px;
     margin: 12rem auto 0 auto;
+    padding: 0 4rem;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 1024px) {
     .page {
         margin-top: 7.4rem;
+        padding: 0 2rem;
     }
 }

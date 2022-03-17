@@ -29,29 +29,23 @@ const AccountTab = (props: IAccountTabProps): JSX.Element => {
 
     useEffect(() => {
         const setDropdownItemsAccordingToLabel = () => {
-            if (deviceType === 'mobile') {
+            if (tabLabel === 'My Account') {
+        
                 setDropdownItems([
                     {
-                        label: 'Log Out',
-                        onClick: () => dispatch(logout())
+                        label: 'Log In',
+                        onClick: () => navigate('/login')
+                    },
+                    {
+                        label: 'Sign Up',
+                        onClick: () => navigate('/signup')
                     }
                 ]);
             } else {
-                if (tabLabel === 'My Account') {
-        
-                    setDropdownItems([
-                        {
-                            label: 'Log In',
-                            onClick: () => navigate('/login')
-                        },
-                        {
-                            label: 'Sign Up',
-                            onClick: () => navigate('/signup')
-                        }
-                    ]);
-                } else {
-        
-                    setDropdownItems([
+                let dropdownItems: Array<IDropdownItems> = [];
+                
+                if (deviceType === 'desktop') {
+                    dropdownItems = [
                         {
                             label: 'Purchased Tickets',
                             onClick: () => navigate('/purchased-tickets')
@@ -60,15 +54,24 @@ const AccountTab = (props: IAccountTabProps): JSX.Element => {
                             label: 'Log Out',
                             onClick: () => dispatch(logout())
                         }
-                    ]);
+                    ];
                 }
-            }
 
+                if (deviceType === 'mobile') {
+                    dropdownItems = [
+                        {
+                            label: 'Log Out',
+                            onClick: () => dispatch(logout())
+                        }
+                    ];
+                }
+
+                setDropdownItems(dropdownItems);
+            }
         }
 
         setDropdownItemsAccordingToLabel();
-
-    }, [tabLabel, dispatch, logout, navigate]);
+    }, [deviceType, tabLabel, dispatch, logout, navigate]);
     
     const toggleProfileDropdown = (): void => {
 

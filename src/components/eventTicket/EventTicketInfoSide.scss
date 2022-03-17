@@ -2,7 +2,6 @@
 
 .eventTicketInfoSide {
     position: relative;
-    width: 24rem;
     min-width: 24rem;
     height: 36rem;
     display: flex;
@@ -60,7 +59,7 @@
     &-content {
         position: absolute;
         bottom: 0;
-        padding: 0 0 3rem 2rem;
+        padding: 0 2rem 3rem 2rem;
     }
     
     &-location, &-date {
@@ -71,12 +70,4 @@
     &-title {
         font-size: 2rem;
     }
-}
-
-@media only screen and (max-width: 480px) {
-    .eventTicketInfoSide {
-        width: 20rem;
-        min-width: 20rem;
-        height: 32rem;
-    }   
 }

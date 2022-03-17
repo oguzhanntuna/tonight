@@ -10,8 +10,8 @@
         flex-direction: column;
 
         &-title {
-            margin-bottom: 1rem;
-            padding-left: 2rem;
+            margin-bottom: 2rem;
+            line-height: 5rem;
             font-size: 6.4rem;
             font-weight: bold;
             text-transform: uppercase;
@@ -32,6 +32,18 @@
             .eventTicket {
                 height: 42.2rem;
                 margin: 0 .5rem 6rem .5rem;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .thisWeekEventsPage {
+        .thisWeekEventsContainer {
+            &-events {
+                .eventTicket {
+                    height: 37.2rem;
+                }
             }
         }
     }

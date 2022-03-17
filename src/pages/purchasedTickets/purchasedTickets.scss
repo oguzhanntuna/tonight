@@ -3,12 +3,11 @@
 .purchasedTicketsPage {
     .purchasedTicketsPageContainer {
         position: relative;
-        margin-bottom: 1rem;
-        padding-left: 2rem;
         text-shadow: 0 8px 16px #000000;
         
         &-title {
-            margin-bottom: 6rem;
+            margin-bottom: 2rem;
+            line-height: 5rem;
             font-size: 6.4rem;
             font-weight: bold;
             text-transform: uppercase;
@@ -44,6 +43,20 @@
                 &:not(:last-child) {
                     margin-right: 1.5rem;
                 }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .purchasedTicketsPage {
+        .purchasedTicketsPageContainer {
+            &-title {
+                font-size: 3.2rem;
+                letter-spacing: -0.3rem;
+                line-height: 3rem;
+                margin-bottom: -1.5rem;
+                text-align: center;
             }
         }
     }

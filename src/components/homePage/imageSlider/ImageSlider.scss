@@ -2,7 +2,7 @@
 
 .imageSlider {
     position: relative;
-    width: 95%;
+    width: 100%;
     height: 35rem;
     margin: 0 auto 8rem auto;
     box-shadow: 0 8px 16px rgba($color-black, 0.4);
@@ -107,7 +107,6 @@
 
 @media only screen and (max-width: 768px) {
     .imageSlider {
-        width: 100%;
         height: 28rem;
 
         &-item {
@@ -116,9 +115,9 @@
             }
         }
     }   
-}
+}    
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 560px) {
     .imageSlider {
         height: 20rem;
         margin-bottom: 6rem;

@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import './EmptyState.scss';
 
 import { useLoggedIn } from '../../customHooks/useLoggedIn';
+import { useDeviceType } from '../../customHooks/useDeviceType';
 
 import PrimaryButton from '../primaryButton/primaryButton';
 
@@ -13,6 +14,7 @@ interface IEmptyStateProps {
 const EmptyState = (props: IEmptyStateProps): JSX.Element => {
     const { icon, text } = props;
     const navigate = useNavigate();
+    const deviceType = useDeviceType();
     const isLoggedin = useLoggedIn();
 
     return (
@@ -31,7 +33,7 @@ const EmptyState = (props: IEmptyStateProps): JSX.Element => {
                 !isLoggedin &&
                 <PrimaryButton 
                     className="emptyState-redirectButton"
-                    width="28rem"
+                    width={deviceType === 'desktop' ? '20rem' : '16rem'}
                     onClick={() => navigate('/login')}
                 >
                     Log In

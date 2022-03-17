@@ -11,7 +11,7 @@
     text-transform: uppercase;
     outline: none;
     cursor: pointer;
-    transition: all .4s;
+    transition: font-size .4s, background-color .4s, color .4s;
 
     &:hover {
         font-size: 1.6rem;

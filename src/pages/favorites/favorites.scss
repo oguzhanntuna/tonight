@@ -9,7 +9,7 @@
         &-title {
             width: fit-content;
             margin-bottom: 2rem;
-            padding: 0 2rem;
+            line-height: 5rem;
             z-index: 1;
             font-size: 6.4rem;
             font-weight: bold;
@@ -33,6 +33,29 @@
 
             .spinner {
                 margin: 0 auto;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .favoritesPage {
+        .favoritesPageContainer {
+            &-title {
+                width: 100%;
+                font-size: 3.2rem;
+                letter-spacing: -0.3rem;
+                line-height: 3rem;
+                margin-bottom: -1.5rem;
+                text-align: center;
+            }
+
+            &-content {
+                .favoriteEvents {
+                    .eventTicket {
+                        height: 37.2rem;
+                    }
+                }
             }
         }
     }
