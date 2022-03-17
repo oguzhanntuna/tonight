@@ -6,6 +6,12 @@
     &-addToFavoriteIcon {
         width: 2rem;
         height: 2rem;
+        opacity: 1;
+        transition: opacity .2s;
+
+        &--isLoading {
+            opacity: .4;
+        }
     }
 
     &-favouritesText {

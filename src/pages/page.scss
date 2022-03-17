@@ -1,7 +1,12 @@
 .page {
     max-width: 1024px;
+    min-height: 100vh;
     margin: 12rem auto 0 auto;
     padding: 0 4rem;
+    
+    .spinner {
+        margin: 0 auto;
+    }
 }
 
 @media only screen and (max-width: 1024px) {
