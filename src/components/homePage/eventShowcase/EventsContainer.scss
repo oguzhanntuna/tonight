@@ -20,11 +20,62 @@
             background-color: $color-black;
         }
     }
+
+    .eventTicket {
+        margin-right: 2rem;
+    }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 790px) {
     .eventsContainer {
         height: 40rem;
-        padding-bottom: 0;
+
+        .eventTicket {
+            height: 38.2rem;
+
+            .eventTicketInfoSide {
+                min-width: 20rem;
+                height: 32rem;
+            }   
+        
+            .eventTicketPriceSide {
+                width: 16rem;
+                min-width: 16rem;
+                height: 27.5rem;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 435px) {
+    .eventsContainer {
+        height: 38rem;
+        
+        .eventTicket {
+            height: 36.2rem;
+
+            .eventTicketInfoSide {
+                min-width: 18rem;
+                height: 30rem;
+
+                &-content {
+                    padding: 0 1.5rem 3rem 1.5rem;
+                }
+            }  
+
+            .eventTicketPriceSide {
+                width: 14rem;
+                min-width: 14rem;
+                height: 25.5rem;
+
+                &-header {
+                    margin-bottom: 1.5rem;
+                }
+
+                .eventTicketPriceRow {
+                    margin-bottom: 1.5rem;
+                }
+            } 
+        }   
     }
 }
