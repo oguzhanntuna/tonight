@@ -6,7 +6,7 @@
         text-shadow: 0 8px 16px #000000;
         
         &-title {
-            margin-bottom: 2rem;
+            margin-bottom: 4rem;
             line-height: 5rem;
             font-size: 6.4rem;
             font-weight: bold;
@@ -16,25 +16,65 @@
         }
 
         .orders {
+            &-header {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                margin: 0 2rem 2rem 2rem;
+            }
+
             &-orderContainer {
-                margin-bottom: 12rem;
+                margin-bottom: 2rem;
+                padding: 2rem .5rem .5rem .5rem;
+                border-radius: 0.75rem;
+                background: linear-gradient(to bottom, $color-black--light, $color-background);
+                box-shadow: 0 4px 8px rgba($color-black--light, 1);
+
+                &.minimized {
+                    .orders {
+                        &-minimizeOrderButton {
+                            transform: rotate(90deg);
+                        }
+                    }
+                }
             }
 
             &-orderDate {
-                margin: 0 38rem 4rem 38rem;
-                padding-bottom: 1rem;
-                border-bottom: 3px solid $color-white;
-                text-align: center;
-                font-size: 2.5rem;
+                margin: 0 2rem 0 0;
+                font-size: 1.4rem;
+                text-align: end;
                 font-weight: bold;
                 text-transform: uppercase;
             }   
 
+            &-minimizeOrderButton {
+                width: 2rem;
+                height: 2rem;
+                transform: rotate(-90deg);
+                cursor: pointer;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
             &-purchasedTicketsContainer {
+                position: relative;
                 display: flex;
                 justify-content: flex-start;
                 flex-wrap: wrap;
-                border-bottom: 3px solid $color-white;
+                padding: 2rem;
+                background-color: $color-background;
+            }
+
+            &-purchasedTicketsContainerOverlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 2rem;
+                background: linear-gradient(to bottom, $color-black--light, $color-background);
             }
 
             &-purchasedTicket {
