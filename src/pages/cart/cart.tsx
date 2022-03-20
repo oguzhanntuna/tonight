@@ -40,7 +40,10 @@ const CartPage = (): JSX.Element => {
     return (
         <div className="cartPage">
             <HeroImage imageUrl={heroImage} />
-            <div className="cartPageContainer">
+            <div className={`
+                cartPageContainer 
+                ${cartItems.length === 0 ? 'cartPageContainer--emptyState' : ''}
+            `}>
                 <div className="cartPageContainer-leftSide">
                     <div className="cartPageContainer-title">
                         My Cart

@@ -41,7 +41,10 @@ const FavoritesPage = (): JSX.Element => {
     return (
         <div className="favoritesPage">
             <HeroImage imageUrl={heroImage} />
-            <div className="favoritesPageContainer">
+            <div className={`
+                favoritesPageContainer 
+                ${favoriteEvents.length === 0 ? 'favoritesPageContainer--emptyState' : ''}
+            `}>
                 <div className="favoritesPageContainer-title">
                     My Favorites
                 </div>

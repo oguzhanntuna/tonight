@@ -47,15 +47,29 @@
     }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1080px) {
     .cartPage {
         .cartPageContainer {
             &-title {
-                font-size: 3.2rem;
-                letter-spacing: -0.3rem;
-                line-height: 3rem;
-                margin-bottom: -1.5rem;
                 text-align: center;
+            }  
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .cartPage {
+        .cartPageContainer {
+            &--emptyState {
+                .cartPageContainer {
+                    &-title {
+                        font-size: 3.2rem;
+                        letter-spacing: -0.3rem;
+                        line-height: 3rem;
+                        margin-bottom: -1.5rem;
+                        text-align: center;
+                    }
+                }
             }
         }
     }
