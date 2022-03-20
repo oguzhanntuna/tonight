@@ -56,13 +56,15 @@ const PurchasedTicketsPage = (): JSX.Element => {
                                     : (
                                         <div className="orders-purchasedTicketsContainer">
                                             <div className="orders-purchasedTicketsContainerOverlay" />
-                                            { 
-                                                purchasedTickets.map(purchasedTicket => (
-                                                    <div className="orders-purchasedTicket">
-                                                        <EventTicket eventData={purchasedTicket} />
-                                                    </div>
-                                                ))
-                                            }
+                                            <div className='orders-scrollableContent'>
+                                                { 
+                                                    purchasedTickets.map(purchasedTicket => (
+                                                        <div className="orders-purchasedTicket">
+                                                            <EventTicket eventData={purchasedTicket} />
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
                                         </div>
                                     )
                             }
