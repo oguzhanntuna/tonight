@@ -3,17 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import './page.scss';
 
 import Spinner from '../components/spinner/spinner';
-// import HomePage from './home/home';
-// import AllEventsPage from './allEvents/allEvents';
-// import EventDetailPage from './eventDetail/eventDetail';
-// import LoginPage from './login/login';
-// import SignupPage from './signup/signup';
-// import FavoritesPage from './favorites/favorites';
-// import ThisWeekEventsPage from './thisWeekEvents/thisWeekEvents';
-// import RecentlyAddedEventsPage from './recentlyAddedEvents/recentlyAddedEvents';
-// import BuyNowEventsPage from './buyNowEvents/buyNowEvents';
-// import CartPage from './cart/cart';
-// import PurchasedTicketsPage from './purchasedTickets/purchasedTickets';
 
 const Page = (): JSX.Element => {
     const HomePage = React.lazy(() => import('./home/home'));

@@ -6,7 +6,6 @@ import { useDeviceType } from '../../customHooks/useDeviceType';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 import AccountTab from './AccountTab';
-import favIconEmpty from '../../assets/icons/heart/heart-outline.svg';
 import cartIconEmpty from '../../assets/icons/cart/cart-outline.svg';
 import PrimaryButton from '../primaryButton/primaryButton';
 
@@ -15,8 +14,7 @@ const Header = (): JSX.Element => {
     const navigate = useNavigate();
     const activeUsername = useSelector((state: IApplicationState) => state.auth.displayName);
     const cartCount = useSelector((state: IApplicationState) => state.cart.ticketCount);
-    const favoritesCount = useSelector((state: IApplicationState) => state.favorites.favoriteEvents.length);
-
+    
     document.addEventListener('scroll', () => {
         const headerElement = document.getElementById('backgroundOverlay');
         
@@ -41,19 +39,6 @@ const Header = (): JSX.Element => {
                             ? <AccountTab tabLabel={activeUsername} />
                             : <AccountTab />
                     }
-                    <div 
-                        className="userActionContainer-favorites" 
-                        onClick={() => navigate('/favorites')}
-                    >
-                        <div className="userActionContainer-favoritesIcon">
-                            <img src={favIconEmpty} alt="favorites" /> 
-                        </div>
-                        <p>Favorites</p>
-                        {
-                            favoritesCount > 0 &&
-                            <span>{`(${favoritesCount})`}</span>
-                        }
-                    </div>
                     <div 
                         className="userActionContainer-cart"
                         onClick={() => navigate('/cart')}

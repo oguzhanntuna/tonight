@@ -1,8 +1,8 @@
-import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import './allEvents.scss';
 
+import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import * as ThisWeekEventsActions from '../../store/actions/thisWeekEvents';

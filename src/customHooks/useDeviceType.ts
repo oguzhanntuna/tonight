@@ -14,5 +14,5 @@ export const useDeviceType = () => {
     return () => window.removeEventListener('resize', updateSize);
   }, []);
 
-  return windowWidth < 1024 ? 'mobile' : 'desktop';
+  return windowWidth <= 1024 ? 'mobile' : 'desktop';
 }

@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import './purchasedTickets.scss';
 
+import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 import heroImage from '../../assets/hero.jpg';
@@ -11,6 +12,8 @@ import EmptyState from '../../components/emptyState/EmptyState';
 
 const PurchasedTicketsPage = (): JSX.Element => {
     const orders = useSelector((state: IApplicationState) => state.orders.orders);
+
+    useScrollToTop();
 
     const renderPurchasedTickets = () => (
         <div className="orders">

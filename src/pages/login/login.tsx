@@ -5,6 +5,7 @@ import './login.scss';
 
 import * as authActions from '../../store/actions/auth';
 import { useLoggedIn } from '../../customHooks/useLoggedIn';
+import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import { IInputProps } from '../../components/input/Input';
 import { ILoginData } from '../../models/interfaces/auth/auth';
 
@@ -35,6 +36,8 @@ const LoginPage = (): JSX.Element => {
             onChange: setPassword
         }
     ];
+
+    useScrollToTop();
 
     useEffect(() => {
         if (isLoggedin) {

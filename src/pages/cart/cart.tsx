@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import './cart.scss';
 
+import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 import heroImage from '../../assets/hero.jpg'
@@ -13,6 +14,8 @@ import Spinner from '../../components/spinner/spinner';
 
 const CartPage = (): JSX.Element => {
     const { cartItems, fetchLoading } = useSelector((state: IApplicationState) => state.cart);
+
+    useScrollToTop();
 
     const renderCartEvents = (): JSX.Element => (
         <div className="cartEvents">

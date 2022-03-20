@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import './favorites.scss';
 
+import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 import heroImage from '../../assets/hero.jpg'
@@ -13,6 +14,8 @@ import Spinner from '../../components/spinner/spinner';
 const FavoritesPage = (): JSX.Element => {
     const favoritesState = useSelector((state: IApplicationState) => state.favorites);
     const { favoriteEvents, fetchLoading } = favoritesState;
+
+    useScrollToTop();
 
     const renderFavoriteEvents = (): JSX.Element => (
         <div className="favoriteEvents">

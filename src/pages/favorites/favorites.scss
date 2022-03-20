@@ -8,7 +8,7 @@
 
         &-title {
             width: 100%;
-            margin-bottom: 4rem;
+            margin-bottom: 2rem;
             line-height: 5rem;
             z-index: 1;
             font-size: 6.4rem;
@@ -23,7 +23,7 @@
             .favoriteEvents {
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: space-between;
+                justify-content: space-evenly;
     
                 .eventTicket {
                     margin: 0 0.5rem 2rem 0.5rem;
@@ -37,10 +37,14 @@
     }
 }
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1024px) {
     .favoritesPage {
         .favoritesPageContainer {
             &-title {
+                font-size: 3.2rem;
+                letter-spacing: -0.3rem;
+                line-height: 3rem;
+                margin-bottom: -1.5rem;
                 text-align: center;
             }
         }

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import './signup.scss';
 
 import * as authActions from '../../store/actions/auth';
+import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import { IInputProps } from '../../components/input/Input';
 import { IUserData } from '../../models/interfaces/auth/auth';
 
@@ -53,6 +54,8 @@ const SignupPage = (): JSX.Element => {
             onChange: setConfirmPassword
         }
     ];
+
+    useScrollToTop();
 
     useEffect(() => {
         if (isLoggedin) {

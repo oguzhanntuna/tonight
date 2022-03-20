@@ -1,8 +1,8 @@
-import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import './buyNowEvents.scss';
 
+import { useScrollToTop } from '../../customHooks/useScrollToTop';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import * as BuyNowEventsActions from '../../store/actions/buyNowEvents';
 

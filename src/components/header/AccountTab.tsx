@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import './AccountTab.scss';
 
@@ -8,6 +8,7 @@ import { useDeviceType } from '../../customHooks/useDeviceType';
 
 import SettingsDropdown from './SettingsDropdown';
 import moreIcon from '../../assets/icons/more.svg';
+import { IApplicationState } from '../../models/interfaces/store/states/application';
 
 export interface IDropdownItems {
     label: string;
@@ -26,26 +27,21 @@ const AccountTab = (props: IAccountTabProps): JSX.Element => {
     const dispatch = useDispatch();
     const [showProfileDropdown, setShowProfileDropdown] = useState<boolean>(false);
     const [dropdownItems, setDropdownItems] = useState<Array<IDropdownItems>>([]);
+    const state = useSelector((state: IApplicationState) => state);
+    const { auth: { token: isLoggedIn }, favorites: { favoriteEvents } } = state;
+    const favoritesCount = favoriteEvents.length;
 
     useEffect(() => {
         const setDropdownItemsAccordingToLabel = () => {
-            if (tabLabel === 'My Account') {
-        
-                setDropdownItems([
-                    {
-                        label: 'Log In',
-                        onClick: () => navigate('/login')
-                    },
-                    {
-                        label: 'Sign Up',
-                        onClick: () => navigate('/signup')
-                    }
-                ]);
-            } else {
+            if (isLoggedIn) {
                 let dropdownItems: Array<IDropdownItems> = [];
                 
                 if (deviceType === 'desktop') {
                     dropdownItems = [
+                        {
+                            label: `Favorites (${favoritesCount})`,
+                            onClick: () => navigate('/favorites')
+                        },
                         {
                             label: 'Purchased Tickets',
                             onClick: () => navigate('/purchased-tickets')
@@ -67,11 +63,23 @@ const AccountTab = (props: IAccountTabProps): JSX.Element => {
                 }
 
                 setDropdownItems(dropdownItems);
+        
+            } else {
+                setDropdownItems([
+                    {
+                        label: 'Log In',
+                        onClick: () => navigate('/login')
+                    },
+                    {
+                        label: 'Sign Up',
+                        onClick: () => navigate('/signup')
+                    }
+                ]);
             }
         }
 
         setDropdownItemsAccordingToLabel();
-    }, [deviceType, tabLabel, dispatch, logout, navigate]);
+    }, [isLoggedIn, deviceType, favoritesCount, dispatch, logout, navigate]);
     
     const toggleProfileDropdown = (): void => {
 
