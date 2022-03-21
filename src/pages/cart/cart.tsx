@@ -11,8 +11,10 @@ import EmptyState from '../../components/emptyState/EmptyState';
 import EventTicket from '../../components/eventTicket/EventTicket';
 import Checkout from '../../components/checkout/Checkout';
 import Spinner from '../../components/spinner/spinner';
+import { useDeviceType } from '../../customHooks/useDeviceType';
 
 const CartPage = (): JSX.Element => {
+    const deviceType = useDeviceType(); 
     const { cartItems, fetchLoading } = useSelector((state: IApplicationState) => state.cart);
 
     useScrollToTop();
@@ -57,7 +59,7 @@ const CartPage = (): JSX.Element => {
                     }
                 </div>
                 {
-                    cartItems && cartItems.length > 0 && !fetchLoading &&
+                    deviceType === 'desktop' && cartItems && cartItems.length > 0 && !fetchLoading && 
                     <div className="cartPageContainer-rightSide">
                         <Checkout cartItems={cartItems} cartPurchasable={cartItems.length > 0} />
                     </div>
