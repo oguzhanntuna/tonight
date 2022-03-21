@@ -86,7 +86,10 @@ const PurchasedTicketsPage = (): JSX.Element => {
     return (
         <div className="purchasedTicketsPage">
             <HeroImage imageUrl={heroImage} />
-            <div className="purchasedTicketsPageContainer">
+            <div className={`
+                purchasedTicketsPageContainer 
+                ${orders.length === 0 ? 'purchasedTicketsPageContainer--emptyState' : ''}`
+            }>
                 <div className="purchasedTicketsPageContainer-title">
                     Purchased Tickets
                 </div>

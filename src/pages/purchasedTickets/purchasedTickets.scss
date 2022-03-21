@@ -6,7 +6,7 @@
         text-shadow: 0 8px 16px #000000;
         
         &-title {
-            margin-bottom: 4rem;
+            margin-bottom: 2rem;
             line-height: 5rem;
             font-size: 6.4rem;
             font-weight: bold;
@@ -18,9 +18,8 @@
         .orders {
             &-header {
                 display: flex;
-                justify-content: flex-end;
                 align-items: center;
-                margin: 0 2rem 2rem 2rem;
+                margin: 0 0.5rem 2rem 0.5rem;
             }
 
             &-orderContainer {
@@ -40,7 +39,7 @@
             }
 
             &-orderDate {
-                margin: 0 2rem 0 0;
+                margin: 0 auto 0 0;
                 font-size: 1.4rem;
                 text-align: end;
                 font-weight: bold;
@@ -61,7 +60,7 @@
 
             &-purchasedTicketsContainer {
                 position: relative;
-                padding: 2rem 0.5rem 0.5rem 0.5rem;
+                padding: 0.5rem;
                 background-color: $color-background;
             }
 
@@ -108,15 +107,127 @@
     }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1080px) {
     .purchasedTicketsPage {
         .purchasedTicketsPageContainer {
             &-title {
-                font-size: 3.2rem;
-                letter-spacing: -0.3rem;
-                line-height: 3rem;
-                margin-bottom: -1.5rem;
                 text-align: center;
+            }  
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .purchasedTicketsPage {
+        .purchasedTicketsPageContainer {
+            &--emptyState {
+                .purchasedTicketsPageContainer {
+                    &-title {
+                        font-size: 3.2rem;
+                        letter-spacing: -0.3rem;
+                        line-height: 3rem;
+                        margin-bottom: -1.5rem;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 790px) {
+    .purchasedTicketsPage {
+        .purchasedTicketsPageContainer {
+            .orders {
+                &-purchasedTicketsContainer {
+                    .eventTicket {
+                        height: 38.2rem;
+                    }
+        
+                    .eventTicketInfoSide {
+                        min-width: 20rem;
+                        height: 32rem;
+                    }   
+                
+                    .eventTicketPriceSide {
+                        width: 16rem;
+                        min-width: 16rem;
+                        height: 27.5rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 435px) {
+    .purchasedTicketsPage {
+        .purchasedTicketsPageContainer {
+            .orders {
+                &-purchasedTicketsContainer {
+                    .eventTicket {
+                        height: 36.2rem;
+                    }
+
+                    .eventTicketInfoSide {
+                        min-width: 18rem;
+                        height: 30rem;
+
+                        &-content {
+                            padding: 0 1.5rem 3rem 1.5rem;
+                        }
+                    }  
+
+                    .eventTicketPriceSide {
+                        width: 14rem;
+                        min-width: 14rem;
+                        height: 25.5rem;
+
+                        &-header {
+                            margin-bottom: 1.5rem;
+                        }
+
+                        .eventTicketPriceRow {
+                            margin-bottom: 1.5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 395px) {
+    .purchasedTicketsPage {
+        .purchasedTicketsPageContainer {
+            .orders {
+                &-purchasedTicketsContainer {
+                    .eventTicket {
+                        height: 42.2rem;
+                    }
+
+                    .eventTicketInfoSide {
+                        min-width: 24rem;
+                        height: 36rem;
+
+                        &-content {
+                            padding: 0 2rem 3rem 2rem;
+                        }
+                    } 
+
+                    .eventTicketPriceSide {
+                        min-width: 20rem;
+                        height: 31.5rem;
+
+                        &-header {
+                            margin-bottom: 3rem;
+                        }
+
+                        .eventTicketPriceRow {
+                            margin-bottom: 3rem;
+                        }
+                    }
+                }
             }
         }
     }
