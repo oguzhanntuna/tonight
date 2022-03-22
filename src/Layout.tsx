@@ -1,10 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import './Layout.scss'
 
 import { useDeviceType } from './customHooks/useDeviceType';
-import { IApplicationState } from './models/interfaces/store/states/application';
 import * as AuthActions from './store/actions/auth';
 import * as FavoritesActions from './store/actions/favorites';
 import * as CartActions from './store/actions/cart';
@@ -14,8 +13,7 @@ import Header from './components/header/Header';
 import Page from './pages/page';
 import Footer from './components/footer/Footer';
 import ToastMessage from './components/toastMessage/toastMessage';
-import NavBar from './components/navBar/navBar';
-import Checkout from './components/checkout/Checkout';
+import BottomNavBar from './components/bottomNavBar/bottomNavBar';
 
 const Layout = (): JSX.Element => {
   const { checkAuthState } = AuthActions;
@@ -25,8 +23,6 @@ const Layout = (): JSX.Element => {
   const dispatch = useDispatch();
   const location = useLocation();
   const deviceType = useDeviceType();
-
-  const { cartItems } = useSelector((state: IApplicationState) => state.cart);
 
   useEffect(() => {
     dispatch(checkAuthState());
@@ -43,15 +39,8 @@ const Layout = (): JSX.Element => {
       <ToastMessage />
       <Header />
       <Page />
-      { isCartPageActive && deviceType === 'mobile' && <Checkout cartItems={cartItems} cartPurchasable={cartItems.length > 0} /> }
-      { !isCartPageActive && deviceType === 'mobile' && <NavBar /> }
-      { 
-        isCartPageActive 
-          ? deviceType === 'mobile'
-            ? <></>
-            : <Footer />
-          : <Footer /> 
-        }
+      { !isCartPageActive && deviceType === 'mobile' && <BottomNavBar /> }
+      <Footer /> 
     </div>
   )
 }

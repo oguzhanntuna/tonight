@@ -77,7 +77,31 @@
                     justify-content: space-between;
                 }
             }
+
+            .checkout {
+                height: 16rem; 
+                width: calc(100% - 4rem);
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                padding: 1rem 2rem 2rem 2rem;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                background: linear-gradient(to top, #000000, #001519);
+                box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.4);
+                border: none;
+                border-top: 1px solid black;
+                z-index: 1;
+
+                .totalPrice {
+                    margin-bottom: 2rem;
+                }
+            }
         }
+    }
+
+    .footer {
+        padding-bottom: 18rem;
     }
 }
 

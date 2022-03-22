@@ -355,13 +355,23 @@ export const addVipTicket = (eventData: ICartEvent) => {
 }
 
 export const removeNormalTicket = (eventData: ICartEvent) => {
+    return (dispatch: any) => {
+        if (eventData.vipTicket.count === 0 && eventData.normalTicket.count === 1) {
+            dispatch(removeEvent(eventData));
+        }
 
-    return { type: CART_REMOVE_NORMAL_TICKET, eventData };
+        dispatch({ type: CART_REMOVE_NORMAL_TICKET, eventData });
+    }
 }
 
 export const removeVipTicket = (eventData: ICartEvent) => {
+    return (dispatch: any) => {
+        if (eventData.normalTicket.count === 0 && eventData.vipTicket.count === 1) {
+            dispatch(removeEvent(eventData));
+        }
 
-    return { type: CART_REMOVE_VIP_TICKET, eventData };
+        dispatch({ type: CART_REMOVE_VIP_TICKET, eventData });
+    }
 }
 
 export const removeEvent = (eventData: ICartEvent) => {

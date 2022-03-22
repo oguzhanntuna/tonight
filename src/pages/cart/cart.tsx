@@ -39,6 +39,47 @@ const CartPage = (): JSX.Element => {
         />
     );
 
+    const renderDesktopLayout = () => (
+        <>
+            <div className="cartPageContainer-leftSide">
+                <div className="cartPageContainer-title">
+                    My Cart
+                </div>
+                {
+                    fetchLoading
+                        ? <Spinner />
+                        : cartItems && cartItems.length > 0
+                            ? renderCartEvents()
+                            : renderEmptyState()
+                }
+            </div>
+            {
+                cartItems && cartItems.length > 0 && !fetchLoading && 
+                <div className="cartPageContainer-rightSide">
+                    <Checkout cartItems={cartItems} cartPurchasable={cartItems.length > 0} />
+                </div>
+            }
+        </>
+    );
+
+    const renderMobileLayout = () => (
+        <>
+            <div className="cartPageContainer-leftSide">
+                <div className="cartPageContainer-title">
+                    My Cart
+                </div>
+                {
+                    fetchLoading
+                        ? <Spinner />
+                        : cartItems && cartItems.length > 0
+                            ? renderCartEvents()
+                            : renderEmptyState()
+                }
+            </div>
+            <Checkout cartItems={cartItems} cartPurchasable={cartItems.length > 0} />
+        </>
+    );
+
     return (
         <div className="cartPage">
             <HeroImage imageUrl={heroImage} />
@@ -46,24 +87,8 @@ const CartPage = (): JSX.Element => {
                 cartPageContainer 
                 ${cartItems.length === 0 ? 'cartPageContainer--emptyState' : ''}
             `}>
-                <div className="cartPageContainer-leftSide">
-                    <div className="cartPageContainer-title">
-                        My Cart
-                    </div>
-                    {
-                        fetchLoading
-                            ? <Spinner />
-                            : cartItems && cartItems.length > 0
-                                ? renderCartEvents()
-                                : renderEmptyState()
-                    }
-                </div>
-                {
-                    deviceType === 'desktop' && cartItems && cartItems.length > 0 && !fetchLoading && 
-                    <div className="cartPageContainer-rightSide">
-                        <Checkout cartItems={cartItems} cartPurchasable={cartItems.length > 0} />
-                    </div>
-                }
+                { deviceType === 'desktop' && renderDesktopLayout() }
+                { deviceType === 'mobile' && renderMobileLayout() }
             </div>
         </div>
     );

@@ -170,7 +170,6 @@ export const cartReducer = (state = initialState, action: ICartAction): ICartSta
 
         case CART_REMOVE_NORMAL_TICKET:
             const removedNormalTicketEvent = action.eventData;
-            console.log(state);
             
             if (removedNormalTicketEvent instanceof CartEvent) {
                 removedNormalTicketEvent.normalTicket.count = removedNormalTicketEvent.normalTicket.count - 1;

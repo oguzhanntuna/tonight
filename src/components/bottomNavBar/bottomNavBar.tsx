@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
-import './navBar.scss';
+import './bottomNavBar.scss';
 
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 
@@ -15,24 +15,24 @@ import activeTicketIcon from "../../assets/icons/ticket/active-ticket.svg";
 import favIcon from "../../assets/icons/heart/heart-outline.svg";
 import activeFavIcon from "../../assets/icons/heart/active-heart.svg";
 
-const NavBar = () => {
+const BottomNavBar = () => {
     const { pathname } = useLocation();
     const cartCount = useSelector((state: IApplicationState) => state.cart.ticketCount);
     const activeSearchIconConditions = ['events', 'this-week', 'recently-added', 'buy-now']
 
     return (
-        <nav className="navBar">
-            <ul className="navBar-items">
-                <li className="navBar-item">
+        <nav className="bottomNavBar">
+            <ul className="bottomNavBar-items">
+                <li className="bottomNavBar-item">
                     <NavLink to="/">
-                        <div className="navBar-iconContainer">
+                        <div className="bottomNavBar-iconContainer">
                             <img src={pathname === "/" ? activeHomeIcon : homeIcon} alt="home" />    
                         </div>
                     </NavLink>
                 </li>
-                <li className="navBar-item">
+                <li className="bottomNavBar-item">
                     <NavLink to="/events">
-                        <div className="navBar-iconContainer">
+                        <div className="bottomNavBar-iconContainer">
                             <img 
                                 src={
                                     activeSearchIconConditions.some(
@@ -46,29 +46,29 @@ const NavBar = () => {
                         </div>
                     </NavLink>
                 </li>
-                <li className="navBar-cart">
+                <li className="bottomNavBar-cart">
                     <NavLink to="/cart">
-                        <div className="navBar-iconContainer">
+                        <div className="bottomNavBar-iconContainer">
                             <img src={pathname.includes("cart") ? activeCartIcon : cartIcon} alt="cart" />    
                             {
                                 cartCount > 0 &&
-                                <span className="navBar-cartCount">
+                                <span className="bottomNavBar-cartCount">
                                     {cartCount}
                                 </span>
                             }
                         </div>
                     </NavLink>
                 </li>
-                <li className="navBar-item">
+                <li className="bottomNavBar-item">
                     <NavLink to="/purchased-tickets">
-                        <div className="navBar-iconContainer">
+                        <div className="bottomNavBar-iconContainer">
                             <img src={pathname.includes("purchased-tickets") ? activeTicketIcon : ticketIcon} alt="purchased" />    
                         </div>
                     </NavLink>
                 </li>
-                <li className="navBar-item">
+                <li className="bottomNavBar-item">
                     <NavLink to="/favorites">
-                        <div className="navBar-iconContainer">
+                        <div className="bottomNavBar-iconContainer">
                             <img src={pathname.includes("favorites") ? activeFavIcon : favIcon} alt="favorites" />    
                         </div>
                     </NavLink>
@@ -78,4 +78,4 @@ const NavBar = () => {
     );
 }
 
-export default NavBar;
+export default BottomNavBar;

@@ -7,6 +7,9 @@ import { IApplicationState } from '../../models/interfaces/store/states/applicat
 
 import Spinner from '../spinner/spinner';
 import PrimaryButton from '../primaryButton/primaryButton';
+import cancelButton from '../../assets/icons/cancel.svg';
+import { useDeviceType } from '../../customHooks/useDeviceType';
+import { useNavigate } from 'react-router-dom';
 
 interface ICheckoutProps {
     cartItems: Array<ICartEvent>;
@@ -15,6 +18,8 @@ interface ICheckoutProps {
 
 const Checkout = (props: ICheckoutProps): JSX.Element => {
     const { cartItems, cartPurchasable } = props;
+    const deviceType = useDeviceType();
+    const navigate = useNavigate();
     const { purchaseCart } = CartActions;
     const { purchaseLoading } = useSelector((state: IApplicationState) => state.cart);
     const dispatch = useDispatch();
@@ -37,9 +42,27 @@ const Checkout = (props: ICheckoutProps): JSX.Element => {
 
     return (
         <div className="checkout">
-            <div className="checkout-title">
-                Checkout Summary
-            </div>
+            {
+                deviceType === 'desktop'
+                    ? (
+                        <div className="checkout-title">
+                            Checkout Summary
+                        </div>
+                    )
+                    : (
+                        <div className="checkout-headerContainer">
+                            <div className="checkout-title">
+                                Checkout Summary
+                            </div>
+                            <div 
+                                className="checkout-cancelButton"
+                                onClick={() => navigate('/')}
+                            >
+                                <img src={cancelButton} alt="cancel" />
+                            </div>
+                        </div>
+                    )
+            }
             <div className="totalPrice">
                 <div className="totalPrice-text">
                     Total Price:

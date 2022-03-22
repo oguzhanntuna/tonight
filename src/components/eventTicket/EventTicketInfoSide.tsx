@@ -1,4 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux'; 
 import './EventTicketInfoSide.scss';
 
 import * as CartActions from '../../store/actions/cart';
@@ -12,7 +13,7 @@ import { IPurchasedTicket } from '../../models/interfaces/purchasedTicket/purcha
 
 import detailIcon from '../../assets/icons/document-text-outline.svg';
 import FavoriteIcon from '../favoriteIcon/FavoriteIcon';
-import { useDispatch } from 'react-redux';
+import deleteIcon from '../../assets/icons/delete.svg';
 
 interface IEventTicketFrontSideProps {
     eventData: IEventShowcaseEvent | IFavoriteEvent | ICartEvent | IPurchasedTicket;
@@ -62,7 +63,7 @@ const EventTicketFrontside = (props: IEventTicketFrontSideProps): JSX.Element =>
                 <div 
                     className="eventTicketInfoSide-removeEventButton" 
                     onClick={() => dispatch(removeEvent(eventData))}>
-                        -
+                      <img src={deleteIcon} alt="remove" />  
                 </div>
             }
             <div 
