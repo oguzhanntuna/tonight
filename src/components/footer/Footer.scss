@@ -24,5 +24,9 @@
 @media only screen and (max-width: 1024px) {
     .footer {
         padding-bottom: 6rem;
+
+        &-morePaddingForCartPage {
+            padding-bottom: 18rem;
+        }
     }
 }
