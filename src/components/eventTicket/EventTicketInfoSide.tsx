@@ -42,7 +42,7 @@ const EventTicketFrontside = (props: IEventTicketFrontSideProps): JSX.Element =>
                 }
 
                 if (moduleType === 'recently-added') {
-                    pathname = 'recently-adde';
+                    pathname = 'recently-added';
                 }
 
                 if (moduleType === 'buy-now') {

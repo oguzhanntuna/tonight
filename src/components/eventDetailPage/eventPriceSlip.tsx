@@ -4,11 +4,14 @@ import './EventPriceSlip.scss';
 
 import * as cartActions from '../../store/actions/cart';
 import { setToastMessage } from '../../store/actions/toastMessage';
+import { useDeviceType } from '../../customHooks/useDeviceType';
 import { useLoggedIn } from '../../customHooks/useLoggedIn';
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
 
 import EventTicketPriceRow from '../eventTicket/EventTicketPriceRow';
+import cancelButton from '../../assets/icons/cancel.svg';
+import { useNavigate } from 'react-router-dom';
 
 interface IEventPriceSlip {
     data: IEventShowcaseEvent;
@@ -17,6 +20,8 @@ interface IEventPriceSlip {
 const EventPriceSlip = (props: IEventPriceSlip): JSX.Element => {
     const { data } = props;
     const { title, normalTicket, vipTicket, totalPrice } = data;
+    const deviceType = useDeviceType(); 
+    const navigate = useNavigate();
     const { addToCart } = cartActions;
 
     const [toastMessageData, setToastMessageData] = useState<IToastMessageData>({messageType: '', message: ''});
@@ -53,8 +58,17 @@ const EventPriceSlip = (props: IEventPriceSlip): JSX.Element => {
 
     return (
         <div className="eventPriceSlip">
-            <div className="eventPriceSlip-eventTitle">
-                {title}
+            <div className="eventPriceSlip-eventTitleRow">
+                <p>{title}</p>
+                {
+                    deviceType === 'mobile' &&
+                    <div 
+                        className="eventPriceSlip-cancelButton"
+                        onClick={() => navigate('/')}
+                    >
+                        <img src={cancelButton} alt="cancel" />
+                    </div>
+                }
             </div>
             <div className="eventPriceSlip-content">
                 <EventTicketPriceRow 

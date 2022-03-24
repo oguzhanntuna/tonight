@@ -33,13 +33,18 @@ const Layout = (): JSX.Element => {
   }, [dispatch, checkAuthState, fetchFavorites, fetchCart, fetchOrders]);
 
   const isCartPageActive = location.pathname.includes('/cart');
+  const isEventDetailPageActive = location.pathname.split('/').length === 3;
+
+  useEffect(() => {
+    console.log(isEventDetailPageActive)
+  }, [isEventDetailPageActive])
 
   return (
     <div className="layout">
       <ToastMessage />
       <Header />
       <Page />
-      { !isCartPageActive && deviceType === 'mobile' && <BottomNavBar /> }
+      { !isCartPageActive && !isEventDetailPageActive && deviceType === 'mobile' && <BottomNavBar /> }
       <Footer /> 
     </div>
   )

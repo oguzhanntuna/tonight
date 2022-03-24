@@ -7,7 +7,7 @@ import { IApplicationState } from '../../models/interfaces/store/states/applicat
 
 import Spinner from '../spinner/spinner';
 import PrimaryButton from '../primaryButton/primaryButton';
-import cancelButton from '../../assets/icons/cancel.svg';
+import cancelIcon from '../../assets/icons/cancel.svg';
 import { useDeviceType } from '../../customHooks/useDeviceType';
 import { useNavigate } from 'react-router-dom';
 
@@ -58,7 +58,7 @@ const Checkout = (props: ICheckoutProps): JSX.Element => {
                                 className="checkout-cancelButton"
                                 onClick={() => navigate('/')}
                             >
-                                <img src={cancelButton} alt="cancel" />
+                                <img src={cancelIcon} alt="cancel" />
                             </div>
                         </div>
                     )

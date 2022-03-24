@@ -11,8 +11,10 @@ import heroImage from '../../assets/hero.jpg';
 import HeroImage from '../../components/heroImage/HeroImage';
 import EventDetail from '../../components/eventDetailPage/EventDetail';
 import EventPriceSlip from '../../components/eventDetailPage/EventPriceSlip';
+import { useDeviceType } from '../../customHooks/useDeviceType';
 
 const EventDetailPage = (): JSX.Element => {
+    const deviceType = useDeviceType();
     const { eventName } = useParams();
     const { event: selectedEvent, loading } = useSelector((state: IApplicationState) => state.eventDetail);
 
@@ -39,9 +41,16 @@ const EventDetailPage = (): JSX.Element => {
                             <div className="eventDetailPage-leftSide">
                                 { selectedEvent && <EventDetail eventData={selectedEvent} /> }
                             </div>
-                            <div className="eventDetailPage-rightSide">
-                                { selectedEvent && <EventPriceSlip data={selectedEvent} /> }
-                            </div>
+                            {
+                                deviceType === 'desktop' &&
+                                <div className="eventDetailPage-rightSide">
+                                    { selectedEvent && <EventPriceSlip data={selectedEvent} /> }
+                                </div>
+                            }
+                            {
+                                deviceType === 'mobile' &&
+                                selectedEvent && <EventPriceSlip data={selectedEvent} />
+                            }
                         </>
                 }
             </div>
