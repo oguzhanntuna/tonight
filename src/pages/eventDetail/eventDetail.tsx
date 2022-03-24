@@ -25,7 +25,7 @@ const EventDetailPage = (): JSX.Element => {
     useEffect(() => {
         const { fetchEventDetail } = eventDetailActions;
 
-        if (eventName && !selectedEvent) {
+        if (eventName && eventName !== selectedEvent?.url) {
             dispatch(fetchEventDetail(eventName));
         }
     }, [eventName, selectedEvent, dispatch]);

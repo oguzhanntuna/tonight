@@ -5,7 +5,12 @@ import './ToastMessage.scss';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 import * as toastMessageActions from '../../store/actions/toastMessage';
 
-const ToastMessage = () => {
+interface IToastMessage {
+    classname?: string;
+}
+
+const ToastMessage = (props: IToastMessage) => {
+    const { classname = '' } = props;
     const { clearToastMessage } = toastMessageActions;
 
     const dispatch = useDispatch();
@@ -38,6 +43,7 @@ const ToastMessage = () => {
             toastMessage 
             ${toastMessageContent.type === 'warning' ? 'warning' : ''}
             ${toastMessageContent.type === 'success' ? 'success' : ''}
+            ${classname ? `toastMessage-${classname}` : '' }
         `}>
             { 
                 visibility &&

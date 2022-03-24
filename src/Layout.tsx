@@ -40,8 +40,8 @@ const Layout = (): JSX.Element => {
   }, [isEventDetailPageActive])
 
   return (
-    <div className="layout">
-      <ToastMessage />
+    <div className={`layout ${isEventDetailPageActive ? 'layout-paddingBottom' : ''}`}>
+      <ToastMessage classname={isEventDetailPageActive ? 'eventDetail' : isCartPageActive ? 'cart' : ''} />
       <Header />
       <Page />
       { !isCartPageActive && !isEventDetailPageActive && deviceType === 'mobile' && <BottomNavBar /> }

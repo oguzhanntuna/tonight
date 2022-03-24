@@ -2,6 +2,24 @@
   overflow-x: hidden;
 }
 
+@media only screen and (max-width: 1024px) {
+  .layout {
+    &-paddingBottom {
+      padding-bottom: 18rem;
+    }
+
+    .toastMessage {
+      &-eventDetail {
+        bottom: 26rem;
+      }
+
+      &-cart {
+        bottom: 21rem;
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .layout {
       &-heroImage {

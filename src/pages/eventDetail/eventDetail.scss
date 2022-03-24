@@ -20,7 +20,7 @@
     .eventDetailPage {
         .eventPriceSlip {
             width: 100%;
-            height: 27rem;
+            height: 24.5rem;
             position: fixed;
             top: unset;
             bottom: 0;
@@ -31,12 +31,21 @@
                 display: flex;
             }
 
+            &-eventTitleRow {
+                padding-top: 1.5rem;
+            }
+
             .eventTicketPriceRow {
                 flex: 1;
+                margin-bottom: 1.5rem;
 
                 &:first-child {
                     margin-right: 4rem;
                 }
+            }
+
+            &-totalPriceContainer {
+                padding-bottom: 1.5rem;
             }
         }
     }

@@ -26,11 +26,8 @@ const FavoriteIcon = (props: IFavoriteIcon): JSX.Element => {
     const isEventAlreadyInFavorites = favoriteEvents ? favoriteEvents.some(favoriteEvent => favoriteEvent?.id === eventToBeLiked.id) : false;
 
     return (
-        <div className="addToFavoriteIconContainer" onClick={() => !toggleLoading && dispatch(toggleFavorite(eventToBeLiked))}>
-            <div className={
-                `addToFavoriteIconContainer-addToFavoriteIcon 
-                ${toggleLoading ? 'addToFavoriteIconContainer-addToFavoriteIcon--isLoading' : ''}
-            `}>
+        <div className={`addToFavoriteIconContainer ${toggleLoading ? 'addToFavoriteIconContainer--isLoading' : ''}`} onClick={() => !toggleLoading && dispatch(toggleFavorite(eventToBeLiked))}>
+            <div className="addToFavoriteIconContainer-addToFavoriteIcon">
                 { 
                     isEventAlreadyInFavorites
                         ? <img src={favIconFull} alt="full favorite icon" /> 
