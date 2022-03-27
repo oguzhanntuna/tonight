@@ -21,12 +21,14 @@ const EventDetail = (props: IEventDetailProps): JSX.Element => {
                     <div className="eventDetail-imageOverlay" />
                     <img src={imageUrl} alt={title} />
                 </div>
-                <div className="eventDetail-eventInfo">
-                    <div className="eventDetail-date">
-                        {date}
-                    </div>
-                    <div className="eventDetail-location">
-                        {location}
+                <div className="eventDetail-contentBottomRow">
+                    <div className="eventDetail-eventInfo">
+                        <div className="eventDetail-date">
+                            {date}
+                        </div>
+                        <div className="eventDetail-location">
+                            {location}
+                        </div>
                     </div>
                     <FavoriteIcon eventToBeLiked={eventData} showFavoritesText={true} />
                 </div>

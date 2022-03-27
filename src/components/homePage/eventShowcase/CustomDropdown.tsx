@@ -1,9 +1,11 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import './CustomDropdown.scss';
 
+import { useClickOutside } from '../../../customHooks/useClickOutside';
 import { IDropdownItem } from './Filters';
 
 import moreIcon from '../../../assets/icons/more.svg'
+import { useDeviceType } from '../../../customHooks/useDeviceType';
 
 interface ICustomDropdown {
     items: Array<IDropdownItem>;
@@ -13,9 +15,17 @@ interface ICustomDropdown {
 
 const CustomDropdown = (props: ICustomDropdown) => {
     const { items, activeDropdown, setActiveDropdown } = props;
+    const deviceType = useDeviceType();
     const [showOptions, setShowOptitons] = useState<boolean>(false);
+    const { ref, isClickedOutside } = useClickOutside();
 
     const toggleDropdown = () => setShowOptitons(prevShowOptionsState => !prevShowOptionsState);
+
+    useEffect(() => {
+        if (isClickedOutside) {
+           console.log('Asd')
+        }
+    }, [deviceType, isClickedOutside]);
 
     useEffect(() => {
         if (items) {
@@ -31,7 +41,7 @@ const CustomDropdown = (props: ICustomDropdown) => {
     }
 
     return (
-        <div className={`dropdown ${showOptions ? 'dropdown--active' : ''}`}>
+        <div className={`dropdown ${showOptions ? 'dropdown--active' : ''}`} ref={ref} >
             <div 
                 className="dropdown-placeholder"
                 onClick={() => toggleDropdown()}

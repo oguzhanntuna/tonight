@@ -35,10 +35,6 @@ const Layout = (): JSX.Element => {
   const isCartPageActive = location.pathname.includes('/cart');
   const isEventDetailPageActive = location.pathname.split('/').length === 3;
 
-  useEffect(() => {
-    console.log(isEventDetailPageActive)
-  }, [isEventDetailPageActive])
-
   return (
     <div className={`layout ${isEventDetailPageActive ? 'layout-paddingBottom' : ''}`}>
       <ToastMessage classname={isEventDetailPageActive ? 'eventDetail' : isCartPageActive ? 'cart' : ''} />

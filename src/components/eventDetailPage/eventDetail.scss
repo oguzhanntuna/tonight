@@ -16,14 +16,13 @@
     }
 
     &-content {
-        display: flex;
         margin-bottom: 4rem;
     }
 
     &-imageContainer {
         position: relative;
-        width: 60%;
-        margin-right: 2rem;
+        margin-bottom: 2rem;
+        width: 80%;
 
         img {
             width: 100%;
@@ -38,20 +37,18 @@
         background: linear-gradient(to bottom, transparent, $color-background);
     }
 
-    &-eventInfo {
-        flex: 1;
+    &-contentBottomRow {
+        display: flex;
+        justify-content: space-between;
     }
 
     &-date {
-        margin-bottom: 2rem;
-    }
-
-    &-location {
-        margin-bottom: 4rem;
+        margin-right: 2rem;
     }
 
     .addToFavoriteIconContainer {
         justify-content: center;
+        flex-direction: column;
     }
 
     &-aboutTitle, &-rulesTitle {
@@ -96,6 +93,52 @@
 
         & > * {
             margin-bottom: 2rem;
+        }
+    }
+}
+
+@media only screen and (max-width: 1080px) {
+    .eventDetail {
+        &-title {
+            text-align: center;
+        }
+
+        &-imageContainer {
+            margin: 0 auto 2rem auto;
+        }
+
+        &-contentBottomRow {
+            justify-content: space-around;
+        }
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .eventDetail {
+        &-contentBottomRow {
+            display: block;
+        }
+
+        &-eventInfo {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        &-date {
+            margin-right: 0;
+        }
+
+        .addToFavoriteIconContainer {
+            flex-direction: unset;
+            justify-content: center;
+        }
+
+        &-about {
+            padding: 0;
+        }
+
+        &-rules {
+            padding: 2rem;
         }
     }
 }
