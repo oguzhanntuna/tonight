@@ -14,7 +14,6 @@
             align-items: center;
             justify-content: center;
             color: $color-secondary;
-            z-index: 1;
 
             p {
                 margin: 0 1rem 0 0;
@@ -47,7 +46,7 @@
             background-color: $color-black;
             border-radius: 0.75rem;
             box-shadow: 0 8px 16px rgba($color-black, 0.4);
-            z-index: 2;
+            z-index: 1;
             text-align: center;
         }
 
