@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './thisWeekEvents.scss';
 
 import { useScrollToTop } from '../../customHooks/useScrollToTop';
@@ -10,9 +10,11 @@ import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/hero.jpg';
 import EventTicket from '../../components/eventTicket/EventTicket';
 import Spinner from '../../components/spinner/spinner';
+import Search from '../../components/search/search';
 
 const ThisWeekEventsPage = (): JSX.Element => {
     const { events: thisWeekEvents, loading } = useSelector((state: IApplicationState) => state.thisWeekEvents);
+    const [searchInput, setSearchInput] = useState<string>('');
     const dispatch = useDispatch();
 
     useScrollToTop();
@@ -25,6 +27,29 @@ const ThisWeekEventsPage = (): JSX.Element => {
         }
     }, [thisWeekEvents, dispatch]);
 
+    const renderAllEvents = () => (
+        thisWeekEvents.map((event, index) => (
+            <EventTicket 
+                key={`${index}-${event.id}`} 
+                eventData={event} 
+            />
+        ))
+    )
+
+    const renderFilteredEvents = () => {
+        const filteredThisWeekEvents = thisWeekEvents.filter(event => 
+            event.title.toLowerCase().includes(searchInput) || 
+            event.location.toLowerCase().includes(searchInput)
+        );
+
+        return filteredThisWeekEvents.map((event, index) => (
+            <EventTicket 
+                key={`${index}-${event.id}`} 
+                eventData={event} 
+            />
+        ))
+    }
+
     return (
         <div className="thisWeekEventsPage">
             <HeroImage imageUrl={heroImage} />
@@ -33,19 +58,17 @@ const ThisWeekEventsPage = (): JSX.Element => {
                     <div className="thisWeekEventsContainer-title">
                         This Week Events
                     </div>
+                    <Search 
+                        searchInput={searchInput}
+                        setSearchInput={setSearchInput}
+                    />
                     {
                         loading
                             ? <Spinner />
                             : (
                                 <div className="thisWeekEventsContainer-events">
-                                    { 
-                                        thisWeekEvents.map((event, index) => (
-                                            <EventTicket 
-                                                key={`${index}-${event.id}`} 
-                                                eventData={event} 
-                                            />
-                                        )) 
-                                    }
+                                    { !searchInput && renderAllEvents() }
+                                    { searchInput && renderFilteredEvents() }
                                 </div>
                             )
                     }
