@@ -13,6 +13,8 @@ export const useClickOutside = (): IUseClickOutsideReturnValue => {
         
         if (ref.current && !ref.current.contains(event.target)) {
             setIsClickedOutside(true);
+        } else {
+            setIsClickedOutside(false);
         }
     }
 

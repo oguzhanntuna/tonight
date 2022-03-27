@@ -39,14 +39,14 @@ const PurchasedTicketsPage = (): JSX.Element => {
                             orders-orderContainer 
                             ${isMinimizedOrderIndexArray.includes(orderIndex) ? 'minimized' : ''} 
                         `}>
-                            <div className="orders-header">
+                            <div 
+                                className="orders-header"
+                                onClick={() => minimizeOrder(orderIndex)}
+                            >
                                 <p className="orders-orderDate">
                                     31 Ocak 2022
                                 </p>
-                                <div 
-                                    className='orders-minimizeOrderButton'
-                                    onClick={() => minimizeOrder(orderIndex)}
-                                >
+                                <div className='orders-minimizeOrderButton'>
                                     <img src={moreIcon} alt="more" />
                                 </div>
                             </div>

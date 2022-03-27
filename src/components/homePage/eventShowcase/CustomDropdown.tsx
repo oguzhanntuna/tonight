@@ -23,7 +23,7 @@ const CustomDropdown = (props: ICustomDropdown) => {
 
     useEffect(() => {
         if (isClickedOutside) {
-           console.log('Asd')
+            setShowOptitons(false);
         }
     }, [deviceType, isClickedOutside]);
 

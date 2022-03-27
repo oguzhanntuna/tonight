@@ -24,11 +24,11 @@ const EventShowcaseHeader = (props: IEventShowcaseHeaderProps): JSX.Element => {
         <div className="eventShowcaseHeader">
             <div className="eventShowcaseHeader-title">{title}</div>
             { displayFilters && <EventShowcaseFilters /> }
-            <div className="eventShowcaseHeader-moreButton">
-                <div 
-                    className="eventShowcaseHeader-text"
-                    onClick={() => navigate(`/${convertTitleToRedirectUrl(title)}`)}
-                >
+            <div 
+                className="eventShowcaseHeader-moreButton"
+                onClick={() => navigate(`/${convertTitleToRedirectUrl(title)}`)}
+            >
+                <div className="eventShowcaseHeader-text">
                     See All
                 </div>
                 <div className="eventShowcaseHeader-moreIcom">
