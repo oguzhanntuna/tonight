@@ -38,8 +38,8 @@ const BuyNowEventsPage = (): JSX.Element => {
 
     const renderFilteredBuyNowEvents = () => {
         const filteredBuyNowEvents = buyNowEvents.filter(event => 
-            event.title.toLowerCase().includes(searchInput) || 
-            event.location.toLowerCase().includes(searchInput)
+            event.title.toLowerCase().includes(searchInput.toLowerCase()) || 
+            event.location.toLowerCase().includes(searchInput.toLowerCase())
         );
 
         return filteredBuyNowEvents.map((event, index) => (

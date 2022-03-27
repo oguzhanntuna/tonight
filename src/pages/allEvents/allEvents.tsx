@@ -75,8 +75,8 @@ const AllEventsPage = (): JSX.Element => {
 
     const renderFilteredAllEvents = () => {
         const filteredAllEvents = allEvents.filter(event => 
-            event.title.toLowerCase().includes(searchInput) || 
-            event.location.toLowerCase().includes(searchInput)
+            event.title.toLowerCase().includes(searchInput.toLowerCase()) || 
+            event.location.toLowerCase().includes(searchInput.toLowerCase())
         );
 
         return filteredAllEvents.map((event, index) => (

@@ -38,8 +38,8 @@ const RecentlyAddedEventsPage = (): JSX.Element => {
 
     const renderFilteredRecentlyAddedEvents = () => {
         const filteredRecentlyAddedEvents = recentlyAddedEvents.filter(event => 
-            event.title.toLowerCase().includes(searchInput) || 
-            event.location.toLowerCase().includes(searchInput)
+            event.title.toLowerCase().includes(searchInput.toLowerCase()) || 
+            event.location.toLowerCase().includes(searchInput.toLowerCase())
         );
 
         return filteredRecentlyAddedEvents.map((event, index) => (
