@@ -3,23 +3,60 @@ import './Filters.scss';
 
 import { useDeviceType } from '../../../customHooks/useDeviceType';
 
+import CustomDropdown from './CustomDropdown';
+
+export interface IDropdownItem {
+    name: string;
+    value: string;
+}
+
 const EventShowcaseFilters = (): JSX.Element => {
     const deviceType = useDeviceType();
-    const daysOfTheWeekArray: Array<string> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    const [activeDaysFilter, setActiveDaysFilter] = useState<number>(0);
+    const [activeDay, setActiveDay] = useState<IDropdownItem | null>(null);
+    const [activeDayIndex, setActiveDayIndex] = useState<number>(0);
+    const [dayOfTheWeekFilters] = useState<Array<IDropdownItem>>([
+        {
+            name: "Monday",
+            value: "monday"
+        },
+        {
+            name: "Tuesday",
+            value: "tuesday"
+        },
+        {
+            name: "Wednesday",
+            value: "wednesday"
+        },
+        {
+            name: "Thursday",
+            value: "thursday"
+        },
+        {
+            name: "Friday",
+            value: "friday"
+        },
+        {
+            name: "Saturday",
+            value: "saturday"
+        },
+        {
+            name: "Sunday",
+            value: "sunday"
+        },
+    ])
     
     if (deviceType === 'desktop') {
         
         return (
             <div className="daysOfTheWeekFilters">
                 {
-                    daysOfTheWeekArray.map((day, index) => (
+                    dayOfTheWeekFilters.map((day, index) => (
                         <div 
-                            className={`daysOfTheWeekFilters-days ${activeDaysFilter === index ? 'active' : ''}`} 
-                            onClick={() => setActiveDaysFilter(index)}
-                            key={`${day}-${index}`}
+                            className={`daysOfTheWeekFilters-days ${activeDayIndex === index ? 'active' : ''}`} 
+                            onClick={() => setActiveDayIndex(index)}
+                            key={`${day.value}-${index}`}
                         >
-                            {day}
+                            {day.name}
                         </div>
                     ))
                 }
@@ -29,7 +66,11 @@ const EventShowcaseFilters = (): JSX.Element => {
 
     if (deviceType === 'mobile') {
         return (
-            <p>Custom Dropdown</p>
+            <CustomDropdown 
+                items={dayOfTheWeekFilters} 
+                activeDropdown={activeDay}
+                setActiveDropdown={setActiveDay}
+            />
         );
     }
 

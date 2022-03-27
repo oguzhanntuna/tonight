@@ -10,6 +10,8 @@
     }
 
     .eventShowcaseHeader {
+        position: relative;
+        
         &-title {
             text-shadow: 0 4px 8px $color-black;
         }
