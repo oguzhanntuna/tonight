@@ -33,6 +33,10 @@
                 }
             }
         }
+        
+        .search {
+            margin-bottom: 4rem;
+        }
     }
 }
 
@@ -44,6 +48,10 @@
                 &-title {
                     text-align: center;
                 }
+
+                .search {
+                    margin: 0 auto 4rem auto;
+                }
             }
         }
     }
@@ -51,6 +59,10 @@
 
 @media only screen and (max-width: 790px) {
     .allEventsContainer {
+        .search {
+            width: 100%;
+        }
+
         .eventTicket {
             height: 38.2rem;
         }

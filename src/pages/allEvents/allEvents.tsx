@@ -13,6 +13,7 @@ import HeroImage from '../../components/heroImage/HeroImage';
 import heroImage from '../../assets/hero.jpg';
 import EventTicket from '../../components/eventTicket/EventTicket';
 import Spinner from '../../components/spinner/spinner';
+import Search from '../../components/search/search';
 
 const AllEventsPage = (): JSX.Element => {
     const dispatch = useDispatch();
@@ -25,6 +26,11 @@ const AllEventsPage = (): JSX.Element => {
     const { events: recentlyAddedEvents, loading: recentlyAddedEventsLoading  } = recentlyAddedEventsState;
     const { events: buyNowEvents, loading: buyNowEventsLoading   } = buyNowEventsState;
     const [allEvents, setAllEvents] = useState<Array<IEventShowcaseEvent>>([]);
+    const [searchInput, setSearchInput] = useState<string>('');
+
+    useEffect(() => {
+        console.log('searchInput:', searchInput);
+    }, [searchInput]);
 
     useScrollToTop();
 
@@ -62,6 +68,29 @@ const AllEventsPage = (): JSX.Element => {
 
     }, [thisWeekEvents, recentlyAddedEvents, buyNowEvents, dispatch]);
 
+    const renderAllEvents = () => (
+        allEvents.map((event, index) => (
+            <EventTicket 
+                key={`${index}-${event.id}`} 
+                eventData={event} 
+            />
+        ))
+    )
+
+    const renderFilteredEvents = () => {
+        const filteredAllEvents = allEvents.filter(event => 
+            event.title.toLowerCase().includes(searchInput) || 
+            event.location.toLowerCase().includes(searchInput)
+        );
+
+        return filteredAllEvents.map((event, index) => (
+            <EventTicket 
+                key={`${index}-${event.id}`} 
+                eventData={event} 
+            />
+        ))
+    }
+
     return (
         <div className="allEventsPage">
             <HeroImage imageUrl={heroImage} />
@@ -70,19 +99,17 @@ const AllEventsPage = (): JSX.Element => {
                     <div className="allEventsContainer-title">
                         All Events
                     </div>
+                    <Search 
+                        searchInput={searchInput}
+                        setSearchInput={setSearchInput}
+                    />
                     {
                         thisWeekEventsLoading || recentlyAddedEventsLoading || buyNowEventsLoading
                             ? <Spinner />
                             : (
                                 <div className="allEventsContainer-events">
-                                    { 
-                                        allEvents.map((event, index) => (
-                                            <EventTicket 
-                                                key={`${index}-${event.id}`} 
-                                                eventData={event} 
-                                            />
-                                        )) 
-                                    }
+                                    { !searchInput && renderAllEvents() }
+                                    { searchInput && renderFilteredEvents() }
                                 </div>
                             )
                     }
