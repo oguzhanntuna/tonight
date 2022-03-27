@@ -28,10 +28,6 @@ const AllEventsPage = (): JSX.Element => {
     const [allEvents, setAllEvents] = useState<Array<IEventShowcaseEvent>>([]);
     const [searchInput, setSearchInput] = useState<string>('');
 
-    useEffect(() => {
-        console.log('searchInput:', searchInput);
-    }, [searchInput]);
-
     useScrollToTop();
 
     useEffect(() => {
@@ -77,7 +73,7 @@ const AllEventsPage = (): JSX.Element => {
         ))
     )
 
-    const renderFilteredEvents = () => {
+    const renderFilteredAllEvents = () => {
         const filteredAllEvents = allEvents.filter(event => 
             event.title.toLowerCase().includes(searchInput) || 
             event.location.toLowerCase().includes(searchInput)
@@ -109,7 +105,7 @@ const AllEventsPage = (): JSX.Element => {
                             : (
                                 <div className="allEventsContainer-events">
                                     { !searchInput && renderAllEvents() }
-                                    { searchInput && renderFilteredEvents() }
+                                    { searchInput && renderFilteredAllEvents() }
                                 </div>
                             )
                     }

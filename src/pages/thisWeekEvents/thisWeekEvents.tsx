@@ -27,7 +27,7 @@ const ThisWeekEventsPage = (): JSX.Element => {
         }
     }, [thisWeekEvents, dispatch]);
 
-    const renderAllEvents = () => (
+    const renderThisWeekEvents = () => (
         thisWeekEvents.map((event, index) => (
             <EventTicket 
                 key={`${index}-${event.id}`} 
@@ -36,7 +36,7 @@ const ThisWeekEventsPage = (): JSX.Element => {
         ))
     )
 
-    const renderFilteredEvents = () => {
+    const renderFilteredThisWeekEvents = () => {
         const filteredThisWeekEvents = thisWeekEvents.filter(event => 
             event.title.toLowerCase().includes(searchInput) || 
             event.location.toLowerCase().includes(searchInput)
@@ -67,8 +67,8 @@ const ThisWeekEventsPage = (): JSX.Element => {
                             ? <Spinner />
                             : (
                                 <div className="thisWeekEventsContainer-events">
-                                    { !searchInput && renderAllEvents() }
-                                    { searchInput && renderFilteredEvents() }
+                                    { !searchInput && renderThisWeekEvents() }
+                                    { searchInput && renderFilteredThisWeekEvents() }
                                 </div>
                             )
                     }
