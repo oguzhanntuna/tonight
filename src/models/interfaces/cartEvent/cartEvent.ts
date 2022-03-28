@@ -9,6 +9,7 @@ export interface ICartEvent {
     location: string;
     date: string;
     url: string;
+    description: Array<string>;
     normalTicket: IEventShowCaseTicket;
     vipTicket: IEventShowCaseTicket;
     totalPrice: number;

@@ -47,6 +47,7 @@ export const fetchEventDetail = (eventName: string) => {
                         eventData.location,
                         eventData.date,
                         eventData.redirectUrl,
+                        eventData.description,
                         eventData.normalTicket,
                         eventData.vipTicket,
                         eventData.totalPrice,

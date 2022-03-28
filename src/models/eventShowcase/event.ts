@@ -8,6 +8,7 @@ export class EventShowcaseEvent {
         public location: string, 
         public date: string, 
         public url: string,
+        public description: Array<string>,
         public normalTicket: IEventShowCaseTicket,
         public vipTicket: IEventShowCaseTicket,
         public totalPrice: number,
@@ -19,6 +20,7 @@ export class EventShowcaseEvent {
         this.location = location;
         this.date = date;
         this.url = url;
+        this.description = description;
         this.normalTicket = normalTicket;
         this.vipTicket = vipTicket;
         this.totalPrice = totalPrice;

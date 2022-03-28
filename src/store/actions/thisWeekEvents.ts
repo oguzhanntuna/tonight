@@ -49,6 +49,7 @@ export const fetchThisWeekEvents = () => {
                             moduleData[event].location,
                             moduleData[event].date,
                             moduleData[event].redirectUrl,
+                            moduleData[event].description,
                             moduleData[event].normalTicket,
                             moduleData[event].vipTicket,
                             moduleData[event].totalPrice,

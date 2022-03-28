@@ -9,7 +9,7 @@ interface IEventDetailProps {
 
 const EventDetail = (props: IEventDetailProps): JSX.Element => {
     const { eventData } = props;
-    const { title, date, location, imageUrl } = eventData;
+    const { title, date, location, imageUrl, description } = eventData;
 
     return (
         <div className="eventDetail"> 
@@ -38,12 +38,13 @@ const EventDetail = (props: IEventDetailProps): JSX.Element => {
                     About
                 </div>
                 <div className="eventDetail-aboutDescription">
-                    <span>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </span>
-                    <span>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </span>
+                    {
+                        description.map(description => (
+                            <span>
+                                { description }
+                            </span>
+                        ))
+                    }
                 </div>
             </div>
             <div className="eventDetail-rules">
@@ -51,15 +52,16 @@ const EventDetail = (props: IEventDetailProps): JSX.Element => {
                     Rules
                 </div>
                 <div className="eventDetail-rulesDescription">
-                    <span>The event is not for ages 18 and over.</span>
-                    <span>Activity course instructor, it is forbidden to insert a piercing tool.</span>
-                    <span>Photo and video tutorials are accepted in activity schools schools.</span>
-                    <span>It can be played to set up a virtual virtual environment and be tricked to use it without written permission.</span>
-                    <span>It likes to be exhibited with non-professional users, to distract the in-use and performers, and for private enjoyment. Shooting with flash is strictly prohibited.
-                    Organization and event venues are deemed appropriate and have backstage coverage.
-                    Care can be taken to balance the number of men and women, attitudes, clothing and generally to choose the appropriate one, and it can start from these reasons. The right to decide is at the initiative of the gate. The determinant of our gate is final and is valid in the condition.</span>
-                    <span>It is considered to have passed the PCR test or test, which predicts that the selection exam within the scope of the event will vaccinate the vaccination card. It is not possible for them to enter the events that do not have a vaccination card/PCR test and they will not be able to buy tickets.</span>
-                    <span>Purchased ticket (which will also not be used specifically), for advertising, competition, use for people who can benefit from the use, including promotion. The ticket used for this departure is canceled and the transaction is started.</span>
+                    <span>The event is for participants aged 18 and over.</span>
+                    <span>It is forbidden to bring food and drink, sharp, piercing or flammable tools into the event area.</span>
+                    <span>Event participants agree that photo and video shooting will be done in the event area.</span>
+                    <span>It is forbidden to insert professional video recorders and shoot without written permission.</span>
+                    <span>It is expected to not disturb other guests and performing artists and violate the privacy of his private life with non-professional devices. Shooting with flash is strictly prohibited.</span>
+                    <span>Organization and venue officials have the right not to let people they deem unsuitable to the event and backstage area.</span>
+                    <span>Particular attention is paid to the balance in the number of men and women, their attitude, style, clothing, and suitability in general, and entry may not be possible due to these and similar reasons. The decision of this is entirely at the initiative of the door. The decision of our door is final and is valid under all conditions.</span>
+                    <span>Our guests are required to have their vaccination card or HES code with them when they come to the event area. Participants who do not have a vaccination card/HES code will not be able to enter the event area and tickets will not be refunded.</span>
+                    <span>The purchased ticket may not be used for commercial or non-commercial purposes other than personal use, including but not limited to advertising, contests, sweepstakes, promotions (unless specifically written permission is obtained). The ticket used for these purposes is canceled and legal action is started.</span>
+                    <span>No refunds, cancellations or exchanges can be made on purchased tickets.</span>
                 </div>
             </div>
         </div>
