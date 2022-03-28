@@ -9,8 +9,8 @@ import { useDeviceType } from '../../../customHooks/useDeviceType';
 
 interface ICustomDropdown {
     items: Array<IDropdownItem>;
-    activeDropdown: IDropdownItem | null;
-    setActiveDropdown: Dispatch<SetStateAction<IDropdownItem | null>>;
+    activeDropdown: IDropdownItem;
+    setActiveDropdown: Dispatch<SetStateAction<IDropdownItem>>;
 }
 
 const CustomDropdown = (props: ICustomDropdown) => {
@@ -26,14 +26,6 @@ const CustomDropdown = (props: ICustomDropdown) => {
             setShowOptitons(false);
         }
     }, [deviceType, isClickedOutside]);
-
-    useEffect(() => {
-        if (items) {
-            const placeholderItem = items[0];
-            
-            setActiveDropdown(placeholderItem);
-        }
-    }, [items, setActiveDropdown]);
 
     const selectActiveDropdown = (item: IDropdownItem) => {
         setActiveDropdown(item);

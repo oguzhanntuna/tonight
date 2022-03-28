@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Dispatch, useState } from 'react';
 import './Filters.scss';
 
 import { useDeviceType } from '../../../customHooks/useDeviceType';
@@ -10,10 +10,14 @@ export interface IDropdownItem {
     value: string;
 }
 
-const EventShowcaseFilters = (): JSX.Element => {
+interface IEventShowcaseFiltersProps {
+    activeDayFilter: IDropdownItem;
+    setActiveDayFilter: Dispatch<React.SetStateAction<IDropdownItem>>;
+}
+
+const EventShowcaseFilters = (props: IEventShowcaseFiltersProps): JSX.Element => {
+    const { activeDayFilter, setActiveDayFilter } = props;
     const deviceType = useDeviceType();
-    const [activeDay, setActiveDay] = useState<IDropdownItem | null>(null);
-    const [activeDayIndex, setActiveDayIndex] = useState<number>(0);
     const [dayOfTheWeekFilters] = useState<Array<IDropdownItem>>([
         {
             name: "Monday",
@@ -52,8 +56,8 @@ const EventShowcaseFilters = (): JSX.Element => {
                 {
                     dayOfTheWeekFilters.map((day, index) => (
                         <div 
-                            className={`daysOfTheWeekFilters-days ${activeDayIndex === index ? 'active' : ''}`} 
-                            onClick={() => setActiveDayIndex(index)}
+                            className={`daysOfTheWeekFilters-days ${activeDayFilter.value === day.value ? 'active' : ''}`} 
+                            onClick={() => setActiveDayFilter(day)}
                             key={`${day.value}-${index}`}
                         >
                             {day.name}
@@ -68,8 +72,8 @@ const EventShowcaseFilters = (): JSX.Element => {
         return (
             <CustomDropdown 
                 items={dayOfTheWeekFilters} 
-                activeDropdown={activeDay}
-                setActiveDropdown={setActiveDay}
+                activeDropdown={activeDayFilter}
+                setActiveDropdown={setActiveDayFilter}
             />
         );
     }

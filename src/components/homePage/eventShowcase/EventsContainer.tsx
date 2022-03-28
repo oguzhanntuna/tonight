@@ -13,7 +13,15 @@ const EventShowcaseEventsContainer = (props: IEventShowcaseEventsContainerProps)
 
     return (
         <div className="eventsContainer">
-            { eventData && eventData.map((event, index) => <EventTicket key={`${index}-${event.id}`} eventData={event} />) }
+            { 
+                eventData && 
+                eventData.map((event, index) => (
+                    <EventTicket 
+                        key={`${index}-${event.id}`} 
+                        eventData={event} 
+                    />
+                )) 
+            }
         </div>
     );
 }

@@ -1,16 +1,21 @@
+import { Dispatch } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Header.scss';
+
+import { IDropdownItem } from './Filters';
 
 import EventShowcaseFilters from './Filters';
 import moreIcon from '../../../assets/icons/more.svg';
-import { useNavigate } from 'react-router-dom';
 
 interface IEventShowcaseHeaderProps {
     title: string;
-    displayFilters: boolean
+    displayFilters: boolean;
+    activeDayFilter: IDropdownItem;
+    setActiveDayFilter: Dispatch<React.SetStateAction<IDropdownItem>>;
 }
 
 const EventShowcaseHeader = (props: IEventShowcaseHeaderProps): JSX.Element => {
-    const { title, displayFilters } = props;
+    const { title, displayFilters, activeDayFilter, setActiveDayFilter } = props;
     const navigate = useNavigate();
 
     const convertTitleToRedirectUrl = (title: string) => {
@@ -23,7 +28,13 @@ const EventShowcaseHeader = (props: IEventShowcaseHeaderProps): JSX.Element => {
     return (
         <div className="eventShowcaseHeader">
             <div className="eventShowcaseHeader-title">{title}</div>
-            { displayFilters && <EventShowcaseFilters /> }
+            { 
+                displayFilters && 
+                <EventShowcaseFilters 
+                    activeDayFilter={activeDayFilter} 
+                    setActiveDayFilter={setActiveDayFilter} 
+                />
+            }
             <div 
                 className="eventShowcaseHeader-moreButton"
                 onClick={() => navigate(`/${convertTitleToRedirectUrl(title)}`)}
