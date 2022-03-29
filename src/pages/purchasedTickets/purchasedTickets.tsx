@@ -32,19 +32,22 @@ const PurchasedTicketsPage = (): JSX.Element => {
         <div className="orders">
             {
                 orders.map((order, orderIndex) => {
-                    const purchasedTickets = order.purchasedTickets;
+                    const { date, purchasedTickets } = order;
 
                     return (
-                        <div className={`
-                            orders-orderContainer 
-                            ${isMinimizedOrderIndexArray.includes(orderIndex) ? 'minimized' : ''} 
-                        `}>
+                        <div 
+                            className={`
+                                orders-orderContainer 
+                                ${isMinimizedOrderIndexArray.includes(orderIndex) ? 'minimized' : ''} 
+                            `}
+                            key={`${orderIndex}-${date}`}
+                        >
                             <div 
                                 className="orders-header"
                                 onClick={() => minimizeOrder(orderIndex)}
                             >
                                 <p className="orders-orderDate">
-                                    31 Ocak 2022
+                                    { date }
                                 </p>
                                 <div className='orders-minimizeOrderButton'>
                                     <img src={moreIcon} alt="more" />
@@ -58,8 +61,8 @@ const PurchasedTicketsPage = (): JSX.Element => {
                                             <div className="orders-purchasedTicketsContainerOverlay" />
                                             <div className='orders-scrollableContent'>
                                                 { 
-                                                    purchasedTickets.map(purchasedTicket => (
-                                                        <div className="orders-purchasedTicket">
+                                                    purchasedTickets.map((purchasedTicket, index) => (
+                                                        <div className="orders-purchasedTicket" key={purchasedTicket.id} >
                                                             <EventTicket eventData={purchasedTicket} />
                                                         </div>
                                                     ))

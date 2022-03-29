@@ -22,14 +22,14 @@ export const fetchOrders = () => {
             axios.get(ordersUrl)
                 .then(response => {
                     const { data } = response;
-                    const fetchedOrders: { [key: uniqueId]: Array<IPurchasedTicket> } = data;
+                    const fetchedOrders: { [key: uniqueId]: IOrder } = data;
                     let orders: Array<IOrder> = [];
 
                     for (let orderUid in fetchedOrders) {
                         const fetchedOrder = fetchedOrders[orderUid];
                         let purchasedTicketArray: Array<IPurchasedTicket> = [];
 
-                        fetchedOrder.forEach(ticket => {
+                        fetchedOrder.purchasedTickets.forEach(ticket => {
                             const purchasedTicket = new PurchasedTicket(
                                 ticket.id,
                                 ticket.title,
@@ -48,7 +48,7 @@ export const fetchOrders = () => {
 
                         const order: IOrder = new Order(
                             purchasedTicketArray,
-                            'date'
+                            fetchedOrder.date
                         )
                         orders.push(order);
                     }

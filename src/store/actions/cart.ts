@@ -309,12 +309,17 @@ export const purchaseCart = () => {
             const parsedUserData: ILocalStorageUserData = JSON.parse(userData);
             const { userId } = parsedUserData;
             const userCartUrl = `https://tonight-ticket-selling-website-default-rtdb.europe-west1.firebasedatabase.app/orders/${userId}.json`;
+            const todaysDate = getTodaysDate();
+            const order: IOrder = new Order(
+                cartEvents,
+                todaysDate
+            )
 
             dispatch(purchaseCartStart());
-            axios.post(userCartUrl, cartEvents)
+            axios.post(userCartUrl, order)
                 .then(() => {
                     let purchasedTickets: Array<IPurchasedTicket> = [];
-                    let orders:  Array<IOrder> = [];
+                    let orders:  Array<IOrder> = [];                    
 
                     cartEvents.forEach(cartEvent => {
                         const purchasedTicket: IPurchasedTicket = new PurchasedTicket(
@@ -334,7 +339,7 @@ export const purchaseCart = () => {
 
                     const order: IOrder = new Order(
                         purchasedTickets,
-                        'date'
+                        todaysDate
                     )
                     orders.push(order);
 
@@ -456,4 +461,16 @@ const getEventAlreadyInCart = (event: IEventShowcaseEvent | IFavoriteEvent) => {
             }
         });
     }  
+}
+
+const getTodaysDate = () => {
+    const todaysDate = new Date();
+    const dd = todaysDate.getDate();
+    const mm = todaysDate.getMonth() + 1; //January is 0!
+    const yyyy = todaysDate.getFullYear();
+
+    const newTodaysDate = new Date(yyyy, mm, dd);
+    const monthName = newTodaysDate.toLocaleDateString('en-us', { month: 'long' }); 
+
+    return `${dd} ${monthName} ${yyyy}`;
 }
