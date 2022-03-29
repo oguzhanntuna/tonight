@@ -1,16 +1,39 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useHover } from '../../../customHooks/useHover';
 import './ImageSlider.scss';
 
+import * as SliderActions from '../../../store/actions/slider';
+import { IApplicationState } from '../../../models/interfaces/store/states/application';
+import { ISliderEvent } from '../../../models/interfaces/sliderEvent/slider';
+
 import sliderButton from '../../../assets/icons/arrow-forward-outline.svg';
-import { imageSliderData } from '../../../data/imageSliderData';
+import Spinner from '../../spinner/spinner';
 
 const ImageSlider = (): JSX.Element => {
+    const { fetchSliderEvents } = SliderActions;
+    const sliderState = useSelector((state: IApplicationState) => state.slider);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [sliderItems, setSliderItems] = useState<Array<ISliderEvent>>([]);
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
     const [paginationItemLoadingPercentage, setPaginationItemLoadingPercentage] = useState<number>(0);
     const [imageSliderRef, imageSliderHover] = useHover();
-    
-    const lastImageIndex: number = imageSliderData.length - 1;
+    const lastImageIndex: number = sliderItems.length - 1;
+
+    useEffect(() => {
+        if (sliderState.sliderEvents.length === 0) {
+
+            dispatch(fetchSliderEvents());
+        }
+    }, [sliderState.sliderEvents.length, dispatch, fetchSliderEvents]);
+
+    useEffect(() => {
+        if (sliderState.sliderEvents && sliderState.sliderEvents.length > 0 && !sliderState.loading) {
+            setSliderItems([ ...sliderState.sliderEvents ]);
+        }
+    }, [sliderState]);
 
     const goToNextImage = useCallback((): void => {
         const nextImageIndex = currentImageIndex + 1
@@ -47,11 +70,11 @@ const ImageSlider = (): JSX.Element => {
     const renderPagination = (): JSX.Element => (
         <div className="imageSlider-pagination">
             {
-                imageSliderData.map((_image, index) => (
+                sliderItems.map((sliderItem, index) => (
                     <div 
                         className={`imageSlider-paginationItem ${currentImageIndex === index ? 'active' : ''}`} 
                         onClick={() => setCurrentImageIndex(index)}
-                        key={`paginationItem-${index}`}
+                        key={`paginationItem-${sliderItem.id}`}
                     >
                         {
                             currentImageIndex === index
@@ -67,38 +90,31 @@ const ImageSlider = (): JSX.Element => {
         </div>
     );
 
-    const renderSliderItems = (): JSX.Element  => {
+    const renderSliderItems = (): JSX.Element  => (
+        <div className="imageSlider-itemsContainer">
+            {
+                sliderItems.map((sliderItem, index) => {
 
-        if (imageSliderData.length > 0) {
-
-            return (
-                <div className="imageSlider-itemsContainer">
-                    {
-                        imageSliderData.map((imageData, index) => {
-    
-                            return (
-                                <div 
-                                    className={`imageSlider-item ${currentImageIndex === index ? 'active' : ''}`} 
-                                    key={`imageSliderItem-${index}`}
-                                >
-                                    { 
-                                        currentImageIndex === index && 
-                                        <img src={imageData.imageUrl} alt={`imageSliderItem-${index}`} /> 
-                                    }
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-            );
-        }
-
-        return <></>;
-    }
+                    return (
+                        <div 
+                            className={`imageSlider-item ${currentImageIndex === index ? 'active' : ''}`} 
+                            key={`imageSliderItem-${index}`}
+                            onClick={() => navigate(`/${sliderItem.moduleType}/${sliderItem.redirectUrl}`)}
+                        >
+                            { 
+                                currentImageIndex === index && 
+                                <img src={sliderItem.imageUrl} alt={`imageSliderItem-${sliderItem.id}`} /> 
+                            }
+                        </div>
+                    )
+                })
+            }
+        </div>
+    );
 
     return (
         <div className="imageSlider" ref={imageSliderRef}>
-            { renderSliderItems() }
+            { sliderItems.length > 0 && renderSliderItems() }
             { renderPagination() }
             <div className="imageSlider-previousButton" onClick={() => goToPreviousImage()}>
                 <div className="imageSlider-previousIcon">

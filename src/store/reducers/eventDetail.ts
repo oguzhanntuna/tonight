@@ -18,8 +18,6 @@ const initialState: IEventDetailState = {
     error: null
 }
 
-// const updateEventDetail = () => {}
-
 export const eventDetailReducer = (state = initialState, action: IEventDetailActions): IEventDetailState => {
     switch(action.type) {
         case EVENT_DETAIL_FETCH_START:
@@ -34,6 +32,7 @@ export const eventDetailReducer = (state = initialState, action: IEventDetailAct
             return {
                 ...state,
                 event: eventDetail,
+                error: null,
                 loading: false
             }
 
@@ -45,9 +44,6 @@ export const eventDetailReducer = (state = initialState, action: IEventDetailAct
                 error,
                 loading: false
             }
-
-
-
 
         case EVENT_DETAIL_ADD_NORMAL_TICKET:
             const addedNormalTicketEvent = action.eventDetail;

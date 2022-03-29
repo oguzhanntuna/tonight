@@ -1,3 +1,4 @@
+import { ISliderState } from './slider';
 import { IEventDetailState } from './eventDetail';
 import { IBuyNowEventsState } from './buyNowEvents';
 import { IRecentlyAddedEventsState } from './recentlyAddedEvents';
@@ -18,4 +19,5 @@ export interface IApplicationState {
     recentlyAddedEvents: IRecentlyAddedEventsState;
     buyNowEvents: IBuyNowEventsState;
     eventDetail: IEventDetailState;
+    slider: ISliderState
 }

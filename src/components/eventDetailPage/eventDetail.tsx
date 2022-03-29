@@ -39,8 +39,8 @@ const EventDetail = (props: IEventDetailProps): JSX.Element => {
                 </div>
                 <div className="eventDetail-aboutDescription">
                     {
-                        description.map(description => (
-                            <span>
+                        description.map((description, index) => (
+                            <span key={`description-${index}`} >
                                 { description }
                             </span>
                         ))

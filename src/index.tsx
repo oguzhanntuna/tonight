@@ -17,6 +17,7 @@ import { thisWeekEventsReducer } from './store/reducers/thisWeekEvents';
 import { recentlyAddedEventsReducer } from './store/reducers/recentlyAddedEvents';
 import { buyNowEventsReducer } from './store/reducers/buyNowEvents';
 import { eventDetailReducer } from './store/reducers/eventDetail';
+import { sliderReducer } from './store/reducers/slider';
 import Layout from './Layout';
 
 const rootReducer = combineReducers<IApplicationState>({
@@ -28,7 +29,8 @@ const rootReducer = combineReducers<IApplicationState>({
   favorites: favoritesReducer,
   auth: authReducer,
   toastMessage: toastMessageReducer,
-  orders: ordersReducer
+  orders: ordersReducer,
+  slider: sliderReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

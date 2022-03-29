@@ -30,7 +30,6 @@ const HomePage = (): JSX.Element => {
                     moduleType="buy-now" 
                     displayFilters={false} 
                 />
-                {/* <EventShowcaseModule title="Most Popular" eventData={availableEvents} displayFilters={false} /> */}
             </div>
         </div>
     );
