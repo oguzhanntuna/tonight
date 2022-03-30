@@ -19,8 +19,6 @@ const CartPage = (): JSX.Element => {
 
     useScrollToTop();
 
-    console.log(cartItems);
-
     const renderCartEvents = (): JSX.Element => (
         <div className="cartEvents">
             {
