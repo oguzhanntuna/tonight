@@ -32,12 +32,13 @@ export const PURCHASE_CART_START = 'PURCHASE_CART_START';
 export const PURCHASE_CART_SUCCESS = 'PURCHASE_CART_SUCCESS';
 export const PURCHASE_CART_FAIL = 'PURCHASE_CART_FAIL';
 export const UPDATE_ITEM_IN_CART = 'UPDATE_ITEM_IN_CART';
-export const RESET_CART = 'RESET_CART';
+export const CART_RESET_FROM_USER = 'CART_RESET_FROM_USER';
 export const CART_ADD_NORMAL_TICKET = 'CART_ADD_NORMAL_TICKET';
 export const CART_ADD_VIP_TICKET = 'CART_ADD_VIP_TICKET';
 export const CART_REMOVE_NORMAL_TICKET = 'CART_REMOVE_NORMAL_TICKET';
 export const CART_REMOVE_VIP_TICKET = 'CART_REMOVE_VIP_TICKET';
 export const CART_REMOVE_EVENT = 'CART_REMOVE_EVENT';
+export const CART_RESET_FROM_STATE = 'CART_RESET_FROM_STATE';
 
 const fetchCartStart = () => {
     return { type: FETCH_CART_START }
@@ -82,7 +83,7 @@ const purchaseCartSuccess = (orders: Array<IOrder>) => {
             type: ADD_TO_ORDERS,
             orders: orders
         });
-        dispatch(resetCart());
+        dispatch(resetCartFromUser());
         dispatch({
             type: PURCHASE_CART_SUCCESS
         });
@@ -94,7 +95,7 @@ const purchaseCartFail = (error: string) => {
     return { type: PURCHASE_CART_FAIL, purchaseError: error }
 }
 
-const resetCart = () => 
+const resetCartFromUser = () => 
     (dispatch: any) => {
         const userData = localStorage.getItem('userDataJSON');
 
@@ -105,7 +106,7 @@ const resetCart = () =>
 
             axios.delete(userCartUrl)
                 .then(() => {
-                    dispatch({ type: RESET_CART });
+                    dispatch({ type: CART_RESET_FROM_USER });
                 })
                 .catch(error => console.log(error));
         }
@@ -407,6 +408,10 @@ export const removeEvent = (eventData: ICartEvent) => {
         }      
     }
 } 
+
+export const resetCartFromState = () => {
+    return { type: CART_RESET_FROM_STATE};
+}
 
 const getCartEvents = () => {
 

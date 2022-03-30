@@ -26,4 +26,10 @@ export class EventShowcaseEvent {
         this.totalPrice = totalPrice;
         this.moduleType = moduleType;
     }
+
+    public resetEvent = () => {
+        this.normalTicket.count = 0;
+        this.vipTicket.count = 0;
+        this.totalPrice = 0;
+    }
 }

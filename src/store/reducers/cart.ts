@@ -4,7 +4,7 @@ import { ICartState } from '../../models/interfaces/store/states/cart';
 
 import { 
     ADD_TO_CART, 
-    RESET_CART,
+    CART_RESET_FROM_USER,
     FETCH_CART_FAIL, 
     FETCH_CART_START, 
     FETCH_CART_SUCCESS, 
@@ -18,7 +18,8 @@ import {
     CART_REMOVE_EVENT,
     PURCHASE_CART_SUCCESS,
     PURCHASE_CART_START,
-    PURCHASE_CART_FAIL
+    PURCHASE_CART_FAIL,
+    CART_RESET_FROM_STATE
 } from '../actions/cart';
 
 const initialState: ICartState = {
@@ -34,7 +35,7 @@ const initialState: ICartState = {
 
 export const cartReducer = (state = initialState, action: ICartAction): ICartState => {
     switch(action.type) {
-        case RESET_CART:
+        case CART_RESET_FROM_USER:
 
             return {
                 ...state,
@@ -209,6 +210,18 @@ export const cartReducer = (state = initialState, action: ICartAction): ICartSta
                 ...state,
                 cartItems: [ ...filteredCartItems ],
                 ticketCount: state.ticketCount - removedEventTotalTicketCount
+            }
+        case CART_RESET_FROM_STATE:
+
+            return {
+                cartItems: [],
+                ticketCount: 0,
+                fetchLoading: false,
+                fetchError: null,
+                addToCartLoading: false,
+                addToCartError: null,
+                purchaseLoading: false,
+                purchaseError: null
             }
     }
 

@@ -1,7 +1,11 @@
 import { IOrdersState } from '../../models/interfaces/store/states/orders';
 import { IOrdersActions } from '../../models/interfaces/store/actions/orders';
 
-import { ADD_TO_ORDERS, FETCH_ORDERS } from '../actions/orders';
+import { 
+    ADD_TO_ORDERS, 
+    FETCH_ORDERS, 
+    RESET_ORDERS 
+} from '../actions/orders';
 
 const initialState: IOrdersState = {
     orders: []
@@ -21,6 +25,11 @@ export const ordersReducer = (state = initialState, action: IOrdersActions): IOr
             return {
                 ...state,
                 orders: action.orders
+            }
+
+        case RESET_ORDERS:
+            return {
+                orders: []
             }
     }
 

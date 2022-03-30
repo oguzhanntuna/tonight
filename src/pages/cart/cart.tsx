@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useDeviceType } from '../../customHooks/useDeviceType';
 import './cart.scss';
 
 import { useScrollToTop } from '../../customHooks/useScrollToTop';
@@ -11,13 +12,14 @@ import EmptyState from '../../components/emptyState/EmptyState';
 import EventTicket from '../../components/eventTicket/EventTicket';
 import Checkout from '../../components/checkout/Checkout';
 import Spinner from '../../components/spinner/spinner';
-import { useDeviceType } from '../../customHooks/useDeviceType';
 
 const CartPage = (): JSX.Element => {
-    const deviceType = useDeviceType(); 
+    const deviceType = useDeviceType();
     const { cartItems, fetchLoading } = useSelector((state: IApplicationState) => state.cart);
 
     useScrollToTop();
+
+    console.log(cartItems);
 
     const renderCartEvents = (): JSX.Element => (
         <div className="cartEvents">

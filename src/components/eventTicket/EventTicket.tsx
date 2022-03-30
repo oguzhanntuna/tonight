@@ -42,6 +42,15 @@ const EventTicket = (props: IEventTicketProps): JSX.Element => {
         }
     }, [toastMessageData, dispatch, setToastMessage]);
 
+    useEffect(() => {
+
+        return () => {
+            if (eventData instanceof EventShowcaseEvent || eventData instanceof FavoriteEvent) {
+                eventData.resetEvent();
+            }
+        }
+    }, [eventData]);
+
     const toggleTicketSide = (): void => setIsTicketSelected(prevState => !prevState);
 
     const addEventToCart = (event: EventShowcaseEvent | FavoriteEvent) => {

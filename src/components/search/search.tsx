@@ -21,6 +21,7 @@ const Search = (props: ISearch) => {
                 placeholder="Search by event name or location..." 
                 value={searchInput}
                 onChange={event => setSearchInput(event.target.value)}
+                maxLength={18}
             />
             <div className="search-searchIcon">
                 <img src={searchIcon} alt="search" />

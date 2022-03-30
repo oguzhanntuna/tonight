@@ -103,7 +103,12 @@ const EventShowcaseModule = (props: IEventShowcaseModuleProps): JSX.Element => {
             {
                 loading
                     ? <Spinner />
-                    : <EventShowcaseEventsContainer eventData={eventData} />  
+                    : (
+                        <EventShowcaseEventsContainer 
+                            eventData={eventData} 
+                            activeDayFilter={activeDayFilter} 
+                        /> 
+                    ) 
             }          
         </div>   
     );

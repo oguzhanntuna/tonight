@@ -9,6 +9,7 @@ import { Order } from '../../models/order/order';
 
 export const ADD_TO_ORDERS = 'ADD_TO_ORDERS';
 export const FETCH_ORDERS = 'FETCH_ORDERS';
+export const RESET_ORDERS = 'RESET_ORDERS';
 
 export const fetchOrders = () => {
     return (dispatch: any) => {
@@ -61,4 +62,9 @@ export const fetchOrders = () => {
                 .catch(error => console.log(error));
         }
     }
+}
+
+export const resetOrdersState = () => {
+
+    return { type: RESET_ORDERS }
 }

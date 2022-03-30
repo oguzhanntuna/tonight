@@ -28,4 +28,10 @@ export class FavoriteEvent {
         this.moduleType = moduleType;
         this.uniqueId = uniqueId;
     }
+
+    public resetEvent = () => {
+        this.normalTicket.count = 0;
+        this.vipTicket.count = 0;
+        this.totalPrice = 0;
+    }
 }

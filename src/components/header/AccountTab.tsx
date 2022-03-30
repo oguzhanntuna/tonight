@@ -48,7 +48,10 @@ const AccountTab = (props: IAccountTabProps): JSX.Element => {
                         },
                         {
                             label: 'Log Out',
-                            onClick: () => dispatch(logout())
+                            onClick: () => {
+                                dispatch(logout());
+                                navigate('/');
+                            }
                         }
                     ];
                 }
@@ -57,7 +60,10 @@ const AccountTab = (props: IAccountTabProps): JSX.Element => {
                     dropdownItems = [
                         {
                             label: 'Log Out',
-                            onClick: () => dispatch(logout())
+                            onClick: () => {
+                                dispatch(logout());
+                                navigate('/');
+                            }
                         }
                     ];
                 }

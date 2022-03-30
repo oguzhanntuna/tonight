@@ -9,7 +9,8 @@ import {
     FAVORITES_FETCH_FAIL,
     FAVORITES_TOGGLE_START,
     FAVORITES_TOGGLE_SUCCESS,
-    FAVORITES_TOGGLE_FAIL
+    FAVORITES_TOGGLE_FAIL,
+    FAVORITES_RESET_STATE
 } from './../actions/favorites';
 import { FavoriteEvent } from '../../models/favoriteEvent/favoriteEvent';
 import { IFavoritesAction } from './../../models/interfaces/store/actions/favorites';
@@ -186,6 +187,15 @@ export const favoritesReducer = (state = initialState, action: IFavoritesAction)
             }
             
             break;
+
+        case FAVORITES_RESET_STATE:
+            return {
+                favoriteEvents: [],
+                fetchLoading: false,
+                toggleLoading: false,
+                fetchError: null,
+                toggleError: null
+            }
     }
 
     return state;

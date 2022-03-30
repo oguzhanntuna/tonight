@@ -24,6 +24,7 @@ export const FAVORITES_REMOVE_NORMAL_TICKET = 'FAVORITES_REMOVE_NORMAL_TICKET';
 export const FAVORITES_REMOVE_VIP_TICKET = 'FAVORITES_REMOVE_VIP_TICKET';
 export const FAVORITES_RESET_TICKETS = 'FAVORITES_RESET_TICKETS';
 export const FAVORITES_RESET_ALL_TICKETS = 'FAVORITES_RESET_ALL_TICKETS';
+export const FAVORITES_RESET_STATE = 'FAVORITES_RESET_STATE';
 
 export const fetchFavorites = () => 
     (dispatch: any) => {
@@ -177,6 +178,13 @@ export const favoritesResetTickets = (selectedEvent: IFavoriteEvent): IFavorites
 
     return { type: FAVORITES_RESET_TICKETS, selectedEvent };
 }
+
+export const resetFavoritesState = () => {
+
+    return { type: FAVORITES_RESET_STATE };
+}
+
+export 
 
 const fetchStart = () => {
 

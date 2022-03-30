@@ -5,6 +5,9 @@ import firebaseApiKey from '../../.env/apiKey';
 import { IUserData, ILoginData } from "../../models/interfaces/auth/auth";
 import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
 import * as ToastMessageActions from './toastMessage';
+import * as CartActions from './cart'; 
+import * as FavoritesActions from './favorites';
+import * as OrdersActions from './orders';
 
 export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
@@ -151,9 +154,16 @@ export const login = (userData: ILoginData) => {
 export const logout = () => {
 
     return (dispatch: any) => {
+        const { resetFavoritesState } = FavoritesActions;
+        const { resetCartFromState } = CartActions;
+        const { resetOrdersState } = OrdersActions;
+
         localStorage.removeItem('userDataJSON');
 
         dispatch({ type: LOGOUT });
+        dispatch(resetCartFromState());
+        dispatch(resetFavoritesState());
+        dispatch(resetOrdersState());
     }
 }
 

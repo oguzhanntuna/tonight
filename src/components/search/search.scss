@@ -8,6 +8,7 @@
 
     &-input {
         width: 100%;
+        max-width: calc(100% - 8rem);
         padding: 2rem 2rem 2rem 6rem;
         border: none;
         outline: none;
@@ -15,9 +16,16 @@
         font-size: 2rem;
         background-color: $color-black;
         color: $color-white;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
 
         &:focus {
             border: 2px solid $color-secondary;
+
+            &::placeholder {
+                color: transparent;
+            }
         }
     }
 

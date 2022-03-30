@@ -6,6 +6,7 @@ import * as cartActions from '../../store/actions/cart';
 import { setToastMessage } from '../../store/actions/toastMessage';
 import { useDeviceType } from '../../customHooks/useDeviceType';
 import { useLoggedIn } from '../../customHooks/useLoggedIn';
+import { EventShowcaseEvent } from '../../models/eventShowcase/event';
 import { IEventShowcaseEvent } from '../../models/interfaces/eventShowcase/eventShowcase';
 import { IToastMessageData } from '../../models/interfaces/toastMessage/toastMessage';
 
@@ -36,9 +37,11 @@ const EventPriceSlip = (props: IEventPriceSlip): JSX.Element => {
         }
     }, [toastMessageData, dispatch]);
 
-    const addEventToCart = (event: IEventShowcaseEvent) => {
-        dispatch(addToCart(event));
+    useEffect(() => {
+        return () => { data instanceof EventShowcaseEvent && data.resetEvent() }
+    }, []);
 
+    const addEventToCart = (event: IEventShowcaseEvent) => {
         if (isLoggedin) {
             const { normalTicket, vipTicket } = event;
             const totalTicketCount = normalTicket.count + vipTicket.count
