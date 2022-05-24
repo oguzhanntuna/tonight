@@ -12,7 +12,7 @@ import { ICartEvent } from '../../models/interfaces/cartEvent/cartEvent';
 import { IPurchasedTicket } from '../../models/interfaces/purchasedTicket/purchasedTicket';
 
 import detailIcon from '../../assets/icons/document-text-outline.svg';
-import FavoriteIcon from '../favoriteIcon/FavoriteIcon';
+import FavoriteIcon from '../favoriteIcon/favoriteIcon';
 import deleteIcon from '../../assets/icons/delete.svg';
 import { PurchasedTicket } from '../../models/purchasedTicket/purchasedTicket';
 

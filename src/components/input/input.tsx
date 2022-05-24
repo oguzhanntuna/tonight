@@ -1,4 +1,4 @@
-import './Input.scss';
+import './input.scss';
 
 export interface IInputProps {
     label: string;

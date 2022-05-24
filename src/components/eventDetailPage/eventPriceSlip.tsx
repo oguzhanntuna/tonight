@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import './EventPriceSlip.scss';
+import './eventPriceSlip.scss';
 
 import * as cartActions from '../../store/actions/cart';
 import { setToastMessage } from '../../store/actions/toastMessage';

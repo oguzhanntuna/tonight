@@ -2,7 +2,7 @@ import { FormEvent } from 'react';
 import './Form.scss';
 
 import { useNavigate } from 'react-router-dom';
-import Input, { IInputProps } from '../input/Input';
+import Input, { IInputProps } from '../input/input';
 import { useSelector } from 'react-redux';
 import { IApplicationState } from '../../models/interfaces/store/states/application';
 

@@ -9,7 +9,6 @@ import { IApplicationState } from '../../../models/interfaces/store/states/appli
 import { ISliderEvent } from '../../../models/interfaces/sliderEvent/slider';
 
 import sliderButton from '../../../assets/icons/arrow-forward-outline.svg';
-import Spinner from '../../spinner/spinner';
 
 const ImageSlider = (): JSX.Element => {
     const { fetchSliderEvents } = SliderActions;

@@ -6,7 +6,7 @@ import './login.scss';
 import * as authActions from '../../store/actions/auth';
 import { useLoggedIn } from '../../customHooks/useLoggedIn';
 import { useScrollToTop } from '../../customHooks/useScrollToTop';
-import { IInputProps } from '../../components/input/Input';
+import { IInputProps } from '../../components/input/input';
 import { ILoginData } from '../../models/interfaces/auth/auth';
 
 import heroImage from '../../assets/hero.jpg';

@@ -9,8 +9,8 @@ import { IApplicationState } from '../../models/interfaces/store/states/applicat
 
 import heroImage from '../../assets/hero.jpg';
 import HeroImage from '../../components/heroImage/HeroImage';
-import EventDetail from '../../components/eventDetailPage/EventDetail';
-import EventPriceSlip from '../../components/eventDetailPage/EventPriceSlip';
+import EventDetail from '../../components/eventDetailPage/eventDetail';
+import EventPriceSlip from '../../components/eventDetailPage/eventPriceSlip';
 import { useDeviceType } from '../../customHooks/useDeviceType';
 
 const EventDetailPage = (): JSX.Element => {
